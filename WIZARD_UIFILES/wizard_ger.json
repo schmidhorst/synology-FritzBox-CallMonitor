@@ -1,0 +1,722 @@
+[
+ {
+  "step_title":"Lizenz"
+  ,"invalid_next_disabled": true
+  ,"activate": "{console.log('Lizenz activeate', arguments);}"
+  ,"items": [
+   {
+    "type": "multiselect"
+    ,"desc":"BSD 3-Klausel-Lizenz<br><br>Copyright (c) 2024-2025, Horst Schmid <a target='_blank' rel='noopener noreferrer' href='https://github.com/schmidhorst/'>https://github.com/schmidhorst/</a><br>Alle Rechte vorbehalten.<br><br>Weitergabe und Verwendung in Quell- und Binärform, mit oder ohne Änderungen, sind unter folgenden Bedingungen erlaubt:<br>1. Bei der Weitergabe des Quellcodes müssen der obige Urheberrechtsvermerk, diese Liste der Bedingungen und der folgende Haftungsausschluss beibehalten werden.<br>2. Bei der Weitergabe in binärer Form müssen der obige Urheberrechtsvermerk, diese Liste der Bedingungen und der folgende Haftungsausschluss in der Dokumentation und/oder anderen Materialien, die mit der Weitergabe bereitgestellt werden, wiedergegeben werden.<br>3. Weder der Name des Copyright-Inhabers noch die Namen der Mitwirkenden dürfen ohne ausdrückliche vorherige schriftliche Genehmigung verwendet werden, um von dieser Software abgeleitete Produkte zu unterstützen oder zu bewerben.<br><br> DIESE SOFTWARE WIRD VON DEN URHEBERN UND MITWIRKERN \"WIE BESEHEN\" ZUR VERFÜGUNG GESTELLT UND JEGLICHE AUSDRÜCKLICHEN ODER STILLSCHWEIGENDEN GARANTIEN, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE STILLSCHWEIGENDEN GARANTIEN DER HANDELSÜBLICHKEIT UND DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, WERDEN AUSGESCHLOSSEN. IN KEINEM FALL HAFTEN DER URHEBERRECHTSINHABER ODER DIE MITWIRKENDEN FÜR DIREKTE, INDIREKTE, ZUFÄLLIGE, BESONDERE, BEISPIELHAFTE SCHÄDEN ODER FOLGESCHÄDEN (EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE BESCHAFFUNG VON ERSATZGÜTERN ODER -DIENSTLEISTUNGEN, NUTZUNGS-, DATEN- ODER GEWINNVERLUSTE ODER GESCHÄFTSUNTERBRECHUNGEN), WIE AUCH IMMER DIESE VERURSACHT WURDEN UND AUF WELCHER HAFTUNGSTHEORIE SIE BERUHEN, OB DURCH VERTRAG, VERSCHULDENSUNABHÄNGIGE HAFTUNG ODER UNERLAUBTE HANDLUNG (EINSCHLIESSLICH FAHRLÄSSIGKEIT ODER ANDERWEITIG), DIE SICH IN IRGENDEINER WEISE AUS DER NUTZUNG DIESER SOFTWARE ERGEBEN, SELBST WENN AUF DIE MÖGLICHKEIT EINES SOLCHEN SCHADENS HINGEWIESEN WURDE."
+    ,"subitems": [
+     {
+      "key": "config_LICENSE_ACCEPTED",
+      "desc":"Angenommen",
+      "defaultValue": "@LICENSE_ACCEPTED@",
+      "validator": {
+       "fn": "{var v=arguments[0]; if (!v) return 'Lizenz noch nicht akzeptiert!'; return true;}"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ,{
+  "step_title":"Konfiguration"
+  ,"activate": "{console.log('Konfiguration activeate', arguments);}"
+  ,"items": [
+   {
+    "type": "textfield"
+    ,"desc":"<strong>Bitte nach unten scrollen und alle Einträge vor dem 'Weiter' prüfen!</strong>"
+    ,"subitems": [
+     {
+      "key": "config_IP_FRITZBOX"
+      ,"desc": "IP-Adr der FritzBox"
+      ,"width": "150"
+      ,"defaultValue": "@IP_FRITZBOX@"
+      ,"emptyText": "xxx.xxx.xxx.xxx oder fritz.box"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^fritz.box|(([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))$/"
+        ,"errorText": "Bitte 'fritz.box' oder die IPv4 Adresse eingeben"
+        }
+       }
+      }
+     ,{
+      "key": "config_COUNTRYCODE"
+      ,"desc": "Eigene Landesvorwahl"
+      ,"width": "150"
+      ,"defaultValue": "@COUNTRYCODE@"
+      ,"emptyText": "z.B. 0049"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0][0][0-9]+$/"
+        ,"errorText":"Bitte eine mit 00 beginnende Zahl"
+        }
+       }
+      }
+     ,{
+      "key": "config_AREACODE"
+      ,"desc": "Eigene Ortsvorwahl"
+      ,"width": "150"
+      ,"defaultValue": "@AREACODE@"
+      ,"emptyText": "z.B. 089"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText":"Bitte eine Zahl"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>HomeMatic/RaspberryMatic</strong><br>Optional: HomeMatic/RaspberryMatic CCU IP und Account",
+    "subitems": [
+     {
+      "key": "config_IP_CCU"
+      ,"desc": "IP-Adr of CCU"
+      ,"width": "150"
+      ,"defaultValue": "@IP_CCU@"
+      ,"emptyText": "xxx.xxx.xxx.xxx"
+      ,"validator": { 
+       "allowBlank": true
+       ,"regex": {
+        "expr": "/^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[0-9][0-9]|0[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/"
+        ,"errorText": "Please enter a IPv4 Address"
+        }
+       }
+      }
+     ,{
+      "key": "config_CCU_USER"
+      ,"desc": "CCU-Account Name"
+      ,"width": "150"
+      ,"defaultValue": "@CCU_USER@"
+      ,"validator": { 
+       "allowBlank": false
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "password",
+    "subitems": [
+     {
+      "key": "config_CCU_PW"
+      ,"desc": "CCU Passwort"
+      ,"width": "250"
+      ,"defaultValue": "@CCU_PW@"
+      ,"validator": { 
+       "allowBlank": true
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Systemvariablen-Namen in der CCU für die externen Leitungen",
+    "subitems": [
+     {
+      "key": "config_CCU_SYSVARS"
+      ,"desc": "CCU-SysVars"
+      ,"width": "350"
+      ,"defaultValue": "@CCU_SYSVARS@"
+      ,"emptyText": "Ltg1_SysVarName;Ltg2_SysVarName;Ltg3_SysVarName"
+      ,"validator": { 
+       "allowBlank": true
+       ,"regex": {
+        "expr": "/^[a-zA-Z0-9-_]+(\\s?;\\s?[a-zA-Z0-9-_]+)*$/"
+        ,"errorText": "Bitte eine oder mehrere durch Semikolon getrennte Namen (ohne Sonderzeichen)"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Eigene Telefonnummern (Leitungsnummern) und Namen dazu",
+    "subitems": [
+     {
+      "key": "config_SIPLINE_NUMBERS"
+      ,"desc": "Numbers"
+      ,"width": "250"
+      ,"defaultValue": "@SIPLINE_NUMBERS@"
+      ,"emptyText": "4567890;456777;456888"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+(\\s?;\\s?[0-9]+)*$/"
+        ,"errorText": "Bitte eine oder mehrere durch Semikolon getrennte Nummern"
+        }
+       }
+      }
+     ,{
+      "key": "config_SIPLINE_NAMES"
+      ,"desc": "Names"
+      ,"width": "350"
+      ,"defaultValue": "@SIPLINE_NAMES@"
+      ,"validator": { 
+       "allowBlank": true
+       ,"regex": {
+        "expr": "/^[^;]+(\\s?;\\s?[^;]+)*$/"
+        ,"errorText": "Bitte eine oder mehrere durch Semikolon getrennte Namen"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>BASH Shell Skript</strong><br>Optional: BASH Shell Script, welches bei jedem Anruf gestartet wird",
+    "subitems": [
+     {
+      "key": "config_SHELL_SCRIPT"
+      ,"desc": "Datei"
+      ,"width": "350"
+      ,"defaultValue": "@SHELL_SCRIPT@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>Telefonbücher</strong><br>Aus welchen Dateien und URLs sollen die Nummern der Anrufer zu Anrufernamen aufgelöst werden?<br>Zu jedem Telefonbuch kann ein Name (z.B. Privat, Spam, ...) angegeben werden, der dann mit angezeit wird.<br>CardDAV-Telefonbücher, z.B. DSM-Kontakte",
+    "subitems": [
+     {
+      "key": "config_TELBOOK_DAV1"
+      ,"desc": "Erstes CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV1@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV1"
+      ,"desc": "Name CardDAV 1"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV1@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV2"
+      ,"desc": "Zweites CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV2@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV2"
+      ,"desc": "Name CardDAV 2"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV2@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV3"
+      ,"desc": "Drittes CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV3@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV3"
+      ,"desc": "Name CardDAV 3"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV3@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV4"
+      ,"desc": "4. CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV4@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV4"
+      ,"desc": "Name CardDAV 4"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV4@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV5"
+      ,"desc": "5. CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV5@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV5"
+      ,"desc": "Name CardDAV 5"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV5@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV6"
+      ,"desc": "6. CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV6@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV6"
+      ,"desc": "Name CardDAV 6"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV6@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV7"
+      ,"desc": "7. CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV7@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV7"
+      ,"desc": "Name CardDAV 7"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV7@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV8"
+      ,"desc": "8. CardDAV-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV8@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV8"
+      ,"desc": "Name CardDAV 8"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV8@"
+      ,"emptyText": " (optional)"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield"
+    ,"desc": "<br>"
+    ,"subitems": [
+     {
+      "key": "config_DAV_USER"
+      ,"desc": "CardDAV-Account"
+      ,"width": "150"
+      ,"defaultValue": "@DAV_USER@"
+      }
+     ]
+    }
+   ,{
+    "type": "password",
+    "subitems": [
+     {
+      "key": "config_DAV_PW"
+      ,"desc": "CardDAV Passwort"
+      ,"width": "250"
+      ,"defaultValue": "@DAV_PW@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Aus welchen XML-Dateien (FritzBox-Telefonbuch-Export) sollen Anrufernamen abgerufen werden?",
+    "subitems": [
+     {
+      "key": "config_TELBOOK_XML1"
+      ,"desc": "Erstes FB-Telfonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_XML1@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.xml (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_XML1"
+      ,"desc": "Name XML 1"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_XML1@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_XML2"
+      ,"desc": "Zweites FB-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_XML2@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.xml (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_XML2"
+      ,"desc": "Name XML 2"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_XML2@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_XML3"
+      ,"desc": "Drittes FB-Telefonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_XML3@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.xml (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_XML3"
+      ,"desc": "Name XML 3"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_XML3@"
+      ,"emptyText": " (optional)"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Zusätzliche Text-Datei als Telefonbuch mit &lt;Nummer&gt;:&lt;Name&gt;<br>Zus. können Nebenstelle-Namen in die Datei eingetragen werden, z.B. **621:Arbeitszimmer",
+    "subitems": [
+     {
+      "key": "config_TELBOOK_TXT"
+      ,"desc": "Telfonbuch"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_TXT@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.txt"
+      }
+     ,{
+      "key": "config_BOOKNAME_TXT"
+      ,"desc": "Name TXT"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_TXT@"
+      ,"emptyText": " (optional)"
+      }
+     ]
+    }
+   ,{
+    "type" : "multiselect",
+    "desc" : "<strong>Anruf-Liste</strong><br>Es wird eine per Webseite abrufbare Liste der Anrufe erstellt: Eingehend angenommen, Eingehend verpasst, Ausgehend. Sollen auch ausgehende Versuche, bei denen keine Verbindung zustandekommt, gelistet werden?",
+    "subitems": [
+     {
+      "key": "config_CALL_OUT_NOCONNECT",
+      "desc": "Ausgehende ohne Verbindung auflisten",
+      "defaultValue": "@CALL_OUT_NOCONNECT@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>Fehler-Meldungen (Desktop):</strong><br>Im Fall eines Fehlers während dem lesen oder aktualisieren der Telefonbücher oder beim senden der Ruf-Informationen an HomeMatic CCU wird eine Desktop-Meldung erzeugt<br>Bitte geben Sie die Benutzergruppe (mit '@' Prefix) oder den Benutzernamen an, welche diese Meldung erhalten soll. Z.B. '@administrators' oder '@users' (incl. administrators!)",
+    "subitems": [
+     {
+      "key": "config_NOTIFY_USERS"
+      ,"desc": "Meldungs-Empfänger"
+      ,"width": "350"
+      ,"defaultValue": "@NOTIFY_USERS@"
+      ,"emptyText": "@users"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>Logging</strong><br>Die Größe der Log-Datei und der Anruferliste wird begrenzt. Wenn die angegebene Größe erreicht ist, dann wird die 'log rotation' ausgeführt. Logdaten werden komprimiert und alte gelöscht, falls mehr als 4 Dateien da sind.",
+    "subitems": [
+     {
+      "key": "config_LOG_MAX_SIZE"
+      ,"desc": "Logfile Byte/kByte/MByte"
+      ,"defaultValue": "@LOG_MAX_SIZE@"
+      ,"emptyText": "z.B. 10k"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+[kMG]*$/"
+        ,"errorText": "Eine positive Ganzahl gefolgt von k, M or G bitte!"
+        }
+       }
+      }
+     ,{
+      "key": "config_CALL_MAX_SIZE"
+      ,"desc": "Anruferliste"
+      ,"defaultValue": "@CALL_MAX_SIZE@"
+      ,"emptyText": "z.B. 10k"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+[kMG]*$/"
+        ,"errorText": "Eine positive Ganzahl gefolgt von k, M or G bitte!"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "combobox"
+    ,"desc": "Das Paket kann Meldungen ins Synology Protokoll-Center schreiben."
+    ,"subitems": [
+     {
+      "key": "config_LOGCENTER",
+      "autoSelect": true,
+      "editable": false,
+      "desc": "Log Center",
+      "width": "370",
+      "mode": "local",
+      "valueField": "myId1",
+      "displayField": "displayText1",
+      "defaultValue": "@LOGCENTER@",
+      "store": {
+       "xtype": "arraystore",
+       "fields": ["myId1", "displayText1"],
+       "data": [[0, "0 Not used"], [1, "1 Nur Fehler"], [2, "2 Fehler und Warnungen"], [3, "3 Fehler, Warnungen und Infos"], [4, "4 Fehler, Warungen, Infos, Debug"]]
+       }
+      }
+     ]
+    }
+   ,{
+    "type" : "singleselect",
+    "desc" : "Logging Methode: Log-Einträge können 'intern' übertragen und als 'Local', 'General' from 'System' angezeigt werden. Oder sie werden via UDP im IETF-Format übertragen. Dafür muss UDP-Log-Empfang für den gewählten Port konfiguriert und aktiviert sein.",
+    "subitems": [
+     {
+      "key": "config_SYSLOG_INT",
+      "desc": "Intern (ERR, WARN, INFO)",
+      "defaultValue": "@SYSLOG_INT@"
+      }
+     ,{
+      "key": "config_SYSLOG_UDP",
+      "desc": "UDP  (ERR, WARN, INFO, DEBUG)",
+      "defaultValue": "@SYSLOG_UDP@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "",
+    "subitems": [
+     {
+      "key": "config_SYSLOG_PORT"
+      ,"desc": "UDP Port"
+      ,"defaultValue": "@SYSLOG_PORT@"
+      ,"validator": { 
+       "fn": "{var v=arguments[0];if (!v) return 'Positive Ganzzahl erforderlich!';var n = Math.floor(Number(v));if (n == Infinity ) return 'Ganzzahl 1 ... 65535!';if ((String(n) !== v.trim()) || (n>65535) || (n<1)) return 'Ganzzahl 1 ... 65535!'; return true;}"
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "combobox"
+    ,"desc": ""
+    ,"subitems": [
+     {
+      "key": "config_LOGFACILITY",
+      "autoSelect": true,
+      "editable": false,
+      "desc": "UDP Log Facility (Category)",
+      "width": "350",
+      "mode": "local",
+      "valueField": "myId2",
+      "displayField": "displayText2",
+      "defaultValue": "@LOGFACILITY@",
+      "store": {
+       "xtype": "arraystore",
+       "fields": ["myId2", "displayText2"],
+       "data": [[8, "user"], [0, "local0"],[1, "local1"],[2, "local2"],[3, "local3"],[4, "local4"],[5, "local5"],[6, "local6"],[7, "local7"]]
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc":"Es sind mehrere Detailstufen für die Debug-Protokolldatei verfügbar: 1 ... 8. Je höher der Wert, desto mehr Details.",
+    "subitems": [
+     {
+      "key": "config_LOGLEVEL"
+      ,"desc": "Log Detail Level"
+      ,"defaultValue": "@LOGLEVEL@"
+      ,"validator": {
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[1-8]$/"
+        ,"errorText":"Eingabe einer positiven Zahl 1 ... 8"
+        }
+       }
+      }
+     ]
+    }
+   ] 
+  }
+ ,{
+  "step_title": "Webseiten-Einstellungen",
+  "items": [
+   {    
+    "type": "textfield"
+    ,"desc": "Autorefresh, Spaltenbreiten, Icon-Größe etc. auf den WebSeiten der Anruferlisten:"
+    ,"subitems": [
+     {
+      "key": "config_AUTOREFRESH_S"
+      ,"desc": "Auto page refresh [s]"
+      ,"width": "200"
+      ,"defaultValue": "@AUTOREFRESH_S@"
+      ,"emptyText": "z.B. 15 (0 = kein Autorefresh)"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "Eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_BACKGROUND_COLOR"
+      ,"desc": "Hintergrundfarbe"
+      ,"width": "200"
+      ,"defaultValue": "@BACKGROUND_COLOR@"
+      ,"emptyText": "D5D5D5"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9A-Fa-f]+$/"
+        ,"errorText": "HTML Farbcode rrggbb (hex) ist erforderlich, z.B. D0E0F0"
+        }
+       }
+      }
+     ,{
+      "key": "config_CELLPADDING"
+      ,"desc": "Tabellen-Textrandabstand [px]"
+      ,"width": "35"
+      ,"defaultValue": "@CELLPADDING@"
+      ,"emptyText": "1"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "An integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_BORDER_WIDTH"
+      ,"desc": "Rahmenbreite [px]"
+      ,"width": "35"
+      ,"defaultValue": "@BORDER_WIDTH@"
+      ,"emptyText": "0"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "An integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_ICON"
+      ,"desc": "Spaltenbreite Icon [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_ICON@"
+      ,"emptyText": "AUTO oder Zahl, z.B. 50"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_DATE"
+      ,"desc": "Spaltenbreite Zeitstempel [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_DATE@"
+      ,"emptyText": "AUTO oder Zahl, z.B. 150"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_NAME"
+      ,"desc": "Spaltenbreite Name [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_NAME@"
+      ,"emptyText": "AUTO oder Zahl, z.B. 200"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_BOOK"
+      ,"desc": "Spaltenbr. Tel-Buch-Name [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_BOOK@"
+      ,"emptyText": "AUTO oder Zahl, z.B. 100"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_SIP"
+      ,"desc": "Spaltenbreite Nummer [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_SIP@"
+      ,"emptyText": "AUTO oder Zahl, z.B. 180"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_NEBENSTELLE"
+      ,"desc": "Spaltenbreite Nebenstelle [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_NEBENSTELLE@"
+      ,"emptyText": "AUTO oder Zahl, z.B. 120"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_DURATION"
+      ,"desc": "Spaltenbreite Dauer [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_DURATION@"
+      ,"emptyText": "AUTO oder Zahl, z.B. 120"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_SIZE_ICON"
+      ,"desc": "Icon-Größe [px]"
+      ,"width": "35"
+      ,"defaultValue": "@SIZE_ICON@"
+      ,"emptyText": "25"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "Eine Ganzzahl bitte"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+

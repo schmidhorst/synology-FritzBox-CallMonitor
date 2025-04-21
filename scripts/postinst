@@ -1,0 +1,77 @@
+#!/bin/bash
+# this is started already from /var/packages/<pckName>/scripts folder, no more from a temp folder
+# shellcheck disable=SC2164
+SCRIPTPATHscripts="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; /bin/pwd -P )"
+scriptpathParent=${SCRIPTPATHscripts%/*}
+if [[ -f "$scriptpathParent/WIZARD_UIFILES/log_hlp.sh" ]]; then
+  # shellcheck source=..\WIZARD_UIFILES\log_hlp.sh
+  source "$scriptpathParent/WIZARD_UIFILES/log_hlp.sh"
+else
+  LOG="/var/tmp/$SYNOPKG_PKGNAME.log" # possibly no permission
+  DTFMT="+%Y-%m-%d %H:%M:%S"
+  echo "$(date "$DTFMT"): postinst: '$scriptpathParent/WIZARD_UIFILES/log_hlp.sh' not available!" >> "$LOG"
+fi
+user=$(whoami) # EnvVar $USER may be not well set
+logInfo 6 "postinst V$SYNOPKG_PKGVER started as user '$user'$msg ..." # user account name ist $SYNOPKG_PKGNAME
+# need to fetch values entered by user from environment and put to the strings file for each language
+# configFilePathName="$(dirname "${BASH_SOURCE[0]}")/initial_config.txt" is no more available!
+items="$(env | grep "^config_")"
+if [[ -z "$items" ]]; then
+  logError "Somthing went wrong with the Synology Installation Wizzard: The values from the keys from the file wizard_xxx.json have not been stored to the environment!"
+  logError "$(env)"
+  keys="config_TELBOOK_WHICH config_IP_FRITZBOX config_NOTIFY_USERS config_SYSLOG_INT config_SYSLOG_PORT config_LOGCENTER config_IP_CCU config_LOGLEVEL config_CCU_PW config_SYSLOG_UDP config_LOG_MAX_SIZE config_CALL_MAX_SIZE config_LOGFACILITY config_CCU_SYSVARS config_SIPLINE_NUMBERS config_CCU_USER config_SIPLINE_NAMES"
+  mapfile -d " " -t itemArray < <(/bin/printf '%s' "$keys")
+  exit 1 # continuation would lead to corrupted config file
+else
+  logInfo 6 "postinst config_..-items found in env"
+  mapfile -t itemArray < <(/bin/printf '%s' "$items")
+fi
+logInfo 7 "$(date "$DTFMT"): Config-Items from ENV: '${itemArray[*]}'"
+logInfo 6 "postinst: SYNOPKG_OLD_PKGVER='$SYNOPKG_OLD_PKGVER', SYNOPKG_PKGVER='$SYNOPKG_PKGVER'"
+rm -f "$SYNOPKG_PKGVAR/config"
+logInfo 8 "'$SYNOPKG_PKGVAR/config' will be generated new now ..."
+
+# Messages (send to $SYNOPKG_TEMP_LOGFILE) are not shown up!? ==> Do the checks in start-stop-status
+# If terminated with "exit 1" then the old setting are lost. ==> Do the checks in start-stop-status 
+# 1) Is the $config_SCRIPT_AFTER_EJECT file available, and has it correct line break and UTF8-Coding?
+# 2) is user or group config_NOTIFY_USERS valid? Check for valid entry requires root access and is done in the start-stop-status script
+
+msg=""
+for item in "${itemArray[@]}"; do
+  # eval "$item" # e.g. ", config_NO_DSM_MESSAGE_RETURN_CODES='98'", the ";99" is lost!???
+  key="${item%%=*}"
+  # Some values with, some without quotes, remove them:
+  val="$(sed -e 's/^"//' -e 's/"$//' <<<"${item#*=}")"
+  key2=${key#*config_}
+  if [[ -n "$key2" ]]; then
+    echo "$key2=\"${val}\"" >> "$SYNOPKG_PKGVAR/config"
+  fi
+  # echo "$item:  $key2=\"${val}\"" >> "$LOG"
+  msg="$msg  $key2='${val}'"
+done
+# logInfo 7 "$(date "$DTFMT"): from ENV extracted: $msg" # should be equal to ${itemArray[*]}
+
+# no permission here to setup here configuration for logrotate /usr/local/etc/logrotate.d/$SYNOPKG_PKGNAME!
+# will be setup in start-stop-status script!
+touch "$SYNOPKG_PKGVAR/config"
+if [[ -f "$SYNOPKG_PKGVAR/config" ]]; then
+  logInfo 7 "Config Files is '$SYNOPKG_PKGVAR/config'"
+else
+  logError "Config Files '$SYNOPKG_PKGVAR/config' missing!"
+fi
+chmod 755 "$SYNOPKG_PKGVAR/config"
+# Distinguish between a) new Installation, b) upgrade or c) change of settings
+action="Installation, upgrade or change of settings"
+if [[ -z "$SYNOPKG_OLD_PKGVER" ]]; then
+  action="Installation of V$SYNOPKG_PKGVER"
+elif [[ "$SYNOPKG_OLD_PKGVER" == "$SYNOPKG_PKGVER" ]]; then
+  action="Re-Installation (change of settings) of V$SYNOPKG_PKGVER"
+else
+  action="Upgrade from V$SYNOPKG_OLD_PKGVER to V$SYNOPKG_PKGVER"
+fi
+
+echo "$(date "$DTFMT"): $action done" >> "$SYNOPKG_PKGVAR/execLog"
+logInfo 6 "postinst done, $SYNOPKG_PKGNAME installed<br/>"
+# next script may be post_upgrade
+exit 0
+

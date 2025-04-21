@@ -1,0 +1,34 @@
+﻿- ohne root: crontab-Eintragung geht nicht!??
+  crontab-Eintrag für user callmonitor???
+  /var/spool/cron/crontabs/root
+- wird cron-Eintrag beim Uninstall gelöscht?
+
+- start-stop-status: Deutsche Fehlermeldung
+   echo "File '$phonexml' is not available or not accessable! Fix it or Re-run the installation!" > "$SYNOPKG_TEMP_LOGFILE"
+
+- logrotate: ohne root??
+
+- Anrufliste: Alte Anrufe nach 24h, 48h, ... löschen
+
+https://www.synology-forum.de/threads/howto-3rdparty-apps-anwendungsberechtigung-und-synotoken.33516/
+- Sonderzeichen-Kodierung CCU-SysvarNamen prüfen
+- Vom AB angenommene Anrufe:
+  - In Liste verpaßte Anrufe?
+  - Anzeige "Nebenstelle"
+  - Eigenes Icon?
+- Zugriffsrechte für Dateien?
+  - chmod mit -k-Option??
+  - calls, log: 740 statt 744 (in start-stop-status bei logrotation create) ???
+  - ROT13 für passwörter?:
+    perl -pe 'tr/N-ZA-Mn-za-m/A-Za-z/'
+    perl -pe 'tr/A-Za-z/N-ZA-Mn-za-m/'
+- DesktopMsg prüfen (falsch dateinamen/URLs/PW)
+- LogLevel-Einstellung zusätzlich auf Einstellungen-Seite
+- Settings SYSLOG_INT Das Paket kann den SysLog-Dienst für Fehler nutzen: true=intern, false=via UDP
+  Näher beschreiben
+- Passwort-Änderungen nochmal prüfen
+- Uninstall: PW Datei löschen! Prüfen!
+
+- callmonitor.pl Zeile 440: "Unbekannt" Übersetzung 
+
+- build.sh in WSL teseten

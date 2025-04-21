@@ -1,0 +1,35 @@
+#!/bin/bash
+# preinst starts from an temporary folder like /volume1/@tmp/synopkg/install.XDdQUB/scripts/preinst
+SCRIPTPATHscripts="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; /bin/pwd -P )"
+user=$(whoami) # EnvVar $USER may be not well set, user is '<appName>'
+msg="preinst ${BASH_SOURCE[0]} V$SYNOPKG_PKGVER (physical path SCRIPTPATHscripts: $SCRIPTPATHscripts, user=$user, UID=$(id -u "$user"))... "
+# SHELL='/sbin/nologin', $SHELL: causes "No such file or directory error" in /var/log/bash_err.log!
+# versShell="$($SHELL --version | sed -n '1p')" # Environment variable SHELL may be 'ash', but /bin/ash may be a link to bash
+# this may be somthing like "GNU bash, version 4.4.23(1)-release (x86_64-pc-linux-gnu)"
+# echo "$(date "$DTFMT"): Shell: SHELL='$SHELL' ($versShell)" >> "$LOG"
+
+# user is equal to $SYNOPKG_PKGNAME, SCRIPTPATHscripts is e.g. /volume1/@tmp/synopkg/install.HbEips/scripts/
+# ${SYNOPKG_TEMP_UPGRADE_FOLDER} # e.g. /volume1/@tmp/synopkg.tmp, empty
+scriptpathParent=${SCRIPTPATHscripts%/*}
+if [[ -f "$scriptpathParent/WIZARD_UIFILES/log_hlp.sh" ]]; then
+  # shellcheck source=..\WIZARD_UIFILES\log_hlp.sh
+  source "$scriptpathParent/WIZARD_UIFILES/log_hlp.sh"
+  logInfo 6 "$msg, preinst: logInfo / logError available! user=$(whoami)"
+  # is account $SYNOPKG_PKGNAME already available?
+else
+  LOG="/var/tmp/$SYNOPKG_PKGNAME.log" # possibly no permission
+  DTFMT="+%Y-%m-%d %H:%M:%S"
+  echo "$(date "$DTFMT"): preinst: '$scriptpathParent/WIZARD_UIFILES/log_hlp.sh' not available!" >> "$LOG"
+fi
+if grep -q "^${SYNOPKG_PKGNAME}:" "/etc/passwd"; then
+  logUser=$(stat -c '%U' "$LOG")
+  logGrp=$(stat -c '%G' "$LOG")
+  logInfo 6 "The account '${SYNOPKG_PKGNAME}' exists already, user and group of $LOG: $logUser:$logGrp"
+  if [[ "$(whoami)" == "root" ]] && [[ "$logUser" != "${SYNOPKG_PKGNAME}" ]]; then
+    chown "$SYNOPKG_PKGNAME":"$SYNOPKG_PKGNAME" "$LOG" 
+    logInfo 6 "chown $SYNOPKG_PKGNAME:$SYNOPKG_PKGNAME $LOG done!"
+  fi
+fi
+logInfo 6 "preinst finished"
+exit 0
+

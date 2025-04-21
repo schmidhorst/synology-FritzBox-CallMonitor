@@ -1,0 +1,35 @@
+#!/bin/bash
+# shellcheck disable=SC2164
+SCRIPTPATHscripts="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; /bin/pwd -P )"
+scriptpathParent=${SCRIPTPATHscripts%/*} # this will be /var/packages/<app>/
+# preuninst is executed at upgrade as user root
+if [[ -f "$scriptpathParent/WIZARD_UIFILES/log_hlp.sh" ]]; then
+  # shellcheck source=..\WIZARD_UIFILES\log_hlp.sh
+  source "$scriptpathParent/WIZARD_UIFILES/log_hlp.sh"
+  # logInfo 8 "preuninst: logInfo / logError available!"
+else
+  LOG="/var/tmp/$SYNOPKG_PKGNAME.log" # possibly no permission
+  DTFMT="+%Y-%m-%d %H:%M:%S"
+  echo "$(date "$DTFMT"): preuninst: '$scriptpathParent/WIZARD_UIFILES/log_hlp.sh' not available!" >> "$LOG"
+fi
+msgui="V$SYNOPKG_PKGVER, pre-uninstall "
+#shellcheck disable=2154
+if [[ -n "${config_remove_settings}" ]]; then
+  # real uninstall: uninstall wizzard was done and $config_remove_settings setup
+  if [[ "${config_remove_settings}" == "true" ]]; then
+    msgui="$msgui, with remove of settings"
+  elif [ "${config_remove_settings}" == "false" ]; then
+    msgui="$msgui, with preserving of settings"
+  fi
+  #shellcheck disable=2154
+  if [[ "${config_remove_log}" == "true" ]]; then
+    msgui="$msgui and remove of logfiles"
+  elif [ "${config_remove_log}" == "false" ]; then
+    msgui="$msgui and preserving of logfiles"
+  fi
+  logInfo 6 "$msgui"
+  exit 0
+fi
+# update: uninstall wizzard was not done! $config_remove_settings was not setup! This occures during re-installation or upgrade 
+logInfo 6 "preuninst V$SYNOPKG_PKGVER: Executed without before WIZZARD_UIFILES/uninstall_uifile_<lng>, e.g. during upgrade"
+exit 0

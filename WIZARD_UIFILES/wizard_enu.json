@@ -1,0 +1,722 @@
+[
+ {
+  "step_title": "Licence"
+  ,"invalid_next_disabled": true
+  ,"activate": "{console.log('Lizenz activeate', arguments);}"
+  ,"items": [
+   {
+    "type": "multiselect"
+    ,"desc": "BSD 3-Clause License<br><br>Copyright (c) 2024-2025, Horst Schmid <a target='_blank' rel='noopener noreferrer' href='https://github.com/schmidhorst/'>https://github.com/schmidhorst/</a><br>All rights reserved.<br><br>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<br>1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.<br>2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.<br>3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.<br><br>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+    ,"subitems": [
+     {
+      "key": "config_LICENSE_ACCEPTED",
+      "desc": "Accepted",
+      "defaultValue": "@LICENSE_ACCEPTED@",
+      "validator": {
+       "fn": "{var v=arguments[0]; if (!v) return 'License is not yet accepted!'; return true;}"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ,{
+  "step_title": "Configuration"
+  ,"activate": "{console.log('Konfiguration activeate', arguments);}"
+  ,"items": [
+   {
+    "type": "textfield"
+    ,"desc": "<strong>Please scroll through all items before clicking to 'Next'<br>Fritz!Box</strong>"
+    ,"subitems": [
+     {
+      "key": "config_IP_FRITZBOX"
+      ,"desc": "IP-Adr of FritzBox"
+      ,"width": "150"
+      ,"defaultValue": "@IP_FRITZBOX@"
+      ,"emptyText": "xxx.xxx.xxx.xxx oder fritz.box"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^fritz.box|(([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))$/"
+        ,"errorText": "Please enter 'fritz.box' or an IPv4 Address"
+        }
+       }
+      }
+     ,{
+      "key": "config_COUNTRYCODE"
+      ,"desc": "Own Country Code"
+      ,"width": "150"
+      ,"defaultValue": "@COUNTRYCODE@"
+      ,"emptyText": "e.g. 0049"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0][0][0-9]+$/"
+        ,"errorText":"Bitte eine mit 00 beginnende Zahl"
+        }
+       }
+      }
+     ,{
+      "key": "config_AREACODE"
+      ,"desc": "Own Area Code"
+      ,"width": "150"
+      ,"defaultValue": "@AREACODE@"
+      ,"emptyText": "e.g. 089"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText":"Bitte eine Zahl"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>HomeMatic/RaspberryMatic</strong><br>Optional: HomeMatic/RaspberryMatic CCU IP and Account",
+    "subitems": [
+     {
+      "key": "config_IP_CCU"
+      ,"desc": "IP-Adr of CCU"
+      ,"width": "150"
+      ,"defaultValue": "@IP_CCU@"
+      ,"emptyText": "xxx.xxx.xxx.xxx"
+      ,"validator": { 
+       "allowBlank": true
+       ,"regex": {
+        "expr": "/^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.([0-9]|[0-9][0-9]|0[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/"
+        ,"errorText": "Please enter a IPv4 Address"
+        }
+       }
+      }
+     ,{
+      "key": "config_CCU_USER"
+      ,"desc": "CCU Account Name"
+      ,"width": "150"
+      ,"defaultValue": "@CCU_USER@"
+      ,"validator": { 
+       "allowBlank": false
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "password",
+    "subitems": [
+     {
+      "key": "config_CCU_PW"
+      ,"desc": "CCU Password"
+      ,"width": "250"
+      ,"defaultValue": "@CCU_PW@"
+      ,"validator": { 
+       "allowBlank": true
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "System variable names in CCU for your external phone lines",
+    "subitems": [
+     {
+      "key": "config_CCU_SYSVARS"
+      ,"desc": "CCU-SysVars"
+      ,"width": "350"
+      ,"defaultValue": "@CCU_SYSVARS@"
+      ,"emptyText": "Line1_SysVarName;Line2__SysVarName;Line3_SysVarName"
+      ,"validator": { 
+       "allowBlank": true
+       ,"regex": {
+        "expr": "/^[a-zA-Z0-9-_]+(\\s?;\\s?[a-zA-Z0-9-_]+)*$/"
+        ,"errorText": "One or more semicolon separated Names"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Own Phone Numbers and associated Names",
+    "subitems": [
+     {
+      "key": "config_SIPLINE_NUMBERS"
+      ,"desc": "Numbers"
+      ,"width": "250"
+      ,"defaultValue": "@SIPLINE_NUMBERS@"
+      ,"emptyText": "4567890;456777;456888"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+(\\s?;\\s?[0-9]+)*$/"
+        ,"errorText": "One or more semicolon separated Numbers"
+        }
+       }
+      }
+     ,{
+      "key": "config_SIPLINE_NAMES"
+      ,"desc": "Names"
+      ,"width": "350"
+      ,"defaultValue": "@SIPLINE_NAMES@"
+      ,"validator": { 
+       "allowBlank": true
+       ,"regex": {
+        "expr": "/^[^;]+(\\s?;\\s?[^;]+)*$/"
+        ,"errorText": "One or more semicolon separated Names"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>BASH Shell Script</strong><br>Optional: BASH Shell Script, which will be executed at each call",
+    "subitems": [
+     {
+      "key": "config_SHELL_SCRIPT"
+      ,"desc": "File"
+      ,"width": "350"
+      ,"defaultValue": "@SHELL_SCRIPT@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>Telefone books</strong><br>From which files and URLs should the names be retrieved?<br>You may define a name (e.g. Private, Spam, ...) for each phone book, which will be listed with the calls<br>CardDAV phone books, e.g. DSM Contacts",
+    "subitems": [
+     {
+      "key": "config_TELBOOK_DAV1"
+      ,"desc": "1st CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV1@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV1"
+      ,"desc": "Name CardDAV 1"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV1@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV2"
+      ,"desc": "2nd CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV2@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV2"
+      ,"desc": "Name CardDAV 2"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV2@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV3"
+      ,"desc": "3rd CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV3@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV3"
+      ,"desc": "Name CardDAV 3"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV3@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV4"
+      ,"desc": "4th CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV4@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV4"
+      ,"desc": "Name CardDAV 4"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV4@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV5"
+      ,"desc": "5th CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV5@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV5"
+      ,"desc": "Name CardDAV 5"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV5@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV6"
+      ,"desc": "6th CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV6@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV6"
+      ,"desc": "Name CardDAV 6"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV6@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV7"
+      ,"desc": "7th CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV7@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV7"
+      ,"desc": "Name CardDAV 7"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV7@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_DAV8"
+      ,"desc": "8th CardDAV phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_DAV8@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_DAV8"
+      ,"desc": "Name CardDAV 8"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_DAV8@"
+      ,"emptyText": " (optional)"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield"
+    ,"desc": "<br>"
+    ,"subitems": [
+     {
+      "key": "config_DAV_USER"
+      ,"desc": "CardDAV-Account"
+      ,"width": "150"
+      ,"defaultValue": "@DAV_USER@"
+      }
+     ]
+    }
+   ,{
+    "type": "password",
+    "subitems": [
+     {
+      "key": "config_DAV_PW"
+      ,"desc": "CardDAV Password"
+      ,"width": "250"
+      ,"defaultValue": "@DAV_PW@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "From which XML files (FritzBox phonebook export) should the caller names be retrieved?",
+    "subitems": [
+     {
+      "key": "config_TELBOOK_XML1"
+      ,"desc": "1st FB phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_XML1@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.xml (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_XML1"
+      ,"desc": "Name XML 1"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_XML1@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_XML2"
+      ,"desc": "2nd FB phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_XML2@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.xml (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_XML2"
+      ,"desc": "Name XML 2"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_XML2@"
+      ,"emptyText": " (optional)"
+      }
+     ,{
+      "key": "config_TELBOOK_XML3"
+      ,"desc": "3rd FB phonebook"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_XML3@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.xml (optional)"
+      }
+     ,{
+      "key": "config_BOOKNAME_XML3"
+      ,"desc": "Name XML 3"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_XML3@"
+      ,"emptyText": " (optional)"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Additional text file as telephone book with &lt;Nummer&gt;:&lt;Name&gt;<br>E.g. also substation names can put to that file, e.g. '**621:Home office' and '**622:Living room'",
+    "subitems": [
+     {
+      "key": "config_TELBOOK_TXT"
+      ,"desc": "Telephone book"
+      ,"width": "350"
+      ,"defaultValue": "@TELBOOK_TXT@"
+      ,"emptyText": "/volume1/aaa/bbb/ccc.txt"
+      }
+     ,{
+      "key": "config_BOOKNAME_TXT"
+      ,"desc": "Name TXT"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_TXT@"
+      ,"emptyText": " (optional)"
+      }
+     ]
+    }
+   ,{
+    "type" : "multiselect",
+    "desc" : "<strong>List of Calls</strong><br>A web page with the list of calls will be generated: Accepted incoming, missed incoming, outgoing. Should outgoing trials without connection be also listed?",
+    "subitems": [
+     {
+      "key": "config_CALL_OUT_NOCONNECT",
+      "desc": "List unsuccessfully outgoing calls",
+      "defaultValue": "@CALL_OUT_NOCONNECT@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>Error Messages (Desktop):</strong><br>In the case of an Error during reading/updating the phonebooks or sending information to HomeMatic CCU, a desktop message will be generated.<br>Please specify the user groups (with '@' prefix) or user name to receive those messages, e.g. '@administrators' or '@users' (administrators are included!)",
+    "subitems": [
+     {
+      "key": "config_NOTIFY_USERS"
+      ,"desc": "Desktop Msg receivers"
+      ,"width": "350"
+      ,"defaultValue": "@NOTIFY_USERS@"
+      ,"emptyText": "@users"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "<strong>Logging</strong><br>The size of that log files is automatically limitted. If the given size is reached, the 'log rotation' (copy to compressed file and delete old if more that 4 files) is done.",
+    "subitems": [
+     {
+      "key": "config_LOG_MAX_SIZE"
+      ,"desc": "Logfile Byte/kByte/MByte"
+      ,"defaultValue": "@LOG_MAX_SIZE@"
+      ,"emptyText": "e.g. 10k"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+[kMG]*$/"
+        ,"errorText": "Please enter a positive integer number followed by k, M or G"
+        }
+       }
+      }
+     ,{
+      "key": "config_CALL_MAX_SIZE"
+      ,"desc": "Calls list"
+      ,"defaultValue": "@CALL_MAX_SIZE@"
+      ,"emptyText": "e.g. 10k"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+[kMG]*$/"
+        ,"errorText": "Please enter a positive integer number followed by k, M or G"
+        }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "combobox"
+    ,"desc": "The package can generate messages to the Synology Log Center"
+    ,"subitems": [
+     {
+      "key": "config_LOGCENTER",
+      "autoSelect": true,
+      "editable": false,
+      "desc": "Log Center",
+      "width": "370",
+      "mode": "local",
+      "valueField": "myId1",
+      "displayField": "displayText1",
+      "defaultValue": "@LOGCENTER@",
+      "store": {
+       "xtype": "arraystore",
+       "fields": ["myId1", "displayText1"],
+       "data": [[0, "0 No Messages"], [1, "1 Errors only"], [2, "2 Errors and warnings"], [3, "3 Errors, warnings and infos"], [4, "4 Errors, warnings, infos and debug"]]
+       }
+      }
+     ]
+    }
+   ,{
+    "type" : "singleselect",
+    "desc" : "Logging methode: Log entries can be done 'internal' and will show up as 'Local', 'General' from 'System'. Or they will be send via UDP in IETF format. For this UDP log receiving for the selected port needs to be configured and enabled",
+    "subitems": [
+     {
+      "key": "config_SYSLOG_INT",
+      "desc": "Internal (ERR, WARN, INFO)",
+      "defaultValue": "@SYSLOG_INT@"
+      }
+     ,{
+      "key": "config_SYSLOG_UDP",
+      "desc": "UDP  (ERR, WARN, INFO, DEBUG)",
+      "defaultValue": "@SYSLOG_UDP@"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "",
+    "subitems": [
+     {
+      "key": "config_SYSLOG_PORT"
+      ,"desc": "UDP Port"
+      ,"defaultValue": "@SYSLOG_PORT@"
+      ,"validator": { 
+       "fn": "{var v=arguments[0];if (!v) return 'Enter an positive integer number!';var n = Math.floor(Number(v));if (n == Infinity ) return 'Enter an integer 1 ... 65535!';if ((String(n) !== v.trim()) || (n>65535) || (n<1)) return 'Enter an integer 1 ... 65535!'; return true;}"
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "combobox"
+    ,"desc": ""
+    ,"subitems": [
+     {
+      "key": "config_LOGFACILITY",
+      "autoSelect": true,
+      "editable": false,
+      "desc": "UDP Log Facility (Category)",
+      "width": "350",
+      "mode": "local",
+      "valueField": "myId2",
+      "displayField": "displayText2",
+      "defaultValue": "@LOGFACILITY@",
+      "store": {
+       "xtype": "arraystore",
+       "fields": ["myId2", "displayText2"],
+       "data": [[8, "user"], [0, "local0"],[1, "local1"],[2, "local2"],[3, "local3"],[4, "local4"],[5, "local5"],[6, "local6"],[7, "local7"]]
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Several debug log file message detail levels are available: 1 (Err), 2 (Warn), 3 (Info), 4 ... 8 (Debug). The higher the value the more details.",
+    "subitems": [
+     {
+      "key": "config_LOGLEVEL"
+      ,"desc": "Log Detail Level"
+      ,"defaultValue": "@LOGLEVEL@"
+      ,"validator": {
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[1-8]$/"
+        ,"errorText": "Enter a positive number 1 ... 8"
+        }
+       }
+      }
+     ]
+    }
+   ] 
+  }
+ ,{
+  "step_title": "WebPage Settings",
+  "items": [
+   {    
+    "type": "textfield"
+    ,"desc": "Autorefresh, ColumnWidths, Icon size on web page with list of calls:"
+    ,"subitems": [
+     {
+      "key": "config_AUTOREFRESH_S"
+      ,"desc": "Auto page refresh [s]"
+      ,"width": "200"
+      ,"defaultValue": "@AUTOREFRESH_S@"
+      ,"emptyText": "e.g. 15 (0 to turn auto refresh off)"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "An integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_BACKGROUND_COLOR"
+      ,"desc": "Background color"
+      ,"width": "200"
+      ,"defaultValue": "@BACKGROUND_COLOR@"
+      ,"emptyText": "D5D5D5"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9A-Fa-f]+$/"
+        ,"errorText": "HTML color code rrggbb as a hex number is required, e.g. D0E0F0"
+        }
+       }
+      }
+     ,{
+      "key": "config_CELLPADDING"
+      ,"desc": "Table cell padding [px]"
+      ,"width": "35"
+      ,"defaultValue": "@CELLPADDING@"
+      ,"emptyText": "1"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "An integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_BORDER_WIDTH"
+      ,"desc": "Table border width [px]"
+      ,"width": "35"
+      ,"defaultValue": "@BORDER_WIDTH@"
+      ,"emptyText": "0"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "An integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_ICON"
+      ,"desc": "Column witdh Icon [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_ICON@"
+      ,"emptyText": "AUTO or number, e.g. 50"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "AUTO' or an integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_DATE"
+      ,"desc": "Column witdh DateTime [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_DATE@"
+      ,"emptyText": "AUTO or Number, e.g. 150"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' or an integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_NAME"
+      ,"desc": "Column witdh Name [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_NAME@"
+      ,"emptyText": "'AUTO' or a number, e.g. 200"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+              ,"errorText": "'AUTO' or an integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_BOOK"
+      ,"desc": "Width phone book name [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_BOOK@"
+      ,"emptyText": "AUTO or a number, e.g. 100"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' oder eine Ganzzahl bitte"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_SIP"
+      ,"desc": "Column witdh Number [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_SIP@"
+      ,"emptyText": "AUTO or a number, e.g. 180"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' or an integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_NEBENSTELLE"
+      ,"desc": "Column witdh Extension [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_NEBENSTELLE@"
+      ,"emptyText": "AUTO or a number, e.g. 120"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "AUTO' or an integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_COLW_DURATION"
+      ,"desc": "Column witdh Duration [px]"
+      ,"width": "35"
+      ,"defaultValue": "@COLW_DURATION@"
+      ,"emptyText": "AUTO or a number, e.g. 120"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^AUTO|([0-9]+)$/"
+        ,"errorText": "'AUTO' or an integer number is required"
+        }
+       }
+      }
+     ,{
+      "key": "config_SIZE_ICON"
+      ,"desc": "Size Icon [px]"
+      ,"width": "35"
+      ,"defaultValue": "@SIZE_ICON@"
+      ,"emptyText": "25"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9]+$/"
+        ,"errorText": "An integer number is required"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+

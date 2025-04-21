@@ -1,0 +1,24 @@
+<!DOCTYPE html><html class="img-no-display" lang="de">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Callmonitor HomeMatic CCU</title>
+    <p></p>
+    <link href="../../../../help/help.css" rel="stylesheet" type="text/css">
+    <link href="../../../../help/scrollbar/flexcroll.css" rel="stylesheet" type="text/css">
+    <script src="../../../../help/scrollbar/flexcroll.js"></script>
+    <script src="../../../../help/scrollbar/initFlexcroll.js"></script>
+  </head>
+  <body>
+    <h1>HomeMatic-CCU</h1>
+    <p>Wenn diese Funktion genutzt werden soll, dann müssen in der CCU für jede in der Fritzbox verwendete "Eigene Rufnummer" eine Systemvariable vom Typ Zeichenkette angelegt werden. Bei der Installation des Callmonitors wird sowohl eine Liste der eigenen Rufnummern als auch eine Liste der Namen der Systemvariablen angegeben. Bei der Installation des Callmonitors sind außerdem die Zugangsdaten zur CCU (IP-Adresse, Username, Passwort) anzugeben.</p>
+    <p>Sicherheits-Hinweis: Das CCU-Passwort wird in Klartext ohne irgend welche Verschlüsselung intern gespeichert. Der Zugriff ist aber eingeschränkt auf den callmonitor-User</p>
+    <p>Beim Anruf-Beginn wird in die zur verwendeten eigenen Rufnummer zugehörige Systemvariable ein String der folgenden Art eingetragen:<br> 
+      IN;AnruferNummer;AnruferName;Buchname;EigenNummer<br>
+      OUT;angerufeneNummer;AngerufenerName;Buchname;eigeneNummer;Nebenstelle<br>
+      Insbesondere die eigene Nummer, soweit man mehrere Nummern hat, als auch der Name des Telefonbuchs, in dem die Nummer des Anrufers gefunden wurde, läßt sich z.B. zu unterschiedlicher Signalisierung via z.B. dem HmIP-MP3P verwendet werden. 
+      AnruferName bzw. AngerufenerName wird aus den Adressbüchern entnommen bzw. bleibt geg. leer. Soweit zu der eigeneNummer und Nebenstelle im Adressbuch Namen definiert sind, werden die Namen verwendet.<br>
+      Am Ende der Verbindung wird die Systemvariable auf einen leeren String gesetzt. 
+    </p>
+  </body>
+</html>

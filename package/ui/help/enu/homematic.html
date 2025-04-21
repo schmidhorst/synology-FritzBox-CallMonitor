@@ -1,0 +1,22 @@
+<!DOCTYPE html><html class="img-no-display" lang="de">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Callmonitor HomeMatic CCU</title>
+    <p></p>
+    <link href="../../../../help/help.css" rel="stylesheet" type="text/css">
+    <link href="../../../../help/scrollbar/flexcroll.css" rel="stylesheet" type="text/css">
+    <script src="../../../../help/scrollbar/flexcroll.js"></script>
+    <script src="../../../../help/scrollbar/initFlexcroll.js"></script>
+  </head>
+  <body>
+    <h1>HomeMatic-CCU</h1>
+    <p>If you want to use this feature, then for each used external line number of the FritzBox you need to specify the name of as CCU system variable (Type "String"). At the Callmonitors installation you need to specify access data for the CCU (IP address, Username, Password).</p>
+    <p>Security Hint: The CCU-Password is stored in clear, not encrypted</p>
+    <p>At begin of a call somthing like the following will be writen to that variable:<br> 
+      IN;CallerNummer;CallerName;BookName;OwnNummer<br>
+      OUT;CalledNummer;CalledName;BookName;OwnNummer;UsedOwnExtension<br>
+      At the ende of the call the system variable will be set to an empty string. 
+    </p>
+  </body>
+</html>

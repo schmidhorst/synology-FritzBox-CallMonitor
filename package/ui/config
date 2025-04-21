@@ -1,0 +1,33 @@
+{
+  ".url": {
+    "SYNO.SDS._ThirdParty.App.callmonitor": {
+      "title": "Anrufe der Fritzbox monitoren"
+      ,"desc": "Listen der Anrufe erstellen"
+      ,"allUsers": true
+      ,"icon": "images/icon_{0}.png"
+      ,"appWindow": "SYNO.SDS._ThirdParty.App.callmonitor"
+      ,"texts": "texts"
+      ,"protocol": "https"
+      ,"type": "legacy"
+      ,"width": 550
+      ,"height": 400
+      ,"url": "/webman/3rdparty/callmonitor/calls.cgi"
+      ,"preloadTexts": [
+        "app1:title1",
+        "app1:msg1",
+        "app1:msg2",
+        "app1:msg3",
+        "app1:msg4",
+        "perm_add_true",
+        "perm_add_exists",
+        "perm_del_true",
+        "perm_del_notexist",
+        "app1:msg5",
+        "app1:msg6",
+        "app1:msg7",
+        "app1:msg8",
+        "app1:msg9"
+      ]
+    }
+  }
+}

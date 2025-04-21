@@ -1,0 +1,11 @@
+{
+  "usr-local-linker": {
+    "bin": ["bin/cli"]
+    }  
+  ,"indexdb":{
+    "help-index":{
+      "conf-relpath":"ui/helptoc.conf"
+      ,"db-relpath":"ui/indexdb/helpindexdb"
+      }
+    }
+  }

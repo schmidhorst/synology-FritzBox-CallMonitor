@@ -1,0 +1,3 @@
+#!/bin/sh
+# File 'resource' references this bin/cli
+/var/packages/callmonitor/scripts/start-stop-status "$@"

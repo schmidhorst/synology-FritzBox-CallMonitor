@@ -1,0 +1,40 @@
+<!DOCTYPE html><html class="img-no-display" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Callmonitor</title>
+    <link href="../../../../help/help.css" rel="stylesheet" type="text/css">
+    <link href="../../../../help/scrollbar/flexcroll.css" rel="stylesheet" type="text/css">
+    <script src="../../../../help/scrollbar/flexcroll.js"></script>
+    <script src="../../../../help/scrollbar/initFlexcroll.js"></script>
+  </head>
+  <body>
+    <h1>Callmonitor Phone Books</h1>
+    <p>Different formats of address list can be used:</p>
+    <ol>
+      <li>Text file with lines like <SPAN STYLE="font-family:'Courier New'">Number:Name</SPAN><br>
+        That may be used e.g. for names of your local phones (phones connected to the FritzBox). Instead of **621 also 21 can be used as the number. The file path needs to be setup during paket installation.
+      </li>
+      <li>XML file from FritzBox<br>
+        Via "Backup" you can export and save one ore more phone books from the FritzBox. 
+        The file paths need to be setup during the paket installation. After a change of the phonebook in the FritzBox you need to do a new export.
+      </li>
+      <li>CardDAV<br>
+        For contacts, which are available in the CardDAV format, you can use the URL. Such contact lists are updated nightly.
+      </li>
+    </ol>
+    <h2>Synology CardDAV Contacts</h2>
+    <p>Only one single account can be configured to read the CardDAV contacts (= phone books). For all required phonebooks you have to grant at least read access to them by that account. </p>
+    <h3>Sharing</h3><p>Hint: Group address books are by default shared to all DSM-User with read access. Otherwise login with the account of the  "address book owner", go to the address book web page. With the mouse pointer over the book name, three dots will occure. Open the context menue, select "Share" und and add the account, which you are using in the callmonitor. Or add an siutable group.</p>
+    <h3>CardDAV URL</h3>
+    <p>Login to the contacts web page with the account, which you setup for CardDAV in the callmonitor. With the mouse pointer over the address book name, 3 dots are occuring and you can open the context menu. Select "CardDAV". Copy the shown "CardDAV-Client"-URL to the callmonitor.</p>
+    <p>Security Hint: The of the used CardDAV account will be stored in clear without encryption. The access is restricted to the internal created account for the callmonitor.</p>
+    <h3>Allgemeines</h3>
+    <ul>
+    <li>The spelling of the phone number doesn't really matter: spaces, round brackets and hyphens are ignored. Your own area code and country code are automatically added. The '+' in the country code will be replaced by '00'.</li>
+    <li>Phone numbers in the address books can terminate with a star. E.g. the number '023456*' may be assigned to 'Company XY-'. Calls from 023456789 will then be shown as 'Company XY-789' if there is no further entry for 023456789.</li>
+    <li> At the START of the CallMonitor, e.g. after a manual stop, the phone bokks will be read again. If the post installation step to overcome the restrictions was done, every night short after 2:00 o'clock the phone books are also read again.
+    </li>
+    </ul>
+  </body>
+</html>

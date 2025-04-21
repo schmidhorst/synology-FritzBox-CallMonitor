@@ -1,0 +1,41 @@
+<!DOCTYPE html><html class="img-no-display" lang="de">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Callmonitor</title>
+    <link href="../../../../help/help.css" rel="stylesheet" type="text/css">
+    <link href="../../../../help/scrollbar/flexcroll.css" rel="stylesheet" type="text/css">
+    <script src="../../../../help/scrollbar/flexcroll.js"></script>
+    <script src="../../../../help/scrollbar/initFlexcroll.js"></script>
+  </head>
+  <body>
+    <h1>Callmonitor-Adressbücher</h1>
+    <p>Es können verschiedene Formate für Adresslisten verwendet werden:</p>
+    <ol>
+      <li>Textdatei mit Zeilen mit <SPAN STYLE="font-family:'Courier New'">Nummer:Name</SPAN><br>
+        Dies bietet sich z.B. für Namen für die Nebenstellen (Telefoniegeräte der FritzBox) an. Als Nummer ist da z.B. **621 einzutragen. Der Pfad zur Telefonbuch-Textdatei ist bei der Callmonitor-Installation anzugeben. Für Dateien auf der DSM mit dem /volume1/... etc. vorneweg.
+      </li>
+      <li>XML-Datei aus der FritzBox<br>
+        Über das "Sichern" kann man ein Telefonbuch (bzw. mehrere) aus der FritzBox als XML-Datei abspeichern. 
+        Der Pfad zur Datei ist bei der Callmonitor-Installation anzugeben. Nach Änderungen der Fritzbox-Telefonbücher muss manuell zur Aktualisierung eine neue Sicherungsdatei erstellt werden.
+      </li>
+      <li>CardDAV<br>
+        Für Kontakte, die im CardDAV-Format abrufbar sind, können die URL-Pfade verwendet werden. Z.B. kann man sich über das 3-Punke-Menü bei den Synology-Kontaktlisten die URL für einen "CardDAV-Client" holen. Die so verfügbaren Kontaktlisten werden automatisch jede Nacht aktualisiert werden. Für alle verwendete CardDAV-Pfade werden die selben Zugangsdaten verwendet. Für diesen Account muß geg. Leseberechtigung erstellt werden.
+      </li>
+    </ol>
+    <h2>Synology-CardDAV-Kontakte</h2>
+    <p>Es ist nur ein einziger Account für alle CardDAV-Adressbücher vorgesehen. Soweit es sich um Synology Kontakte handelt, müssen Sie die gewünschten Adressbücher für diesen Account zumindest schreibgeschützt freigeben. </p>
+    <h3>Freigabe</h3><p>Hinweis: Gruppenadressbücher sind i.d.R. sowieso schreibgeschützt für alle DSM-User freigegeben. Ansonsten mit dem "Adressbuch-Besitzer-Account" in der Kontakte-Webseite mit dem Mauszeiger auf einen Kontakt gehen, über die erscheinenden drei Punkte das Kontextmenü öffnen, "Freigeben" auswählen und geg. den für den Callmonitor zu verwendenen Account (bzw. eine geeignete Gruppe) hinzufügen.</p>
+    <h3>Synology CardDAV-URLs</h3>
+    <p>In dem für den Callmonitor für CardDAV konfigurierten DSM-Account die Kontakte-Webseite öffnen, mit dem Mauszeiger links auf ein Adressbuch gehen, über die 3 Punkte das Kontextmenü öffnen und "CardDAV" auswählen. Die angezeigte "CardDAV-Client"-URL kopieren und in die Callmonitor-Konfiguration übernehmen.</p>
+    <p>Sicherheits-Hinweis: Das Passwort für den verwendeten CardDAV-Account wird in Klartext ohne irgend welche Verschlüsselung intern gespeichert. Der Zugriff ist aber eingeschränkt auf den intern für das Callmonitor-Paket angelegten Account bzw. auf den root-Account. </p>
+    <h3>Allgemeines</h3>
+    <ul>
+    <li>Die Schreibweise der Nummern ist ziemlich egal: Leerzeichen, runde Klammern, Bindestriche werden ignoriert. Die eigene Orts- und Landesvorwahl wird geg. ergänzt. Ein '+' in der Landesvorwahl wird durch '00' ersetzt.</li>
+    <li>Die Telefonnummern in den Adressbüchern dürfen mit einem Stern enden. Z.B. aus der Nummer '023456*' mit dem Namen 'Firma XY-' im Adressbuch wird dann der Anzeigenamen 'Firma XY-789' bei einem Anruf von der Nebenstelle 789, soferen es für 023456789 keinen eigenen Eintrag gibt. </li>
+    <li> Beim Start des Callmonitors, z.B. nach einem manuellen Stopp, werden alle Telefonbücher neu eingelesen. Außerdem werden jede Nacht kurz nach 2:00 Uhr die Dateien und die CardDAV-URLs neu eingelesen, sofern der Post-Installations-Schritt zur Umgehung der Einschränkungen durchgeführt wurde. Während die CardDAV-Quellen so täglich automatisch aktualisert werden, müssen die Text-Datei und die XML-Dateien andersweitig aktualisiert werden.</li>
+    <li>Die Empfehlung ist, die Kontakte zentral auf dem Synology-NAS in der Synology-Contakts-App zu pflegen. Alternativ die Kontakte in Apps pflegen, welche sich mit der Synology-Contakts-App synchronisieren, wie z.B. Thunderbird. Für Outlook (Classic) gibt es <a href="https://caldavsynchronizer.org/">https://caldavsynchronizer.org/</a>. Für Android z.B. "Contact Sync Pro".<br>Und die Kontaktliste(n) der DSM dann auch auf der FritzBox via CardDAV einzubinden, so dass die Kontakte dann auch für die an die FritzBox angeschlossenen Telefone zur Verfügung stehen.
+    </li>
+    </ul>
+  </body>
+</html>

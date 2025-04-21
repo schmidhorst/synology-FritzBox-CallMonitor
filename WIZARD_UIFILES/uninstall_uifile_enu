@@ -1,0 +1,25 @@
+[{
+	"step_title": "Remove log files and settings",
+	"items": 
+		[{
+		"type": "multiselect"
+    ,"desc": "<p>During the uninstallation of the package the stored passwords for CardDAV and HomeMatic CCU will be deleted. It's possible to preserve the other settings for a later new installation<br>And also the logfiles may be preserved!</p>"
+    ,"subitems":[
+      {
+        "key": "config_remove_settings"
+        ,"desc": "Remove Settings"
+        ,"defaultValue": true
+        }
+      ,{
+        "key": "config_remove_calls"
+        ,"desc": "Remove List of Calls"
+        ,"defaultValue": true
+        }
+      ,{
+        "key": "config_remove_log"
+        ,"desc": "Remove Logfiles"
+        ,"defaultValue": true
+        }
+      ]
+    }]
+  }]

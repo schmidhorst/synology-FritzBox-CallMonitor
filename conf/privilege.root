@@ -1,0 +1,15 @@
+{
+  "defaults": {
+    "run-as": "root"
+    }
+  ,"join-groupname": "system"
+  ,"tool": [
+    {
+      "relpath": "callmonitor.pl"
+      ,"user": "package"
+      ,"group": "package"
+      ,"permission": "0700"
+      }
+    ]
+  }
+

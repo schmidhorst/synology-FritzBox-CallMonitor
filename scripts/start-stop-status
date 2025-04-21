@@ -1,0 +1,403 @@
+#!/bin/bash
+# 2023-07-12: start after an unclean shutdown: Exit with 0 instead of 1 so that no repair required
+
+# appendToLastLogLineIfSimilar():
+# if the last entry of $SCRIPT_EXEC_LOG contains $1, then remove possibly available $2, append $3 and use that as new last entry
+# This is to reduce the number of entries in $SCRIPT_EXEC_LOG
+# If 4 parameters given: Replace only, if $1 is in the last line but $3 is not in the last line
+# That is to avoid e.g.
+#   "Re-Installation (change of settings) of V1.10.0-0011 done, Package '<appName>' was STARTED! Package '<appName>' was STARTED! Package '<appName>' was STARTED!"
+appendToLastLogLineIfSimilar() {
+  latestEntry="$(/bin/tail -1 "$SCRIPT_EXEC_LOG")"
+  replace=0
+  if [[ "$latestEntry" == *"$1"* ]]; then
+    replace=1
+    if [[ "$#" -gt 3 ]]; then
+      # echo "more than 3 params"
+      if [[ "$latestEntry" == *"$4"* ]]; then
+        replace=0
+      fi
+    fi
+  fi
+  if [[ "$replace" -eq "1" ]]; then
+    lineCount=$(/bin/wc -l < "$SCRIPT_EXEC_LOG")
+    /bin/sed -i -e "$lineCount,\$d" "$SCRIPT_EXEC_LOG" # remove the last line
+    /bin/printf "%s\n" "${latestEntry//$2/} $3" >> "$SCRIPT_EXEC_LOG"
+    # logInfo 8 "Last Entry in SCRIPT_EXEC_LOG replaced"
+  else
+    /bin/printf "%s\t%s\n" "$(date "$DTFMT")" "$3" >> "$SCRIPT_EXEC_LOG"
+    # logInfo 8 "Item '$1' not found in SCRIPT_EXEC_LOG last line: '$latestEntry'"
+  fi # if [[ "$replace" -eq "1" ]] else
+}
+
+
+# move the passwords from var/config (rw-r--r-- $SYNOPKG_PKGNAME:$SYNOPKG_PKGNAME) to var/pw (rw------- $SYNOPKG_PKGNAME:$SYNOPKG_PKGNAME) 
+storePW () {
+  which=$1 # CCU_PW or DAV_PW
+  pwFile=$appData/pw
+  if [[ ! -f "$pwFile" ]]; then
+    touch "$pwFile"
+    chmod 600 "$pwFile"
+    if [ "$user" == "root" ]; then
+      chown root:root "$pwFile"
+    fi
+    logInfo 5 "new PW file $pwFile generated"
+  fi
+  pw=$(grep "^${which}=" "$appData/config")
+  pw=${pw#"${which}"=} # quoted pw
+  pw=${pw#\"} # remove leading quote
+  pw=${pw%\"} # remove trailing quote
+  if [[ "$pw" != "*****" ]]; then # PW was changed during (re-)installation
+    if grep -q "^$which=" "$pwFile"; then # Eintrag schon vorhanden
+      logInfo 7 "$which need to be changed in file $pwFile"  
+      cmd="s/^${which}=.*/${which}=\"${pw}\"/" 
+      # echo "cmd=$cmd"
+      sed -i "$cmd" "$pwFile" # alten Eintrag ersetzten
+    else
+      echo "$which=\"$pw\"" >> "$pwFile" # 
+      logInfo 7 "$which added to file $pwFile"  
+    fi
+    # replace PW in config by "*****":
+    sed -i "s/^${which}=.*/$which=\"*****\"/" "$appData/config"
+  else
+    logInfo 7 "$which unchanged (in config:$pw)"
+  fi
+  }
+
+
+# read an entry from /var/packages/$SYNOPKG_PKGNAME/target/ui/texts/$lngUser/lang.txt
+getLngText() {
+  what=$1 # 
+  if [[ -r "/var/packages/$SYNOPKG_PKGNAME/target/ui/texts/$lngUser/lang.txt" ]]; then
+    eval "$(grep -s "$what=" "/var/packages/$SYNOPKG_PKGNAME/target/ui/texts/$lngUser/lang.txt")"
+    # eval is not secure, code injection may be possible, but ...
+    # line=$(grep -s "$what=" "/var/packages/$SYNOPKG_PKGNAME/target/ui/texts/$lngUser/lang.txt")
+    # $what="$(echo "${line#*=}" | sed -e 's/^"//' -e 's/"$//')" # more secure but $SYNOPKG_PKGNAME inside the string is not evaluated
+    if [[ -n ${what} ]]; then
+      return # "${what}"
+    fi
+  else
+    if [[ -r "/var/packages/$SYNOPKG_PKGNAME/target/ui/texts/eng/lang.txt" ]]; then
+      eval "$(grep -s "$what=" "/var/packages/$SYNOPKG_PKGNAME/target/ui/texts/eng/lang.txt")"
+      logInfo 6 "Warning: start-stop-status message fallback to Englisch as texts/$lngUser/lang.txt not available"
+      if [[ -n ${what} ]]; then
+        return # "${what}"
+      fi
+    else
+      logInfo 1 "Error: File not readable: /var/packages/$SYNOPKG_PKGNAME/target/ui/texts/<lng>/lang.txt, neither '$lngUser' nor 'eng'"
+    fi
+  fi
+  logInfo 1 "Error: No line for '$what' found in file /var/packages/$SYNOPKG_PKGNAME/target/ui/texts/eng/lang.txt"
+  if [[ "$what" == "copyPrivilege" ]];then 
+    what="The copy command 'cp /var/packages/$SYNOPKG_PKGNAME/conf/privilege.root /var/packages/$SYNOPKG_PKGNAME/conf/privilege' was not yet executed. Therefore the package '$SYNOPKG_PKGNAME' cannot be started"
+    return
+    fi
+  what="Sorry, no message for $what"
+  }
+
+
+# This start-stop-status is called about once per second while package center is open!
+user=$(whoami) # EnvVar $USER may be not well set
+# user = "root" if the sudo cp /var/packages/$SYNOPKG_PKGNAME/conf/privilege.root /var/packages/$SYNOPKG_PKGNAME/conf/privilege
+# user = "$SYNOPKG_PKGNAME" = '<appName>' if the copy was not done
+# shellcheck disable=SC2164
+SCRIPTPATHscripts="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; /bin/pwd -P )" # /var/packages/<appName>/scripts !!
+msgsss=""
+msgLineSep=""
+if [[ -z "$SYNOPKG_PKGNAME" ]]; then # e.g. at restart from cron daemon
+  scriptpathParent=${SCRIPTPATHscripts%/*} # /var/packages/<appname>
+  SYNOPKG_PKGNAME="${scriptpathParent##*/}"
+  msgsss="missing SYNOPKG_PKGNAME was now set to '$SYNOPKG_PKGNAME'"
+fi
+echo "start-stop-status $1 as $user: $msgsss"
+# to avoid debug message in log_hlp.sh about unset LOGLEVEL:
+appData="/var/packages/$SYNOPKG_PKGNAME/var"
+# LOGLEVEL="$(grep "LOGLEVEL=" "$appData/config" | sed -e 's/^LOGLEVEL="//' -e 's/"$//')"
+# shellcheck source=../WIZARD_UIFILES/log_hlp.sh
+source "/var/packages/$SYNOPKG_PKGNAME/WIZARD_UIFILES/log_hlp.sh" # logInfo, logError, $DTFMT
+# /bin/echo "log_hlp.sh done, LOG='$LOG'"
+if [[ -n "$msgsss" ]]; then
+  # shellcheck disable=SC2153
+  logInfo 6 "$msgsss, APPDATA='$APPDATA', appData='$appData'"
+fi
+SCRIPT_EXEC_LOG="$appData/execLog"
+case $1 in
+  prestart)
+    logInfo 6 "PRESTART of start-stop-status script V$SYNOPKG_PKGVER '$1' as user '$user'"
+    #### is occuring if in INFO: precheckstartstop="yes"
+    exit 0 
+    ;;
+  start)
+    # configFilePathName="/var/packages/$SYNOPKG_PKGNAME/var/config" # $appData/config
+    lngUser="enu" # default, will be changed in common.sh
+    # shellcheck disable=SC1090
+    source "/var/packages/$SYNOPKG_PKGNAME/target/common.sh" start-stop-status # set lngUser
+    # echo "start-stop-status start, configFilePathName='$appData/config'"
+    # echo "start-stop-status start, logging to $LOG"
+    logInfo 8 "configFilePathName='$appData/config'"
+    if [[ "$user" != "root" ]]; then
+      logInfo 6 "V$SYNOPKG_PKGVER '$1' as user '$user' != \"root\". <span style=\"color:Orange;\">Privilege file not yet changed after installation</span>"
+      getLngText "copyPrivilege"
+      # shellcheck disable=SC2154
+      echo "${copyPrivilege}" > "$SYNOPKG_TEMP_LOGFILE"
+      msgLineSep="<br><br>"
+      # exit 3 # this would run into repair loop and no exit possible except uninstall/re-install
+    fi
+    error=0
+    # Detailed Debug log: /var/log/packages/<appName>.log mit einem Link hierauf von /var/packages/<appName>/var/detailLog
+    if [[ -f "/tmp/$SYNOPKG_PKGNAME.log" ]] && [[ "/tmp/$SYNOPKG_PKGNAME.log" != "$LOG" ]]; then
+      /bin/printf "\t%s\n" "==== copied from /tmp/$SYNOPKG_PKGNAME.log: ===" >> "$LOG"
+      logInfo 5 "=== Previous lines have been written during installation to the file /tmp/$SYNOPKG_PKGNAME.log and now been copied to here ($LOG)! ===="
+      rm "/tmp/$SYNOPKG_PKGNAME.log"
+    fi
+    if [[ -f "/var/tmp/$SYNOPKG_PKGNAME.log" ]] && [[ "$LOG" == "/var/log/packages/$SYNOPKG_PKGNAME.log" ]]; then
+      /bin/printf "\t%s\n" "==== copied from /var/tmp/$SYNOPKG_PKGNAME.log: ===" >> "$LOG"
+      cat "/var/tmp/$SYNOPKG_PKGNAME.log" >> "$LOG"
+      logInfo 5 "=== Previous lines have been written during installation to the file /var/tmp/$SYNOPKG_PKGNAME.log and now been copied to here ($LOG)! ===="
+      rm "/var/tmp/$SYNOPKG_PKGNAME.log"      
+    fi
+    # enable log deleting for ui/index.cgi:
+    chmod 664 "$LOG"
+    chown "$SYNOPKG_PKGNAME":"$SYNOPKG_PKGNAME" "$LOG"
+    if [ "$user" == "root" ]; then
+      myScript=$(grep "^SHELL_SCRIPT=" "$appData/config")
+      myScript=${myScript#SHELL_SCRIPT=}
+      myScript=${myScript//\"/}
+      if [[ -n $myScript ]]; then
+        if [[ ! -x $myScript ]]; then
+          logInfo 1 "Error: File '$myScript' is not executable!"
+        else
+          res=$(file -b "$myScript")
+          ret=$?
+          logInfo 8 "File coding check '$myScript' result $ret: $res"
+          if [[ $res == *"CRLF line terminators"* ]]; then
+            logInfo 1 "File coding check '$myScript' result $ret: $res"
+            logError "######## Windows line terminator need to be converted to Unix! #########"
+            wrongLineBreakWin="Error: The Script '$myScript', which should be executed, uses the wrong line break CR/LF (Windows). Please use a suitable Editor (Linux or Windows Notepad++, PSPad, ...) to change it to LF (UNIX)!"
+            eval "$(grep -s "wrongLineBreakWin=" "/var/packages/$SYNOPKG_PKGNAME/target/ui/texts/$lngUser/lang.txt")"
+            echo "$wrongLineBreakWin" > "$SYNOPKG_TEMP_LOGFILE"
+            # exit 2 # this would run into repair loop and no exit possible except uninstall/re-install
+            ((error += 1))
+          elif [[ $res == *"with CR line terminators"* ]]; then
+            logInfo 1 "File coding check '$myScript' result $ret: $res"
+            ((error += 1))
+          fi
+        fi
+      fi
+      # setup/update logrotate configuration for : 
+      lrFileName="/usr/local/etc/logrotate.d/$SYNOPKG_PKGNAME"
+      if [[ ! -f "$lrFileName" ]] || [[ "$appData/config" -nt "$lrFileName" ]]; then # -nt = newer than
+        logPaths="/var/packages/$SYNOPKG_PKGNAME/var/execLog"
+        # logPaths="/var/packages/$SYNOPKG_PKGNAME/var/execLog /var/log/packages/$SYNOPKG_PKGNAME.log"
+        # for /var/log/packages/$SYNOPKG_PKGNAME.log there are general settings with precedence
+        logSettings="{\n  size $LOG_MAX_SIZE\n  rotate 4\n  missingok\n  compress\n  delaycompress\n  create 744 $SYNOPKG_PKGNAME $SYNOPKG_PKGNAME\n }"
+        # create mode owner group: Should mode=740 be used????
+        callSettings="{\n  size $CALL_MAX_SIZE\n  rotate 4\n  missingok\n  compress\n  delaycompress\n  create 744 $SYNOPKG_PKGNAME $SYNOPKG_PKGNAME\n }"        
+        # /var/log/packages/*.log logrotate actions are pre-defined in /etc/logrotate.d/synopkgs: At size of 100k !
+        # in /usr/local/etc/logrotate.d the include for the ..local.. is after the above mentioned include
+        echo -e "$logPaths\n${logSettings}" > "$lrFileName" # for logfiles
+        echo -e "/var/packages/$SYNOPKG_PKGNAME/var/calls.txt\n${callSettings}" >> "$lrFileName" # for calls list
+        chmod 644 "$lrFileName"
+        if [[ -f "$lrFileName" ]]; then
+          logInfo 6 "File $lrFileName for logrotation with $LOG_MAX_SIZE setup"
+        else
+          logInfo 1 "File $lrFileName for logrotation with $LOG_MAX_SIZE was not setup!!"
+        fi
+        # logrotate "$fileName" --debug
+      fi
+    fi
+    # move passwords from var/config to a more secure file in a root-access-only file:
+    storePW "DAV_PW"
+    storePW "CCU_PW"
+
+    # check phonebook paths valid and existing:
+    filePhonebookNotFound=""
+    phonetxt=$(grep "^TELBOOK_TXT=" "$appData/config")
+    phonetxt=${phonetxt#TELBOOK_TXT=}
+    phonetxt=${phonetxt//\"/}
+    if [[ -n "$phonetxt" ]]; then
+      # auf möglicherweise fehlendes /volume1 hinweisen:
+      volMissing=""
+      if [[ ! "$phonetxt" =~ "/volume"* ]]; then
+        volMissing="('/volume1' seems to be missing?) "
+      fi
+      if [[ ! -f "$phonetxt" ]]; then
+        ((error += 1))
+        echo "File '$phonetxt' is not available! Fix it ${volMissing}or Re-run the installation!"
+        getLngText "filePhonebookTxt"
+        if [ "$user" != "root" ]; then
+          getLngText "filePhonebookNotFound" # ="May be o.k. after copying the privilege file and running as root."
+        fi
+        if [[ -w "$SYNOPKG_TEMP_LOGFILE" ]]; then # $SYNOPKG_TEMP_LOGFILE is not available during cron restart
+          # shellcheck disable=SC2154
+          echo "${msgLineSep}${filePhonebookTxt}${volMissing}${filePhonebookNotFound}" >> "$SYNOPKG_TEMP_LOGFILE"          
+          msgLineSep="<br><br>"
+        fi  
+      fi
+    fi
+    idx=0
+    while true;do
+      ((idx++))
+      phx="TELBOOK_XML$idx"
+      phonexml=$(grep "^${phx}=" "$appData/config")
+      if [[ -z $phonexml ]]; then
+        break # e.g. no line TELBOOK_XML4=...
+      fi
+      phonexml=${phonexml#*=} # filename
+      phonexml=${phonexml//\"/} # remove quotes
+      echo "Checking existance of XML-Phonebook $phx=$phonexml"
+      if [[ -n "$phonexml" ]]; then
+        volMissing=""
+        if [[ ! "$phonetxt" =~ "/volume"* ]]; then
+          getLngText volMissing
+        fi
+        if [[ ! -f "$phonexml" ]]; then
+          ((error += 1))
+          if [ "$user" != "root" ]; then
+            getLngText "filePhonebookNotFound" # ="May be o.k. after copying the privilege file and running as root."
+          fi
+          echo "File '$phonexml' is not available or not accessable! Fix it or Re-run the installation! ${volMissing}"
+          if [[ -w "$SYNOPKG_TEMP_LOGFILE" ]]; then # $SYNOPKG_TEMP_LOGFILE is not available during cron restart
+            getLngText "filePhonebookXml"
+            # shellcheck disable=SC2154
+            echo "${msgLineSep}${filePhonebookXml}${volMissing}${filePhonebookNotFound}"
+            msgLineSep="<br><br>"
+          fi  
+        fi
+      fi # if [[ -n "$phonexml" ]];
+    done     
+    if [ "$user" == "root" ]; then
+      cnt=$(grep -c "$SYNOPKG_PKGNAME/scripts/start-stop-status" /etc/crontab)
+      if [[ "$cnt" -eq "0" ]]; then
+        echo "07 02 * * * root /var/packages/$SYNOPKG_PKGNAME/scripts/start-stop-status restart" >> /etc/crontab
+        systemctl reload crond
+        logInfo 6 "crond entry for restart every night at 02:07 created"
+      else
+        logInfo 7 "crond entry for restart already available"
+      fi
+# shellcheck disable=SC2016
+: '
+    else
+      if [[ ! -f "/var/spool/cron/$SYNOPKG_PKGNAME" ]]; then
+        echo "15 02 * * * root /var/packages/$SYNOPKG_PKGNAME/scripts/start-stop-status restart" > "/var/spool/cron/$SYNOPKG_PKGNAME"
+        systemctl reload crond
+        logInfo 6 "crond file /var/spool/cron/$SYNOPKG_PKGNAME for restart every night at 02:15 created"
+      fi
+'
+    fi # root
+    if [[ "$error" -eq "0" ]]; then # e.g. a Phonebook not found: don't start!
+      logInfo 7 "'start', SYNOPKG_PKGDEST='$SYNOPKG_PKGDEST'"
+      cmPid=$(pidof "callmonitor.pl")
+      # shellcheck disable=SC2181
+      if [[ $? -ne 0  ]];then # not yet running, we need to start it ...
+        # https://stackoverflow.com/questions/20338162/how-can-i-launch-a-new-process-that-is-not-a-child-of-the-original-process
+        set -m # turn on "JOB CONTROL", so that Background processes are running in a separate process group and not blocking this start-stop-status
+        ( "/var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl" & ) # try to start process in background
+        n=0
+        while true; do
+          ((n++))
+          cmPid=$(pidof "callmonitor.pl")
+          if [[ "$?" -eq "0" ]];then
+            break # o.k.
+          elif [[ "$n" -lt "6" ]]; then 
+            sleep 0.5s
+            continue
+          fi  
+          logInfo 1 "Failed to start /var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl ! Trying to run it with sudo from SSH command shell may help to find the bug"
+          getLngText "mainPerlFileStartFailure"
+          # shellcheck disable=SC2154
+          echo "${msgLineSep}${mainPerlFileStartFailure}" >> "$SYNOPKG_TEMP_LOGFILE"          
+          exit 1
+        done
+        if [[ -z "$msgLineSep" ]]; then
+          logInfo 6 "Package $SYNOPKG_PKGNAME and callmonitor.pl process $cmPid started!"
+          synodsmnotify -c SYNO.SDS._ThirdParty.App.callmonitor @users callmonitor:app1:title1 callmonitor:app1:msg1 "Tool successfully started!"
+          echo "$(date "$DTFMT"): Package $SYNOPKG_PKGNAME started" >> "$SYNOPKG_PKGVAR/execLog"
+        fi
+      else
+        logInfo 7 "callmonitor process $cmPid was already running!"
+      fi  
+      exit 0
+    fi
+    # exit 1 # ab DSM 7.x.x wird in diesem Fall der Inhalt von $SYNOPKG_TEMP_LOGFILE auch als Benachrichtigung angezeigt! Und zur Reparatur aufgefordert
+    exit 0
+  ;;
+  prestop)  # can be enabled via precheckstartstop in INFO file
+    #### is not occuring even if enabled???
+    logInfo 8 "PRESTOP start-stop-status script V$SYNOPKG_PKGVER '$1' as user '$user'"
+    exit 0
+  ;;
+  stop)
+    logInfo 6 "V$SYNOPKG_PKGVER '$1' as user '$user' ..." 
+    cnt=$(grep -c "callmonitor/scripts/start-stop-status" /etc/crontab)
+    if [[ "$cnt" -gt "0" ]]; then
+      ret=$(sed -i '/callmonitor\/scripts\/start-stop-status restart/d' /etc/crontab)
+      res=$?
+      if [[ "$res" -eq "0" ]];then
+        logInfo 6 "crond entry for restart every night removed"
+      else
+        logInfo 1 "Error to remove callmonitor from cron: $ret"
+      fi  
+      systemctl reload crond
+    else
+      logInfo 6 "no crond entry for restart every night found"
+    fi
+    cmPid=$(pidof "callmonitor.pl")
+    ret=$?
+    if [[ "$ret" -eq "0" ]]; then # ok, running:
+      kill -SIGTERM "$cmPid"
+    fi
+    exit 0
+  ;;
+  restart) # via cron every night to update phonebooks
+    n=0
+    while true;do
+      if ! cmPid=$(pidof "callmonitor.pl") ; then # not running
+        if [[ $n -eq 0 ]]; then
+          logInfo 7 "callmonitor restart, but was not running!"
+        else
+          logInfo 7 "callmonitor restart, STOP at loop $n done"
+        fi
+        break
+      fi
+      ((n++))
+      kill -SIGTERM "$cmPid"
+      /bin/sleep 3
+    done
+    ( "/var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl" "restart" & ) # try to start process in background
+    while true;do
+      ((n++))
+      if cmPid=$(pidof "callmonitor.pl");then
+        break # o.k.
+      elif [[ "$n" -lt "6" ]]; then 
+        echo "$n waiting for restart ..."
+        sleep 0.5s
+        continue
+      fi  
+      logInfo 1 "Failed to re-start /var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl ! Trying to run it with sudo from SSH command shell may help to find the bug"
+      # there is no $SYNOPKG_TEMP_LOGFILE during restart!!
+      getLngText "mainPerlFileStartFailure"
+      logInfo 1 "$mainPerlFileStartFailure"
+      # while package is not started the synodsmnotify would give only "no more available"
+      exit 1
+    done
+    logInfo 7 "callmonitor.pl process $cmPid re-started!"
+    echo "$(date "$DTFMT"): Package $SYNOPKG_PKGNAME re-started" >> "$SYNOPKG_PKGVAR/execLog"
+    exit 0
+  ;;
+  status)
+    # While the Package Center is open this is called periodically, about once per second
+    cmPid=$(pidof "callmonitor.pl")
+    # shellcheck disable=SC2181
+    if [[ $? -ne 0 ]];then # not running, Error
+      echo "not running"
+      exit 1
+    fi
+    # echo "running PID=$cmPid"
+    exit 0 # PID found, OK, running
+  ;;
+  log)
+    exit 0
+  ;;
+esac
+
