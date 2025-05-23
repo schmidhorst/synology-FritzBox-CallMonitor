@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-# synology-FritzBox-CallMonitor
- Phone Call Monitor including HomeMatic Interface
-=======
 # Synology-FritzBox-CallMonitor
  Phone Call Monitor including HomeMatic Interface
 [![de](https://flagcdn.com/w20/de.png)](https://github.com/schmidhorst/synology-callmonitor/blob/main/README.de.md)
@@ -26,4 +22,3 @@ Then use "Manual Install" in the Package Center.
 - Thanks to [toafez Tommes](https://github.com/toafez) and his [Demo Package](https://github.com/toafez/DSM7DemoSPK)
 - Thanks to QTip and his explanation about the help integration [Integration einer Hilfe in DSM 5.1-](https://www.synology-wiki.de/index.php/Integration_einer_Hilfe_in_DSM_5.1-)
 
->>>>>>> Stashed changes
