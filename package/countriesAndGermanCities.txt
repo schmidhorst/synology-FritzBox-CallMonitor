@@ -1,0 +1,5430 @@
+001*;USA oder Kanada
+001242*;Bahamas
+001246*;Barbados
+001264*;Anguilla
+001268*;Antigua und Barbuda
+001284*;Britische Jungferninseln
+001340*;Amerikanische Jungferninseln
+001345*;Cayman-Inseln
+001441*;Bermudas
+001473*;Grenada
+001649*;Turks und Caicos-Inseln
+001664*;Montserrat
+001670*;Marianen
+001671*;Guam
+001684*;Amerikanisch-Samoa
+001721*;Sint Maarten
+001758*;St. Lucia
+001767*;Dominica
+001784*;St. Vincent und die Grenadinen
+001787*;Puerto Rico
+001809*;Dominikanische Republik
+001829*;Dominikanische Republik
+001849*;Dominikanische Republik
+001868*;Trinidad und Tobago
+001869*;St. Kitts und Nevis
+001876*;Jamaika
+001939*;Puerto Rico
+0020*;Ägypten
+00211*;Südsudan
+00212*;Marokko
+00213*;Algerien
+00216*;Tunesien
+00218*;Libyen
+00220*;Gambia
+00221*;Senegal
+00222*;Mauretanien
+00223*;Mali
+00224*;Guinea
+00225*;Elfenbeinküste
+00226*;Burkina Faso
+00227*;Niger
+00228*;Togo
+00229*;Benin
+00230*;Mauritius
+00231*;Liberia
+00232*;Sierra Leone
+00233*;Ghana
+00234*;Nigeria
+00235*;Tschad
+00236*;Zentralafrikanische Republik
+00237*;Kamerun
+00238*;Kapverdische Inseln
+00239*;São Tomé und Principe
+00240*;Äquatorial-Guinea
+00241*;Gabun
+00242*;Kongo, Republik 
+00243*;Kongo, Demokratische Republik
+00244*;Angola
+00245*;Guinea-Bissau
+00246*;Diego Garcia
+00247*;Ascension
+00248*;Seychellen
+00249*;Sudan
+00250*;Rwanda
+00251*;Äthiopien
+00252*;Somalia
+00253*;Djibouti
+00254*;Kenia
+00255*;Tansania
+00256*;Uganda
+00257*;Burundi
+00258*;Mosambik
+00260*;Sambia
+00261*;Madagaskar
+00262*;Mayotte oder Réunion
+00263*;Simbabwe
+00264*;Namibia
+00265*;Malawi
+00266*;Lesotho
+00267*;Botswana
+00268*;Swasiland
+00269*;Komoren
+0027*;Südafrika
+00290*;St. Helena, Ascension und Tristan da Cunha
+00291*;Eritrea
+00297*;Aruba
+00298*;Färöer
+00299*;Grönland
+0030*;Griechenland
+0031*;Niederlande
+0032*;Belgien
+0033*;Frankreich
+0034*;Spanien
+00350*;Gibraltar
+00351*;Portugal
+00352*;Luxemburg
+00353*;Irland
+00354*;Island
+00355*;Albanien
+00356*;Malta
+00357*;Zypern
+00358*;Finnland
+00359*;Bulgarien
+0036*;Ungarn
+00370*;Litauen
+00371*;Lettland
+00372*;Estland
+00373*;Moldawien
+00374*;Armenien
+00375*;Weissrussland
+00376*;Andorra
+00377*;Monaco
+00378*;San Marino
+00380*;Ukraine
+00381*;Kosovo oder Serbien
+00382*;Montenegro
+00385*;Kroatien
+00386*;Slowenien
+00387*;Bosnien-Herzegowina
+00389*;Mazedonien
+0039*;Italien (inkl. Vatikan)
+0040*;Rumänien
+0041*;Schweiz
+00420*;Tschechische Republik
+00421*;Slowakische Republik
+00423*;Liechtenstein
+0043*;Österreich
+0044*;Grossbritannien und Nordirland
+0045*;Dänemark
+0046*;Schweden
+0047*;Norwegen
+0048*;Polen
+00500*;Falkland
+00501*;Belize
+00502*;Guatemala
+00503*;El Salvador
+00504*;Honduras
+00505*;Nicaragua
+00506*;Costa Rica
+00507*;Panama
+00508*;Saint-Pierre und Miquelon
+00509*;Haiti
+0051*;Peru
+0052*;Mexiko
+0053*;Kuba
+0054*;Argentinien
+0055*;Brasilien
+0056*;Chile
+0057*;Kolumbien
+0058*;Venezuela
+00590*;Guadeloupe
+00591*;Bolivien
+00592*;Guayana
+00593*;Ecuador
+00594*;Französisch-Guayana
+00595*;Paraguay
+00596*;Martinique
+00597*;Surinam
+00598*;Uruguay
+00599*;Curaçao oder Karibische Niederlande
+0060*;Malaysia
+0061*;Australien
+0062*;Indonesien
+0063*;Philippinen
+0064*;Neuseeland
+0065*;Singapur
+0066*;Thailand
+00670*;Osttimor
+00672*;Antarktis oder Norfolk
+00673*;Brunei
+00674*;Nauru
+00675*;Papua-Neuguinea
+00676*;Tonga
+00677*;Salomon
+00679*;Fidschi
+00680*;Palau
+00681*;Wallis und Futuna
+00682*;Cook
+00683*;Niue
+00685*;Samoa
+00686*;Kiribati
+00687*;Neukaledonien
+00688*;Tuvalu
+00689*;Französisch-Polynesien
+00690*;Tokelau
+00691*;Mikronesien
+00692*;Marshall-Inseln
+007*;Russische Föderation oder Kasachstan
+0081*;Japan
+0082*;Südkorea
+0084*;Vietnam
+00850*;Nordkorea
+00852*;Hongkong
+00853*;Macao
+00855*;Kambodscha
+00856*;Laos
+0086*;China
+00870*;Pitcairn
+00880*;Bangladesh
+00886*;Taiwan
+0090*;Türkei
+0091*;Indien
+0092*;Pakistan
+0093*;Afghanistan
+0094*;Sri Lanka
+0095*;Myanmar (Burma)
+00960*;Malediven
+00961*;Libanon
+00962*;Jordanien
+00963*;Syrien
+00964*;Irak
+00965*;Kuwait
+00966*;Saudi-Arabien
+00967*;Jemen
+00968*;Oman
+00970*;Palästinensische Autonomiegebiete
+00971*;Vereinigte Arabische Emirate
+00972*;Israel
+00973*;Bahrain
+00974*;Qatar
+00975*;Bhutan
+00976*;Mongolei
+00977*;Nepal
+0098*;Iran
+00992*;Tadschikistan
+00993*;Turkmenistan
+00994*;Aserbaidschan
+00995*;Georgien
+00996*;Kirgisistan
+00998*;Usbekistan
+0049 201*;Essen
+0049 202*;Wuppertal
+0049 203*;Duisburg
+0049 2041*;Bottrop
+0049 2043*;Gladbeck Westfalen
+0049 2045*;Bottrop-Kirchhellen
+0049 2051*;Velbert
+0049 2052*;Velbert-Langenberg
+0049 2053*;Velbert-Neviges
+0049 2054*;Essen-Kettwig
+0049 2056*;Heiligenhaus
+0049 2058*;Wülfrath
+0049 2064*;Dinslaken
+0049 2065*;Duisburg-Rheinhausen
+0049 2066*;Duisburg-Homberg
+0049 208*;Oberhausen Rheinland
+0049 209*;Gelsenkirchen
+0049 2102*;Ratingen
+0049 2103*;Hilden
+0049 2104*;Mettmann
+0049 211*;Düsseldorf
+0049 212*;Solingen
+0049 2129*;Haan Rheinl
+0049 2131*;Neuss
+0049 2132*;Meerbusch-Büderich
+0049 2133*;Dormagen
+0049 2137*;Neuss-Norf
+0049 214*;Leverkusen
+0049 2150*;Meerbusch-Lank
+0049 2151*;Krefeld
+0049 2152*;Kempen
+0049 2153*;Nettetal-Lobberich
+0049 2154*;Willich
+0049 2156*;Willich-Anrath
+0049 2157*;Nettetal-Kaldenkirchen
+0049 2158*;Grefrath b. Krefeld
+0049 2159*;Meerbusch-Osterath
+0049 2161*;Mönchengladbach
+0049 2162*;Viersen
+0049 2163*;Schwalmtal Niederrhein
+0049 2164*;Jüchen-Otzenrath
+0049 2165*;Jüchen
+0049 2166*;Mönchengladbach-Rheydt
+0049 2171*;Leverkusen-Opladen
+0049 2173*;Langenfeld Rheinland
+0049 2174*;Burscheid Rheinl
+0049 2175*;Leichlingen
+0049 2181*;Grevenbroich
+0049 2182*;Grevenbroich-Kapellen
+0049 2183*;Rommerskirchen
+0049 2191*;Remscheid
+0049 2192*;Hückeswagen
+0049 2193*;Dabringhausen
+0049 2195*;Radevormwald
+0049 2196*;Wermelskirchen
+0049 2202*;Bergisch Gladbach
+0049 2203*;Köln-Porz
+0049 2204*;Bensberg
+0049 2205*;Rösrath
+0049 2206*;Overath
+0049 2207*;Kürten-Dürscheid
+0049 2208*;Niederkassel
+0049 221*;Köln
+0049 2222*;Bornheim Rheinl
+0049 2223*;Königswinter
+0049 2224*;Bad Honnef
+0049 2225*;Meckenheim Rheinl
+0049 2226*;Rheinbach
+0049 2227*;Bornheim-Merten
+0049 2228*;Remagen-Rolandseck
+0049 2232*;Brühl Rheinl
+0049 2233*;Hürth Rheinl
+0049 2234*;Frechen
+0049 2235*;Erftstadt
+0049 2236*;Wesseling Rheinl
+0049 2237*;Kerpen Rheinl
+0049 2238*;Pulheim
+0049 2241*;Siegburg
+0049 2242*;Hennef Sieg
+0049 2243*;Eitorf
+0049 2244*;Königswinter-Oberpleis
+0049 2245*;Much
+0049 2246*;Lohmar
+0049 2247*;Neunkirchen-Seelscheid
+0049 2248*;Hennef-Uckerath
+0049 2251*;Euskirchen
+0049 2252*;Zülpich
+0049 2253*;Bad Münstereifel
+0049 2254*;Weilerswist
+0049 2255*;Euskirchen-Flamersheim
+0049 2256*;Mechernich-Satzvey
+0049 2257*;Reckerscheid
+0049 2261*;Gummersbach
+0049 2262*;Wiehl
+0049 2263*;Engelskirchen
+0049 2264*;Marienheide
+0049 2265*;Reichshof-Eckenhagen
+0049 2266*;Lindlar
+0049 2267*;Wipperfürth
+0049 2268*;Kürten
+0049 2269*;Kierspe-Rönsahl
+0049 2271*;Bergheim Erft
+0049 2272*;Bedburg
+0049 2273*;Kerpen-Horrem
+0049 2274*;Elsdorf Rheinl
+0049 2275*;Kerpen-Buir
+0049 228*;Bonn
+0049 2291*;Waldbröl
+0049 2292*;Windeck Sieg
+0049 2293*;Nümbrecht
+0049 2294*;Morsbach Sieg
+0049 2295*;Ruppichteroth
+0049 2296*;Reichshof-Brüchermühle
+0049 2297*;Wildbergerhütte
+0049 2301*;Holzwickede
+0049 2302*;Witten
+0049 2303*;Unna
+0049 2304*;Schwerte
+0049 2305*;Castrop-Rauxel
+0049 2306*;Lünen
+0049 2307*;Kamen
+0049 2308*;Unna-Hemmerde
+0049 2309*;Waltrop
+0049 231*;Dortmund
+0049 2323*;Herne
+0049 2324*;Hattingen Ruhr
+0049 2325*;Wanne-Eickel
+0049 2327*;Bochum-Wattenscheid
+0049 2330*;Herdecke
+0049 2331*;Hagen
+0049 2332*;Gevelsberg
+0049 2333*;Ennepetal
+0049 2334*;Hagen-Hohenlimburg
+0049 2335*;Wetter Ruhr
+0049 2336*;Schwelm
+0049 2337*;Hagen-Dahl
+0049 2338*;Breckerfeld
+0049 2339*;Sprockhövel
+0049 234*;Bochum
+0049 2351*;Lüdenscheid
+0049 2352*;Altena Westf
+0049 2353*;Halver
+0049 2354*;Meinerzhagen
+0049 2355*;Schalksmühle
+0049 2357*;Herscheid Westf
+0049 2358*;Meinerzhagen-Valbert
+0049 2359*;Kierspe
+0049 2360*;Haltern-Lippramsdorf
+0049 2361*;Recklinghausen
+0049 2362*;Dorsten
+0049 2363*;Datteln
+0049 2364*;Haltern Westfalen
+0049 2365*;Marl
+0049 2366*;Herten Westfalen
+0049 2367*;Henrichenburg
+0049 2368*;Oer-Erkenschwick
+0049 2369*;Dorsten-Wulfen
+0049 2371*;Iserlohn
+0049 2372*;Hemer
+0049 2373*;Menden
+0049 2374*;Iserlohn-Letmathe
+0049 2375*;Balve
+0049 2377*;Wickede Ruhr
+0049 2378*;Fröndenberg-Langschede
+0049 2379*;Menden-Asbeck
+0049 2381*;Hamm Westfalen
+0049 2382*;Ahlen Westfalen
+0049 2383*;Bönen
+0049 2384*;Welver
+0049 2385*;Hamm-Rhynern
+0049 2387*;Drensteinfurt-Walstedde
+0049 2388*;Hamm-Uentrop
+0049 2389*;Werne
+0049 2391*;Plettenberg
+0049 2392*;Werdohl
+0049 2393*;Sundern-Allendorf
+0049 2394*;Neuenrade-Affeln
+0049 2395*;Finnentrop-Rönkhausen
+0049 2401*;Baesweiler
+0049 2402*;Stolberg
+0049 2403*;Eschweiler Rheinl
+0049 2404*;Alsdorf Rheinl
+0049 2405*;Würselen
+0049 2406*;Herzogenrath
+0049 2407*;Herzogenrath-Kohlscheid
+0049 2408*;Aachen-Kornelimünster
+0049 2409*;Stolberg-Gressenich
+0049 241*;Aachen
+0049 2421*;Düren
+0049 2422*;Kreuzau
+0049 2423*;Langerwehe
+0049 2424*;Vettweiß
+0049 2425*;Nideggen-Embken
+0049 2426*;Nörvenich
+0049 2427*;Nideggen
+0049 2428*;Niederzier
+0049 2429*;Hürtgenwald
+0049 2431*;Erkelenz
+0049 2432*;Wassenberg
+0049 2433*;Hückelhoven
+0049 2434*;Wegberg
+0049 2435*;Erkelenz-Lövenich
+0049 2436*;Wegberg-Rödgen
+0049 2440*;Nettersheim-Tondorf
+0049 2441*;Kall
+0049 2443*;Mechernich
+0049 2444*;Schleiden-Gemünd
+0049 2445*;Schleiden Eifel
+0049 2446*;Heimbach Eifel
+0049 2447*;Dahlem b. Kall
+0049 2448*;Hellenthal-Rescheid
+0049 2449*;Blankenheim Ahr
+0049 2451*;Geilenkirchen
+0049 2452*;Heinsberg Rheinl
+0049 2453*;Heinsberg-Randerath
+0049 2454*;Gangelt
+0049 2455*;Waldfeucht
+0049 2456*;Selfkant
+0049 2461*;Jülich
+0049 2462*;Linnich
+0049 2463*;Titz
+0049 2464*;Aldenhoven b. Jülich
+0049 2465*;Inden
+0049 2471*;Roetgen Eifel
+0049 2472*;Monschau
+0049 2473*;Simmerath
+0049 2474*;Nideggen-Schmidt
+0049 2482*;Hellenthal
+0049 2484*;Mechernich-Eiserfey
+0049 2485*;Schleiden-Dreiborn
+0049 2486*;Nettersheim
+0049 2501*;Münster-Hiltrup
+0049 2502*;Nottuln
+0049 2504*;Telgte
+0049 2505*;Altenberge Westf
+0049 2506*;Münster-Wolbeck
+0049 2507*;Havixbeck
+0049 2508*;Drensteinfurt
+0049 2509*;Nottuln-Appelhülsen
+0049 251*;Münster
+0049 2520*;Wadersloh-Diestedde
+0049 2521*;Beckum
+0049 2522*;Oelde
+0049 2523*;Wadersloh
+0049 2524*;Ennigerloh
+0049 2525*;Beckum-Neubeckum
+0049 2526*;Sendenhorst
+0049 2527*;Lippetal-Lippborg
+0049 2528*;Ennigerloh-Enniger
+0049 2529*;Oelde-Stromberg
+0049 2532*;Ostbevern
+0049 2533*;Münster-Nienberge
+0049 2534*;Münster-Roxel
+0049 2535*;Sendenhorst-Albersloh
+0049 2536*;Münster-Albachten
+0049 2538*;Drensteinfurt-Rinkerode
+0049 2541*;Coesfeld
+0049 2542*;Gescher
+0049 2543*;Billerbeck Westf
+0049 2545*;Rosendahl-Darfeld
+0049 2546*;Coesfeld-Lette
+0049 2547*;Rosendahl-Osterwick
+0049 2548*;Dülmen-Rorup
+0049 2551*;Steinfurt-Burgsteinfurt
+0049 2552*;Steinfurt-Borghorst
+0049 2553*;Ochtrup
+0049 2554*;Laer Kr. Steinfurt
+0049 2555*;Schöppingen
+0049 2556*;Metelen
+0049 2557*;Wettringen Kr. Steinfurt
+0049 2558*;Horstmar
+0049 2561*;Ahaus
+0049 2562*;Gronau Westf
+0049 2563*;Stadtlohn
+0049 2564*;Vreden
+0049 2565*;Gronau-Epe
+0049 2566*;Legden
+0049 2567*;Ahaus-Alstätte
+0049 2568*;Heek
+0049 2571*;Greven Westf
+0049 2572*;Emsdetten
+0049 2573*;Nordwalde
+0049 2574*;Saerbeck
+0049 2575*;Greven-Reckenfeld
+0049 2581*;Warendorf
+0049 2582*;Everswinkel
+0049 2583*;Sassenberg
+0049 2584*;Warendorf-Milte
+0049 2585*;Warendorf-Hoetmar
+0049 2586*;Beelen
+0049 2587*;Ennigerloh-Westkirchen
+0049 2588*;Harsewinkel-Greffen
+0049 2590*;Dülmen-Buldern
+0049 2591*;Lüdinghausen
+0049 2592*;Selm
+0049 2593*;Ascheberg Westf
+0049 2594*;Dülmen
+0049 2595*;Olfen
+0049 2596*;Nordkirchen
+0049 2597*;Senden Westf
+0049 2598*;Senden-Ottmarsbocholt
+0049 2599*;Ascheberg-Herbern
+0049 2601*;Nauort
+0049 2602*;Montabaur
+0049 2603*;Bad Ems
+0049 2604*;Nassau Lahn
+0049 2605*;Löf
+0049 2606*;Winningen
+0049 2607*;Kobern-Gondorf
+0049 2608*;Welschneudorf
+0049 261*;Koblenz
+0049 2620*;Neuhäusel Westerw
+0049 2621*;Lahnstein
+0049 2622*;Bendorf Rhein
+0049 2623*;Ransbach-Baumbach
+0049 2624*;Höhr-Grenzhausen
+0049 2625*;Ochtendung
+0049 2626*;Selters Westerw
+0049 2627*;Braubach
+0049 2628*;Rhens
+0049 2630*;Mülheim-Kärlich
+0049 2631*;Neuwied
+0049 2632*;Andernach
+0049 2633*;Brohl-Lützing
+0049 2634*;Rengsdorf
+0049 2635*;Rheinbrohl
+0049 2636*;Burgbrohl
+0049 2637*;Weißenthurm
+0049 2638*;Waldbreitbach
+0049 2639*;Anhausen Kr. Neuwied
+0049 2641*;Bad Neuenahr-Ahrweiler
+0049 2642*;Remagen
+0049 2643*;Altenahr
+0049 2644*;Linz a. Rhein
+0049 2645*;Vettelschoß
+0049 2646*;Königsfeld Eifel
+0049 2647*;Kesseling
+0049 2651*;Mayen
+0049 2652*;Mendig
+0049 2653*;Kaisersesch
+0049 2654*;Polch
+0049 2655*;Weibern
+0049 2656*;Virneburg
+0049 2657*;Uersfeld
+0049 2661*;Bad Marienberg Westerw
+0049 2662*;Hachenburg
+0049 2663*;Westerburg Westerw
+0049 2664*;Rennerod
+0049 2666*;Freilingen Westerw
+0049 2667*;Stein-Neukirch
+0049 2671*;Cochem
+0049 2672*;Treis-Karden
+0049 2673*;Ellenz-Poltersdorf
+0049 2674*;Bad Bertrich
+0049 2675*;Ediger-Eller
+0049 2676*;Ulmen
+0049 2677*;Lutzerath
+0049 2678*;Büchel b. Cochem
+0049 2680*;Mündersbach
+0049 2681*;Altenkirchen Westerw
+0049 2682*;Hamm Sieg
+0049 2683*;Asbach Westerw
+0049 2684*;Puderbach Westerw
+0049 2685*;Flammersfeld
+0049 2686*;Weyerbusch
+0049 2687*;Horhausen Westerw
+0049 2688*;Kroppach
+0049 2689*;Dierdorf
+0049 2691*;Adenau
+0049 2692*;Kelberg
+0049 2693*;Antweiler
+0049 2694*;Wershofen
+0049 2695*;Insul
+0049 2696*;Nohn Eifel
+0049 2697*;Blankenheim-Ahrhütte
+0049 271*;Siegen
+0049 2721*;Lennestadt
+0049 2722*;Attendorn
+0049 2723*;Kirchhundem
+0049 2724*;Finnentrop-Serkenrode
+0049 2725*;Lennestadt-Oedingen
+0049 2732*;Kreuztal
+0049 2733*;Hilchenbach
+0049 2734*;Freudenberg Westf
+0049 2735*;Neunkirchen Siegerl
+0049 2736*;Burbach Siegerl
+0049 2737*;Netphen-Deuz
+0049 2738*;Netphen
+0049 2739*;Wilnsdorf
+0049 2741*;Betzdorf
+0049 2742*;Wissen
+0049 2743*;Daaden
+0049 2744*;Herdorf
+0049 2745*;Brachbach Sieg
+0049 2747*;Molzhain
+0049 2750*;Diedenshaus
+0049 2751*;Bad Berleburg
+0049 2752*;Bad Laasphe
+0049 2753*;Erndtebrück
+0049 2754*;Bad Laasphe-Feudingen
+0049 2755*;Bad Berleburg-Schwarzenau
+0049 2758*;Bad Berleburg-Girkhausen
+0049 2759*;Bad Berleburg-Aue
+0049 2761*;Olpe Biggesee
+0049 2762*;Wenden Südsauerland
+0049 2763*;Drolshagen-Bleche
+0049 2764*;Welschen Ennest
+0049 2770*;Eschenburg
+0049 2771*;Dillenburg
+0049 2772*;Herborn Hess
+0049 2773*;Haiger
+0049 2774*;Dietzhölztal
+0049 2775*;Driedorf
+0049 2776*;Bad Endbach-Hartenrod
+0049 2777*;Breitscheid Hess
+0049 2778*;Siegbach
+0049 2779*;Greifenstein-Beilstein
+0049 2801*;Xanten
+0049 2802*;Alpen
+0049 2803*;Wesel-Büderich
+0049 2804*;Xanten-Marienbaum
+0049 281*;Wesel
+0049 2821*;Kleve Niederrhein
+0049 2822*;Emmerich
+0049 2823*;Goch
+0049 2824*;Kalkar
+0049 2825*;Uedem
+0049 2826*;Kranenburg Niederrhein
+0049 2827*;Goch-Hassum
+0049 2828*;Emmerich-Elten
+0049 2831*;Geldern
+0049 2832*;Kevelaer
+0049 2833*;Kerken
+0049 2834*;Straelen
+0049 2835*;Issum
+0049 2836*;Wachtendonk
+0049 2837*;Weeze
+0049 2838*;Sonsbeck
+0049 2839*;Straelen-Herongen
+0049 2841*;Moers
+0049 2842*;Kamp-Lintfort
+0049 2843*;Rheinberg
+0049 2844*;Rheinberg-Orsoy
+0049 2845*;Neukirchen-Vluyn
+0049 2850*;Rees-Haldern
+0049 2851*;Rees
+0049 2852*;Hamminkeln
+0049 2853*;Schermbeck
+0049 2855*;Voerde Niederrhein
+0049 2856*;Hamminkeln-Brünen
+0049 2857*;Rees-Mehr
+0049 2858*;Hünxe
+0049 2859*;Wesel-Bislich
+0049 2861*;Borken Westf
+0049 2862*;Südlohn
+0049 2863*;Velen
+0049 2864*;Reken
+0049 2865*;Raesfeld
+0049 2866*;Dorsten-Rhade
+0049 2867*;Heiden Kr. Borken
+0049 2871*;Bocholt
+0049 2872*;Rhede Westf
+0049 2873*;Isselburg-Werth
+0049 2874*;Isselburg
+0049 2902*;Warstein
+0049 2903*;Meschede-Freienohl
+0049 2904*;Bestwig
+0049 2905*;Bestwig-Ramsbeck
+0049 291*;Meschede
+0049 2921*;Soest
+0049 2922*;Werl
+0049 2923*;Lippetal-Herzfeld
+0049 2924*;Möhnesee
+0049 2925*;Warstein-Allagen
+0049 2927*;Neuengeseke
+0049 2928*;Soest-Ostönnen
+0049 2931*;Arnsberg
+0049 2932*;Neheim-Hüsten
+0049 2933*;Sundern Sauerland
+0049 2934*;Sundern-Altenhellefeld
+0049 2935*;Sundern-Hachen
+0049 2937*;Arnsberg-Oeventrop
+0049 2938*;Ense
+0049 2941*;Lippstadt
+0049 2942*;Geseke
+0049 2943*;Erwitte
+0049 2944*;Rietberg-Mastholte
+0049 2945*;Lippstadt-Benninghausen
+0049 2947*;Anröchte
+0049 2948*;Lippstadt-Rebbeke
+0049 2951*;Büren
+0049 2952*;Rüthen
+0049 2953*;Wünnenberg
+0049 2954*;Rüthen-Oestereiden
+0049 2955*;Büren-Wewelsburg
+0049 2957*;Wünnenberg-Haaren
+0049 2958*;Büren-Harth
+0049 2961*;Brilon
+0049 2962*;Olsberg
+0049 2963*;Brilon-Messinghausen
+0049 2964*;Brilon-Alme
+0049 2971*;Schmallenberg-Dorlar
+0049 2972*;Schmallenberg
+0049 2973*;Eslohe Sauerland
+0049 2974*;Schmallenberg-Fredeburg
+0049 2975*;Schmallenbg-Oberkirchen
+0049 2977*;Schmallenberg-Bödefeld
+0049 2981*;Winterberg Westf
+0049 2982*;Medebach
+0049 2983*;Winterberg-Siedlinghsn
+0049 2984*;Hallenberg
+0049 2985*;Winterberg-Niedersfeld
+0049 2991*;Marsberg-Bredelar
+0049 2992*;Marsberg
+0049 2993*;Marsberg-Canstein
+0049 2994*;Marsberg-Westheim
+0049 30*;Berlin
+0049 3301*;Oranienburg
+0049 3302*;Hennigsdorf
+0049 3303*;Birkenwerder
+0049 3304*;Velten
+0049 33051*;Nassenheide
+0049 33053*;Zehlendorf Kr. Oberhavel
+0049 33054*;Liebenwalde
+0049 33055*;Kremmen
+0049 33056*;Mühlenbeck Kr. Oberhavel
+0049 3306*;Gransee
+0049 3307*;Zehdenick
+0049 33080*;Marienthal Kr. Oberhavel
+0049 33082*;Menz Kr. Oberhavel
+0049 33083*;Schulzendorf Kr. Oberhavel
+0049 33084*;Löwenberger Land
+0049 33085*;Seilershof
+0049 33086*;Löwenberger Land
+0049 33087*;Bredereiche
+0049 33088*;Falkenthal
+0049 33089*;Himmelpfort
+0049 33093*;Fürstenberg Hvel
+0049 33094*;Löwenberger Land
+0049 331*;Potsdam
+0049 33200*;Bergholz-Rehbrücke
+0049 33201*;Groß Glienicke
+0049 33202*;Töplitz
+0049 33203*;Kleinmachnow
+0049 33204*;Beelitz Mark
+0049 33205*;Michendorf
+0049 33206*;Fichtenwalde
+0049 33207*;Groß Kreutz
+0049 33208*;Fahrland
+0049 33209*;Caputh
+0049 3321*;Nauen Brandenb
+0049 3322*;Falkensee
+0049 33230*;Börnicke Kr. Havelland
+0049 33231*;Pausin
+0049 33232*;Brieselang
+0049 33233*;Ketzin
+0049 33234*;Wustermark
+0049 33235*;Friesack
+0049 33237*;Paulinenaue
+0049 33238*;Senzke
+0049 33239*;Groß Behnitz
+0049 3327*;Werder Havel
+0049 3328*;Teltow
+0049 3329*;Stahnsdorf
+0049 3331*;Angermünde
+0049 3332*;Schwedt Oder
+0049 33331*;Casekow
+0049 33332*;Gartz Oder
+0049 33333*;Tantow
+0049 33334*;Greiffenberg
+0049 33335*;Pinnow Kr. Uckermark
+0049 33336*;Passow Kr. Uckermark
+0049 33337*;Altkünkendorf
+0049 33338*;Stolpe Oder
+0049 3334*;Eberswalde
+0049 3335*;Finowfurt
+0049 33361*;Joachimsthal
+0049 33362*;Liepe Kr. Barnim
+0049 33363*;Altenhof Kr. Barnim
+0049 33364*;Groß Ziethen Kr. Barnim
+0049 33365*;Lüdersdorf Kr. Barnim
+0049 33366*;Chorin
+0049 33367*;Friedrichswalde Brandenb
+0049 33368*;Hohensaaten
+0049 33369*;Oderberg
+0049 3337*;Biesenthal Brandenb
+0049 3338*;Bernau Brandenb
+0049 33393*;Groß Schönebeck Kr. Barnim
+0049 33394*;Blumberg Kr. Barnim
+0049 33395*;Zerpenschleuse
+0049 33396*;Klosterfelde
+0049 33397*;Wandlitz
+0049 33398*;Werneuchen
+0049 3341*;Strausberg
+0049 3342*;Neuenhagen b. Berlin
+0049 33432*;Müncheberg
+0049 33433*;Buckow Märk Schweiz
+0049 33434*;Herzfelde b. Strausberg
+0049 33435*;Rehfelde
+0049 33436*;Prötzel
+0049 33437*;Reichenberg b. Strausberg
+0049 33438*;Altlandsberg
+0049 33439*;Fredersdorf-Vogelsdorf
+0049 3344*;Bad Freienwalde
+0049 33451*;Heckelberg
+0049 33452*;Neulewin
+0049 33454*;Wölsickendorf-Wollenberg
+0049 33456*;Wriezen
+0049 33457*;Altreetz
+0049 33458*;Falkenberg Mark
+0049 3346*;Seelow
+0049 33470*;Lietzen
+0049 33472*;Golzow b. Seelow
+0049 33473*;Zechin
+0049 33474*;Neutrebbin
+0049 33475*;Letschin
+0049 33476*;Neuhardenberg
+0049 33477*;Trebnitz b. Müncheberg
+0049 33478*;Groß Neuendorf
+0049 33479*;Küstrin-Kietz
+0049 335*;Frankfurt Oder
+0049 33601*;Podelzig
+0049 33602*;Alt Zeschdorf
+0049 33603*;Falkenhagen b. Seelow
+0049 33604*;Lebus
+0049 33605*;Booßen
+0049 33606*;Müllrose
+0049 33607*;Briesen Mark
+0049 33608*;Jacobsdorf Mark
+0049 33609*;Brieskow-Finkenheerd
+0049 3361*;Fürstenwalde Spree
+0049 3362*;Erkner
+0049 33631*;Bad Saarow-Pieskow
+0049 33632*;Hangelsberg
+0049 33633*;Spreenhagen
+0049 33634*;Berkenbrück Kr. Oder-Spree
+0049 33635*;Arensdorf Kr. Oder-Spree
+0049 33636*;Steinhöfel Kr Oder-Spree
+0049 33637*;Beerfelde
+0049 33638*;Rüdersdorf b. Berlin
+0049 3364*;Eisenhüttenstadt
+0049 33652*;Neuzelle
+0049 33653*;Ziltendorf
+0049 33654*;Fünfeichen
+0049 33655*;Grunow Kr. Oder-Spree
+0049 33656*;Bahro
+0049 33657*;Steinsdorf Brandenb
+0049 3366*;Beeskow
+0049 33671*;Lieberose
+0049 33672*;Pfaffendorf Kr. Beeskow
+0049 33673*;Weichensdorf
+0049 33674*;Trebatsch
+0049 33675*;Tauche
+0049 33676*;Friedland b. Beeskow
+0049 33677*;Glienicke b. Beeskow
+0049 33678*;Storkow Mark
+0049 33679*;Wendisch Rietz
+0049 33701*;Großbeeren
+0049 33702*;Wünsdorf
+0049 33703*;Sperenberg
+0049 33704*;Baruth Mark
+0049 33708*;Rangsdorf
+0049 3371*;Luckenwalde
+0049 3372*;Jüterbog
+0049 33731*;Trebbin
+0049 33732*;Hennickendorf b. Luckenwalde
+0049 33733*;Stülpe
+0049 33734*;Felgentreu
+0049 33741*;Niedergörsdorf
+0049 33742*;Niedergörsdorf
+0049 33743*;Niedergörsdorf
+0049 33744*;Hohenseefeld
+0049 33745*;Petkus
+0049 33746*;Werbig b Jüterbog
+0049 33747*;Marzahna
+0049 33748*;Treuenbrietzen
+0049 3375*;Königs Wusterhausen
+0049 33760*;Münchehofe Kr. Dahme-Spree
+0049 33762*;Zeuthen
+0049 33763*;Bestensee
+0049 33764*;Mittenwalde Mark
+0049 33765*;Märkisch Buchholz
+0049 33766*;Teupitz
+0049 33767*;Friedersdorf b. Berlin
+0049 33768*;Prieros
+0049 33769*;Töpchin
+0049 3377*;Zossen Brandenb
+0049 3378*;Ludwigsfelde
+0049 3379*;Mahlow
+0049 3381*;Brandenburg an der Havel
+0049 3382*;Lehnin
+0049 33830*;Ziesar
+0049 33831*;Weseram
+0049 33832*;Rogäsen
+0049 33833*;Wollin b. Brandenburg
+0049 33834*;Pritzerbe
+0049 33835*;Golzow b. Brandenburg
+0049 33836*;Butzow b. Brandenburg
+0049 33837*;Brielow
+0049 33838*;Päwesin
+0049 33839*;Wusterwitz
+0049 33841*;Belzig
+0049 33843*;Niemegk
+0049 33844*;Brück Brandenb
+0049 33845*;Borkheide
+0049 33846*;Dippmannsdorf
+0049 33847*;Görzke
+0049 33848*;Raben
+0049 33849*;Wiesenburg Mark
+0049 3385*;Rathenow
+0049 3386*;Premnitz
+0049 33870*;Zollchow
+0049 33872*;Hohennauen
+0049 33873*;Großwudicke
+0049 33874*;Stechow Brandenb
+0049 33875*;Rhinow
+0049 33876*;Buschow
+0049 33877*;Nitzahn
+0049 33878*;Nennhausen
+0049 3391*;Neuruppin
+0049 33920*;Walsleben b. Neuruppin
+0049 33921*;Zechlinerhütte
+0049 33922*;Karwesee
+0049 33923*;Flecken Zechlin
+0049 33924*;Rägelin
+0049 33925*;Wustrau-Altfriesack
+0049 33926*;Herzberg b. Neuruppin
+0049 33928*;Wildberg Brandenb
+0049 33929*;Gühlen Glienicke
+0049 33931*;Rheinsberg Mark
+0049 33932*;Fehrbellin
+0049 33933*;Lindow Mark
+0049 3394*;Wittstock Dosse
+0049 3395*;Pritzwalk
+0049 33962*;Heiligengrabe
+0049 33963*;Wulfersdorf b. Wittstock
+0049 33964*;Fretzdorf
+0049 33965*;Herzsprung b. Wittstock
+0049 33966*;Dranse
+0049 33967*;Freyenstein
+0049 33968*;Meyenburg Kr. Prignitz
+0049 33969*;Stepenitz
+0049 33970*;Neustadt Dosse
+0049 33971*;Kyritz Brandenb
+0049 33972*;Breddin
+0049 33973*;Zernitz Kr. Prignitz
+0049 33974*;Dessow
+0049 33975*;Dannenwalde Kr. Prignitz
+0049 33976*;Wutike
+0049 33977*;Gumtow
+0049 33978*;Segeletz
+0049 33979*;Wusterhausen Dosse
+0049 33981*;Putlitz
+0049 33982*;Hoppenrade Kr. Prignitz
+0049 33983*;Groß Pankow Kr. Prignitz
+0049 33984*;Blumenthal b. Pritzwalk
+0049 33986*;Falkenhagen Kr. Prignitz
+0049 33989*;Sadenbeck
+0049 340*;Dessau Anh
+0049 341*;Leipzig
+0049 34202*;Delitzsch
+0049 34203*;Zwenkau
+0049 34204*;Schkeuditz
+0049 34205*;Markranstädt
+0049 34206*;Rötha
+0049 34207*;Zwochau
+0049 34208*;Löbnitz
+0049 3421*;Torgau
+0049 34221*;Gneisenaustadt Schildau
+0049 34222*;Arzberg
+0049 34223*;Dommitzsch
+0049 34224*;Belgern
+0049 3423*;Eilenburg
+0049 34241*;Jesewitz
+0049 34242*;Hohenpriessnitz
+0049 34243*;Bad Düben
+0049 34244*;Mockrehna
+0049 3425*;Wurzen
+0049 34261*;Kühren
+0049 34262*;Falkenhain
+0049 34263*;Großzschepa
+0049 34291*;Borsdorf
+0049 34292*;Brandis
+0049 34293*;Naunhof
+0049 34294*;Rackwitz
+0049 34295*;Krensitz
+0049 34296*;Groitzsch
+0049 34297*;Liebertwolkwitz
+0049 34298*;Taucha
+0049 34299*;Gaschwitz
+0049 3431*;Döbeln
+0049 34321*;Leisnig
+0049 34322*;Roßwein
+0049 34324*;Ostrau Sachs
+0049 34325*;Lüttewitz
+0049 34327*;Waldheim
+0049 34328*;Hartha
+0049 3433*;Borna
+0049 34341*;Geithain
+0049 34342*;Neukieritzsch
+0049 34343*;Regis-Breitingen
+0049 34344*;Kohren-Sahlis
+0049 34345*;Bad Lausick
+0049 34346*;Narsdorf
+0049 34347*;Oelzschau
+0049 34348*;Frohburg
+0049 3435*;Oschatz
+0049 34361*;Dahlen
+0049 34362*;Mügeln
+0049 34363*;Cavertitz
+0049 34364*;Wermsdorf
+0049 3437*;Grimma
+0049 34381*;Colditz
+0049 34382*;Nerchau
+0049 34383*;Trebsen
+0049 34384*;Großbothen
+0049 34385*;Mutzschen
+0049 34386*;Dürrweitzschen
+0049 3441*;Zeitz
+0049 34422*;Osterfeld
+0049 34423*;Heuckewalde
+0049 34424*;Reuden b. Zeitz
+0049 34425*;Droyßig
+0049 34426*;Kayna
+0049 3443*;Weißenfels Sachs-Anh
+0049 34441*;Hohenmölsen
+0049 34443*;Teuchern
+0049 34444*;Lützen
+0049 34445*;Stößen
+0049 34446*;Großkorbetha
+0049 3445*;Naumburg Saale
+0049 34461*;Nebra Unstrut
+0049 34462*;Laucha Unstrut
+0049 34463*;Bad Kösen
+0049 34464*;Freyburg Unstrut
+0049 34465*;Bad Bibra
+0049 34466*;Janisroda
+0049 34467*;Eckartsberga
+0049 3447*;Altenburg
+0049 3448*;Meuselwitz
+0049 34491*;Schmölln Bz Leipzig
+0049 34492*;Lucka
+0049 34493*;Gößnitz
+0049 34494*;Ehrenhain
+0049 34495*;Dobitschen
+0049 34496*;Nöbdenitz
+0049 34497*;Langenleuba-Niederhain
+0049 34498*;Rositz
+0049 345*;Halle (Saale)
+0049 34600*;Ostrau Saalkreis
+0049 34601*;Teutschenthal
+0049 34602*;Landsberg Sachs-Anh
+0049 34603*;Nauendorf Sachs-Anh
+0049 34604*;Niemberg
+0049 34605*;Gröbers
+0049 34606*;Teicha Sachs-Anh
+0049 34607*;Wettin
+0049 34609*;Salzmünde
+0049 3461*;Merseburg Saale
+0049 3462*;Bad Dürrenberg
+0049 34632*;Mücheln Geiseltal
+0049 34633*;Braunsbedra
+0049 34635*;Bad Lauchstädt
+0049 34636*;Schafstädt
+0049 34637*;Frankleben
+0049 34638*;Zöschen
+0049 34639*;Wallendorf Luppe
+0049 3464*;Sangerhausen
+0049 34651*;Roßla
+0049 34652*;Allstedt
+0049 34653*;Rottleberode
+0049 34654*;Stolberg Harz
+0049 34656*;Wallhausen Sachsen-Anhalt
+0049 34658*;Hayn Harz
+0049 34659*;Blankenheim b. Sangerhausen
+0049 3466*;Artern
+0049 34671*;Bad Frankenhausen
+0049 34672*;Roßleben
+0049 34673*;Heldrungen
+0049 34691*;Könnern
+0049 34692*;Alsleben Saale
+0049 3471*;Bernburg Saale
+0049 34721*;Nienburg Saale
+0049 34722*;Preußlitz
+0049 3473*;Aschersleben Sachs-Anhalt
+0049 34741*;Frose
+0049 34742*;Sylda
+0049 34743*;Ermsleben
+0049 34745*;Winningen Sachs-Anhalt
+0049 34746*;Giersleben
+0049 3475*;Lutherstadt Eisleben
+0049 3476*;Hettstedt Sachs-Anhalt
+0049 34771*;Querfurt
+0049 34772*;Helbra
+0049 34773*;Schwittersdorf
+0049 34774*;Röblingen am See
+0049 34775*;Wippra
+0049 34776*;Rothenschirmbach
+0049 34779*;Abberode
+0049 34781*;Greifenhagen
+0049 34782*;Mansfeld Südharz
+0049 34783*;Gerbstedt
+0049 34785*;Sandersleben
+0049 34901*;Roßlau Elbe
+0049 34903*;Coswig Anhalt
+0049 34904*;Oranienbaum
+0049 34905*;Wörlitz
+0049 34906*;Raguhn
+0049 34907*;Jeber-Bergfrieden
+0049 34909*;Aken Elbe
+0049 3491*;Lutherstadt Wittenberg
+0049 34920*;Kropstädt
+0049 34921*;Kemberg
+0049 34922*;Mühlanger
+0049 34923*;Cobbelsdorf
+0049 34924*;Zahna
+0049 34925*;Bad Schmiedeberg
+0049 34926*;Pretzsch Elbe
+0049 34927*;Globig-Bleddin
+0049 34928*;Seegrehna
+0049 34929*;Straach
+0049 3493*;Bitterfeld
+0049 3494*;Wolfen
+0049 34953*;Gräfenhainichen
+0049 34954*;Roitzsch b. Bitterfeld
+0049 34955*;Gossa
+0049 34956*;Zörbig
+0049 3496*;Köthen Anhalt
+0049 34973*;Osternienburg
+0049 34975*;Görzig Kr. Köthen
+0049 34976*;Gröbzig
+0049 34977*;Quellendorf
+0049 34978*;Radegast Kr. Köthen
+0049 34979*;Wulfen Sachs-Anhalt
+0049 3501*;Pirna
+0049 35020*;Struppen
+0049 35021*;Königstein
+0049 35022*;Bad Schandau
+0049 35023*;Bad Gottleuba
+0049 35024*;Stadt Wehlen
+0049 35025*;Liebstadt
+0049 35026*;Dürröhrsdorf
+0049 35027*;Weesenstein
+0049 35028*;Krippen
+0049 35032*;Langenhennersdorf
+0049 35033*;Rosenthal
+0049 3504*;Dippoldiswalde
+0049 35052*;Kipsdorf
+0049 35053*;Glashütte
+0049 35054*;Lauenstein
+0049 35055*;Höckendorf
+0049 35056*;Altenberg Sachs
+0049 35057*;Hermsdorf
+0049 35058*;Pretzschendorf
+0049 351*;Dresden
+0049 35200*;Arnsdorf
+0049 35201*;Langebrück
+0049 35202*;Pretzschendorf
+0049 35203*;Tharandt
+0049 35204*;Wilsdruff
+0049 35205*;Ottendorf-Okrilla
+0049 35206*;Kreischa
+0049 35207*;Moritzburg
+0049 35208*;Radeburg
+0049 35209*;Mohorn
+0049 3521*;Meißen
+0049 3522*;Großenhain
+0049 3523*;Coswig Bz Dresden
+0049 35240*;Tauscha
+0049 35241*;Lommatzsch
+0049 35242*;Nossen
+0049 35243*;Weinböhla
+0049 35244*;Krögis
+0049 35245*;Burkhardswalde
+0049 35246*;Ziegenhain Sachs
+0049 35247*;Zehren Sachs
+0049 35248*;Schönfeld
+0049 35249*;Baßlitz
+0049 3525*;Riesa
+0049 35263*;Gröditz
+0049 35264*;Strehla
+0049 35265*;Glaubitz
+0049 35266*;Heyda
+0049 35267*;Diesbar-Seußlitz
+0049 35268*;Stauchitz
+0049 3528*;Radeberg
+0049 3529*;Heidenau
+0049 3531*;Finsterwalde
+0049 35322*;Doberlug-Kirchhain
+0049 35323*;Sonnewalde
+0049 35324*;Crinitz
+0049 35325*;Rückersdorf
+0049 35326*;Schönborn
+0049 35327*;Prießen
+0049 35329*;Dollenchen
+0049 3533*;Elsterwerda
+0049 35341*;Bad Liebenwerda
+0049 35342*;Mühlberg
+0049 35343*;Hirschfeld
+0049 3535*;Herzberg Elster
+0049 35361*;Schlieben
+0049 35362*;Schönewalde
+0049 35363*;Fermerswalde
+0049 35364*;Lebusa
+0049 35365*;Falkenberg Elster
+0049 3537*;Jessen Elster
+0049 35383*;Elster Elbe
+0049 35384*;Steinsdorf b. Jessen
+0049 35385*;Annaburg
+0049 35386*;Prettin
+0049 35387*;Seyda
+0049 35388*;Klöden
+0049 35389*;Holzdorf Elster
+0049 3541*;Calau
+0049 3542*;Lübbenau
+0049 35433*;Vetschau
+0049 35434*;Altdöbern
+0049 35435*;Gollmitz
+0049 35436*;Laasow
+0049 35439*;Zinnitz
+0049 3544*;Luckau
+0049 35451*;Dahme
+0049 35452*;Golßen
+0049 35453*;Drahnsdorf
+0049 35454*;Uckro
+0049 35455*;Walddrehna
+0049 35456*;Terpt
+0049 3546*;Lübben
+0049 35471*;Birkenhainichen
+0049 35472*;Schlepzig
+0049 35473*;Neu Lübbenau
+0049 35474*;Schönwalde
+0049 35475*;Straupitz
+0049 35476*;Wittmannsdorf
+0049 35477*;Rietzneuendorf
+0049 35478*;Goyatz
+0049 355*;Cottbus
+0049 35600*;Döbern
+0049 35601*;Peitz
+0049 35602*;Drebkau
+0049 35603*;Burg Spreew
+0049 35604*;Krieschow
+0049 35605*;Komptendorf
+0049 35606*;Briesen ü Cottbus
+0049 35607*;Jänschwalde
+0049 35608*;Groß Oßnig
+0049 35609*;Drachhausen
+0049 3561*;Guben
+0049 3562*;Forst
+0049 3563*;Spremberg
+0049 3564*;Schwarze Pumpe
+0049 35691*;Bärenklau
+0049 35692*;Kerkwitz
+0049 35693*;Lauschütz
+0049 35694*;Gosda
+0049 35695*;Simmersdorf
+0049 35696*;Briesnig
+0049 35697*;Bagenz
+0049 35698*;Hornow
+0049 3571*;Hoyerswerda
+0049 35722*;Lauta
+0049 35723*;Bernsdorf
+0049 35724*;Lohsa
+0049 35725*;Wittichenau
+0049 35726*;Großsärchen
+0049 35727*;Burghammer
+0049 35728*;Uhyst
+0049 3573*;Senftenberg
+0049 3574*;Lauchhammer
+0049 35751*;Welzow
+0049 35752*;Ruhland
+0049 35753*;Großräschen
+0049 35754*;Klettwitz
+0049 35755*;Ortrand
+0049 35756*;Hosena
+0049 3576*;Weißwasser
+0049 35771*;Bad Muskau
+0049 35772*;Rietschen
+0049 35773*;Schleife
+0049 35774*;Boxberg
+0049 35775*;Pechern
+0049 3578*;Kamenz
+0049 35792*;Oßling
+0049 35793*;Elstra
+0049 35795*;Königsbrück
+0049 35796*;Panschwitz-Kuckau
+0049 35797*;Schwepnitz
+0049 3581*;Görlitz
+0049 35820*;Zodel
+0049 35822*;Hagenwerder
+0049 35823*;Ostritz
+0049 35825*;Kodersdorf
+0049 35826*;Königshain
+0049 35827*;Nieder Seifersdorf
+0049 35828*;Reichenbach
+0049 35829*;Gersdorf
+0049 3583*;Zittau
+0049 35841*;Großschönau
+0049 35842*;Niederoderwitz
+0049 35843*;Hirschfelde
+0049 35844*;Oybin
+0049 3585*;Löbau
+0049 3586*;Neugersdorf
+0049 35872*;Neusalza-Spremberg
+0049 35873*;Herrnhut
+0049 35874*;Bernstadt
+0049 35875*;Obercunnersdorf
+0049 35876*;Weißenberg
+0049 35877*;Cunewalde
+0049 3588*;Niesky
+0049 35891*;Rothenburg Ol
+0049 35892*;Horka
+0049 35893*;Mücka
+0049 35894*;Hähnichen
+0049 35895*;Klitten
+0049 3591*;Bautzen
+0049 3592*;Kirschau
+0049 35930*;Seitschen
+0049 35931*;Königswartha
+0049 35932*;Guttau
+0049 35933*;Neschwitz
+0049 35934*;Großdubrau
+0049 35935*;Kleinwelka
+0049 35936*;Sohland
+0049 35937*;Prischwitz
+0049 35938*;Großpostwitz
+0049 35939*;Pommritz
+0049 3594*;Bischofswerda
+0049 35951*;Neukirch
+0049 35952*;Großröhrsdorf
+0049 35953*;Burkau
+0049 35954*;Großhartau
+0049 35955*;Pulsnitz
+0049 3596*;Neustadt Sachs
+0049 35971*;Sebnitz
+0049 35973*;Stolpen
+0049 35974*;Hinterhermsdorf
+0049 35975*;Hohnstein
+0049 3601*;Mühlhausen
+0049 36020*;Ebeleben
+0049 36021*;Schlotheim
+0049 36022*;Großengottern
+0049 36023*;Horsmar
+0049 36024*;Diedorf
+0049 36025*;Körner
+0049 36026*;Struth
+0049 36027*;Lengenfeld unterm Stein
+0049 36028*;Kammerforst
+0049 36029*;Menteroda
+0049 3603*;Bad Langensalza
+0049 36041*;Bad Tennstedt
+0049 36042*;Tonna
+0049 36043*;Kirchheiligen
+0049 3605*;Leinefelde
+0049 3606*;Heiligenstadt
+0049 36071*;Teistungen
+0049 36072*;Weißenborn-Lüderode
+0049 36074*;Worbis
+0049 36075*;Dingelstädt
+0049 36076*;Niederorschel
+0049 36077*;Großbodungen
+0049 36081*;Arenshausen
+0049 36082*;Ershausen
+0049 36083*;Uder
+0049 36084*;Heuthen
+0049 36085*;Reinholterode
+0049 36087*;Wüstheuterode
+0049 361*;Erfurt
+0049 36200*;Elxleben/Steiger
+0049 36201*;Walschleben
+0049 36202*;Neudietendorf
+0049 36203*;Vieselbach
+0049 36204*;Stotternheim
+0049 36205*;Gräfenroda
+0049 36206*;Großfahner
+0049 36207*;Plaue
+0049 36208*;Ermstedt
+0049 36209*;Klettbach
+0049 3621*;Gotha
+0049 3622*;Waltershausen
+0049 3623*;Friedrichroda
+0049 3624*;Ohrdruf
+0049 36252*;Tambach-Dietharz
+0049 36253*;Georgenthal
+0049 36254*;Friedrichswerth
+0049 36255*;Goldbach
+0049 36256*;Wechmar
+0049 36257*;Luisenthal
+0049 36258*;Friemar
+0049 36259*;Tabarz
+0049 3628*;Arnstadt
+0049 3629*;Stadtilm
+0049 3631*;Nordhausen
+0049 3632*;Sondershausen
+0049 36330*;Grossberndten
+0049 36331*;Ilfeld
+0049 36332*;Ellrich
+0049 36333*;Heringen
+0049 36334*;Wolkramshausen
+0049 36335*;Großwechsungen
+0049 36336*;Klettenberg
+0049 36337*;Schiedungen
+0049 36338*;Bleicherode
+0049 3634*;Sömmerda
+0049 3635*;Kölleda
+0049 3636*;Greußen
+0049 36370*;Großenehrich
+0049 36371*;Schloßvippach
+0049 36372*;Kleinneuhausen
+0049 36373*;Buttstädt
+0049 36374*;Weißensee
+0049 36375*;Kindelbrück
+0049 36376*;Straußfurt
+0049 36377*;Rastenberg
+0049 36378*;Ostramonda
+0049 36379*;Holzengel
+0049 3641*;Jena
+0049 36421*;Camburg
+0049 36422*;Reinstädt
+0049 36423*;Orlamünde
+0049 36424*;Kahla
+0049 36425*;Isserstedt
+0049 36426*;Ottendorf
+0049 36427*;Dornburg (Saale)
+0049 36428*;Stadtroda
+0049 3643*;Weimar
+0049 3644*;Apolda
+0049 36450*;Kranichfeld
+0049 36451*;Buttelstedt
+0049 36452*;Berlstedt
+0049 36453*;Mellingen
+0049 36454*;Magdala
+0049 36458*;Bad Berka
+0049 36459*;Blankenhain
+0049 36461*;Bad Sulza
+0049 36462*;Oßmannstedt
+0049 36463*;Gebstedt
+0049 36464*;Wormstedt
+0049 36465*;Oberndorf
+0049 3647*;Pößneck
+0049 36481*;Neustadt/Orla
+0049 36482*;Triptis
+0049 36483*;Ziegenrück
+0049 36484*;Knau
+0049 365*;Gera
+0049 36601*;Hermsdorf Thür
+0049 36602*;Ronneburg
+0049 36603*;Weida
+0049 36604*;Münchenbernsdorf
+0049 36605*;Bad Köstritz
+0049 36606*;Kraftsdorf
+0049 36607*;Niederpöllnitz
+0049 36608*;Seelingstädt
+0049 3661*;Greiz
+0049 36621*;Elsterberg
+0049 36622*;Triebes
+0049 36623*;Berga
+0049 36624*;Teichwolframsdorf
+0049 36625*;Langenwetzendorf
+0049 36626*;Auma
+0049 36628*;Zeulenroda
+0049 3663*;Schleiz
+0049 36640*;Remptendorf
+0049 36642*;Harra
+0049 36643*;Thimmendorf
+0049 36644*;Hirschberg
+0049 36645*;Mühltroff
+0049 36646*;Tanna
+0049 36647*;Saalburg
+0049 36648*;Dittersdorf
+0049 36649*;Gefell
+0049 36651*;Lobenstein
+0049 36652*;Wurzbach
+0049 36653*;Lehesten
+0049 36691*;Eisenberg
+0049 36692*;Bürgel
+0049 36693*;Crossen
+0049 36694*;Schkölen
+0049 36695*;Söllmnitz
+0049 36701*;Lichte
+0049 36702*;Lauscha
+0049 36703*;Gräfenthal
+0049 36704*;Steinheid
+0049 36705*;Oberweißbach
+0049 3671*;Saalfeld
+0049 3672*;Rudolstadt
+0049 36730*;Sitzendorf
+0049 36731*;Unterloquitz
+0049 36732*;Könitz
+0049 36733*;Kaulsdorf
+0049 36734*;Leutenberg
+0049 36735*;Probstzella
+0049 36736*;Arnsgereuth
+0049 36737*;Drognitz
+0049 36738*;Königsee
+0049 36739*;Rottenbach
+0049 36741*;Bad Blankenburg
+0049 36742*;Uhlstädt
+0049 36743*;Teichel
+0049 36744*;Remda
+0049 3675*;Sonneberg
+0049 36761*;Heubisch
+0049 36762*;Steinach
+0049 36764*;Neuhaus-Schierschnitz
+0049 36766*;Schalkau
+0049 3677*;Ilmenau
+0049 36781*;Großbreitenbach
+0049 36782*;Schmiedefeld
+0049 36783*;Gehren
+0049 36784*;Stützerbach
+0049 36785*;Gräfinau-Angstedt
+0049 3679*;Neuhaus a. Rennweg
+0049 3681*;Suhl
+0049 3682*;Zella-Mehlis
+0049 3683*;Schmalkalden
+0049 36840*;Trusetal
+0049 36841*;Schleusingen
+0049 36842*;Oberhof
+0049 36843*;Benshausen
+0049 36844*;Rohr
+0049 36845*;Gehlberg
+0049 36846*;Dietzhausen
+0049 36847*;Steinbach-Hallenberg
+0049 36848*;Wernshausen
+0049 36849*;Kleinschmalkalden
+0049 3685*;Hildburghausen
+0049 3686*;Eisfeld
+0049 36870*;Masserberg
+0049 36871*;Bad Colberg
+0049 36873*;Themar
+0049 36874*;Schönbrunn bei Hildburghausen
+0049 36875*;Straufhain
+0049 36878*;Oberland
+0049 3691*;Eisenach
+0049 36920*;Großenlupnitz
+0049 36921*;Wutha-Farnroda
+0049 36922*;Gerstungen
+0049 36923*;Treffurt
+0049 36924*;Mihla
+0049 36925*;Marksuhl
+0049 36926*;Creuzburg
+0049 36927*;Unterellen
+0049 36928*;Neuenhof
+0049 36929*;Ruhla
+0049 3693*;Meiningen
+0049 36940*;Oepfershausen
+0049 36941*;Wasungen
+0049 36943*;Bettenhausen
+0049 36944*;Rentwertshausen
+0049 36945*;Henneberg
+0049 36946*;Erbenhausen
+0049 36947*;Jüchsen
+0049 36948*;Römhild
+0049 36949*;Obermaßfeld-Grimmenthal
+0049 3695*;Bad Salzungen
+0049 36961*;Bad Liebenstein
+0049 36962*;Vacha
+0049 36963*;Dorndorf
+0049 36964*;Dermbach Rhön
+0049 36965*;Stadtlengsfeld
+0049 36966*;Kaltennordheim
+0049 36967*;Geisa
+0049 36968*;Roßdorf Rhön
+0049 36969*;Merkers
+0049 371*;Chemnitz
+0049 37200*;Wittgensdorf
+0049 37202*;Claußnitz
+0049 37203*;Gersdorf b. Hohenst-Ernstt
+0049 37204*;Lichtenstein
+0049 37206*;Frankenberg
+0049 37207*;Hainichen
+0049 37208*;Auerswalde
+0049 37209*;Einsiedel
+0049 3721*;Meinersdorf
+0049 3722*;Limbach-Oberfrohna
+0049 3723*;Hohenstein-Ernstthal
+0049 3724*;Burgstädt
+0049 3725*;Zschopau
+0049 3726*;Flöha
+0049 3727*;Mittweida
+0049 37291*;Augustusburg
+0049 37292*;Oederan
+0049 37293*;Eppendorf
+0049 37294*;Grünhainichen
+0049 37295*;Lugau
+0049 37296*;Stollberg Erzgeb
+0049 37297*;Thum
+0049 37298*;Oelsnitz Erzgeb
+0049 3731*;Freiberg
+0049 37320*;Mulda
+0049 37321*;Frankenstein
+0049 37322*;Brand-Erbisdorf
+0049 37323*;Lichtenberg
+0049 37324*;Reinsberg
+0049 37325*;Niederbobritzsch
+0049 37326*;Frauenstein
+0049 37327*;Rechenberg-Bienenmühle
+0049 37328*;Großschirma
+0049 37329*;Großhartmannsdorf
+0049 3733*;Annaberg-Buchholz
+0049 37341*;Ehrenfriedersdorf
+0049 37342*;Cranzahl
+0049 37343*;Jöhstadt
+0049 37344*;Crottendorf
+0049 37346*;Geyer
+0049 37347*;Bärenstein
+0049 37348*;Oberwiesenthal
+0049 37349*;Scheibenberg
+0049 3735*;Marienberg
+0049 37360*;Olbernhau
+0049 37361*;Neuhausen Erzgeb
+0049 37362*;Seiffen
+0049 37363*;Zöblitz
+0049 37364*;Reitzenhain Erzgeb
+0049 37365*;Sayda
+0049 37366*;Rübenau
+0049 37367*;Lengefeld
+0049 37368*;Deutschneudorf
+0049 37369*;Wolkenstein
+0049 3737*;Rochlitz
+0049 37381*;Penig
+0049 37382*;Geringswalde
+0049 37383*;Lunzenau
+0049 37384*;Wechselburg
+0049 3741*;Plauen
+0049 37421*;Oelsnitz Vogtl
+0049 37422*;Markneukirchen
+0049 37423*;Adorf
+0049 37430*;Eichigt
+0049 37431*;Mehltheuer
+0049 37432*;Pausa
+0049 37433*;Gutenfürst
+0049 37434*;Bobenneukirchen
+0049 37435*;Reuth
+0049 37436*;Weischlitz
+0049 37437*;Bad Elster
+0049 37438*;Bad Brambach
+0049 37439*;Jocketa
+0049 3744*;Auerbach
+0049 3745*;Falkenstein
+0049 37462*;Rothenkirchen
+0049 37463*;Bergen b. Auerbach
+0049 37464*;Schöneck
+0049 37465*;Tannenbergsthal
+0049 37467*;Klingenthal
+0049 37468*;Treuen
+0049 375*;Zwickau
+0049 37600*;Neumark
+0049 37601*;Mülsen St. Jacob
+0049 37602*;Kirchberg
+0049 37603*;Wildenfels
+0049 37604*;Mosel
+0049 37605*;Hartenstein
+0049 37606*;Lengenfeld
+0049 37607*;Ebersbrunn
+0049 37608*;Waldenburg
+0049 37609*;Wolkenburg
+0049 3761*;Werdau
+0049 3762*;Crimmitschau
+0049 3763*;Glauchau
+0049 3764*;Meerane
+0049 3765*;Reichenbach Vogtl
+0049 3771*;Aue
+0049 3772*;Schneeberg
+0049 3773*;Johanngeorgenstadt
+0049 3774*;Schwarzenberg
+0049 37752*;Eibenstock
+0049 37754*;Zwönitz
+0049 37755*;Schönheide
+0049 37756*;Breitenbrunn
+0049 37757*;Rittersgrün
+0049 381*;Rostock
+0049 38201*;Gelbensande
+0049 38202*;Volkenshagen
+0049 38203*;Bad Doberan
+0049 38204*;Broderstorf
+0049 38205*;Tessin b. Rostock
+0049 38206*;Graal-Müritz/Seeheilbad
+0049 38207*;Stäbelow
+0049 38208*;Kavelstorf
+0049 38209*;Sanitz b. Rostock
+0049 3821*;Ribnitz-Damgarten
+0049 38220*;Wustrow/Ostseebad
+0049 38221*;Marlow
+0049 38222*;Semlow
+0049 38223*;Saal/Vorpom
+0049 38224*;Gresenhorst
+0049 38225*;Trinwillershagen
+0049 38226*;Dierhagen/Ostseebad
+0049 38227*;Lüdershagen b. Barth
+0049 38228*;Dettmannsdorf-Kölzow
+0049 38229*;Bad Sülze
+0049 38231*;Barth
+0049 38232*;Zingst a. Darß
+0049 38233*;Prerow a. Darß
+0049 38234*;Born a. Darß
+0049 38292*;Kröpelin
+0049 38293*;Kühlungsborn/Ostseebad
+0049 38294*;Neubukow
+0049 38295*;Satow b. Bad-Doberan
+0049 38296*;Rerik/Ostseebad
+0049 38297*;Moitin
+0049 38300*;Insel Hiddensee
+0049 38301*;Putbus
+0049 38302*;Sagard
+0049 38303*;Sellin/Ostseebad
+0049 38304*;Garz/Rügen
+0049 38305*;Gingst
+0049 38306*;Samtens
+0049 38307*;Poseritz
+0049 38308*;Göhren/Rügen
+0049 38309*;Trent
+0049 3831*;Stralsund
+0049 38320*;Tribsees
+0049 38321*;Martensdorf b. Stralsund
+0049 38322*;Richtenberg
+0049 38323*;Prohn
+0049 38324*;Velgast
+0049 38325*;Rolofshagen
+0049 38326*;Grimmen
+0049 38327*;Elmenhorst/Vorpom
+0049 38328*;Miltzow
+0049 38331*;Süderholz
+0049 38332*;Süderholz
+0049 38333*;Horst b. Grimmen
+0049 38334*;Grammendorf
+0049 3834*;Greifswald
+0049 38351*;Mesekenhagen
+0049 38352*;Kemnitz b. Greifswald
+0049 38353*;Gützkow b. Greifswald
+0049 38354*;Wusterhusen
+0049 38355*;Züssow
+0049 38356*;Behrenhoff
+0049 3836*;Wolgast
+0049 38370*;Kröslin
+0049 38371*;Karlshagen
+0049 38372*;Usedom
+0049 38373*;Katzow
+0049 38374*;Lassan
+0049 38375*;Koserow
+0049 38376*;Zirchow
+0049 38377*;Zinnowitz
+0049 38378*;Heringsdorf
+0049 38379*;Benz
+0049 3838*;Bergen auf Rügen
+0049 38391*;Altenkirchen/Rügen
+0049 38392*;Sassnitz
+0049 38393*;Binz/Ostseebad
+0049 3841*;Wismar Meckl
+0049 38422*;Neukloster
+0049 38423*;Bad Kleinen
+0049 38424*;Bobitz
+0049 38425*;Kirchdorf
+0049 38426*;Neuburg-Steinhausen
+0049 38427*;Blowatz
+0049 38428*;Hohenkirchen b. Wismar
+0049 38429*;Glasin
+0049 3843*;Güstrow
+0049 3844*;Schwaan
+0049 38450*;Tarnow b. Bützow
+0049 38451*;Hoppenrade b. Güstrow
+0049 38452*;Lalendorf
+0049 38453*;Mistorf
+0049 38454*;Kritzkow
+0049 38455*;Plaaz
+0049 38456*;Langhagen b. Güstrow
+0049 38457*;Krakow am See
+0049 38458*;Zehna
+0049 38459*;Laage
+0049 38461*;Bützow
+0049 38462*;Baumgarten Meckl
+0049 38464*;Bernitt
+0049 38466*;Jürgenshagen
+0049 3847*;Sternberg
+0049 38481*;Witzin
+0049 38482*;Warin
+0049 38483*;Brüel
+0049 38484*;Ventschow
+0049 38485*;Dabel
+0049 38486*;Gustävel
+0049 38488*;Demen
+0049 385*;Schwerin Meckl
+0049 3860*;Raben Steinfeld
+0049 3861*;Plate
+0049 3863*;Crivitz
+0049 3865*;Holthusen
+0049 3866*;Cambs
+0049 3867*;Lübstorf
+0049 3868*;Rastow
+0049 3869*;Dümmer
+0049 3871*;Parchim
+0049 38720*;Grebbin
+0049 38721*;Ziegendorf
+0049 38722*;Raduhn
+0049 38723*;Kladrum
+0049 38724*;Siggelkow
+0049 38725*;Groß Godems
+0049 38726*;Spornitz
+0049 38727*;Mestlin
+0049 38728*;Domsühl
+0049 38729*;Marnitz
+0049 38731*;Lübz
+0049 38732*;Gallin b. Lübz
+0049 38733*;Karbow-Vietlübbe
+0049 38735*;Plau
+0049 38736*;Goldberg Meckl
+0049 38737*;Ganzlin
+0049 38738*;Karow b. Lübz
+0049 3874*;Ludwigslust Meckl
+0049 38750*;Malliß
+0049 38751*;Picher
+0049 38752*;Zierzow b. Ludwigslust
+0049 38753*;Wöbbelin
+0049 38754*;Leussow b. Ludwigslust
+0049 38755*;Eldena
+0049 38756*;Grabow Meckl
+0049 38757*;Neustadt-Glewe
+0049 38758*;Dömitz
+0049 38759*;Tewswoos
+0049 3876*;Perleberg
+0049 3877*;Wittenberge
+0049 38780*;Lanz Brandenb
+0049 38781*;Mellen
+0049 38782*;Reetz b. Perleberg
+0049 38783*;Dallmin
+0049 38784*;Kleinow Kr. Prignitz
+0049 38785*;Berge b. Perleberg
+0049 38787*;Glöwen
+0049 38788*;Groß Warnow
+0049 38789*;Wolfshagen b. Perleberg
+0049 38791*;Bad Wilsnack
+0049 38792*;Lenzen Kr. Prignitz
+0049 38793*;Dergenthin
+0049 38794*;Cumlosen
+0049 38796*;Viesecke
+0049 38797*;Karstädt Kr. Prignitz
+0049 3881*;Grevesmühlen
+0049 38821*;Lüdersdorf Meckl
+0049 38822*;Diedrichshagen b. Grevesm.
+0049 38823*;Selmsdorf
+0049 38824*;Mallentin
+0049 38825*;Klütz
+0049 38826*;Dassow
+0049 38827*;Kalkhorst
+0049 38828*;Schönberg Meckl
+0049 3883*;Hagenow
+0049 38841*;Neuhaus Elbe
+0049 38842*;Lüttenmark
+0049 38843*;Bennin
+0049 38844*;Gülze
+0049 38845*;Kaarßen
+0049 38847*;Boizenburg Elbe
+0049 38848*;Vellahn
+0049 38850*;Gammelin
+0049 38851*;Zarrentin Meckl
+0049 38852*;Wittenburg
+0049 38853*;Drönnewitz b. Hagenow
+0049 38854*;Redefin
+0049 38855*;Lübtheen
+0049 38856*;Pritzier b. Hagenow
+0049 38858*;Lassahn
+0049 38859*;Alt Zachun
+0049 3886*;Gadebusch
+0049 38871*;Mühlen Eichsen
+0049 38872*;Rehna
+0049 38873*;Carlow
+0049 38874*;Lützow
+0049 38875*;Schlagsdorf b. Gadebusch
+0049 38876*;Roggendorf
+0049 39000*;Beetzendorf
+0049 39001*;Apenburg
+0049 39002*;Oebisfelde
+0049 39003*;Jübar
+0049 39004*;Köckte b. Gardelegen
+0049 39005*;Kusey
+0049 39006*;Miesterhorst
+0049 39007*;Tangeln
+0049 39008*;Kunrau
+0049 39009*;Badel
+0049 3901*;Salzwedel
+0049 3902*;Diesdorf
+0049 39030*;Brunau
+0049 39031*;Dähre
+0049 39032*;Mahlsdorf b. Salzwedel
+0049 39033*;Wallstawe
+0049 39034*;Fleetmark
+0049 39035*;Kuhfelde
+0049 39036*;Binde
+0049 39037*;Pretzier
+0049 39038*;Henningen
+0049 39039*;Bonese
+0049 3904*;Haldensleben
+0049 39050*;Bartensleben
+0049 39051*;Calvörde
+0049 39052*;Erxleben b. Haldensleben
+0049 39053*;Süplingen
+0049 39054*;Flechtingen
+0049 39055*;Hörsingen
+0049 39056*;Klüden
+0049 39057*;Rätzlingen Sachs-Anh
+0049 39058*;Uthmöden
+0049 39059*;Wegenstedt
+0049 39061*;Weferlingen
+0049 39062*;Bebertal
+0049 3907*;Gardelegen
+0049 39080*;Kalbe Milde
+0049 39081*;Kakerbeck Sachs-Anh
+0049 39082*;Mieste
+0049 39083*;Meßdorf
+0049 39084*;Lindstedt
+0049 39085*;Zichtau
+0049 39086*;Jävenitz
+0049 39087*;Jerchel Altmark
+0049 39088*;Letzlingen
+0049 39089*;Bismark Altmark
+0049 3909*;Klötze Altmark
+0049 391*;Magdeburg
+0049 39200*;Gommern
+0049 39201*;Wolmirstedt
+0049 39202*;Groß Ammensleben
+0049 39203*;Barleben
+0049 39204*;Niederndodeleben
+0049 39205*;Langenweddingen
+0049 39206*;Eichenbarleben
+0049 39207*;Colbitz
+0049 39208*;Loitsche
+0049 39209*;Wanzleben
+0049 3921*;Burg b. Magdeburg
+0049 39221*;Möckern b. Magdeburg
+0049 39222*;Möser
+0049 39223*;Theeßen
+0049 39224*;Büden
+0049 39225*;Altengrabow
+0049 39226*;Hohenziatz
+0049 3923*;Zerbst
+0049 39241*;Leitzkau
+0049 39242*;Prödel
+0049 39243*;Nedlitz b. Zerbst
+0049 39244*;Steutz
+0049 39245*;Loburg
+0049 39246*;Lindau Anh
+0049 39247*;Güterglück
+0049 39248*;Dobritz
+0049 3925*;Staßfurt
+0049 39262*;Güsten Anh
+0049 39263*;Unseburg
+0049 39264*;Kroppenstedt
+0049 39265*;Löderburg
+0049 39266*;Förderstedt
+0049 39267*;Schneidlingen
+0049 39268*;Egeln
+0049 3928*;Schönebeck Elbe
+0049 39291*;Calbe Saale
+0049 39292*;Biederitz
+0049 39293*;Dreileben
+0049 39294*;Groß Rosenburg
+0049 39295*;Zuchau
+0049 39296*;Welsleben
+0049 39297*;Eickendorf Kr. Schönebeck
+0049 39298*;Barby Elbe
+0049 3931*;Stendal
+0049 39320*;Schinne
+0049 39321*;Arneburg
+0049 39322*;Tangermünde
+0049 39323*;Schönhausen Elbe
+0049 39324*;Kläden b. Stendal
+0049 39325*;Vinzelberg
+0049 39327*;Klietz
+0049 39328*;Rochau
+0049 39329*;Möringen
+0049 3933*;Genthin
+0049 39341*;Redekin
+0049 39342*;Gladau
+0049 39343*;Jerichow
+0049 39344*;Güsen
+0049 39345*;Parchen
+0049 39346*;Tucheim
+0049 39347*;Kade
+0049 39348*;Klitsche
+0049 39349*;Parey Elbe
+0049 3935*;Tangerhütte
+0049 39361*;Lüderitz
+0049 39362*;Grieben b. Tangerhütte
+0049 39363*;Angern
+0049 39364*;Dolle
+0049 39365*;Bellingen b. Stendal
+0049 39366*;Kehnert
+0049 3937*;Osterburg Altmark
+0049 39382*;Kamern
+0049 39383*;Sandau Elbe
+0049 39384*;Arendsee Altmark
+0049 39386*;Seehausen Altmark
+0049 39387*;Havelberg
+0049 39388*;Goldbeck Altm
+0049 39389*;Schollene
+0049 39390*;Iden
+0049 39391*;Lückstedt
+0049 39392*;Rönnebeck Sachs-Anh
+0049 39393*;Werben Elbe
+0049 39394*;Hohenberg-Krusemark
+0049 39395*;Wanzer
+0049 39396*;Neukirchen Altmark
+0049 39397*;Geestgottberg
+0049 39398*;Groß Garz
+0049 39399*;Kleinau
+0049 39400*;Wefensleben
+0049 39401*;Neuwegersleben
+0049 39402*;Völpke
+0049 39403*;Gröningen Sachs-Anh
+0049 39404*;Ausleben
+0049 39405*;Hötensleben
+0049 39406*;Harbke
+0049 39407*;Seehausen Börde
+0049 39408*;Hadmersleben
+0049 39409*;Eilsleben
+0049 3941*;Halberstadt
+0049 39421*;Osterwieck
+0049 39422*;Badersleben
+0049 39423*;Wegeleben
+0049 39424*;Schwanebeck Sachs-Anh
+0049 39425*;Dingelstedt a. Huy
+0049 39426*;Hessen
+0049 39427*;Ströbeck
+0049 39428*;Pabstorf
+0049 3943*;Wernigerode
+0049 3944*;Blankenburg Harz
+0049 39451*;Wasserleben
+0049 39452*;Ilsenburg
+0049 39453*;Derenburg
+0049 39454*;Elbingerode Harz
+0049 39455*;Schierke
+0049 39456*;Altenbrak
+0049 39457*;Benneckenstein Harz
+0049 39458*;Heudeber
+0049 39459*;Hasselfelde
+0049 3946*;Quedlinburg
+0049 3947*;Thale
+0049 39481*;Hedersleben b. Aschersleben
+0049 39482*;Gatersleben
+0049 39483*;Ballenstedt
+0049 39484*;Harzgerode
+0049 39485*;Gernrode Harz
+0049 39487*;Friedrichsbrunn
+0049 39488*;Güntersberge
+0049 39489*;Straßberg Harz
+0049 3949*;Oschersleben Bode
+0049 395*;Neubrandenburg
+0049 39600*;Zwiedorf
+0049 39601*;Friedland
+0049 39602*;Kleeth
+0049 39603*;Burg Stargard
+0049 39604*;Wildberg
+0049 39605*;Groß Nemerow
+0049 39606*;Glienke
+0049 39607*;Kotelow
+0049 39608*;Staven
+0049 3961*;Altentreptow
+0049 3962*;Penzlin
+0049 3963*;Woldegk
+0049 3964*;Bredenfelde
+0049 3965*;Burow
+0049 3966*;Cölpin
+0049 3967*;Oertzenhof
+0049 3968*;Schönbeck
+0049 3969*;Siedenbollentin
+0049 3971*;Anklam
+0049 39721*;Liepen
+0049 39722*;Sarnow
+0049 39723*;Krien
+0049 39724*;Klein Bünzow
+0049 39726*;Ducherow
+0049 39727*;Spantekow
+0049 39728*;Medow
+0049 3973*;Pasewalk
+0049 39740*;Nechlin
+0049 39741*;Jatznick
+0049 39742*;Brüssow
+0049 39743*;Zerrenthin
+0049 39744*;Rothenklempenow
+0049 39745*;Hetzdorf
+0049 39746*;Krackow
+0049 39747*;Züsedom
+0049 39748*;Viereck
+0049 39749*;Grambow
+0049 39751*;Penkun
+0049 39752*;Blumenhagen
+0049 39753*;Strasburg
+0049 39754*;Löcknitz
+0049 3976*;Torgelow
+0049 39771*;Ueckermünde
+0049 39772*;Rothemühl
+0049 39773*;Altwarp
+0049 39774*;Mönkebude
+0049 39775*;Ahlbeck
+0049 39776*;Hintersee
+0049 39777*;Borkenfriede
+0049 39778*;Ferdinandshof
+0049 39779*;Eggesin
+0049 3981*;Neustrelitz
+0049 39820*;Feldberger Seenlandschaft
+0049 39821*;Carpin
+0049 39822*;Kratzeburg
+0049 39823*;Rechlin
+0049 39824*;Hohenzieritz
+0049 39825*;Wokuhl
+0049 39826*;Blankensee
+0049 39827*;Schwarz
+0049 39828*;Wustrow
+0049 39829*;Blankenförde
+0049 39831*;Feldberger Seenlandschaft
+0049 39832*;Wesenberg
+0049 39833*;Mirow
+0049 3984*;Prenzlau
+0049 39851*;Göritz b. Prenzlau
+0049 39852*;Schönermark b. Prenzlau
+0049 39853*;Holzendorf b. Prenzlau
+0049 39854*;Kleptow
+0049 39855*;Parmen-Weggun
+0049 39856*;Beenz b. Prenzlau
+0049 39857*;Drense
+0049 39858*;Bietikow
+0049 39859*;Fürstenwerder
+0049 39861*;Gramzow b. Prenzlau
+0049 39862*;Schmölln b. Prenzlau
+0049 39863*;Seehausen b. Prenzlau
+0049 3987*;Templin
+0049 39881*;Ringenwalde b. Prenzlau
+0049 39882*;Gollin
+0049 39883*;Groß Dölln
+0049 39884*;Haßleben b. Prenzlau
+0049 39885*;Jakobshagen
+0049 39886*;Milmersdorf
+0049 39887*;Gerswalde
+0049 39888*;Lychen
+0049 39889*;Boitzenburg
+0049 3991*;Waren
+0049 39921*;Ankershagen
+0049 39922*;Dambeck
+0049 39923*;Priborn
+0049 39924*;Stuer
+0049 39925*;Wredenhagen
+0049 39926*;Grabowhöfe
+0049 39927*;Nossentiner Hütte
+0049 39928*;Möllenhagen
+0049 39929*;Jabel
+0049 39931*;Röbel
+0049 39932*;Malchow
+0049 39933*;Vollrathsruhe
+0049 39934*;Groß Plasten
+0049 3994*;Malchin
+0049 39951*;Faulenrost
+0049 39952*;Grammentin
+0049 39953*;Schwinkendorf
+0049 39954*;Stavenhagen
+0049 39955*;Jürgenstorf
+0049 39956*;Neukalen
+0049 39957*;Gielow
+0049 39959*;Dargun
+0049 3996*;Teterow
+0049 39971*;Gnoien
+0049 39972*;Walkendorf
+0049 39973*;Altkalen
+0049 39975*;Thürkow
+0049 39976*;Groß Bützin
+0049 39977*;Jördenstorf
+0049 39978*;Groß Roge
+0049 3998*;Demmin
+0049 39991*;Daberkow
+0049 39992*;Görmin
+0049 39993*;Hohenmocker
+0049 39994*;Metschow
+0049 39995*;Nossendorf
+0049 39996*;Törpin
+0049 39997*;Jarmen
+0049 39998*;Loitz
+0049 39999*;Tutow
+0049 40*;Hamburg
+0049 4101*;Pinneberg
+0049 4102*;Ahrensburg
+0049 4103*;Wedel Holst
+0049 4104*;Aumühle b. Hamburg
+0049 4105*;Seevetal
+0049 4106*;Quickborn Kr. Pinneberg
+0049 4107*;Siek Kr. Stormarn
+0049 4108*;Rosengarten Kr. Harburg
+0049 4109*;Tangstedt Bz Hamburg
+0049 4120*;Ellerhoop
+0049 4121*;Elmshorn
+0049 4122*;Uetersen
+0049 4123*;Barmstedt
+0049 4124*;Glückstadt
+0049 4125*;Seestermühe
+0049 4126*;Horst Holst
+0049 4127*;Westerhorn
+0049 4128*;Kollmar
+0049 4129*;Haseldorf
+0049 4131*;Lüneburg
+0049 4132*;Amelinghausen
+0049 4133*;Wittorf Kr. Lüneburg
+0049 4134*;Embsen Kr. Lübeburg
+0049 4135*;Kirchgellersen
+0049 4136*;Scharnebeck
+0049 4137*;Barendorf
+0049 4138*;Betzendorf Kr. Lüneburg
+0049 4139*;Hohnstorf
+0049 4140*;Estorf Kr. Stade
+0049 4141*;Stade
+0049 4142*;Steinkirchen Kr. Stade
+0049 4143*;Drochtersen
+0049 4144*;Himmelpforten
+0049 4146*;Stade-Bützfleth
+0049 4148*;Drochtersen-Assel
+0049 4149*;Fredenbeck
+0049 4151*;Schwarzenbek
+0049 4152*;Geesthacht
+0049 4153*;Lauenburg Elbe
+0049 4154*;Trittau
+0049 4155*;Büchen
+0049 4156*;Talkau
+0049 4158*;Roseburg
+0049 4159*;Basthorst
+0049 4161*;Buxtehude
+0049 4162*;Jork
+0049 4163*;Horneburg Niederelbe
+0049 4164*;Harsefeld
+0049 4165*;Hollenstedt Nordheide
+0049 4166*;Ahlerstedt
+0049 4167*;Apensen
+0049 4168*;Neu Wulmstorf-Elstorf
+0049 4169*;Sauensiek
+0049 4171*;Winsen Luhe
+0049 4172*;Salzhausen
+0049 4173*;Wulfsen
+0049 4174*;Stelle Kr. Harburg
+0049 4175*;Egestorf Nordheide
+0049 4176*;Marschacht
+0049 4177*;Drage Elbe
+0049 4178*;Radbruch
+0049 4179*;Winsen-Tönnhausen
+0049 4180*;Königsmoor
+0049 4181*;Buchholz i. d Nordheide
+0049 4182*;Tostedt
+0049 4183*;Jesteburg
+0049 4184*;Hanstedt Nordheide
+0049 4185*;Marxen Auetal
+0049 4186*;Buchholz-Trelde
+0049 4187*;Holm-Seppensen
+0049 4188*;Welle Nordheide
+0049 4189*;Undeloh
+0049 4191*;Kaltenkirchen Holst
+0049 4192*;Bad Bramstedt
+0049 4193*;Henstedt-Ulzburg
+0049 4194*;Sievershütten
+0049 4195*;Hartenholm
+0049 4202*;Achim b. Bremen
+0049 4203*;Weyhe b. Bremen
+0049 4204*;Thedinghausen
+0049 4205*;Ottersberg
+0049 4206*;Stuhr-Heiligenrode
+0049 4207*;Oyten
+0049 4208*;Grasberg
+0049 4209*;Schwanewede
+0049 421*;Bremen
+0049 4221*;Delmenhorst
+0049 4222*;Ganderkesee
+0049 4223*;Ganderkesee-Bookholzberg
+0049 4224*;Groß Ippener
+0049 4230*;Verden-Walle
+0049 4231*;Verden
+0049 4232*;Langwedel Kr. Verden
+0049 4233*;Blender
+0049 4234*;Dörverden
+0049 4235*;Langwedel-Etelsen
+0049 4236*;Kirchlinteln
+0049 4237*;Bendingbostel
+0049 4238*;Neddenaverbergen
+0049 4239*;Dörverden-Westen
+0049 4240*;Syke-Heiligenfelde
+0049 4241*;Bassum
+0049 4242*;Syke
+0049 4243*;Twistringen
+0049 4244*;Harpstedt
+0049 4245*;Neuenkirchen b. Bassum
+0049 4246*;Twistringen-Heiligenloh
+0049 4247*;Affinghausen
+0049 4248*;Bassum-Neubruchhausen
+0049 4249*;Bassum-Nordwohlde
+0049 4251*;Hoya
+0049 4252*;Bruchhausen-Vilsen
+0049 4253*;Asendorf Kr. Diepholz
+0049 4254*;Eystrup
+0049 4255*;Martfeld
+0049 4256*;Hilgermissen
+0049 4257*;Schweringen
+0049 4258*;Schwarme
+0049 4260*;Visselhövede-Wittorf
+0049 4261*;Rotenburg Wümme
+0049 4262*;Visselhövede
+0049 4263*;Scheeßel
+0049 4264*;Sottrum Kr. Rotenburg
+0049 4265*;Fintel
+0049 4266*;Brockel
+0049 4267*;Lauenbrück
+0049 4268*;Bötersen
+0049 4269*;Ahausen-Kirchwalsede
+0049 4271*;Sulingen
+0049 4272*;Siedenburg
+0049 4273*;Kirchdorf b. Sulingen
+0049 4274*;Varrel
+0049 4275*;Ehrenburg
+0049 4276*;Borstel b. Sulingen
+0049 4277*;Schwaförden
+0049 4281*;Zeven
+0049 4282*;Sittensen
+0049 4283*;Tarmstedt
+0049 4284*;Selsingen
+0049 4285*;Rhade b. Zeven
+0049 4286*;Gyhum
+0049 4287*;Heeslingen-Boitzen
+0049 4288*;Horstedt Kr. Rotenburg
+0049 4289*;Kirchtimke
+0049 4292*;Ritterhude
+0049 4293*;Ottersberg-Fischerhude
+0049 4294*;Riede Kr. Verden
+0049 4295*;Emtinghausen
+0049 4296*;Schwanewede-Aschwarden
+0049 4297*;Ottersberg-Posthausen
+0049 4298*;Lilienthal
+0049 4302*;Kirchbarkau
+0049 4303*;Schlesen
+0049 4305*;Westensee
+0049 4307*;Raisdorf
+0049 4308*;Schwedeneck
+0049 431*;Kiel
+0049 4320*;Heidmühlen
+0049 4321*;Neumünster
+0049 4322*;Bordesholm
+0049 4323*;Bornhöved
+0049 4324*;Brokstedt
+0049 4326*;Wankendorf
+0049 4327*;Großenaspe
+0049 4328*;Rickling
+0049 4329*;Langwedel Holst
+0049 4330*;Emkendorf
+0049 4331*;Rendsburg
+0049 4332*;Hamdorf b. Rendsburg
+0049 4333*;Erfde
+0049 4334*;Bredenbek b. Rendsburg
+0049 4335*;Hohn b. Rendsburg
+0049 4336*;Owschlag
+0049 4337*;Jevenstedt
+0049 4338*;Alt Duvenstedt
+0049 4339*;Christiansholm
+0049 4340*;Achterwehr
+0049 4342*;Preetz
+0049 4343*;Laboe
+0049 4344*;Schönberg Holst
+0049 4346*;Gettorf
+0049 4347*;Flintbek
+0049 4348*;Schönkirchen
+0049 4349*;Dänischenhagen
+0049 4351*;Eckernförde
+0049 4352*;Damp
+0049 4353*;Ascheffel
+0049 4354*;Fleckeby
+0049 4355*;Rieseby
+0049 4356*;Groß Wittensee
+0049 4357*;Sehestedt Eider
+0049 4358*;Loose b. Eckernförde
+0049 4361*;Oldenburg i. Holst
+0049 4362*;Heiligenhafen
+0049 4363*;Lensahn
+0049 4364*;Dahme
+0049 4365*;Heringsdorf
+0049 4366*;Grömitz-Cismar
+0049 4367*;Großenbrode
+0049 4371*;Burg auf Fehmarn
+0049 4372*;Westfehmarn
+0049 4381*;Lütjenburg
+0049 4382*;Wangels
+0049 4383*;Grebin
+0049 4384*;Selent
+0049 4385*;Hohenfelde b. Kiel
+0049 4392*;Nortorf b. Neumünster
+0049 4393*;Boostedt
+0049 4394*;Bokhorst
+0049 4401*;Brake Unterweser
+0049 4402*;Rastede
+0049 4403*;Bad Zwischenahn
+0049 4404*;Elsfleth
+0049 4405*;Edewecht
+0049 4406*;Berne
+0049 4407*;Wardenburg
+0049 4408*;Hude Oldb
+0049 4409*;Westerstede-Ocholt
+0049 441*;Oldenburg (Oldenburg)
+0049 4421*;Wilhelmshaven
+0049 4422*;Sande Kr. Friesl
+0049 4423*;Fedderwarden
+0049 4425*;Wangerland-Hooksiel
+0049 4426*;Wangerland-Horumersiel
+0049 4431*;Wildeshausen
+0049 4432*;Dötlingen-Brettorf
+0049 4433*;Dötlingen
+0049 4434*;Colnrade
+0049 4435*;Großenkneten
+0049 4441*;Vechta
+0049 4442*;Lohne Oldb
+0049 4443*;Dinklage
+0049 4444*;Goldenstedt
+0049 4445*;Visbek
+0049 4446*;Bakum Kr. Vechta
+0049 4447*;Vechta-Langförden
+0049 4451*;Varel
+0049 4452*;Zetel-Neuenburg
+0049 4453*;Zetel
+0049 4454*;Jade
+0049 4455*;Jade-Schweiburg
+0049 4456*;Varel-Altjührden
+0049 4458*;Wiefelstede-Spohle
+0049 4461*;Jever
+0049 4462*;Wittmund
+0049 4463*;Wangerland
+0049 4464*;Wittmund-Carolinensiel
+0049 4465*;Friedeburg
+0049 4466*;Wittmund-Ardorf
+0049 4467*;Wittmund-Funnix
+0049 4468*;Friedeburg-Reepsholt
+0049 4469*;Wangerooge
+0049 4471*;Cloppenburg
+0049 4472*;Lastrup
+0049 4473*;Emstek
+0049 4474*;Garrel
+0049 4475*;Molbergen
+0049 4477*;Lastrup-Hemmelte
+0049 4478*;Cappeln Oldb
+0049 4479*;Molbergen-Peheim
+0049 4480*;Ovelgönne-Strückhausen
+0049 4481*;Hatten-Sandkrug
+0049 4482*;Hatten
+0049 4483*;Ovelgönne-Großenmeer
+0049 4484*;Hude-Wüsting
+0049 4485*;Elsfleth-Huntorf
+0049 4486*;Edewecht-Friedrichsfehn
+0049 4487*;Großenkneten-Huntlosen
+0049 4488*;Westerstede
+0049 4489*;Apen
+0049 4491*;Friesoythe
+0049 4492*;Saterland
+0049 4493*;Friesoythe-Gehlenberg
+0049 4494*;Bösel b. Friesoythe
+0049 4495*;Friesoythe-Thüle
+0049 4496*;Friesoythe-Markhausen
+0049 4497*;Barßel-Harkebrügge
+0049 4498*;Saterland-Ramsloh
+0049 4499*;Barßel
+0049 4501*;Kastorf Holst
+0049 4502*;Lübeck-Travemünde
+0049 4503*;Timmendorfer Strand
+0049 4504*;Ratekau
+0049 4505*;Stockelsdorf-Curau
+0049 4506*;Stockelsdorf-Krumbeck
+0049 4508*;Krummesse
+0049 4509*;Groß Grönau
+0049 451*;Lübeck
+0049 4521*;Eutin
+0049 4522*;Plön
+0049 4523*;Malente
+0049 4524*;Scharbeutz-Pönitz
+0049 4525*;Ahrensbök
+0049 4526*;Ascheberg Holst
+0049 4527*;Bosau
+0049 4528*;Schönwalde a. Bungsberg
+0049 4529*;Süsel-Bujendorf
+0049 4531*;Bad Oldesloe
+0049 4532*;Bargteheide
+0049 4533*;Reinfeld Holst
+0049 4534*;Steinburg Kr. Stormarn
+0049 4535*;Nahe
+0049 4536*;Steinhorst Lauenb
+0049 4537*;Sülfeld Holst
+0049 4539*;Westerau
+0049 4541*;Ratzeburg
+0049 4542*;Mölln Lauenb
+0049 4543*;Nusse
+0049 4544*;Berkenthin
+0049 4545*;Seedorf Lauenb
+0049 4546*;Mustin
+0049 4547*;Gudow Lauenb
+0049 4550*;Bühnsdorf
+0049 4551*;Bad Segeberg
+0049 4552*;Leezen
+0049 4553*;Geschendorf
+0049 4554*;Wahlstedt
+0049 4555*;Seedorf b. Bad Segeberg
+0049 4556*;Ahrensbök-Gnissau
+0049 4557*;Blunk
+0049 4558*;Todesfelde
+0049 4559*;Wensin
+0049 4561*;Neustadt i. Holst
+0049 4562*;Grömitz
+0049 4563*;Scharbeutz-Haffkrug
+0049 4564*;Schashagen
+0049 4602*;Freienwill
+0049 4603*;Havetoft
+0049 4604*;Großenwiehe
+0049 4605*;Medelby
+0049 4606*;Wanderup
+0049 4607*;Janneby
+0049 4608*;Handewitt
+0049 4609*;Eggebek
+0049 461*;Flensburg
+0049 4621*;Schleswig
+0049 4622*;Taarstedt
+0049 4623*;Böklund
+0049 4624*;Kropp
+0049 4625*;Jübek
+0049 4626*;Treia
+0049 4627*;Dörpstedt
+0049 4630*;Barderup
+0049 4631*;Glücksburg Ostsee
+0049 4632*;Steinbergkirche
+0049 4633*;Satrup
+0049 4634*;Husby
+0049 4635*;Sörup
+0049 4636*;Langballig
+0049 4637*;Sterup
+0049 4638*;Tarp
+0049 4639*;Schafflund
+0049 4641*;Süderbrarup
+0049 4642*;Kappeln Schlei
+0049 4643*;Gelting Angeln
+0049 4644*;Karby
+0049 4646*;Mohrkirch
+0049 4651*;Sylt
+0049 4661*;Niebüll
+0049 4662*;Leck
+0049 4663*;Süderlügum
+0049 4664*;Neukirchen b. Niebüll
+0049 4665*;Emmelsbüll-Horsbüll
+0049 4666*;Ladelund
+0049 4667*;Dagebüll
+0049 4668*;Klanxbüll
+0049 4671*;Bredstedt
+0049 4672*;Langenhorn
+0049 4673*;Joldelund
+0049 4674*;Ockholm
+0049 4681*;Wyk auf Föhr
+0049 4682*;Amrum
+0049 4683*;Oldsum
+0049 4684*;Langeneß Hallig
+0049 4702*;Sandstedt
+0049 4703*;Loxstedt-Donnern
+0049 4704*;Drangstedt
+0049 4705*;Wremen
+0049 4706*;Schiffdorf
+0049 4707*;Langen-Neuenwalde
+0049 4708*;Ringstedt
+0049 471*;Bremerhaven
+0049 4721*;Cuxhaven
+0049 4722*;Cuxhaven-Altenbruch
+0049 4723*;Cuxhaven-Altenwalde
+0049 4724*;Cuxhaven-Lüdingworth
+0049 4725*;Helgoland
+0049 4731*;Nordenham
+0049 4732*;Stadland-Rodenkirchen
+0049 4733*;Butjadingen-Burhave
+0049 4734*;Stadland-Seefeld
+0049 4735*;Butjadingen-Stollhamm
+0049 4736*;Butjadingen-Tossens
+0049 4737*;Stadland-Schwei
+0049 4740*;Loxstedt-Dedesdorf
+0049 4741*;Nordholz b. Bremerhaven
+0049 4742*;Dorum
+0049 4743*;Langen b. Bremerhaven
+0049 4744*;Loxstedt
+0049 4745*;Bederkesa
+0049 4746*;Hagen b. Bremerhaven
+0049 4747*;Beverstedt
+0049 4748*;Stubben b. Bremerhaven
+0049 4749*;Schiffdorf-Geestenseth
+0049 4751*;Otterndorf
+0049 4752*;Neuhaus Oste
+0049 4753*;Balje
+0049 4754*;Bülkau
+0049 4755*;Ihlienworth
+0049 4756*;Odisheim
+0049 4757*;Wanna
+0049 4758*;Nordleda
+0049 4761*;Bremervörde
+0049 4762*;Kutenholz
+0049 4763*;Gnarrenburg
+0049 4764*;Gnarrenburg-Klenkendorf
+0049 4765*;Ebersdorf b. Bremervörde
+0049 4766*;Basdahl
+0049 4767*;Bremervörde-Bevern
+0049 4768*;Hipstedt
+0049 4769*;Bremervörde-Iselersheim
+0049 4770*;Wischhafen
+0049 4771*;Hemmoor
+0049 4772*;Oberndorf Oste
+0049 4773*;Lamstedt
+0049 4774*;Hechthausen
+0049 4775*;Großenwörden
+0049 4776*;Osten-Altendorf
+0049 4777*;Cadenberge
+0049 4778*;Wingst
+0049 4779*;Freiburg Elbe
+0049 4791*;Osterholz-Scharmbeck
+0049 4792*;Worpswede
+0049 4793*;Hambergen
+0049 4794*;Worpswede-Ostersode
+0049 4795*;Garlstedt
+0049 4796*;Teufelsmoor
+0049 4802*;Wrohm
+0049 4803*;Pahlen
+0049 4804*;Nordhastedt
+0049 4805*;Schafstedt
+0049 4806*;Sarzbüttel
+0049 481*;Heide Holst
+0049 4821*;Itzehoe
+0049 4822*;Kellinghusen
+0049 4823*;Wilster
+0049 4824*;Krempe
+0049 4825*;Burg Dithm
+0049 4826*;Hohenlockstedt
+0049 4827*;Wacken
+0049 4828*;Lägerdorf
+0049 4829*;Wewelsfleth
+0049 4830*;Süderhastedt
+0049 4832*;Meldorf
+0049 4833*;Wesselburen
+0049 4834*;Büsum
+0049 4835*;Albersdorf Holst
+0049 4836*;Hennstedt Dithm
+0049 4837*;Neuenkirchen Dithm
+0049 4838*;Tellingstedt
+0049 4839*;Wöhrden Dithm
+0049 4841*;Husum Nordsee
+0049 4842*;Nordstrand
+0049 4843*;Viöl
+0049 4844*;Pellworm
+0049 4845*;Ostenfeld b. Husum
+0049 4846*;Hattstedt
+0049 4847*;Oster-Ohrstedt
+0049 4848*;Rantrum
+0049 4849*;Hooge Hallig
+0049 4851*;Marne
+0049 4852*;Brunsbüttel
+0049 4853*;St. Michaelisdonn
+0049 4854*;Friedrichskoog
+0049 4855*;Eddelak
+0049 4856*;Kronprinzenkoog
+0049 4857*;Barlt
+0049 4858*;St. Margarethen Holst
+0049 4859*;Windbergen
+0049 4861*;Tönning
+0049 4862*;Garding
+0049 4863*;St. Peter-Ording
+0049 4864*;Oldenswort
+0049 4865*;Osterhever
+0049 4871*;Hohenwestedt
+0049 4872*;Hanerau-Hademarschen
+0049 4873*;Aukrug
+0049 4874*;Todenbüttel
+0049 4875*;Stafstedt
+0049 4876*;Reher Holst
+0049 4877*;Hennstedt b. Itzehoe
+0049 4881*;Friedrichstadt
+0049 4882*;Lunden
+0049 4883*;Süderstapel
+0049 4884*;Schwabstedt
+0049 4885*;Bergenhusen
+0049 4892*;Schenefeld
+0049 4893*;Hohenaspe
+0049 4902*;Jemgum-Ditzum
+0049 4903*;Wymeer
+0049 491*;Leer Ostfries
+0049 4920*;Wirdum
+0049 4921*;Emden
+0049 4922*;Borkum
+0049 4923*;Krummhörn-Pewsum
+0049 4924*;Moormerland-Oldersum
+0049 4925*;Hinte
+0049 4926*;Krummhörn-Greetsiel
+0049 4927*;Krummhörn-Loquard
+0049 4928*;Ihlow-Riepe
+0049 4929*;Ihlow
+0049 4931*;Norden
+0049 4932*;Norderney
+0049 4933*;Dornum Ostfriesl
+0049 4934*;Marienhafe
+0049 4935*;Juist
+0049 4936*;Großheide
+0049 4938*;Hagermarsch
+0049 4939*;Baltrum
+0049 4941*;Aurich Ostfriesl
+0049 4942*;Südbrookmerland
+0049 4943*;Großefehn
+0049 4944*;Wiesmoor
+0049 4945*;Großefehn-Timmel
+0049 4946*;Großefehn-Bagband
+0049 4947*;Aurich-Ogenbargen
+0049 4948*;Wiesmoor-Marcardsmoor
+0049 4950*;Holtland
+0049 4951*;Weener
+0049 4952*;Rhauderfehn
+0049 4953*;Bunde
+0049 4954*;Moormerland
+0049 4955*;Westoverledingen
+0049 4956*;Uplengen
+0049 4957*;Detern
+0049 4958*;Jemgum
+0049 4959*;Dollart
+0049 4961*;Papenburg
+0049 4962*;Papenburg-Aschendorf
+0049 4963*;Dörpen
+0049 4964*;Rhede Ems
+0049 4965*;Surwold
+0049 4966*;Neubörger
+0049 4967*;Rhauderfehn-Burlage
+0049 4968*;Neulehe
+0049 4971*;Esens
+0049 4972*;Langeoog
+0049 4973*;Wittmund-Burhafe
+0049 4974*;Neuharlingersiel
+0049 4975*;Westerholt Ostfriesl
+0049 4976*;Spiekeroog
+0049 4977*;Blomberg Ostfriesl
+0049 5021*;Nienburg Weser
+0049 5022*;Wietzen
+0049 5023*;Liebenau Kr. Nienburg
+0049 5024*;Rohrsen
+0049 5025*;Estorf Weser
+0049 5026*;Steimbke
+0049 5027*;Linsburg
+0049 5028*;Pennigsehl
+0049 5031*;Wunstorf
+0049 5032*;Neustadt a. Rübenberge
+0049 5033*;Wunstorf-Großenheidorn
+0049 5034*;Neustadt-Hagen
+0049 5035*;Groß Munzel
+0049 5036*;Neustadt-Schneeren
+0049 5037*;Bad Rehburg
+0049 5041*;Springe
+0049 5042*;Bad Münder a. Deister
+0049 5043*;Lauenau
+0049 5044*;Springe-Eldagsen
+0049 5045*;Springe-Bennigsen
+0049 5051*;Bergen Kr. Celle
+0049 5052*;Hermannsburg
+0049 5053*;Faßberg-Müden
+0049 5054*;Bergen-Sülze
+0049 5055*;Faßberg
+0049 5056*;Winsen-Meißendorf
+0049 5060*;Bodenburg
+0049 5062*;Holle b. Hildesheim
+0049 5063*;Bad Salzdetfurth
+0049 5064*;Groß Düngen
+0049 5065*;Sibbesse
+0049 5066*;Sarstedt
+0049 5067*;Bockenem
+0049 5068*;Elze Leine
+0049 5069*;Nordstemmen
+0049 5071*;Schwarmstedt
+0049 5072*;Neustadt-Mandelsloh
+0049 5073*;Neustadt-Esperke
+0049 5074*;Rodewald
+0049 5082*;Langlingen
+0049 5083*;Hohne b. Celle
+0049 5084*;Hambühren
+0049 5085*;Burgdorf-Ehlershausen
+0049 5086*;Celle-Scheuen
+0049 5101*;Pattensen
+0049 5102*;Laatzen
+0049 5103*;Wennigsen Deister
+0049 5105*;Barsinghausen
+0049 5108*;Gehrden Han
+0049 5109*;Ronnenberg
+0049 511*;Hannover
+0049 5121*;Hildesheim
+0049 5123*;Schellerten
+0049 5126*;Algermissen
+0049 5127*;Harsum
+0049 5128*;Hohenhameln
+0049 5129*;Söhlde
+0049 5130*;Wedemark
+0049 5131*;Garbsen
+0049 5132*;Lehrte
+0049 5135*;Burgwedel-Fuhrberg
+0049 5136*;Burgdorf Kr. Hannover
+0049 5137*;Seelze
+0049 5138*;Sehnde
+0049 5139*;Burgwedel
+0049 5141*;Celle
+0049 5142*;Eschede
+0049 5143*;Winsen Aller
+0049 5144*;Wathlingen
+0049 5145*;Beedenbostel
+0049 5146*;Wietze
+0049 5147*;Uetze-Hänigsen
+0049 5148*;Steinhorst Niedersachs
+0049 5149*;Wienhausen
+0049 5151*;Hameln
+0049 5152*;Hessisch Oldendorf
+0049 5153*;Salzhemmendorf
+0049 5154*;Aerzen
+0049 5155*;Emmerthal
+0049 5156*;Coppenbrügge
+0049 5157*;Emmerthal-Börry
+0049 5158*;Hemeringen
+0049 5159*;Coppenbrügge-Bisperode
+0049 5161*;Walsrode
+0049 5162*;Fallingbostel
+0049 5163*;Fallingbostel-Dorfmark
+0049 5164*;Hodenhagen
+0049 5165*;Rethem Aller
+0049 5166*;Walsrode-Kirchboitzen
+0049 5167*;Walsrode-Westenholz
+0049 5168*;Walsrode-Stellichte
+0049 5171*;Peine
+0049 5172*;Ilsede
+0049 5173*;Uetze
+0049 5174*;Lahstedt
+0049 5175*;Lehrte-Arpke
+0049 5176*;Edemissen
+0049 5177*;Edemissen-Abbensen
+0049 5181*;Alfeld Leine
+0049 5182*;Gronau Leine
+0049 5183*;Lamspringe
+0049 5184*;Freden Leine
+0049 5185*;Duingen
+0049 5186*;Salzhemmendorf-Wallensen
+0049 5187*;Delligsen
+0049 5190*;Soltau-Emmingen
+0049 5191*;Soltau
+0049 5192*;Munster
+0049 5193*;Schneverdingen
+0049 5194*;Bispingen
+0049 5195*;Neuenkirchen Kr. Soltau
+0049 5196*;Wietzendorf
+0049 5197*;Soltau-Frielingen
+0049 5198*;Schneverdingen-Wintermoor
+0049 5199*;Schneverdingen-Heber
+0049 5201*;Halle Westf
+0049 5202*;Oerlinghausen
+0049 5203*;Werther Westf
+0049 5204*;Steinhagen Westf
+0049 5205*;Bielefeld-Sennestadt
+0049 5206*;Bielefeld-Jöllenbeck
+0049 5207*;Schloß Holte-Stukenbrock
+0049 5208*;Leopoldshöhe
+0049 5209*;Gütersloh-Friedrichsdorf
+0049 521*;Bielefeld
+0049 5221*;Herford
+0049 5222*;Bad Salzuflen
+0049 5223*;Bünde
+0049 5224*;Enger Westf
+0049 5225*;Spenge
+0049 5226*;Bruchmühlen Westf
+0049 5228*;Vlotho-Exter
+0049 5231*;Detmold
+0049 5232*;Lage
+0049 5233*;Steinheim Westf
+0049 5234*;Horn-Bad Meinberg
+0049 5235*;Blomberg Lippe
+0049 5236*;Blomberg-Großenmarpe
+0049 5237*;Augustdorf
+0049 5238*;Nieheim-Himmighausen
+0049 5241*;Gütersloh
+0049 5242*;Rheda-Wiedenbrück
+0049 5244*;Rietberg
+0049 5245*;Herzebrock-Clarholz
+0049 5246*;Verl
+0049 5247*;Harsewinkel
+0049 5248*;Langenberg Kr. Gütersloh
+0049 5250*;Delbrück Westf
+0049 5251*;Paderborn
+0049 5252*;Bad Lippspringe
+0049 5253*;Bad Driburg
+0049 5254*;Paderborn-Schloß Neuhaus
+0049 5255*;Altenbeken
+0049 5257*;Hövelhof
+0049 5258*;Salzkotten
+0049 5259*;Bad Driburg-Neuenheerse
+0049 5261*;Lemgo
+0049 5262*;Extertal
+0049 5263*;Barntrup
+0049 5264*;Kalletal
+0049 5265*;Dörentrup
+0049 5266*;Lemgo-Kirchheide
+0049 5271*;Höxter
+0049 5272*;Brakel Westf
+0049 5273*;Beverungen
+0049 5274*;Nieheim
+0049 5275*;Höxter-Ottbergen
+0049 5276*;Marienmünster
+0049 5277*;Höxter-Fürstenau
+0049 5278*;Höxter-Ovenhausen
+0049 5281*;Bad Pyrmont
+0049 5282*;Schieder
+0049 5283*;Lügde-Rischenau
+0049 5284*;Schwalenberg
+0049 5285*;Bad Pyrmont-Kleinenberg
+0049 5286*;Ottenstein Niedersachs
+0049 5292*;Lichtenau-Atteln
+0049 5293*;Paderborn-Dahl
+0049 5294*;Hövelhof-Espeln
+0049 5295*;Lichtenau Westf
+0049 5300*;Salzgitter-Üfingen
+0049 5301*;Lehre-Essenrode
+0049 5302*;Vechelde
+0049 5303*;Wendeburg
+0049 5304*;Meine
+0049 5305*;Sickte
+0049 5306*;Cremlingen
+0049 5307*;Braunschweig-Wenden
+0049 5308*;Lehre
+0049 5309*;Lehre-Wendhausen
+0049 531*;Braunschweig
+0049 5320*;Torfhaus
+0049 5321*;Goslar
+0049 5322*;Bad Harzburg
+0049 5323*;Clausthal-Zellerfeld
+0049 5324*;Vienenburg
+0049 5325*;Goslar-Hahnenklee
+0049 5326*;Langelsheim
+0049 5327*;Bad Grund Harz
+0049 5328*;Altenau Harz
+0049 5329*;Schulenberg i. Oberharz
+0049 5331*;Wolfenbüttel
+0049 5332*;Schöppenstedt
+0049 5333*;Dettum
+0049 5334*;Hornburg Kr. Wolfenbüttel
+0049 5335*;Schladen
+0049 5336*;Semmenstedt
+0049 5337*;Kissenbrück
+0049 5339*;Gielde
+0049 5341*;Salzgitter
+0049 5344*;Lengede
+0049 5345*;Baddeckenstedt
+0049 5346*;Liebenburg
+0049 5347*;Burgdorf b. Salzgitter
+0049 5351*;Helmstedt
+0049 5352*;Schöningen
+0049 5353*;Königslutter a. Elm
+0049 5354*;Jerxheim
+0049 5355*;Frellstedt
+0049 5356*;Helmstedt-Barmke
+0049 5357*;Grasleben
+0049 5358*;Bahrdorf-Mackendorf
+0049 5361*;Wolfsburg
+0049 5362*;Wolfsburg-Fallersleben
+0049 5363*;Wolfsburg-Vorsfelde
+0049 5364*;Velpke
+0049 5365*;Wolfsburg-Neindorf
+0049 5366*;Jembke
+0049 5367*;Rühen
+0049 5368*;Parsau
+0049 5371*;Gifhorn
+0049 5372*;Meinersen
+0049 5373*;Hillerse Kr. Gifhorn
+0049 5374*;Isenbüttel
+0049 5375*;Müden Aller
+0049 5376*;Wesendorf
+0049 5377*;Ehra-Lessien
+0049 5378*;Sassenburg-Platendorf
+0049 5379*;Sassenburg-Grußendorf
+0049 5381*;Seesen
+0049 5382*;Bad Gandersheim
+0049 5383*;Lutter a. Barenberge
+0049 5384*;Seesen-Groß Rhüden
+0049 5401*;Georgsmarienhütte
+0049 5402*;Bissendorf Kr. Osnabrück
+0049 5403*;Bad Iburg
+0049 5404*;Westerkappeln
+0049 5405*;Hasbergen Kr. Osnabrück
+0049 5406*;Belm
+0049 5407*;Wallenhorst
+0049 5409*;Hilter am Teutoburger Wal
+0049 541*;Osnabrück
+0049 5421*;Dissen a. Teutoburger Wald
+0049 5422*;Melle
+0049 5423*;Versmold
+0049 5424*;Bad Rothenfelde
+0049 5425*;Borgholzhausen
+0049 5426*;Glandorf
+0049 5427*;Melle Wiehengeb-Buer
+0049 5428*;Melle Wiehengeb-Neuenkirc
+0049 5429*;Melle Wiehengeb-Wellingho
+0049 5431*;Quakenbrück
+0049 5432*;Löningen
+0049 5433*;Badbergen
+0049 5434*;Essen Oldb
+0049 5435*;Berge b. Quakenbrück
+0049 5436*;Nortrup
+0049 5437*;Menslage
+0049 5438*;Bakum-Lüsche
+0049 5439*;Bersenbrück
+0049 5441*;Diepholz
+0049 5442*;Barnstorf Kr. Diepholz
+0049 5443*;Lemförde
+0049 5444*;Wagenfeld
+0049 5445*;Drebber
+0049 5446*;Rehden
+0049 5447*;Lembruch
+0049 5448*;Barver
+0049 5451*;Ibbenbüren
+0049 5452*;Mettingen Westf
+0049 5453*;Recke
+0049 5454*;Hörstel-Riesenbeck
+0049 5455*;Tecklenburg-Brochterbeck
+0049 5456*;Velpe
+0049 5457*;Hopsten-Schale
+0049 5458*;Hopsten
+0049 5459*;Hörstel
+0049 5461*;Bramsche Hase
+0049 5462*;Ankum
+0049 5464*;Alfhausen
+0049 5465*;Neuenkirchen b. Bramsche
+0049 5466*;Merzen
+0049 5467*;Voltlage
+0049 5468*;Bramsche-Engter
+0049 5471*;Bohmte
+0049 5472*;Bad Essen
+0049 5473*;Ostercappeln
+0049 5474*;Stemwede-Dielingen
+0049 5475*;Bohmte-Hunteburg
+0049 5476*;Ostercappeln-Venne
+0049 5481*;Lengerich Westf
+0049 5482*;Tecklenburg
+0049 5483*;Lienen
+0049 5484*;Lienen-Kattenvenne
+0049 5485*;Ladbergen
+0049 5491*;Damme Dümmer
+0049 5492*;Steinfeld Oldb
+0049 5493*;Neuenkirchen Oldb
+0049 5494*;Holdorf Niedersachs
+0049 5495*;Neuenkirchen-Vörden
+0049 5502*;Dransfeld
+0049 5503*;Nörten-Hardenberg
+0049 5504*;Friedland Kr. Göttingen
+0049 5505*;Hardegsen
+0049 5506*;Adelebsen
+0049 5507*;Ebergötzen
+0049 5508*;Gleichen-Rittmarshausen
+0049 5509*;Rosdorf Kr. Göttingen
+0049 551*;Göttingen
+0049 5520*;Braunlage
+0049 5521*;Herzberg a. Harz
+0049 5522*;Osterode a. Harz
+0049 5523*;Bad Sachsa
+0049 5524*;Bad Lauterberg i. Harz
+0049 5525*;Walkenried
+0049 5527*;Duderstadt
+0049 5528*;Gieboldehausen
+0049 5529*;Rhumspringe
+0049 5531*;Holzminden
+0049 5532*;Stadtoldendorf
+0049 5533*;Bodenwerder
+0049 5534*;Eschershausen a. d Lenne
+0049 5535*;Polle
+0049 5536*;Holzminden-Neuhaus
+0049 5541*;Hannoversch Münden
+0049 5542*;Witzenhausen
+0049 5543*;Staufenberg Niedersachs
+0049 5544*;Reinhardshagen
+0049 5545*;Hedemünden
+0049 5546*;Scheden
+0049 5551*;Northeim
+0049 5552*;Katlenburg
+0049 5553*;Kalefeld
+0049 5554*;Moringen
+0049 5555*;Moringen-Fredelsloh
+0049 5556*;Lindau Harz
+0049 5561*;Einbeck
+0049 5562*;Dassel-Markoldendorf
+0049 5563*;Kreiensen
+0049 5564*;Dassel
+0049 5565*;Einbeck-Wenzen
+0049 5571*;Uslar
+0049 5572*;Bodenfelde
+0049 5573*;Uslar-Volpriehausen
+0049 5574*;Oberweser
+0049 5582*;Sankt Andreasberg
+0049 5583*;Braunlage-Hohegeiß
+0049 5584*;Hattorf a. Harz
+0049 5585*;Herzberg-Sieber
+0049 5586*;Wieda
+0049 5592*;Gleichen-Bremke
+0049 5593*;Bovenden-Lenglern
+0049 5594*;Bovenden-Reyershausen
+0049 5601*;Schauenburg
+0049 5602*;Hessisch Lichtenau
+0049 5603*;Gudensberg
+0049 5604*;Großalmerode
+0049 5605*;Kaufungen Hess
+0049 5606*;Zierenberg
+0049 5607*;Fuldatal
+0049 5608*;Söhrewald
+0049 5609*;Ahnatal
+0049 561*;Kassel
+0049 5621*;Bad Wildungen
+0049 5622*;Fritzlar
+0049 5623*;Edertal
+0049 5624*;Bad Emstal
+0049 5625*;Naumburg Hess
+0049 5626*;Bad Zwesten
+0049 5631*;Korbach
+0049 5632*;Willingen Upland
+0049 5633*;Diemelsee
+0049 5634*;Waldeck-Sachsenhausen
+0049 5635*;Vöhl
+0049 5636*;Lichtenfels-Goddelsheim
+0049 5641*;Warburg
+0049 5642*;Warburg-Scherfede
+0049 5643*;Borgentreich
+0049 5644*;Willebadessen-Peckelsheim
+0049 5645*;Borgentreich-Borgholz
+0049 5646*;Willebadessen
+0049 5647*;Lichtenau-Kleinenberg
+0049 5648*;Brakel-Gehrden
+0049 5650*;Cornberg
+0049 5651*;Eschwege
+0049 5652*;Bad Sooden-Allendorf
+0049 5653*;Sontra
+0049 5654*;Herleshausen
+0049 5655*;Wanfried
+0049 5656*;Waldkappel
+0049 5657*;Meißner
+0049 5658*;Wehretal
+0049 5659*;Ringgau
+0049 5661*;Melsungen
+0049 5662*;Felsberg Hess
+0049 5663*;Spangenberg
+0049 5664*;Morschen
+0049 5665*;Guxhagen
+0049 5671*;Hofgeismar
+0049 5672*;Bad Karlshafen
+0049 5673*;Immenhausen Hess
+0049 5674*;Grebenstein
+0049 5675*;Trendelburg
+0049 5676*;Liebenau Hess
+0049 5677*;Calden-Westuffeln
+0049 5681*;Homberg Efze
+0049 5682*;Borken Hess
+0049 5683*;Wabern Hess
+0049 5684*;Frielendorf
+0049 5685*;Knüllwald
+0049 5686*;Schwarzenborn Knüll
+0049 5691*;Bad Arolsen
+0049 5692*;Wolfhagen
+0049 5693*;Volkmarsen
+0049 5694*;Diemelstadt
+0049 5695*;Twistetal
+0049 5696*;Bad Arolsen-Landau
+0049 5702*;Petershagen-Lahde
+0049 5703*;Hille
+0049 5704*;Petershagen-Friedewalde
+0049 5705*;Petershagen-Windheim
+0049 5706*;Porta Westfalica
+0049 5707*;Petershagen
+0049 571*;Minden Westf
+0049 5721*;Stadthagen
+0049 5722*;Bückeburg
+0049 5723*;Bad Nenndorf
+0049 5724*;Obernkirchen
+0049 5725*;Lindhorst b. Stadthagen
+0049 5726*;Wiedensahl
+0049 5731*;Bad Oeynhausen
+0049 5732*;Löhne
+0049 5733*;Vlotho
+0049 5734*;Bergkirchen Westf
+0049 5741*;Lübbecke
+0049 5742*;Preußisch Oldendorf
+0049 5743*;Espelkamp-Gestringen
+0049 5744*;Hüllhorst
+0049 5745*;Stemwede-Levern
+0049 5746*;Rödinghausen
+0049 5751*;Rinteln
+0049 5752*;Auetal-Hattendorf
+0049 5753*;Auetal-Bernsen
+0049 5754*;Extertal-Bremke
+0049 5755*;Kalletal-Varenholz
+0049 5761*;Stolzenau
+0049 5763*;Uchte
+0049 5764*;Steyerberg
+0049 5765*;Raddestorf
+0049 5766*;Rehburg-Loccum
+0049 5767*;Warmsen
+0049 5768*;Petershagen-Heimsen
+0049 5769*;Steyerberg-Voigtei
+0049 5771*;Rahden Westf
+0049 5772*;Espelkamp
+0049 5773*;Stemwede-Wehdem
+0049 5774*;Wagenfeld-Ströhen
+0049 5775*;Diepenau
+0049 5776*;Preußisch Ströhen
+0049 5777*;Diepenau-Essern
+0049 5802*;Wrestedt
+0049 5803*;Rosche
+0049 5804*;Rätzlingen
+0049 5805*;Oetzen
+0049 5806*;Barum a. Bad Bevensen
+0049 5807*;Altenmedingen
+0049 5808*;Gerdau
+0049 581*;Uelzen
+0049 5820*;Suhlendorf
+0049 5821*;Bad Bevensen
+0049 5822*;Ebstorf
+0049 5823*;Bienenbüttel
+0049 5824*;Bad Bodenteich
+0049 5825*;Wieren
+0049 5826*;Suderburg
+0049 5827*;Unterlüß
+0049 5828*;Himbergen
+0049 5829*;Wriedel
+0049 5831*;Wittingen
+0049 5832*;Hankensbüttel
+0049 5833*;Brome
+0049 5834*;Wittingen-Knesebeck
+0049 5835*;Wahrenholz
+0049 5836*;Wittingen-Radenbeck
+0049 5837*;Sprakensehl
+0049 5838*;Groß Oesingen
+0049 5839*;Wittingen-Ohrdorf
+0049 5840*;Schnackenburg
+0049 5841*;Lüchow Niedersachs
+0049 5842*;Schnega
+0049 5843*;Wustrow Wendland
+0049 5844*;Clenze
+0049 5845*;Bergen Dumme
+0049 5846*;Gartow
+0049 5848*;Trebel
+0049 5849*;Waddeweitz
+0049 5850*;Neetze
+0049 5851*;Dahlenburg
+0049 5852*;Bleckede
+0049 5853*;Neu Darchau
+0049 5854*;Bleckede-Barskamp
+0049 5855*;Nahrendorf
+0049 5857*;Bleckede-Brackede
+0049 5858*;Hitzacker-Wietzetze
+0049 5859*;Thomasburg
+0049 5861*;Dannenberg Elbe
+0049 5862*;Hitzacker
+0049 5863*;Zernien
+0049 5864*;Jameln
+0049 5865*;Gusborn
+0049 5872*;Stoetze
+0049 5873*;Eimke
+0049 5874*;Soltendieck
+0049 5875*;Emmendorf
+0049 5882*;Gorleben
+0049 5883*;Lemgow
+0049 5901*;Fürstenau b. Bramsche
+0049 5902*;Freren
+0049 5903*;Emsbüren
+0049 5904*;Lengerich Emsl
+0049 5905*;Beesten
+0049 5906*;Lünne
+0049 5907*;Geeste
+0049 5908*;Wietmarschen-Lohne
+0049 5909*;Wettrup
+0049 591*;Lingen Ems
+0049 5921*;Nordhorn
+0049 5922*;Bad Bentheim
+0049 5923*;Schüttorf
+0049 5924*;Bad Bentheim-Gildehaus
+0049 5925*;Wietmarschen
+0049 5926*;Engden
+0049 5931*;Meppen
+0049 5932*;Haren Ems
+0049 5933*;Lathen
+0049 5934*;Haren-Rütenbrock
+0049 5935*;Twist-Schöninghsdorf
+0049 5936*;Twist
+0049 5937*;Geeste-Groß Hesepe
+0049 5939*;Sustrum
+0049 5941*;Neuenhaus Dinkel
+0049 5942*;Uelsen
+0049 5943*;Emlichheim
+0049 5944*;Hoogstede
+0049 5945*;Wilsum
+0049 5946*;Georgsdorf
+0049 5947*;Laar Vechte
+0049 5948*;Itterbeck
+0049 5951*;Werlte
+0049 5952*;Sögel
+0049 5953*;Börger
+0049 5954*;Lorup
+0049 5955*;Esterwegen
+0049 5956*;Rastdorf
+0049 5957*;Lindern Oldb
+0049 5961*;Haselünne
+0049 5962*;Herzlake
+0049 5963*;Bawinkel
+0049 5964*;Lähden
+0049 5965*;Klein Berßen
+0049 5966*;Meppen-Apeldorn
+0049 5971*;Rheine
+0049 5973*;Neuenkirchen Kr. Steinfurt
+0049 5975*;Rheine-Mesum
+0049 5976*;Salzbergen
+0049 5977*;Spelle
+0049 5978*;Hörstel-Dreierwalde
+0049 6002*;Ober-Mörlen
+0049 6003*;Rosbach v d Höhe
+0049 6004*;Lich-Eberstadt
+0049 6007*;Rosbach-Rodheim
+0049 6008*;Echzell
+0049 6020*;Heigenbrücken
+0049 6021*;Aschaffenburg
+0049 6022*;Obernburg a. Main
+0049 6023*;Alzenau Unterfr
+0049 6024*;Schöllkrippen
+0049 6026*;Großostheim
+0049 6027*;Stockstadt a. Main
+0049 6028*;Sulzbach a. Main
+0049 6029*;Mömbris
+0049 6031*;Friedberg Hess
+0049 6032*;Bad Nauheim
+0049 6033*;Butzbach
+0049 6034*;Wöllstadt
+0049 6035*;Reichelsheim Wetterau
+0049 6036*;Wölfersheim
+0049 6039*;Karben
+0049 6041*;Glauburg
+0049 6042*;Büdingen Hess
+0049 6043*;Nidda
+0049 6044*;Schotten Hess
+0049 6045*;Gedern
+0049 6046*;Ortenberg Hess
+0049 6047*;Altenstadt Hess
+0049 6048*;Büdingen-Eckartshaus
+0049 6049*;Kefenrod
+0049 6050*;Biebergemünd
+0049 6051*;Gelnhausen
+0049 6052*;Bad Orb
+0049 6053*;Wächtersbach
+0049 6054*;Birstein
+0049 6055*;Freigericht
+0049 6056*;Bad Soden-Salmünster
+0049 6057*;Flörsbachtal
+0049 6058*;Gründau
+0049 6059*;Jossgrund
+0049 6061*;Michelstadt
+0049 6062*;Erbach Odenw
+0049 6063*;Bad König
+0049 6066*;Michelstadt-Vielbrunn
+0049 6068*;Beerfelden
+0049 6071*;Dieburg
+0049 6073*;Babenhausen Hess
+0049 6074*;Rödermark
+0049 6078*;Groß-Umstadt
+0049 6081*;Usingen
+0049 6082*;Niederreifenberg
+0049 6083*;Weilrod
+0049 6084*;Schmitten Taunus
+0049 6085*;Waldsolms
+0049 6086*;Grävenwiesbach
+0049 6087*;Waldems
+0049 6092*;Heimbuchenthal
+0049 6093*;Laufach
+0049 6094*;Weibersbrunn
+0049 6095*;Bessenbach
+0049 6096*;Wiesen Unterfr
+0049 6101*;Bad Vilbel
+0049 6102*;Neu-Isenburg
+0049 6103*;Langen Hess
+0049 6104*;Heusenstamm
+0049 6105*;Mörfelden-Walldorf
+0049 6106*;Rodgau
+0049 6107*;Kelsterbach
+0049 6108*;Mühlheim a. Main
+0049 6109*;Frankfurt-Bergen-Enkheim
+0049 611*;Wiesbaden
+0049 6120*;Aarbergen
+0049 6122*;Hofheim-Wallau
+0049 6123*;Eltville am Rhein
+0049 6124*;Bad Schwalbach
+0049 6126*;Idstein
+0049 6127*;Niedernhausen Taunus
+0049 6128*;Taunusstein
+0049 6129*;Schlangenbad
+0049 6130*;Schwabenheim a. d Selz
+0049 6131*;Mainz
+0049 6132*;Ingelheim a. Rhein
+0049 6133*;Oppenheim
+0049 6134*;Mainz-Kastel
+0049 6135*;Bodenheim Rhein
+0049 6136*;Nieder-Olm
+0049 6138*;Mommenheim
+0049 6139*;Budenheim
+0049 6142*;Rüsselsheim
+0049 6144*;Bischofsheim b. Rüsselsheim
+0049 6145*;Flörsheim am Main
+0049 6146*;Hochheim am Main
+0049 6147*;Trebur
+0049 6150*;Weiterstadt
+0049 6151*;Darmstadt
+0049 6152*;Groß-Gerau
+0049 6154*;Ober-Ramstadt
+0049 6155*;Griesheim Hess
+0049 6157*;Pfungstadt
+0049 6158*;Riedstadt
+0049 6159*;Messel
+0049 6161*;Brensbach
+0049 6162*;Reinheim Odenw
+0049 6163*;Höchst i. Odw
+0049 6164*;Reichelsheim Odenwald
+0049 6165*;Breuberg
+0049 6166*;Fischbachtal
+0049 6167*;Modautal
+0049 6171*;Oberursel Taunus
+0049 6172*;Bad Homburg vor der Höhe
+0049 6173*;Kronberg im Taunus
+0049 6174*;Königstein im Taunus
+0049 6175*;Friedrichsdorf Taunus
+0049 6181*;Hanau
+0049 6182*;Seligenstadt
+0049 6183*;Erlensee
+0049 6184*;Langenselbold
+0049 6185*;Hammersbach Hess
+0049 6186*;Großkrotzenburg
+0049 6187*;Schöneck Hess
+0049 6188*;Kahl a. Main
+0049 6190*;Hattersheim am Main
+0049 6192*;Hofheim am Taunus
+0049 6195*;Kelkheim Taunus
+0049 6196*;Bad Soden am Taunus
+0049 6198*;Eppstein
+0049 6201*;Weinheim
+0049 6202*;Schwetzingen
+0049 6203*;Ladenburg
+0049 6204*;Viernheim
+0049 6205*;Hockenheim
+0049 6206*;Lampertheim
+0049 6207*;Wald-Michelbach
+0049 6209*;Mörlenbach
+0049 621*;Ludwigshafen/Mannheim
+0049 6220*;Wilhelmsfeld
+0049 6221*;Heidelberg
+0049 6222*;Wiesloch
+0049 6223*;Neckargemünd
+0049 6224*;Sandhausen Baden
+0049 6226*;Meckesheim
+0049 6227*;Walldorf Baden
+0049 6228*;Schönau
+0049 6229*;Neckarsteinach
+0049 6231*;Hochdorf-Assenheim
+0049 6232*;Speyer
+0049 6233*;Frankenthal Pfalz
+0049 6234*;Mutterstadt
+0049 6235*;Schifferstadt
+0049 6236*;Neuhofen Pfalz
+0049 6237*;Maxdorf
+0049 6238*;Dirmstein
+0049 6239*;Bobenheim-Roxheim
+0049 6241*;Worms
+0049 6242*;Osthofen
+0049 6243*;Monsheim
+0049 6244*;Westhofen Rheinhess
+0049 6245*;Biblis
+0049 6246*;Eich Rheinhess
+0049 6247*;Worms-Pfeddersheim
+0049 6249*;Guntersblum
+0049 6251*;Bensheim
+0049 6252*;Heppenheim Bergstraße
+0049 6253*;Fürth Odenw
+0049 6254*;Lautertal Odenwald
+0049 6255*;Lindenfels
+0049 6256*;Lampertheim-Hüttenfeld
+0049 6257*;Seeheim-Jugenheim
+0049 6258*;Gernsheim
+0049 6261*;Mosbach Baden
+0049 6262*;Aglasterhausen
+0049 6263*;Neckargerach
+0049 6264*;Neudenau
+0049 6265*;Billigheim Baden
+0049 6266*;Haßmersheim
+0049 6267*;Fahrenbach Baden
+0049 6268*;Hüffenhardt
+0049 6269*;Gundelsheim Württ
+0049 6271*;Eberbach Baden
+0049 6272*;Hirschhorn Neckar
+0049 6274*;Waldbrunn Odenw
+0049 6275*;Rothenberg Odenw
+0049 6276*;Hesseneck
+0049 6281*;Buchen Odenw
+0049 6282*;Walldürn
+0049 6283*;Hardheim Odenw
+0049 6284*;Mudau
+0049 6285*;Walldürn-Altheim
+0049 6286*;Walldürn-Rippberg
+0049 6287*;Limbach Baden
+0049 6291*;Adelsheim
+0049 6292*;Seckach
+0049 6293*;Schefflenz
+0049 6294*;Krautheim Jagst
+0049 6295*;Rosenberg Baden
+0049 6296*;Ahorn Baden
+0049 6297*;Ravenstein Baden
+0049 6298*;Möckmühl
+0049 6301*;Otterbach Pfalz
+0049 6302*;Winnweiler
+0049 6303*;Enkenbach-Alsenborn
+0049 6304*;Wolfstein Pfalz
+0049 6305*;Hochspeyer
+0049 6306*;Trippstadt
+0049 6307*;Schopp
+0049 6308*;Olsbrücken
+0049 631*;Kaiserslautern
+0049 6321*;Neustadt a. d Weinstraße
+0049 6322*;Bad Dürkheim
+0049 6323*;Edenkoben
+0049 6324*;Haßloch
+0049 6325*;Lambrecht Pfalz
+0049 6326*;Deidesheim
+0049 6327*;Neustadt-Lachen
+0049 6328*;Elmstein
+0049 6329*;Weidenthal Pfalz
+0049 6331*;Pirmasens
+0049 6332*;Zweibrücken
+0049 6333*;Waldfischbach-Burgalben
+0049 6334*;Thaleischweiler-Fröschen
+0049 6335*;Trulben
+0049 6336*;Dellfeld
+0049 6337*;Großbundenbach
+0049 6338*;Hornbach Pfalz
+0049 6339*;Großsteinhausen
+0049 6340*;Wörth-Schaidt
+0049 6341*;Landau i. d Pfalz
+0049 6342*;Schweigen-Rechtenbach
+0049 6343*;Bad Bergzabern
+0049 6344*;Schwegenheim
+0049 6345*;Albersweiler
+0049 6346*;Annweiler a. Trifels
+0049 6347*;Hochstadt Pfalz
+0049 6348*;Offenbach a. d Queich
+0049 6349*;Billigheim-Ingenheim
+0049 6351*;Eisenberg Pfalz
+0049 6352*;Kirchheimbolanden
+0049 6353*;Freinsheim
+0049 6355*;Albisheim Pfrimm
+0049 6356*;Carlsberg Pfalz
+0049 6357*;Standenbühl
+0049 6358*;Kriegsfeld
+0049 6359*;Grünstadt
+0049 6361*;Rockenhausen
+0049 6362*;Alsenz
+0049 6363*;Niederkirchen
+0049 6364*;Nußbach Pfalz
+0049 6371*;Landstuhl
+0049 6372*;Bruchmühlbach-Miesau
+0049 6373*;Schönenberg-Kübelberg
+0049 6374*;Weilerbach
+0049 6375*;Wallhalben
+0049 6381*;Kusel
+0049 6382*;Lauterecken
+0049 6383*;Glan-Münchweiler
+0049 6384*;Konken
+0049 6385*;Reichenbach-Steegen
+0049 6386*;Altenkirchen Pfalz
+0049 6387*;St. Julian
+0049 6391*;Dahn
+0049 6392*;Hauenstein Pfalz
+0049 6393*;Fischbach b. Dahn
+0049 6394*;Bundenthal
+0049 6395*;Münchweiler a. d Rodalb
+0049 6396*;Hinterweidenthal
+0049 6397*;Leimen Pfalz
+0049 6398*;Vorderweidenthal
+0049 6400*;Mücke
+0049 6401*;Grünberg Hess
+0049 6402*;Hungen
+0049 6403*;Linden Hess
+0049 6404*;Lich Hess
+0049 6405*;Laubach Hess
+0049 6406*;Lollar
+0049 6407*;Rabenau
+0049 6408*;Buseck
+0049 6409*;Biebertal
+0049 641*;Gießen
+0049 6420*;Lahntal
+0049 6421*;Marburg
+0049 6422*;Kirchhain
+0049 6423*;Wetter Hess
+0049 6424*;Ebsdorfergrund
+0049 6425*;Rauschenberg Hess
+0049 6426*;Fronhausen
+0049 6427*;Cölbe-Schönstadt
+0049 6428*;Stadtallendorf
+0049 6429*;Schweinsberg Hess
+0049 6430*;Hahnstätten
+0049 6431*;Limburg a. d Lahn
+0049 6432*;Diez
+0049 6433*;Hadamar
+0049 6434*;Bad Camberg
+0049 6435*;Wallmerod
+0049 6436*;Dornburg Hessen
+0049 6438*;Hünfelden
+0049 6439*;Holzappel
+0049 6440*;Kölschhausen
+0049 6441*;Wetzlar
+0049 6442*;Braunfels
+0049 6443*;Ehringshausen Dill
+0049 6444*;Bischoffen
+0049 6445*;Schöffengrund
+0049 6446*;Hohenahr
+0049 6447*;Langgöns-Niederkleen
+0049 6449*;Ehringshausen-Katzenfurt
+0049 6451*;Frankenberg Eder
+0049 6452*;Battenberg
+0049 6453*;Gemünden Wohra
+0049 6454*;Lichtenfels-Sachsenberg
+0049 6455*;Frankenau Hess
+0049 6456*;Haina Kloster
+0049 6457*;Burgwald Eder
+0049 6458*;Rosenthal Hess
+0049 6461*;Biedenkopf
+0049 6462*;Gladenbach
+0049 6464*;Angelburg-Gönnern
+0049 6465*;Breidenbach b. Biedenkopf
+0049 6466*;Dautphetal-Friedensdorf
+0049 6467*;Hatzfeld Eder
+0049 6468*;Dautphetal-Mornshausen
+0049 6471*;Weilburg
+0049 6472*;Weilmünster
+0049 6473*;Leun
+0049 6474*;Villmar
+0049 6475*;Weilmünster-Wolfenhausen
+0049 6476*;Mengerskirchen
+0049 6477*;Greifenstein-Nenderoth
+0049 6478*;Greifenstein-Ulm
+0049 6479*;Waldbrunn Westerw
+0049 6482*;Runkel
+0049 6483*;Selters Taunus
+0049 6484*;Beselich
+0049 6485*;Nentershausen Westerw
+0049 6486*;Katzenelnbogen
+0049 6500*;Waldrach
+0049 6501*;Konz
+0049 6502*;Schweich
+0049 6503*;Hermeskeil
+0049 6504*;Thalfang
+0049 6505*;Kordel
+0049 6506*;Welschbillig
+0049 6507*;Neumagen-Dhron
+0049 6508*;Hetzerath Mosel
+0049 6509*;Büdlich
+0049 651*;Trier
+0049 6522*;Mettendorf
+0049 6523*;Holsthum
+0049 6524*;Rodershausen
+0049 6525*;Irrel
+0049 6526*;Bollendorf
+0049 6527*;Oberweis
+0049 6531*;Bernkastel-Kues
+0049 6532*;Zeltingen-Rachtig
+0049 6533*;Morbach Hunsrück
+0049 6534*;Mülheim Mosel
+0049 6535*;Osann-Monzel
+0049 6536*;Kleinich
+0049 6541*;Traben-Trarbach
+0049 6542*;Bullay
+0049 6543*;Büchenbeuren
+0049 6544*;Rhaunen
+0049 6545*;Blankenrath
+0049 6550*;Irrhausen
+0049 6551*;Prüm
+0049 6552*;Olzheim
+0049 6553*;Schönecken
+0049 6554*;Waxweiler
+0049 6555*;Bleialf
+0049 6556*;Pronsfeld
+0049 6557*;Hallschlag
+0049 6558*;Büdesheim Eifel
+0049 6559*;Leidenborn
+0049 6561*;Bitburg
+0049 6562*;Speicher
+0049 6563*;Kyllburg
+0049 6564*;Neuerburg Eifel
+0049 6565*;Dudeldorf
+0049 6566*;Körperich
+0049 6567*;Oberkail
+0049 6568*;Wolsfeld
+0049 6569*;Bickendorf
+0049 6571*;Wittlich
+0049 6572*;Manderscheid Eifel
+0049 6573*;Gillenfeld
+0049 6574*;Hasborn
+0049 6575*;Landscheid
+0049 6578*;Salmtal
+0049 6580*;Zemmer
+0049 6581*;Saarburg
+0049 6582*;Freudenburg
+0049 6583*;Palzem
+0049 6584*;Wellen
+0049 6585*;Ralingen
+0049 6586*;Beuren Hochwald
+0049 6587*;Zerf
+0049 6588*;Pluwig
+0049 6589*;Kell
+0049 6591*;Gerolstein
+0049 6592*;Daun
+0049 6593*;Hillesheim Eifel
+0049 6594*;Birresborn
+0049 6595*;Dockweiler
+0049 6596*;Üdersdorf
+0049 6597*;Jünkerath
+0049 6599*;Weidenbach b. Gerolstein
+0049 661*;Fulda
+0049 6620*;Philippsthal Werra
+0049 6621*;Bad Hersfeld
+0049 6622*;Bebra
+0049 6623*;Rotenburg a. d Fulda
+0049 6624*;Heringen Werra
+0049 6625*;Niederaula
+0049 6626*;Wildeck-Obersuhl
+0049 6627*;Nentershausen Hess
+0049 6628*;Oberaula
+0049 6629*;Schenklengsfeld
+0049 6630*;Schwalmtal-Storndorf
+0049 6631*;Alsfeld
+0049 6633*;Homberg Ohm
+0049 6634*;Gemünden Felda
+0049 6635*;Kirtorf
+0049 6636*;Romrod
+0049 6637*;Feldatal
+0049 6638*;Schwalmtal-Renzendorf
+0049 6639*;Ottrau
+0049 6641*;Lauterbach Hess
+0049 6642*;Schlitz
+0049 6643*;Herbstein
+0049 6644*;Grebenhain
+0049 6645*;Ulrichstein
+0049 6646*;Grebenau
+0049 6647*;Herbstein-Stockhausen
+0049 6648*;Bad Salzschlirf
+0049 6650*;Hosenfeld
+0049 6651*;Rasdorf
+0049 6652*;Hünfeld
+0049 6653*;Burghaun
+0049 6654*;Gersfeld Rhön
+0049 6655*;Neuhof Kr. Fulda
+0049 6656*;Ebersburg
+0049 6657*;Hofbieber
+0049 6658*;Poppenhausen Wasserkuppe
+0049 6659*;Eichenzell
+0049 6660*;Steinau-Marjoß
+0049 6661*;Schlüchtern
+0049 6663*;Steinau a. d Straße
+0049 6664*;Sinntal-Sterbfritz
+0049 6665*;Sinntal-Altengronau
+0049 6666*;Freiensteinau
+0049 6667*;Steinau-Ulmbach
+0049 6668*;Birstein-Lichenroth
+0049 6669*;Neuhof-Hauswurz
+0049 6670*;Ludwigsau Hess
+0049 6672*;Eiterfeld
+0049 6673*;Haunetal
+0049 6674*;Friedewald Hess
+0049 6675*;Breitenbach a. Herzberg
+0049 6676*;Hohenroda
+0049 6677*;Neuenstein Hess
+0049 6678*;Wildeck-Hönebach
+0049 6681*;Hilders
+0049 6682*;Tann Rhön
+0049 6683*;Ehrenberg Rhön
+0049 6684*;Hofbieber-Schwarzbach
+0049 6691*;Schwalmstadt
+0049 6692*;Neustadt Hess
+0049 6693*;Neuental
+0049 6694*;Neukirchen Knüll
+0049 6695*;Jesberg
+0049 6696*;Gilserberg
+0049 6697*;Willingshausen
+0049 6698*;Schrecksbach
+0049 6701*;Sprendlingen
+0049 6703*;Wöllstein
+0049 6704*;Langenlonsheim
+0049 6706*;Wallhausen
+0049 6707*;Windesheim
+0049 6708*;Bad Münster-Ebernburg
+0049 6709*;Fürfeld
+0049 671*;Bad Kreuznach
+0049 6721*;Bingen a. Rhein
+0049 6722*;Rüdesheim am Rhein
+0049 6723*;Oestrich-Winkel
+0049 6724*;Stromberg Hunsrück
+0049 6725*;Gau-Algesheim
+0049 6726*;Lorch Rheingau
+0049 6727*;Gensingen
+0049 6728*;Ober-Hilbersheim
+0049 6731*;Alzey
+0049 6732*;Wörrstadt
+0049 6733*;Gau-Odernheim
+0049 6734*;Flonheim
+0049 6735*;Eppelsheim
+0049 6736*;Bechenheim
+0049 6737*;Köngernheim
+0049 6741*;St. Goar
+0049 6742*;Boppard
+0049 6743*;Bacharach
+0049 6744*;Oberwesel
+0049 6745*;Gondershausen
+0049 6746*;Pfalzfeld
+0049 6747*;Emmelshausen
+0049 6751*;Sobernheim
+0049 6752*;Kirn Nahe
+0049 6753*;Meisenheim
+0049 6754*;Martinstein
+0049 6755*;Odernheim a. Glan
+0049 6756*;Sobernheim-Eckweiler
+0049 6757*;Becherbach b. Kirn
+0049 6758*;Waldböckelheim
+0049 6761*;Simmern
+0049 6762*;Kastellaun
+0049 6763*;Kirchberg Hunsrück
+0049 6764*;Rheinböllen
+0049 6765*;Gemünden Hunsrück
+0049 6766*;Kisselbach
+0049 6771*;St. Goarshausen
+0049 6772*;Nastätten
+0049 6773*;Kamp-Bornhofen
+0049 6774*;Kaub
+0049 6775*;Strüth Taunus
+0049 6776*;Dachsenhausen
+0049 6781*;Idar-Oberstein
+0049 6782*;Birkenfeld Nahe
+0049 6783*;Baumholder
+0049 6784*;Weierbach
+0049 6785*;Herrstein
+0049 6786*;Kempfeld
+0049 6787*;Niederbrombach
+0049 6788*;Sien
+0049 6789*;Heimbach Nahe
+0049 6802*;Völklingen-Lauterbach
+0049 6803*;Mandelbachtal-Ommersheim
+0049 6804*;Mandelbachtal
+0049 6805*;Kleinblittersdorf
+0049 6806*;Heusweiler
+0049 6809*;Großrosseln
+0049 681*;Saarbrücken
+0049 6821*;Neunkirchen Saar
+0049 6824*;Ottweiler
+0049 6825*;Illingen Saar
+0049 6826*;Bexbach
+0049 6827*;Eppelborn
+0049 6831*;Saarlouis
+0049 6832*;Beckingen-Reimsbach
+0049 6833*;Rehlingen-Siersburg
+0049 6834*;Bous
+0049 6835*;Beckingen
+0049 6836*;Überherrn
+0049 6837*;Wallerfangen
+0049 6838*;Saarwellingen
+0049 6841*;Homburg Saar
+0049 6842*;Blieskastel
+0049 6843*;Gersheim
+0049 6844*;Blieskastel-Altheim
+0049 6848*;Homburg-Einöd
+0049 6849*;Kirkel
+0049 6851*;St. Wendel
+0049 6852*;Nohfelden
+0049 6853*;Marpingen
+0049 6854*;Oberthal Saar
+0049 6855*;Freisen
+0049 6856*;St. Wendel-Niederkirchen
+0049 6857*;Namborn
+0049 6858*;Ottweiler-Fürth
+0049 6861*;Merzig
+0049 6864*;Mettlach
+0049 6865*;Mettlach-Orscholz
+0049 6866*;Perl-Nennig
+0049 6867*;Perl
+0049 6868*;Mettlach-Tünsdorf
+0049 6869*;Merzig-Silwingen
+0049 6871*;Wadern
+0049 6872*;Losheim Saar
+0049 6873*;Nonnweiler
+0049 6874*;Wadern-Nunkirchen
+0049 6875*;Nonnweiler-Primstal
+0049 6876*;Weiskirchen Saar
+0049 6881*;Lebach
+0049 6887*;Schmelz Saar
+0049 6888*;Lebach-Steinbach
+0049 6893*;Saarbrücken-Ensheim
+0049 6894*;St. Ingbert
+0049 6897*;Sulzbach Saar
+0049 6898*;Völklingen
+0049 69*;Frankfurt am Main
+0049 7021*;Kirchheim unter Teck
+0049 7022*;Nürtingen
+0049 7023*;Weilheim an der Teck
+0049 7024*;Wendlingen am Neckar
+0049 7025*;Neuffen
+0049 7026*;Lenningen
+0049 7031*;Böblingen
+0049 7032*;Herrenberg
+0049 7033*;Weil der Stadt
+0049 7034*;Ehningen
+0049 7041*;Mühlacker
+0049 7042*;Vaihingen an der Enz
+0049 7043*;Maulbronn
+0049 7044*;Mönsheim
+0049 7045*;Oberderdingen
+0049 7046*;Zaberfeld
+0049 7051*;Calw
+0049 7052*;Bad Liebenzell
+0049 7053*;Bad Teinach-Zavelstein
+0049 7054*;Wildberg Württ
+0049 7055*;Neuweiler Kr. Calw
+0049 7056*;Gechingen
+0049 7062*;Beilstein Württ
+0049 7063*;Bad Wimpfen
+0049 7066*;Bad Rappenau-Bonfeld
+0049 7071*;Tübingen
+0049 7072*;Gomaringen
+0049 7073*;Ammerbuch
+0049 7081*;Bad Wildbad
+0049 7082*;Neuenbürg Württ
+0049 7083*;Bad Herrenalb
+0049 7084*;Schömberg b. Neuenbürg
+0049 7085*;Enzklösterle
+0049 711*;Stuttgart
+0049 7121*;Reutlingen
+0049 7122*;Sankt Johann Württ
+0049 7123*;Metzingen Württ
+0049 7124*;Trochtelfingen Hohenz
+0049 7125*;Bad Urach
+0049 7126*;Burladingen-Melchingen
+0049 7127*;Neckartenzlingen
+0049 7128*;Sonnenbühl
+0049 7129*;Lichtenstein Württ
+0049 7130*;Löwenstein Württ
+0049 7131*;Heilbronn Neckar
+0049 7132*;Neckarsulm
+0049 7133*;Lauffen am Neckar
+0049 7134*;Weinsberg
+0049 7135*;Brackenheim
+0049 7136*;Bad Friedrichshall
+0049 7138*;Schwaigern
+0049 7139*;Neuenstadt am Kocher
+0049 7141*;Ludwigsburg Württemberg
+0049 7142*;Bietigheim-Bissingen
+0049 7143*;Besigheim
+0049 7144*;Marbach am Neckar
+0049 7145*;Markgröningen
+0049 7146*;Remseck am Neckar
+0049 7147*;Sachsenheim Württ
+0049 7148*;Großbottwar
+0049 7150*;Korntal-Münchingen
+0049 7151*;Waiblingen
+0049 7152*;Leonberg Württ
+0049 7153*;Plochingen
+0049 7154*;Kornwestheim
+0049 7156*;Ditzingen
+0049 7157*;Waldenbuch
+0049 7158*;Neuhausen auf den Fildern
+0049 7159*;Renningen
+0049 7161*;Göppingen
+0049 7162*;Süßen
+0049 7163*;Ebersbach an der Fils
+0049 7164*;Boll Kr. Göppingen
+0049 7165*;Göppingen-Hohenstaufen
+0049 7166*;Adelberg
+0049 7171*;Schwäbisch Gmünd
+0049 7172*;Lorch Württ
+0049 7173*;Heubach
+0049 7174*;Mögglingen
+0049 7175*;Leinzell
+0049 7176*;Spraitbach
+0049 7181*;Schorndorf Württ
+0049 7182*;Welzheim
+0049 7183*;Rudersberg Württ
+0049 7184*;Kaisersbach
+0049 7191*;Backnang
+0049 7192*;Murrhardt
+0049 7193*;Sulzbach an der Murr
+0049 7194*;Spiegelberg
+0049 7195*;Winnenden
+0049 7202*;Karlsbad
+0049 7203*;Walzbachtal
+0049 7204*;Malsch-Völkersbach
+0049 721*;Karlsruhe
+0049 7220*;Forbach Hundsbach
+0049 7221*;Baden-Baden
+0049 7222*;Rastatt
+0049 7223*;Bühl Baden
+0049 7224*;Gernsbach
+0049 7225*;Gaggenau
+0049 7226*;Bühl-Sand
+0049 7227*;Lichtenau Baden
+0049 7228*;Forbach
+0049 7229*;Iffezheim
+0049 7231*;Pforzheim
+0049 7232*;Königsbach-Stein
+0049 7233*;Niefern-Öschelbronn
+0049 7234*;Tiefenbronn
+0049 7235*;Unterreichenbach Kr. Calw
+0049 7236*;Keltern
+0049 7237*;Neulingen Enzkreis
+0049 7240*;Pfinztal
+0049 7242*;Rheinstetten
+0049 7243*;Ettlingen
+0049 7244*;Weingarten Baden
+0049 7245*;Durmersheim
+0049 7246*;Malsch Kr. Karlsruhe
+0049 7247*;Linkenheim-Hochstetten
+0049 7248*;Marxzell
+0049 7249*;Stutensee
+0049 7250*;Kraichtal
+0049 7251*;Bruchsal
+0049 7252*;Bretten
+0049 7253*;Bad Schönborn
+0049 7254*;Waghäusel
+0049 7255*;Graben-Neudorf
+0049 7256*;Phillippsburg
+0049 7257*;Bruchsal-Untergrombach
+0049 7258*;Oberderdingen-Flehingen
+0049 7259*;Östringen-Odenheim
+0049 7260*;Sinsheim-Hilsbach
+0049 7261*;Sinsheim
+0049 7262*;Eppingen
+0049 7263*;Waibstadt
+0049 7264*;Bad Rappenau
+0049 7265*;Angelbachtal
+0049 7266*;Kirchardt
+0049 7267*;Gemmingen
+0049 7268*;Bad Rappenau-Obergimpern
+0049 7269*;Sulzfeld Baden
+0049 7271*;Wörth a. Rhein
+0049 7272*;Rülzheim
+0049 7273*;Hagenbach Pfalz
+0049 7274*;Germersheim
+0049 7275*;Kandel
+0049 7276*;Herxheim b. Landau
+0049 7277*;Wörth-Büchelberg
+0049 7300*;Roggenburg
+0049 7302*;Pfaffenhofen a. d Roth
+0049 7303*;Illertissen
+0049 7304*;Blaustein Württ
+0049 7305*;Erbach Donau
+0049 7306*;Vöhringen Iller
+0049 7307*;Senden Iller
+0049 7308*;Nersingen
+0049 7309*;Weißenhorn
+0049 731*;Ulm
+0049 7321*;Heidenheim an der Brenz
+0049 7322*;Giengen an der Brenz
+0049 7323*;Gerstetten
+0049 7324*;Herbrechtingen
+0049 7325*;Sontheim an der Brenz
+0049 7326*;Neresheim
+0049 7327*;Dischingen
+0049 7328*;Königsbronn
+0049 7329*;Steinheim am Albuch
+0049 7331*;Geislingen an der Steige
+0049 7332*;Lauterstein
+0049 7333*;Laichingen
+0049 7334*;Deggingen
+0049 7335*;Wiesensteig
+0049 7336*;Lonsee
+0049 7337*;Nellingen Alb
+0049 7340*;Neenstetten
+0049 7343*;Buch b. Illertissen
+0049 7344*;Blaubeuren
+0049 7345*;Langenau Württ
+0049 7346*;Illerkirchberg
+0049 7347*;Dietenheim
+0049 7348*;Beimerstetten
+0049 7351*;Biberach an der Riß
+0049 7352*;Ochsenhausen
+0049 7353*;Schwendi
+0049 7354*;Erolzheim
+0049 7355*;Hochdorf Riß
+0049 7356*;Schemmerhofen
+0049 7357*;Attenweiler
+0049 7358*;Eberhardzell-Füramos
+0049 7361*;Aalen
+0049 7362*;Bopfingen
+0049 7363*;Lauchheim
+0049 7364*;Oberkochen
+0049 7365*;Essingen Württ
+0049 7366*;Abtsgmünd
+0049 7367*;Aalen-Ebnat
+0049 7371*;Riedlingen Württ
+0049 7373*;Zwiefalten
+0049 7374*;Uttenweiler
+0049 7375*;Obermarchtal
+0049 7376*;Langenenslingen
+0049 7381*;Münsingen
+0049 7382*;Römerstein
+0049 7383*;Münsingen-Buttenhausen
+0049 7384*;Schelklingen-Hütten
+0049 7385*;Gomadingen
+0049 7386*;Hayingen
+0049 7387*;Hohenstein Württ
+0049 7388*;Pfronstetten
+0049 7389*;Heroldstatt
+0049 7391*;Ehingen Donau
+0049 7392*;Laupheim
+0049 7393*;Munderkingen
+0049 7394*;Schelklingen
+0049 7395*;Ehingen Dächingen
+0049 7402*;Fluorn-Winzeln
+0049 7403*;Dunningen
+0049 7404*;Epfendorf
+0049 741*;Rottweil
+0049 7420*;Deißlingen
+0049 7422*;Schramberg
+0049 7423*;Oberndorf am Neckar
+0049 7424*;Spaichingen
+0049 7425*;Trossingen
+0049 7426*;Gosheim
+0049 7427*;Schömberg bei Balingen
+0049 7428*;Rosenfeld
+0049 7429*;Egesheim
+0049 7431*;Albstadt-Ebingen
+0049 7432*;Albstadt-Tailfingen
+0049 7433*;Balingen
+0049 7434*;Winterlingen
+0049 7435*;Albstadt-Laufen
+0049 7436*;Meßstetten-Oberdigisheim
+0049 7440*;Bad Rippoldsau
+0049 7441*;Freudenstadt
+0049 7442*;Baiersbronn
+0049 7443*;Dornstetten
+0049 7444*;Alpirsbach
+0049 7445*;Pfalzgrafenweiler
+0049 7446*;Loßburg
+0049 7447*;Baiersbronn-Schwarzenberg
+0049 7448*;Seewald
+0049 7449*;Baiersbronn-Obertal
+0049 7451*;Horb am Neckar
+0049 7452*;Nagold
+0049 7453*;Altensteig
+0049 7454*;Sulz am Neckar
+0049 7455*;Dornhan
+0049 7456*;Haiterbach
+0049 7457*;Rottenburg-Ergenzingen
+0049 7458*;Ebhausen
+0049 7459*;Nagold-Hochdorf
+0049 7461*;Tuttlingen
+0049 7462*;Immendingen
+0049 7463*;Mühlheim an der Donau
+0049 7464*;Talheim Kreis Tuttlingen
+0049 7465*;Emmingen-Liptingen
+0049 7466*;Beuron
+0049 7467*;Neuhausen ob Eck
+0049 7471*;Hechingen
+0049 7472*;Rottenburg am Neckar
+0049 7473*;Mössingen
+0049 7474*;Haigerloch
+0049 7475*;Burladingen
+0049 7476*;Bisingen
+0049 7477*;Jungingen bei Hechingen
+0049 7478*;Hirrlingen
+0049 7482*;Horb-Dettingen
+0049 7483*;Horb-Mühringen
+0049 7484*;Simmersfeld
+0049 7485*;Empfingen
+0049 7486*;Horb-Altheim
+0049 7502*;Wolpertswende
+0049 7503*;Wilhelmsdorf Württ
+0049 7504*;Horgenzell
+0049 7505*;Fronreute
+0049 7506*;Wangen-Leupolz
+0049 751*;Ravensburg
+0049 7520*;Bodnegg
+0049 7522*;Wangen i. Allgäu
+0049 7524*;Bad Waldsee
+0049 7525*;Aulendorf
+0049 7527*;Wolfegg
+0049 7528*;Neukirch b. Tettnang
+0049 7529*;Waldburg Württ
+0049 7531*;Konstanz
+0049 7532*;Meersburg
+0049 7533*;Allensbach
+0049 7534*;Reichenau Baden
+0049 7541*;Friedrichshafen
+0049 7542*;Tettnang
+0049 7543*;Kressbronn a. Bodensee
+0049 7544*;Markdorf
+0049 7545*;Immenstaad a. Bodensee
+0049 7546*;Oberteuringen
+0049 7551*;Überlingen Bodensee
+0049 7552*;Pfullendorf
+0049 7553*;Salem Baden
+0049 7554*;Heiligenberg Baden
+0049 7555*;Deggenhausertal
+0049 7556*;Uhldingen-Mühlhofen
+0049 7557*;Herdwangen-Schönach
+0049 7558*;Illmensee
+0049 7561*;Leutkirch i. Allgäu
+0049 7562*;Isny i. Allgäu
+0049 7563*;Kißlegg
+0049 7564*;Bad Wurzach
+0049 7565*;Aichstetten Kr. Ravensburg
+0049 7566*;Argenbühl
+0049 7567*;Leutkirch-Friesenhofen
+0049 7568*;Bad Wurzach-Hauerz
+0049 7569*;Isny-Eisenbach
+0049 7570*;Sigmaringen-Gutenstein
+0049 7571*;Sigmaringen
+0049 7572*;Mengen Württ
+0049 7573*;Stetten a. kalten Markt
+0049 7574*;Gammertingen
+0049 7575*;Meßkirch
+0049 7576*;Krauchenwies
+0049 7577*;Veringenstadt
+0049 7578*;Wald Hohenz
+0049 7579*;Schwenningen Baden
+0049 7581*;Saulgau
+0049 7582*;Bad Buchau
+0049 7583*;Bad Schussenried
+0049 7584*;Altshausen
+0049 7585*;Ostrach
+0049 7586*;Herbertingen
+0049 7587*;Hoßkirch
+0049 7602*;Oberried Breisgau
+0049 761*;Freiburg i. Breisgau
+0049 7620*;Schopfheim-Gersbach
+0049 7621*;Lörrach
+0049 7622*;Schopfheim
+0049 7623*;Rheinfelden Baden
+0049 7624*;Grenzach-Wyhlen
+0049 7625*;Zell im Wiesental
+0049 7626*;Kandern
+0049 7627*;Steinen Kr. Lörrach
+0049 7628*;Efringen-Kirchen
+0049 7629*;Tegernau Baden
+0049 7631*;Müllheim Baden
+0049 7632*;Badenweiler
+0049 7633*;Staufen im Breisgau
+0049 7634*;Sulzburg
+0049 7635*;Schliengen
+0049 7636*;Münstertal Schwarzwald
+0049 7641*;Emmendingen
+0049 7642*;Endingen Kaiserstuhl
+0049 7643*;Herbolzheim Breisgau
+0049 7644*;Kenzingen
+0049 7645*;Freiamt
+0049 7646*;Weisweil Breisgau
+0049 7651*;Titisee-Neustadt
+0049 7652*;Hinterzarten
+0049 7653*;Lenzkirch
+0049 7654*;Löffingen
+0049 7655*;Feldberg-Altglashütten
+0049 7656*;Schluchsee
+0049 7657*;Eisenbach Hochschwarzwald
+0049 7660*;Sankt Peter Schwarzw
+0049 7661*;Kirchzarten
+0049 7662*;Vogtsburg im Kaiserstuhl
+0049 7663*;Eichstetten
+0049 7664*;Freiburg-Tiengen
+0049 7665*;March Breisgau
+0049 7666*;Denzlingen
+0049 7667*;Breisach am Rhein
+0049 7668*;Ihringen
+0049 7669*;Sankt Märgen
+0049 7671*;Todtnau
+0049 7672*;Sankt Blasien
+0049 7673*;Schönau im Schwarzw
+0049 7674*;Todtmoos
+0049 7675*;Bernau Baden
+0049 7676*;Feldberg Schwarzwald
+0049 7681*;Waldkirch Breisgau
+0049 7682*;Elzach
+0049 7683*;Simonswald
+0049 7684*;Glottertal
+0049 7685*;Gutach-Bleibach
+0049 7702*;Blumberg Baden
+0049 7703*;Bonndorf im Schwarzwald
+0049 7704*;Geisingen Baden
+0049 7705*;Wolterdingen Schwarzw
+0049 7706*;Oberbaldingen
+0049 7707*;Bräunlingen
+0049 7708*;Geisingen Leipferdingen
+0049 7709*;Wutach
+0049 771*;Donaueschingen
+0049 7720*;Schwenningen a. Neckar
+0049 7721*;Villingen i. Schwarzwald
+0049 7722*;Triberg im Schwarzwald
+0049 7723*;Furtwangen im Schwarzwald
+0049 7724*;Sankt Georgen im Schwarzwald
+0049 7725*;Königsfeld im Schwarzwald
+0049 7726*;Bad Dürrheim
+0049 7727*;Vöhrenbach
+0049 7728*;Niedereschach
+0049 7729*;Tennenbronn
+0049 7731*;Singen Hohentwiel
+0049 7732*;Radolfzell am Bodensee
+0049 7733*;Engen Hegau
+0049 7734*;Gailingen
+0049 7735*;Öhningen
+0049 7736*;Tengen
+0049 7738*;Steißlingen
+0049 7739*;Hilzingen
+0049 7741*;Tiengen Hochrhein
+0049 7742*;Klettgau
+0049 7743*;Ühlingen-Birkendorf
+0049 7744*;Stühlingen
+0049 7745*;Jestetten
+0049 7746*;Wutöschingen
+0049 7747*;Berau
+0049 7748*;Grafenhausen Hochschwarzw
+0049 7751*;Waldshut
+0049 7753*;Albbruck
+0049 7754*;Görwihl
+0049 7755*;Weilheim Kr. Waldshut
+0049 7761*;Bad Säckingen
+0049 7762*;Wehr Baden
+0049 7763*;Murg
+0049 7764*;Herrischried
+0049 7765*;Rickenbach Hotzenw
+0049 7771*;Stockach
+0049 7773*;Bodman-Ludwigshafen
+0049 7774*;Eigeltingen
+0049 7775*;Mühlingen
+0049 7777*;Sauldorf
+0049 7802*;Oberkirch Baden
+0049 7803*;Gengenbach
+0049 7804*;Oppenau
+0049 7805*;Appenweier
+0049 7806*;Bad Peterstal-Griesbach
+0049 7807*;Neuried Ortenaukreis
+0049 7808*;Hohberg b. Offenburg
+0049 781*;Offenburg
+0049 7821*;Lahr Schwarzwald
+0049 7822*;Ettenheim
+0049 7823*;Seelbach Schutter
+0049 7824*;Schwanau
+0049 7825*;Kippenheim
+0049 7826*;Schuttertal
+0049 7831*;Hausach
+0049 7832*;Haslach im Kinzigtal
+0049 7833*;Hornberg Schwarzwaldbahn
+0049 7834*;Wolfach
+0049 7835*;Zell am Harmersbach
+0049 7836*;Schiltach
+0049 7837*;Oberharmersbach
+0049 7838*;Nordrach
+0049 7839*;Schapbach
+0049 7841*;Achern
+0049 7842*;Kappelrodeck
+0049 7843*;Renchen
+0049 7844*;Rheinau
+0049 7851*;Kehl
+0049 7852*;Willstätt
+0049 7853*;Kehl-Bodersweier
+0049 7854*;Kehl-Goldscheuer
+0049 7903*;Mainhardt
+0049 7904*;Ilshofen
+0049 7905*;Langenburg
+0049 7906*;Braunsbach
+0049 7907*;Schwäbisch Hall-Sulzdorf
+0049 791*;Schwäbisch Hall
+0049 7930*;Boxberg Baden
+0049 7931*;Bad Mergentheim
+0049 7932*;Niederstetten Württ
+0049 7933*;Creglingen
+0049 7934*;Weikersheim
+0049 7935*;Schrozberg
+0049 7936*;Schrozberg-Bartenstein
+0049 7937*;Dörzbach
+0049 7938*;Mulfingen Jagst
+0049 7939*;Schrozberg-Spielbach
+0049 7940*;Künzelsau
+0049 7941*;Öhringen
+0049 7942*;Neuenstein Württ
+0049 7943*;Schöntal Jagst
+0049 7944*;Kupferzell
+0049 7945*;Wüstenrot
+0049 7946*;Bretzfeld
+0049 7947*;Forchtenberg
+0049 7948*;Öhringen-Ohrnberg
+0049 7949*;Pfedelbach-Untersteinbach
+0049 7950*;Schnelldorf Mittelfr
+0049 7951*;Crailsheim
+0049 7952*;Gerabronn
+0049 7953*;Blaufelden
+0049 7954*;Kirchberg a. d Jagst
+0049 7955*;Wallhausen Württ
+0049 7957*;Kreßberg
+0049 7958*;Rot am See-Brettheim
+0049 7959*;Frankenhardt
+0049 7961*;Ellwangen Jagst
+0049 7962*;Fichtenau
+0049 7963*;Adelmannsfelden
+0049 7964*;Stödtlen
+0049 7965*;Ellwangen-Röhlingen
+0049 7966*;Unterschneidheim
+0049 7967*;Jagstzell
+0049 7971*;Gaildorf
+0049 7972*;Gschwend b. Gaildorf
+0049 7973*;Obersontheim
+0049 7974*;Bühlerzell
+0049 7975*;Untergröningen
+0049 7976*;Sulzbach-Laufen
+0049 7977*;Oberrot b. Gaildorf
+0049 8020*;Weyarn
+0049 8021*;Waakirchen
+0049 8022*;Tegernsee
+0049 8023*;Bayrischzell
+0049 8024*;Holzkirchen
+0049 8025*;Miesbach
+0049 8026*;Hausham
+0049 8027*;Dietramszell
+0049 8028*;Fischbachau
+0049 8029*;Kreuth b. Tegernsee
+0049 8031*;Rosenheim 
+0049 8032*;Rohrdorf Kr. Rosenheim
+0049 8033*;Oberaudorf
+0049 8034*;Brannenburg
+0049 8035*;Raubling
+0049 8036*;Stephanskirchen Simssee
+0049 8038*;Vogtareuth
+0049 8039*;Rott a. Inn
+0049 8041*;Bad Tölz
+0049 8042*;Lenggries
+0049 8043*;Jachenau
+0049 8045*;Lenggries-Fall
+0049 8046*;Bad Heilbrunn
+0049 8051*;Prien a. Chiemsee
+0049 8052*;Aschau i. Chiemgau
+0049 8053*;Bad Endorf
+0049 8054*;Breitbrunn a. Chiemsee
+0049 8055*;Halfing
+0049 8056*;Eggstätt
+0049 8057*;Aschau-Sachrang
+0049 8061*;Bad Aibling
+0049 8062*;Bruckmühl Mangfall
+0049 8063*;Feldkirchen-Westerham
+0049 8064*;Au b. Bad Aibling
+0049 8065*;Tuntenhausen-Schönau
+0049 8066*;Bad Feilnbach
+0049 8067*;Tuntenhausen
+0049 8071*;Wasserburg a. Inn
+0049 8072*;Haag i. OB
+0049 8073*;Gars a. Inn
+0049 8074*;Schnaitsee
+0049 8075*;Amerang
+0049 8076*;Pfaffing
+0049 8081*;Dorfen Stadt
+0049 8082*;Schwindegg
+0049 8083*;Isen
+0049 8084*;Taufkirchen Vils
+0049 8085*;Sankt Wolfgang Kr. Erding
+0049 8086*;Buchbach Oberbay
+0049 8091*;Kirchseeon
+0049 8092*;Grafing b. München
+0049 8093*;Glonn Kr. Ebersberg
+0049 8094*;Steinhöring
+0049 8095*;Aying
+0049 8102*;Höhenkirchen
+0049 8104*;Sauerlach
+0049 8105*;Gilching
+0049 8106*;Vaterstetten
+0049 811*;Hallbergmoos
+0049 8121*;Markt Schwaben
+0049 8122*;Erding
+0049 8123*;Moosinning
+0049 8124*;Forstern Oberbay
+0049 8131*;Dachau
+0049 8133*;Haimhausen Oberbay
+0049 8134*;Odelzhausen
+0049 8135*;Sulzemoos
+0049 8136*;Markt Indersdorf
+0049 8137*;Petershausen
+0049 8138*;Schwabhausen b. Dachau
+0049 8139*;Röhrmoos
+0049 8141*;Fürstenfeldbruck
+0049 8142*;Olching
+0049 8143*;Inning a. Ammersee
+0049 8144*;Grafrath
+0049 8145*;Mammendorf
+0049 8146*;Moorenweis
+0049 8151*;Starnberg
+0049 8152*;Herrsching a. Ammersee
+0049 8153*;Weßling
+0049 8157*;Feldafing
+0049 8158*;Tutzing
+0049 8161*;Freising
+0049 8165*;Neufahrn b. Freising
+0049 8166*;Allershausen Oberbay
+0049 8167*;Zolling
+0049 8168*;Attenkirchen
+0049 8170*;Straßlach-Dingharting
+0049 8171*;Wolfratshausen
+0049 8176*;Egling b. Wolfratshausen
+0049 8177*;Münsing Starnberger See
+0049 8178*;Icking
+0049 8179*;Eurasburg a. d Isar
+0049 8191*;Landsberg a. Lech
+0049 8192*;Schondorf a. Ammersee
+0049 8193*;Geltendorf
+0049 8194*;Vilgertshofen
+0049 8195*;Weil Kr. Landsberg
+0049 8196*;Pürgen
+0049 8202*;Althegnenberg
+0049 8203*;Großaitingen
+0049 8204*;Mickhausen
+0049 8205*;Dasing
+0049 8206*;Egling a. d Paar
+0049 8207*;Affing
+0049 8208*;Eurasburg b. Augsburg
+0049 821*;Augsburg
+0049 8221*;Günzburg
+0049 8222*;Burgau Schwab
+0049 8223*;Ichenhausen
+0049 8224*;Offingen Donau
+0049 8225*;Jettingen-Scheppach
+0049 8226*;Bibertal
+0049 8230*;Gablingen
+0049 8231*;Königsbrunn b. Augsburg
+0049 8232*;Schwabmünchen
+0049 8233*;Kissing
+0049 8234*;Bobingen
+0049 8236*;Fischach
+0049 8237*;Aindling
+0049 8238*;Gessertshausen
+0049 8239*;Langenneufnach
+0049 8241*;Buchloe
+0049 8243*;Fuchstal
+0049 8245*;Türkheim Wertach
+0049 8246*;Waal Schwab
+0049 8247*;Bad Wörishofen
+0049 8248*;Lamerdingen
+0049 8249*;Ettringen Wertach
+0049 8250*;Hilgertshausen-Tandern
+0049 8251*;Aichach
+0049 8252*;Schrobenhausen
+0049 8253*;Pöttmes
+0049 8254*;Altomünster
+0049 8257*;Inchenhofen
+0049 8258*;Sielenbach
+0049 8259*;Schiltberg
+0049 8261*;Mindelheim
+0049 8262*;Mittelneufnach
+0049 8263*;Breitenbrunn Schwab
+0049 8265*;Pfaffenhausen Schwab
+0049 8266*;Kirchheim Schwab
+0049 8267*;Dirlewang
+0049 8268*;Tussenhausen
+0049 8269*;Unteregg
+0049 8271*;Meitingen
+0049 8272*;Wertingen
+0049 8273*;Nordendorf
+0049 8274*;Buttenwiesen
+0049 8276*;Thierhaupten-Baar
+0049 8281*;Thannhausen Schwab
+0049 8282*;Krumbach Schwab
+0049 8283*;Neuburg a. d Kammel
+0049 8284*;Ziemetshausen
+0049 8285*;Burtenbach
+0049 8291*;Zusmarshausen
+0049 8292*;Dinkelscherben
+0049 8293*;Welden b. Augsburg
+0049 8294*;Horgau
+0049 8295*;Altenmünster Schwab
+0049 8296*;Villenbach
+0049 8302*;Görisried
+0049 8303*;Waltenhofen
+0049 8304*;Wildpoldsried
+0049 8306*;Ronsberg
+0049 831*;Kempten
+0049 8320*;Missen-Wilhams
+0049 8321*;Sonthofen
+0049 8322*;Oberstdorf
+0049 8323*;Immenstadt i. Allgäu
+0049 8324*;Hindelang
+0049 8325*;Oberstaufen-Thalkirchdorf
+0049 8326*;Fischen i. Allgäu
+0049 8327*;Rettenberg
+0049 8328*;Balderschwang
+0049 8330*;Legau
+0049 8331*;Memmingen
+0049 8332*;Ottobeuren
+0049 8333*;Babenhausen Schwab
+0049 8334*;Bad Grönenbach
+0049 8335*;Fellheim
+0049 8336*;Erkheim
+0049 8337*;Altenstadt Iller
+0049 8338*;Böhen
+0049 8340*;Baisweil
+0049 8341*;Kaufbeuren
+0049 8342*;Marktoberdorf
+0049 8343*;Aitrang
+0049 8344*;Westendorf b. Kaufbeuren
+0049 8345*;Stöttwang
+0049 8346*;Pforzen
+0049 8347*;Friesenried
+0049 8348*;Bidingen
+0049 8349*;Stötten a. Auerberg
+0049 8361*;Nesselwang
+0049 8362*;Füssen
+0049 8363*;Pfronten
+0049 8364*;Seeg
+0049 8365*;Wertach
+0049 8366*;Oy-Mittelberg
+0049 8367*;Roßhaupten Forggensee
+0049 8368*;Halblech
+0049 8369*;Rückholz
+0049 8370*;Wiggensbach
+0049 8372*;Obergünzburg
+0049 8373*;Altusried
+0049 8374*;Dietmannsried
+0049 8375*;Weitnau
+0049 8376*;Sulzberg Allgäu
+0049 8377*;Unterthingau
+0049 8378*;Buchenberg b. Kempten
+0049 8379*;Waltenhofen-Oberdorf
+0049 8380*;Achberg
+0049 8381*;Lindenberg i. Allgäu
+0049 8382*;Lindau Bodensee
+0049 8383*;Grünenbach Allgäu
+0049 8384*;Röthenbach Allgäu
+0049 8385*;Hergatz
+0049 8386*;Oberstaufen
+0049 8387*;Weiler-Simmerberg
+0049 8388*;Hergensweiler
+0049 8389*;Weißensberg
+0049 8392*;Markt Rettenbach
+0049 8393*;Holzgünz
+0049 8394*;Lautrach
+0049 8395*;Tannheim Württ
+0049 8402*;Münchsmünster
+0049 8403*;Pförring
+0049 8404*;Oberdolling
+0049 8405*;Stammham b. Ingolstadt
+0049 8406*;Böhmfeld
+0049 8407*;Großmehring
+0049 841*;Ingolstadt
+0049 8421*;Eichstätt Bay
+0049 8422*;Dollnstein
+0049 8423*;Titting
+0049 8424*;Nassenfels
+0049 8426*;Walting Kr. Eichstätt
+0049 8427*;Wellheim
+0049 8431*;Neuburg a. d Donau
+0049 8432*;Burgheim
+0049 8433*;Königsmoos
+0049 8434*;Rennertshofen
+0049 8435*;Ehekirchen
+0049 8441*;Pfaffenhofen a. d Ilm
+0049 8442*;Wolnzach
+0049 8443*;Hohenwart Paar
+0049 8444*;Schweitenkirchen
+0049 8445*;Gerolsbach
+0049 8446*;Pörnbach
+0049 8450*;Ingolstadt-Zuchering
+0049 8452*;Geisenfeld
+0049 8453*;Reichertshofen Oberbay
+0049 8454*;Karlshuld
+0049 8456*;Lenting
+0049 8457*;Vohburg a. d Donau
+0049 8458*;Gaimersheim
+0049 8459*;Manching
+0049 8460*;Berching-Holnstein
+0049 8461*;Beilngries
+0049 8462*;Berching
+0049 8463*;Greding
+0049 8464*;Dietfurt a. d Altmühl
+0049 8465*;Kipfenberg
+0049 8466*;Denkendorf Oberbay
+0049 8467*;Kinding
+0049 8468*;Altmannstein-Pondorf
+0049 8469*;Freystadt-Burggriesbach
+0049 8501*;Thyrnau
+0049 8502*;Fürstenzell
+0049 8503*;Neuhaus a. Inn
+0049 8504*;Tittling
+0049 8505*;Hutthurm
+0049 8506*;Bad Höhenstadt
+0049 8507*;Neuburg a. Inn
+0049 8509*;Ruderting
+0049 851*;Passau
+0049 8531*;Pocking
+0049 8532*;Griesbach i. Rottal
+0049 8533*;Rotthalmünster
+0049 8534*;Tettenweis
+0049 8535*;Haarbach
+0049 8536*;Kößlarn
+0049 8537*;Bad Füssing-Aigen
+0049 8538*;Pocking-Hartkirchen
+0049 8541*;Vilshofen
+0049 8542*;Ortenburg
+0049 8543*;Aidenbach
+0049 8544*;Eging a. See
+0049 8545*;Hofkirchen Bay
+0049 8546*;Windorf-Otterskirchen
+0049 8547*;Osterhofen-Gergweis
+0049 8548*;Vilshofen-Sandbach
+0049 8549*;Vilshofen-Pleinting
+0049 8550*;Philippsreut
+0049 8551*;Freyung
+0049 8552*;Grafenau Niederbay
+0049 8553*;Spiegelau
+0049 8554*;Schönberg
+0049 8555*;Perlesreut
+0049 8556*;Haidmühle
+0049 8557*;Mauth
+0049 8558*;Hohenau Niederbay
+0049 8561*;Pfarrkirchen Niederbay
+0049 8562*;Triftern
+0049 8563*;Bad Birnbach Rottal
+0049 8564*;Johanniskirchen
+0049 8565*;Dietersburg-Baumgarten
+0049 8571*;Simbach a. Inn
+0049 8572*;Tann Niederbay
+0049 8573*;Ering
+0049 8574*;Wittibreut
+0049 8581*;Waldkirchen Niederbay
+0049 8582*;Röhrnbach
+0049 8583*;Neureichenau
+0049 8584*;Breitenberg Niederbay
+0049 8585*;Grainet
+0049 8586*;Hauzenberg
+0049 8591*;Obernzell
+0049 8592*;Wegscheid Niederbay
+0049 8593*;Untergriesbach
+0049 861*;Traunstein
+0049 8621*;Trostberg
+0049 8622*;Tacherting-Peterskirchen
+0049 8623*;Kirchweidach
+0049 8624*;Obing
+0049 8628*;Kienberg Oberbay
+0049 8629*;Palling
+0049 8630*;Oberneukirchen
+0049 8631*;Mühldorf a. Inn
+0049 8633*;Tüßling
+0049 8634*;Garching a. d Alz
+0049 8635*;Pleiskirchen
+0049 8636*;Ampfing
+0049 8637*;Lohkirchen
+0049 8638*;Waldkraiburg
+0049 8639*;Neumarkt St. Veit
+0049 8640*;Reit im Winkl
+0049 8641*;Grassau Kr. Traunstein
+0049 8642*;Übersee
+0049 8649*;Schleching
+0049 8650*;Marktschellenberg
+0049 8651*;Bad Reichenhall
+0049 8652*;Berchtesgaden
+0049 8654*;Freilassing
+0049 8656*;Anger
+0049 8657*;Ramsau b. Berchtesgaden
+0049 8661*;Grabenstätt Chiemsee
+0049 8662*;Siegsdorf Kr. Traunstein
+0049 8663*;Ruhpolding
+0049 8664*;Chieming
+0049 8665*;Inzell
+0049 8666*;Teisendorf
+0049 8667*;Seeon-Seebruck
+0049 8669*;Traunreut
+0049 8670*;Reischach Kr. Altötting
+0049 8671*;Altötting
+0049 8677*;Burghausen Salzach
+0049 8678*;Marktl
+0049 8679*;Burgkirchen a. d Alz
+0049 8681*;Waging a. See
+0049 8682*;Laufen Salzach
+0049 8683*;Tittmoning
+0049 8684*;Fridolfing
+0049 8685*;Kirchanschöring
+0049 8686*;Petting
+0049 8687*;Taching-Tengling
+0049 8702*;Wörth a. d Isar
+0049 8703*;Essenbach
+0049 8704*;Altdorf-Pfettrach
+0049 8705*;Altfraunhofen
+0049 8706*;Vilsheim
+0049 8707*;Adlkofen
+0049 8708*;Weihmichl-Unterneuhausen
+0049 8709*;Eching Niederbay
+0049 871*;Landshut
+0049 8721*;Eggenfelden
+0049 8722*;Gangkofen
+0049 8723*;Arnstorf
+0049 8724*;Massing
+0049 8725*;Wurmannsquick
+0049 8726*;Schönau Niederbay
+0049 8727*;Falkenberg Niederbay
+0049 8728*;Geratskirchen
+0049 8731*;Dingolfing
+0049 8732*;Frontenhausen
+0049 8733*;Mengkofen
+0049 8734*;Reisbach Niederbay
+0049 8735*;Gangkofen-Kollbach
+0049 8741*;Vilsbiburg
+0049 8742*;Velden
+0049 8743*;Geisenhausen
+0049 8744*;Gerzen
+0049 8745*;Bodenkirchen
+0049 8751*;Mainburg
+0049 8752*;Au i. d Hallertau
+0049 8753*;Elsendorf Niederbay
+0049 8754*;Volkenschwand
+0049 8756*;Nandlstadt
+0049 8761*;Moosburg a. d Isar
+0049 8762*;Wartenberg Oberbay
+0049 8764*;Mauern Kr. Freising
+0049 8765*;Bruckberg Niederbay
+0049 8766*;Gammelsdorf
+0049 8771*;Ergoldsbach
+0049 8772*;Mallersdorf-Pfaffenberg
+0049 8773*;Neufahrn Niederbay
+0049 8774*;Bayerbach b. Ergoldsbach
+0049 8781*;Rottenburg a. d Laaber
+0049 8782*;Pfeffenhausen
+0049 8783*;Rohr Niederbay
+0049 8784*;Hohenthann
+0049 8785*;Rottenburg-Oberroning
+0049 8801*;Seeshaupt
+0049 8802*;Huglfing
+0049 8803*;Peißenberg
+0049 8805*;Hohenpeißenberg
+0049 8806*;Utting
+0049 8807*;Dießen a. Ammersee
+0049 8808*;Pähl
+0049 8809*;Wessobrunn
+0049 881*;Weilheim Oberbay
+0049 8821*;Garmisch
+0049 8822*;Oberammergau
+0049 8823*;Mittenwald
+0049 8824*;Oberau
+0049 8825*;Krün
+0049 8841*;Murnau a. Staffelsee
+0049 8845*;Bad Kohlgrub
+0049 8846*;Uffing a. Staffelsee
+0049 8847*;Obersöchering
+0049 8851*;Kochel a. See
+0049 8856*;Penzberg
+0049 8857*;Benediktbeuern
+0049 8858*;Kochel-Walchensee
+0049 8860*;Bernbeuren
+0049 8861*;Schongau
+0049 8862*;Steingaden Oberbay
+0049 8867*;Rottenbuch Oberbay
+0049 8868*;Schwabsoien
+0049 8869*;Kinsau
+0049 89*;München
+0049 906*;Donauwörth
+0049 9070*;Tapfheim
+0049 9071*;Dillingen a. d Donau
+0049 9072*;Lauingen Donau
+0049 9073*;Gundelfingen a. d Donau
+0049 9074*;Höchstädt a. d Donau
+0049 9075*;Glött
+0049 9076*;Wittislingen
+0049 9077*;Bachhagel
+0049 9078*;Mertingen
+0049 9080*;Harburg-Schwab
+0049 9081*;Nördlingen
+0049 9082*;Oettingen
+0049 9083*;Möttingen
+0049 9084*;Bissingen Schwab
+0049 9085*;Alerheim
+0049 9086*;Fremdingen
+0049 9087*;Marktoffingen
+0049 9088*;Mönchsdeggingen
+0049 9089*;Bissingen-Unterringingen
+0049 9090*;Rain Lech
+0049 9091*;Monheim Schwab
+0049 9092*;Wemding
+0049 9093*;Polsingen
+0049 9094*;Tagmersheim
+0049 9097*;Marxheim
+0049 9099*;Kaisheim
+0049 9101*;Langenzenn
+0049 9102*;Wilhermsdorf
+0049 9103*;Cadolzburg
+0049 9104*;Emskirchen
+0049 9105*;Großhabersdorf
+0049 9106*;Markt Erlbach
+0049 9107*;Trautskirchen
+0049 911*;Nürnberg
+0049 9120*;Leinburg
+0049 9122*;Schwabach
+0049 9123*;Lauf a. d Pegnitz
+0049 9126*;Eckental
+0049 9127*;Roßtal
+0049 9128*;Feucht
+0049 9129*;Wendelstein
+0049 9131*;Erlangen
+0049 9132*;Herzogenaurach
+0049 9133*;Baiersdorf Mittelfr
+0049 9134*;Neunkirchen a. Brand
+0049 9135*;Heßdorf Mittelfr
+0049 9141*;Weißenburg i. Bay
+0049 9142*;Treuchtlingen
+0049 9143*;Pappenheim Mittelfr
+0049 9144*;Pleinfeld
+0049 9145*;Solnhofen
+0049 9146*;Markt Berolzheim
+0049 9147*;Nennslingen
+0049 9148*;Ettenstatt
+0049 9149*;Weißenburg-Suffersheim
+0049 9151*;Hersbruck
+0049 9152*;Hartenstein
+0049 9153*;Schnaittach
+0049 9154*;Pommelsbrunn
+0049 9155*;Simmelsdorf
+0049 9156*;Neuhaus a. d Pegnitz
+0049 9157*;Alfeld Mittelfr
+0049 9158*;Offenhausen Mittelfr
+0049 9161*;Neustadt a. d Aisch
+0049 9162*;Scheinfeld
+0049 9163*;Dachsbach
+0049 9164*;Langenfeld Mittelfr
+0049 9165*;Sugenheim
+0049 9166*;Münchsteinach
+0049 9167*;Oberscheinfeld
+0049 9170*;Schwanstetten
+0049 9171*;Roth Mittelfr
+0049 9172*;Georgensgmünd
+0049 9173*;Thalmässing
+0049 9174*;Hilpoltstein
+0049 9175*;Spalt
+0049 9176*;Allersberg
+0049 9177*;Heideck
+0049 9178*;Abenberg Mittelfr
+0049 9179*;Freystadt
+0049 9180*;Pyrbaum
+0049 9181*;Neumarkt i. d Opf
+0049 9182*;Velburg
+0049 9183*;Burgthann
+0049 9184*;Deining Oberpf
+0049 9185*;Mühlhausen Oberpf
+0049 9186*;Lauterhofen Oberpf
+0049 9187*;Altdorf b. Nürnberg
+0049 9188*;Postbauer-Heng
+0049 9189*;Berg b. Neumarkt i. d Opf
+0049 9190*;Heroldsbach
+0049 9191*;Forchheim Oberfr
+0049 9192*;Gräfenberg
+0049 9193*;Höchstadt a. d Aisch
+0049 9194*;Ebermannstadt
+0049 9195*;Adelsdorf
+0049 9196*;Wiesenttal
+0049 9197*;Egloffstein
+0049 9198*;Heiligenstadt Oberfr
+0049 9199*;Kunreuth
+0049 9201*;Gesees
+0049 9202*;Waischenfeld
+0049 9203*;Neudrossenfeld
+0049 9204*;Plankenfels
+0049 9205*;Vorbach
+0049 9206*;Mistelgau-Obernsees
+0049 9207*;Königsfeld Oberfr
+0049 9208*;Bindlach
+0049 9209*;Emtmannsberg
+0049 921*;Bayreuth
+0049 9220*;Kasendorf-Azendorf
+0049 9221*;Kulmbach
+0049 9222*;Presseck
+0049 9223*;Rugendorf
+0049 9225*;Stadtsteinach
+0049 9227*;Neuenmarkt
+0049 9228*;Thurnau
+0049 9229*;Mainleus
+0049 9231*;Marktredwitz
+0049 9232*;Wunsiedel
+0049 9233*;Arzberg Oberfr
+0049 9234*;Neusorg
+0049 9235*;Thierstein
+0049 9236*;Nagel
+0049 9238*;Röslau
+0049 9241*;Pegnitz
+0049 9242*;Gößweinstein
+0049 9243*;Pottenstein
+0049 9244*;Betzenstein
+0049 9245*;Obertrubach
+0049 9246*;Pegnitz-Trockau
+0049 9251*;Münchberg
+0049 9252*;Helmbrechts
+0049 9253*;Weißenstadt
+0049 9254*;Gefrees
+0049 9255*;Marktleugast
+0049 9256*;Stammbach
+0049 9257*;Zell Oberfr
+0049 9260*;Wilhelmsthal Oberfr
+0049 9261*;Kronach
+0049 9262*;Wallenfels
+0049 9263*;Ludwigsstadt
+0049 9264*;Küps
+0049 9265*;Pressig
+0049 9266*;Mitwitz
+0049 9267*;Nordhalben
+0049 9268*;Teuschnitz
+0049 9269*;Tettau Kr. Kronach
+0049 9270*;Creußen
+0049 9271*;Thurnau-Alladorf
+0049 9272*;Fichtelberg
+0049 9273*;Bad Berneck i. Fichtelgebirge
+0049 9274*;Hollfeld
+0049 9275*;Speichersdorf
+0049 9276*;Bischofsgrün
+0049 9277*;Warmensteinach
+0049 9278*;Weidenberg
+0049 9279*;Mistelgau
+0049 9280*;Selbitz Oberfr
+0049 9281*;Hof Saale
+0049 9282*;Naila
+0049 9283*;Rehau
+0049 9284*;Schwarzenbach a. d Saale
+0049 9285*;Kirchenlamitz
+0049 9286*;Oberkotzau
+0049 9287*;Selb
+0049 9288*;Bad Steben
+0049 9289*;Schwarzenbach a. Wald
+0049 9292*;Konradsreuth
+0049 9293*;Berg
+0049 9294*;Regnitzlosau
+0049 9295*;Töpen
+0049 9302*;Rottendorf Unterfr
+0049 9303*;Eibelstadt
+0049 9305*;Estenfeld
+0049 9306*;Kist
+0049 9307*;Altertheim
+0049 931*;Würzburg
+0049 9321*;Kitzingen
+0049 9323*;Iphofen
+0049 9324*;Dettelbach
+0049 9325*;Kleinlangheim
+0049 9326*;Markt Einersheim
+0049 9331*;Ochsenfurt
+0049 9332*;Marktbreit
+0049 9333*;Sommerhausen
+0049 9334*;Giebelstadt
+0049 9335*;Aub Kr. Würzburg
+0049 9336*;Bütthard
+0049 9337*;Gaukönigshofen
+0049 9338*;Röttingen Unterfr
+0049 9339*;Ippesheim
+0049 9340*;Königheim-Brehmen
+0049 9341*;Tauberbischofsheim
+0049 9342*;Wertheim
+0049 9343*;Lauda-Königshofen
+0049 9344*;Gerchsheim
+0049 9345*;Külsheim Baden
+0049 9346*;Grünsfeld
+0049 9347*;Wittighausen
+0049 9348*;Werbach-Gamburg
+0049 9349*;Werbach-Wenkheim
+0049 9350*;Eußenheim-Hundsbach
+0049 9351*;Gemünden a. Main
+0049 9352*;Lohr a. Main
+0049 9353*;Karlstadt
+0049 9354*;Rieneck
+0049 9355*;Frammersbach
+0049 9356*;Burgsinn
+0049 9357*;Gräfendorf
+0049 9358*;Gössenheim
+0049 9359*;Karlstadt-Wiesenfeld
+0049 9360*;Thüngen
+0049 9363*;Arnstein Unterfr
+0049 9364*;Zellingen
+0049 9365*;Rimpar
+0049 9366*;Geroldshausen Unterfr
+0049 9367*;Unterpleichfeld
+0049 9369*;Uettingen
+0049 9371*;Miltenberg
+0049 9372*;Klingenberg a. Main
+0049 9373*;Amorbach
+0049 9374*;Eschau
+0049 9375*;Freudenberg Baden
+0049 9376*;Collenberg
+0049 9377*;Freudenberg-Boxtal
+0049 9378*;Eichenbühl-Riedern
+0049 9381*;Volkach
+0049 9382*;Gerolzhofen
+0049 9383*;Wiesentheid
+0049 9384*;Schwanfeld
+0049 9385*;Kolitzheim
+0049 9386*;Prosselsheim
+0049 9391*;Marktheidenfeld
+0049 9392*;Faulbach Unterfr
+0049 9393*;Rothenfels Unterfr
+0049 9394*;Esselbach
+0049 9395*;Triefenstein
+0049 9396*;Urspringen b. Lohr
+0049 9397*;Wertheim-Dertingen
+0049 9398*;Birkenfeld b. Würzburg
+0049 9401*;Neutraubling
+0049 9402*;Regenstauf
+0049 9403*;Donaustauf
+0049 9404*;Nittendorf
+0049 9405*;Bad Abbach
+0049 9406*;Mintraching
+0049 9407*;Wenzenbach
+0049 9408*;Altenthann
+0049 9409*;Pielenhofen
+0049 941*;Regensburg
+0049 9420*;Feldkirchen Niederbay
+0049 9421*;Straubing
+0049 9422*;Bogen Niederbay
+0049 9423*;Geiselhöring
+0049 9424*;Straßkirchen
+0049 9426*;Oberschneiding
+0049 9427*;Leiblfing
+0049 9428*;Kirchroth
+0049 9429*;Rain Niederbay
+0049 9431*;Schwandorf
+0049 9433*;Nabburg
+0049 9434*;Bodenwöhr
+0049 9435*;Schwarzenfeld
+0049 9436*;Nittenau
+0049 9438*;Fensterbach
+0049 9439*;Neunburg-Kemnath
+0049 9441*;Kelheim
+0049 9442*;Riedenburg
+0049 9443*;Abensberg
+0049 9444*;Siegenburg
+0049 9445*;Neustadt a. d Donau
+0049 9446*;Altmannstein
+0049 9447*;Essing
+0049 9448*;Hausen Niederbay
+0049 9451*;Schierling
+0049 9452*;Langquaid
+0049 9453*;Thalmassing
+0049 9454*;Aufhausen Oberpf
+0049 9461*;Roding
+0049 9462*;Falkenstein Oberpf
+0049 9463*;Wald Oberpf
+0049 9464*;Walderbach
+0049 9465*;Neukirchen-Balbini
+0049 9466*;Stamsried
+0049 9467*;Michelsneukirchen
+0049 9468*;Zell Oberpf
+0049 9469*;Roding-Neubäu
+0049 9471*;Burglengenfeld
+0049 9472*;Hohenfels Oberpf
+0049 9473*;Kallmünz
+0049 9474*;Schmidmühlen
+0049 9480*;Sünching
+0049 9481*;Pfatter
+0049 9482*;Wörth a. d Donau
+0049 9484*;Brennberg
+0049 9491*;Hemau
+0049 9492*;Parsberg
+0049 9493*;Beratzhausen
+0049 9495*;Breitenbrunn Oberpf
+0049 9497*;Seubersdorf i. d  Opf
+0049 9498*;Laaber
+0049 9499*;Painten
+0049 9502*;Frensdorf
+0049 9503*;Oberhaid Oberfr
+0049 9504*;Stadelhofen
+0049 9505*;Litzendorf
+0049 951*;Bamberg
+0049 9521*;Haßfurt
+0049 9522*;Eltmann
+0049 9523*;Hofheim Unterfr
+0049 9524*;Zeil a. Main
+0049 9525*;Königsberg
+0049 9526*;Riedbach
+0049 9527*;Knetzgau
+0049 9528*;Donnersdorf
+0049 9529*;Oberaurach
+0049 9531*;Ebern
+0049 9532*;Maroldsweisach
+0049 9533*;Untermerzbach
+0049 9534*;Burgpreppach
+0049 9535*;Pfarrweisach
+0049 9536*;Kirchlauter
+0049 9542*;Scheßlitz
+0049 9543*;Hirschaid
+0049 9544*;Baunach
+0049 9545*;Buttenheim
+0049 9546*;Burgebrach
+0049 9547*;Zapfendorf
+0049 9548*;Mühlhausen Mittelfr
+0049 9549*;Lisberg
+0049 9551*;Burgwindheim
+0049 9552*;Burghaslach
+0049 9553*;Ebrach Oberfr
+0049 9554*;Untersteinbach
+0049 9555*;Schlüsselfeld-Aschbach
+0049 9556*;Geiselwind
+0049 9560*;Grub a. Forst
+0049 9561*;Coburg
+0049 9562*;Sonnefeld
+0049 9563*;Rödental
+0049 9564*;Bad Rodach
+0049 9565*;Untersiemau
+0049 9566*;Meeder
+0049 9567*;Seßlach-Gemünda
+0049 9568*;Neustadt b. Coburg
+0049 9569*;Seßlach
+0049 9571*;Lichtenfels Bay
+0049 9572*;Burgkunstadt
+0049 9573*;Staffelstein Oberfr
+0049 9574*;Marktzeuln
+0049 9575*;Weismain
+0049 9576*;Lichtenfeld-Isling
+0049 9602*;Neustadt a. d Waldnaab
+0049 9603*;Floß
+0049 9604*;Wernberg-Köblitz
+0049 9605*;Weiherhammer
+0049 9606*;Pfreimd
+0049 9607*;Luhe-Wildenau
+0049 9608*;Kohlberg Oberpf
+0049 961*;Weiden Oberpf
+0049 9621*;Amberg Oberpfalz
+0049 9622*;Hirschau Oberpf
+0049 9624*;Ensdorf Oberpf
+0049 9625*;Kastl b. Amberg
+0049 9626*;Hohenburg
+0049 9627*;Freudenberg Oberpf
+0049 9628*;Ursensollen
+0049 9631*;Tirschenreuth
+0049 9632*;Waldsassen
+0049 9633*;Mitterteich
+0049 9634*;Wiesau
+0049 9635*;Bärnau
+0049 9636*;Plößberg
+0049 9637*;Falkenberg Oberpf
+0049 9638*;Neualbenreuth
+0049 9639*;Mähring
+0049 9641*;Grafenwöhr
+0049 9642*;Kemnath Stadt
+0049 9643*;Auerbach Oberpf
+0049 9644*;Pressath
+0049 9645*;Eschenbach Oberpf
+0049 9646*;Freihung
+0049 9647*;Kirchenthumbach
+0049 9648*;Neustadt a. Kulm
+0049 9651*;Vohenstrauß
+0049 9652*;Waidhaus
+0049 9653*;Eslarn
+0049 9654*;Pleystein
+0049 9655*;Tännesberg
+0049 9656*;Moosbach
+0049 9657*;Waldthurn
+0049 9658*;Georgenberg
+0049 9659*;Leuchtenberg
+0049 9661*;Sulzbach-Rosenberg
+0049 9662*;Vilseck
+0049 9663*;Neukirchen b. Sulzbach
+0049 9664*;Hahnbach
+0049 9665*;Königstein Oberpf
+0049 9666*;Illschwang
+0049 9671*;Oberviechtach
+0049 9672*;Neunburg vorm Wald
+0049 9673*;Tiefenbach Oberpf
+0049 9674*;Schönsee
+0049 9675*;Altendorf b. Nabburg
+0049 9676*;Winklarn
+0049 9677*;Oberviechtach-Pullenried
+0049 9681*;Windischeschenbach
+0049 9682*;Erbendorf
+0049 9683*;Friedenfels
+0049 9701*;Sandberg Unterfr
+0049 9704*;Euerdorf
+0049 9708*;Bad Bocklet
+0049 971*;Bad Kissingen
+0049 9720*;Üchtelhausen
+0049 9721*;Schweinfurt
+0049 9722*;Werneck
+0049 9723*;Röthlein
+0049 9724*;Stadtlauringen
+0049 9725*;Poppenhausen Unterfr
+0049 9726*;Euerbach
+0049 9727*;Schonungen-Marktsteinach
+0049 9728*;Wülfershausen Unterfr
+0049 9729*;Grettstadt
+0049 9732*;Hammelburg
+0049 9733*;Münnerstadt
+0049 9734*;Burkardroth
+0049 9735*;Maßbach
+0049 9736*;Oberthulba
+0049 9737*;Wartmannsroth
+0049 9738*;Rottershausen
+0049 9741*;Bad Brückenau
+0049 9742*;Kalbach Rhön
+0049 9744*;Zeitlofs-Detter
+0049 9745*;Wildflecken
+0049 9746*;Zeitlofs
+0049 9747*;Geroda
+0049 9748*;Motten
+0049 9749*;Oberbach Unterfr
+0049 9761*;Bad Königshofen
+0049 9762*;Saal a. d Saale
+0049 9763*;Sulzdorf a. d Lederhecke
+0049 9764*;Höchheim
+0049 9765*;Trappstadt
+0049 9766*;Großwenkheim
+0049 9771*;Bad Neustadt
+0049 9772*;Bischofsheim
+0049 9773*;Unsleben
+0049 9774*;Oberelsbach
+0049 9775*;Schönau a. d Brend
+0049 9776*;Mellrichstadt
+0049 9777*;Ostheim
+0049 9778*;Fladungen
+0049 9779*;Nordheim v d Rhön
+0049 9802*;Ansbach-Katterbach
+0049 9803*;Colmberg
+0049 9804*;Aurach
+0049 9805*;Burgoberbach
+0049 981*;Ansbach
+0049 9820*;Lehrberg
+0049 9822*;Bechhofen a. d Heide
+0049 9823*;Leutershausen
+0049 9824*;Dietenhofen
+0049 9825*;Herrieden
+0049 9826*;Weidenbach Mittelfr
+0049 9827*;Lichtenau Mittelfr
+0049 9828*;Rügland
+0049 9829*;Flachslanden
+0049 9831*;Gunzenhausen
+0049 9832*;Wassertrüdingen
+0049 9833*;Heidenheim Mittelfr
+0049 9834*;Theilenhofen
+0049 9835*;Ehingen Mittelfr
+0049 9836*;Gunzenhausen-Cronheim
+0049 9837*;Haundorf
+0049 9841*;Bad Windsheim
+0049 9842*;Uffenheim
+0049 9843*;Burgbernheim
+0049 9844*;Obernzenn
+0049 9845*;Oberdachstetten
+0049 9846*;Ipsheim
+0049 9847*;Ergersheim
+0049 9848*;Simmershofen
+0049 9851*;Dinkelsbühl
+0049 9852*;Feuchtwangen
+0049 9853*;Wilburgstetten
+0049 9854*;Wittelshofen
+0049 9855*;Dentlein a. Forst
+0049 9856*;Dürrwangen
+0049 9857*;Schopfloch Mittelfr
+0049 9861*;Rothenburg
+0049 9865*;Adelshofen
+0049 9867*;Geslau
+0049 9868*;Schillingsfürst
+0049 9869*;Wettringen Mittelfr
+0049 9871*;Windsbach
+0049 9872*;Heilsbronn
+0049 9873*;Abenberg-Wassermungenau
+0049 9874*;Neuendettelsau
+0049 9875*;Wolframs-Eschenbach
+0049 9876*;Rohr Mittelfr
+0049 9901*;Hengersberg Bay
+0049 9903*;Schöllnach
+0049 9904*;Lalling
+0049 9905*;Bernried Niederbay
+0049 9906*;Mariaposching
+0049 9907*;Zenting
+0049 9908*;Schöfweg
+0049 991*;Deggendorf
+0049 9920*;Bischofsmais
+0049 9921*;Regen
+0049 9922*;Zwiesel
+0049 9923*;Teisnach
+0049 9924*;Bodenmais
+0049 9925*;Bayerisch Eisenstein
+0049 9926*;Frauenau
+0049 9927*;Kirchberg Wald
+0049 9928*;Kirchdorf i. Wald
+0049 9929*;Ruhmannsfelden
+0049 9931*;Plattling
+0049 9932*;Osterhofen
+0049 9933*;Wallersdorf
+0049 9935*;Stephansposching
+0049 9936*;Wallerfing
+0049 9937*;Oberpöring
+0049 9938*;Moos Niederbay
+0049 9941*;Kötzting
+0049 9942*;Viechtach
+0049 9943*;Lam Oberpf
+0049 9944*;Miltach
+0049 9945*;Arnbruck
+0049 9946*;Hohenwarth b. Kötzing
+0049 9947*;Neukirchen b. Hl Blut
+0049 9948*;Eschlkam
+0049 9951*;Landau a. d Isar
+0049 9952*;Eichendorf
+0049 9953*;Pilsting
+0049 9954*;Simbach Niederbay
+0049 9955*;Mamming
+0049 9956*;Eichendorf-Aufhausen
+0049 9961*;Mitterfels
+0049 9962*;Schwarzach Niederbay
+0049 9963*;Konzell
+0049 9964*;Stallwang
+0049 9965*;Sankt Englmar
+0049 9966*;Wiesenfelden
+0049 9971*;Cham
+0049 9972*;Waldmünchen
+0049 9973*;Furth i. Wald
+0049 9974*;Traitsching
+0049 9975*;Waldmünchen-Geigant
+0049 9976*;Rötz
+0049 9977*;Arnschwang
+0049 9978*;Schönthal Oberpf

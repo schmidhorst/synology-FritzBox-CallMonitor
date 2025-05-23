@@ -1,20 +1,19 @@
 #!/usr/bin/perl
 
-#Version 0.?
+#Version 0.7
 #written by eiGelbGeek 2017
-#Version 0.?, muliple code rewritten using arrays
+#Version 0.?, muliple code rewritten, using arrays, CardDAV-reading added, ....
 # Horst Schmid 2025
 
-# to do:
-# read phonebooks from FritzBox directly
 use utf8;
-# use open ':encoding(utf8)';
+
 use strict;
 use warnings;
 use File::Basename;
 use File::Spec;
 use warnings 'all';
 # use Env;
+use Symbol 'gensym'; # vivify a separate handle for STDERR in open3
 use Encode;
 use POSIX qw/strftime/;
 # https://stackoverflow.com/questions/8733131/getting-stdout-stderr-and-response-code-from-external-nix-command-in-perl
@@ -27,8 +26,9 @@ use lib dirname( abs_path( $0 ) );
 use common; # use module common.pm with sub read_fileItem
 
 my %telBook = (); # Telefonbuch der vollständigen Nummern, 
-    # key=bereinigte Nummer, item=($name, $book, $number0 (OriginalFormat))
-my %telBookWild = (); # Telefonbuch der WildcardNummern
+    # key=bereinigte Nummer, item=($name, $book, $number0 (OriginalFormat), $url)
+my %telBookWild = (); # Telefonbuch der WildcardNummern oder Vorwahlen
+# my %langTxts = (); # Texte aus ui/texts/<userLanguage>/lang.txt
 # http://www.hidemail.de/blog/absoluten-pfad-herausfinden.shtml
 my $scriptPath = File::Spec->rel2abs( $0 );
 my $scriptDir = dirname( $scriptPath );
@@ -81,7 +81,7 @@ my $areaCode;
 
 
 sub processDuplBookEntry {
-  my ( $number1, $number0, $name1, $book1, $name2, $book2, @others ) = @_;
+  my ( $number1, $number0, $name1, $book1, $url1, $name2, $book2, $url2, @others ) = @_;
   my $book = $book1;
   if ($name1 ne $name2) {
     my $msg="For number $number1 ($number0) we have different names: $name1 (Book $book1) and $name2 (Book $book2)";
@@ -96,9 +96,14 @@ sub processDuplBookEntry {
     print "$msg\n";
     doExecLog(5, $msg);
     }
-  return ($name2, $book, $number0);
+  if ($url1 eq "") {
+    $url1= $url2;
+    }
+  return ($name2, $book, $number0, $url1);
   }
 
+
+# Nummer aus Telefonbuch um Vorwahlen ergänzen
 sub addCountryArea {
   my ( $number0 ) = @_;
   $number0 =~ s/^\s*(.*?)\s*$/$1/; # trim
@@ -120,29 +125,30 @@ sub addCountryArea {
   return "$country$number0";
   }
 
+
 # Insert number and Name to internal hash table
 sub insertToTelBook {
-  my ( $number0, $name, $book, @others ) = @_;
+  my ( $number0, $name, $book, $url, @others ) = @_;
   my $number1 = addCountryArea($number0);
   $name =~ s/;/ /g; # Replace semcolon by space as semicolon is later our list separator
   # Eigene Landes-Vorwahl ergänzen, wenn nicht mit 00 beginnend???
   if ($number1 =~ /.*\*$/) { # with '*' at the end
     # print("WildCard: $number1 $name, book='$book' ");
-    $number1 =~ s/\*/\.\*/; # replace trailing * bei regExp .*
+    $number1 =~ s/\*/\.\*/; # replace * by the regExp .*
     # print("$number1\n");
-    my @ar=($name, $book, $number0);
+    my @ar=($name, $book, $number0, $url);
     if (exists($telBookWild{$number1})) { # from another phone book
-      my ($name2, $book2, $number02)=@{$telBookWild{$number1}};
-      @ar=processDuplBookEntry($number1, $number0, $name2, $book2, $name, $book);
+      my ($name2, $book2, $number02, $url2)=@{$telBookWild{$number1}};
+      @ar=processDuplBookEntry($number1, $number0, $name2, $book2, $url2, $name, $book, $url);
       }
     $telBookWild{$number1}=[@ar];
     }
   else { # normal number
     # print("Normal: $number $name $book\n");
-    my @ar=($name, $book, $number0);
+    my @ar=($name, $book, $number0, $url);
     if (exists($telBook{$number1})) { # from another phone book already available
-      my ($name2, $book2, $num0)=@{$telBook{$number1}};
-      @ar=processDuplBookEntry($number1, $number0, $name2, $book2, $name, $book);
+      my ($name2, $book2, $num0, $url2)=@{$telBook{$number1}};
+      @ar=processDuplBookEntry($number1, $number0, $name2, $book2, $url2 , $name, $book, $url);
       }
     $telBook{$number1} = [@ar];
     # https://stackoverflow.com/questions/5384825/perl-assigning-an-array-to-a-hash
@@ -154,8 +160,26 @@ sub insertToTelBook {
 #Simple Text-Telefonbuch-Datei (incl. Nebenstellennamen!?) einlesen:
 sub read_txt_telBook {
   my ( $filePathName, $book, @others ) = @_;
+  my $coding="<:encoding(UTF-8)";
+=pod
+  # is tool "file" (from Syno CLI file Tools) available?
+  my $ret=system("which file"); 
+  if ($ret == 0) {
+    # https://web.eecs.utk.edu/~bvanderz/cs460/notes/perl/perlsys.html
+    my $pathFileCmd = `which file`; # alternative = qx/which file/
+    print "pathFileCmd=$pathFileCmd\n";
+    # is it UTF-8 or ISO-8859 text:
+    $ret=qx/file -L $filePathName 2>&1/; # qx// is an operator in Perl!
+    # file reports possibly e.g. "symbolic link to ..." without -L
+    # ...: Unicode text, UTF-8 text
+    print "Encoding check for '$filePathName' done: Result: $ret\n"; # reports sometimes UTF-8 also for ISO-8859!?
+    }
+  else {
+    print "'file' command to check UTF-8 coding is not available\n";
+    }  
+=cut
   print "reading book '$book' ($filePathName) ...\n";
-  open(IN, "<:encoding(UTF-8)", $filePathName) or do {
+  open(IN, $coding, $filePathName) or do {
     my $err=$!;
     my $errMsg="Error to read phonebook $filePathName  ($book): $err";
     print "$errMsg";
@@ -171,10 +195,14 @@ sub read_txt_telBook {
     s/^\s*(.*?)\s*$/$1/; # trim
     if (($_ ne '') && (substr($_, 0, 1) ne '#')) {
       # print "line='$_'\n";
-      my @elements = split(":", $_, 2);
+      my $line=encode('utf-8', $_); # why is this needed?
+      my @elements = split(":", $line, 2);
+      if ($#elements < 1) {
+        @elements = split(";", $line, 2);
+        }
       my $number=$elements[0];
       # print "line='$_' => '$number':'$elements[1]'\n";
-      insertToTelBook($number, $elements[1], $book);
+      insertToTelBook($number, $elements[1], $book, ""); # no URL for Homepage
       }
     }
   close(IN);
@@ -235,6 +263,7 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
   my $fullName="";
   my $name="";
   my @numbers=();
+  my @urls=();
   while (<$fh>) {
     chomp;
     my $line=$_;
@@ -247,6 +276,14 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
       $name=substr($line,2);        
       # print ("N $name \n");
       }
+    elsif (($line =~ /^URL/ ) || ($line =~ /.URL:/ )) {
+      # print " URL: $line \n";
+      my($pre, $url) = split(/:/, $line, 2);
+      $url =~ s/\\//g; # we may have "URL: URL;TYPE=WORK:http\\://www.mlp-banking.de"
+      # print "URL found in CardDAV: $url ($pre)\n";
+      my @u=($url, $pre);
+      push(@urls, \@u); 
+      }      
     elsif ($line =~ /^TEL/ ) {
       # print " TEL: $line \n";
       my($pre, $number) = split(/:/, $line);
@@ -263,15 +300,32 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
         $name =~ s/^\s*(.*?)\s*$/$1/; # trim
         }
       if ($name ne "") { # normaly we should have a name!
+        # in case of "item1.URL" or "w5ozm8.URL" we would need to read the line "item1.X-ABLabel" or "w5ozm8.X-ABLABEL"
         $name =~ s/\\//; # sometimes "\,"
         my $n = 1 + $#numbers; # n numbers for one Name
         # print(" $n numbers: $name book='$bookName'\n"); # warum fehlt erstes Zeichen???
+        my $m=0;
         foreach (@numbers) {
-          insertToTelBook($_, $name, $bookName); # make an Entry for each number
+          my $url="";
+          if ($#urls > -1) { # we have at least one URL
+            my $nn=1+$#urls;
+            # print "$nn URLs found\n";
+            if ($m > $#urls) { # less URLs than numbers
+              $m=$#urls; 
+              }
+            my ($u, $pre)=@{$urls[0]};
+            # my @newa = @$ra;   # copy by assigning  
+            $url=$u;
+            # print "Using URL 0: $url ($pre)\n";
+            # print "Using URL $m: $url ($pre)\n";
+            }
+          insertToTelBook($_, $name, $bookName, $url); # make an Entry for each number
+          $m++;
           }          
         $fullName="";
         $name="";
         @numbers=();
+        @urls=();
         }
       else {
         print("Error: Name missing for $numbers[0]\n");
@@ -379,7 +433,7 @@ sub read_xml_telBook {
         # my $n = 1+$#numbers;
         # print(" $n numbers: $rn \n"); # warum fehlt erstes Zeichen???
         foreach (@numbers) {
-          insertToTelBook($_, $rn, $book1); # make an Entry for each number
+          insertToTelBook($_, $rn, $book1, ""); # make an Entry for each number, no Homepage-URL
           }
         }
       $rn="";
@@ -398,30 +452,42 @@ sub number2nameBook {
   # find the given Number either in $telBook{$number} or in $telBookWild{$key}
   my ($number) = @_;
   $number = addCountryArea($number);
-  print "scanning for $number ...";
+  print "scanning for $number ... ";
   # doExecLog(6, "number2nameBook(), cleaned number='$number'");
   if (exists($telBook{$number})) { # normal number
-    my ($callerName, $bookName, $numberFormated)=@{$telBook{$number}};
+    my ($callerName, $bookName, $numberFormated, $url)=@{$telBook{$number}};
     doExecLog(6, "number2nameBook(), cleaned number='$number' resolved to $callerName, $bookName");
     print "found!\n";
-    return($callerName, $bookName, $numberFormated);
+    return($callerName, $bookName, $numberFormated, $url);
     }
-  print "scanning wildCardBooks...";
+  print " scanning wildCardBooks...";
+  my $len1=0;
+  my ($name, $book, $numberFormated, $url);
   foreach my $key (keys %telBookWild) { # Find e.g. Entry "0032*:Belgium_" for 00326875676
-    my $num3=$number; # 004989234*
-    if ( $num3 =~ /$key/ ) {
-      my $len=length($key)-2;
-      # my $name=$telBookWild{$key} . substr($number, $len); # return e.g. Belgium_6875676
-      my ($name, $book, $numberFormated)=@{$telBookWild{$key}};
-      $name = $name . substr($num3, $len); # return e.g. Belgium_6875676
-      doExecLog(4, "number2nameBook(), cleaned number='$number' resolved to $name from $book");
-      return ($name, $book, $number) # [CallerName, BookName]
+    # Hint: The key is no more the original e.g. 0032* but an regular expression: <number>.* (number followed by anything, 0032.*)
+    if ( $number =~ /$key/ ) {
+      my $len2=length($key)-2; # count of real digits
+      if ($len2 > $len1) { # previously e.g. len1=4 from 0049, now len2=6 from 004989
+        ($name, $book, $numberFormated, $url)=@{$telBookWild{$key}};
+        $len1=$len2;
+        }
       }
     }
+  if ($len1 > 0) {
+    # my $name=$telBookWild{$key} . " " . substr($number, $len); # return e.g. Belgium 6875676
+    $name = $name . " " . substr($number, $len1); # return e.g. Belgium 6875676
+    doExecLog(4, "number2nameBook(), cleaned number='$number' resolved to $name from $book");
+    $numberFormated=substr($number, 0, $len1) . " " . substr($number, $len1); 
+    print " $numberFormated found in $book as $name. AREABookName=$cfgHashs{BOOKNAME_AREA}\n";
+      if (index($book, $cfgHashs{BOOKNAME_AREA}) == -1) {
+        # e.g. the wildcard number of an company, don't insert "Unknown "
+        return ($name, $book, $numberFormated, $url) # [CallerName, BookName, original formated number]
+        }
+      return ( "Unknown from " . $name, "", $numberFormated) # [CallerName, BookName, original formated number]
+    }
   doExecLog(4, "number2nameBook(), cleaned number='$number' not resolved");
-  ## Übersetzung
-  print " Number not found!";
-  return ("Unbekannt", "", $number);
+  print " Number not found!\n";
+  return ("Unknown", "", $number);
   }
 
 
@@ -465,15 +531,58 @@ sub expandNebenstelle {
     $ns0="**$ns0"; # 1 ==> **1
     }
   else { # length() == 2
+    my $ns=$ns0;
     $ns0="**6$ns0"; # 21 ==> **621
+    print "Nebenstelle FB=$ns ==> $ns0\n";
+    doExecLog(3, "Extension FB=$ns ==> $ns0");    
     }  
-  if (exists($telBook{$ns0})) { # wenn im Telefonbuch vorhanden: Namen (z.B. "Flur") statt Nr (z.B. 11) verwenden
+  if (exists($telBook{$ns0})) { # wenn im Telefonbuch vorhanden: Namen (z.B. "Flur") statt Nr (z.B. 11 bzw **611) verwenden
     my ($ns1, $book, @others)=@{$telBook{$ns0}}; # $name, $book, $number0 (OriginalFormat)
+    print "Ext. $ns0 via $book resolved to $ns1\n";
+    doExecLog(3, "Ext. $ns0 via $book resolved to $ns1");    
     $ns0=$ns1;
     }
+  else {
+    print "Ext. $ns0 could not be resolved to a name\n";
+    doExecLog(3, "Ext. $ns0 konnte nicht zu Namen aufgelöst werden");    
+    }  
   return $ns0; # e.g. 22 ==> **622 or "Home Office"
   }
 
+
+sub makeCallListEntry {
+  my ($dir, $timestamp, $extNum, $externalName, $phonebookName, $ownLineNumberName, $NebenstelleNrName, $timestring) = @_;
+  $extNum =~ s/#$//; # remove trailing #, which is send from FB for outgoing calls
+  # $NebenstelleNrName[$idxLine] # Nr oder Name
+  my $txtLine="$dir;$timestamp;$extNum;$externalName;$phonebookName;$ownLineNumberName;$NebenstelleNrName;$timestring\n";      
+  print "$txtLine";
+  #print "CALL_OUT_NOCONNECT=$cfgHashs{CALL_OUT_NOCONNECT}\n";
+  #doExecLog(7, "CALL_OUT_NOCONNECT=$cfgHashs{CALL_OUT_NOCONNECT}");
+  if (("$dir" eq "failed") && ($cfgHashs{CALL_OUT_NOCONNECT} eq "false")) {
+    print "CALL without CONNECT skipped\n";
+    }
+  else {
+    my $new=0;
+    if ( -e "$varFilePath/calls.txt") { # append
+      open(FILE, ">>", "$varFilePath/calls.txt"); # write the data of the call to the 'permanent' file
+      }
+    else { # create
+      $new=1;
+      open(FILE, ">", "$varFilePath/calls.txt");
+      }  
+    print FILE $txtLine;
+    close(FILE);
+    if ($new) { # change the owner and permission of the new file:
+      chmod 0744, "$varFilePath/calls.txt";
+      my $uid   = getpwnam($pkgName);
+      my $gid   = getgrnam($pkgName);
+      print ("uid:gid of $pkgName: $uid:$gid\n");
+      if (($uid != 0) && ($gid != 0)) {
+        chown $uid, $gid, "$varFilePath/calls.txt";
+        }        
+      }
+    }
+  }
 
 ##################### MAIN ##################
 print  formatedNow() . basename( $scriptPath ) . " Die Datei $scriptFile liegt im Verzeichnis $scriptDir.\n";
@@ -483,16 +592,36 @@ my $webServerPath = "$scriptDir/ui";
 
 my %tmpHash=read_fileItem dirname($scriptDir) . "/INFO", "dsmappname";
 $dsmappname=$tmpHash{dsmappname}; # e.g. "SYNO.SDS._ThirdParty.App.callmonitor", required for synodsmnotify command
+=pod
+# my $lngUser = "";
+# $lngUser = $ENV{SYNOPKG_DSM_LANGUAGE}; # not global DSM language but actual user language! Never 'def'
+  # SYNOPKG_DSM_LANGUAGE is not set if executed from shell
+my $langFile="$webServerPath/texts/enu/lang.txt"; # here use always Englisch! 
+open my $info, $langFile or print "Could not open $langFile: $!\n";
+while( my $line = <$info>)  {   
+  chomp($line);
+  if ( !($line =~ /^#/ ) ) {
+    my($key, $val) = split(/=/, $line);
+    $line =~ s/\n$//;
+    $val =~ s/^"(.*)"$/$1/;
+    print "  key='$key', val='$val'\n";
+    $langTxts{$key}=$val;
+    }
+  }
+close $info;
+print "Example from langFile: noInCall=$langTxts{noInCall}\n";
+=cut
 
 print "read_fileItem($cfgFilePathName)...\n";
 %cfgHashs=read_fileItem "$cfgFilePathName"; # read all items
-# $cfgHashs{CCU_PW} and $cfgHashs{DAV_PW} should be set to "*****" in the config file, real PW is in var/pw file (roor only access)
+print "... LogLevel is $cfgHashs{LOGLEVEL}\n";
+# $cfgHashs{CCU_PW} and $cfgHashs{DAV_PW} should be set to "*****" in the config file, real PW is in var/pw file (root only access)
 %tmpHash=read_fileItem "$varFilePath/pw";
 %cfgHashs = (%cfgHashs, %tmpHash);
 
-$country = $cfgHashs{COUNTRYCODE};
+$country = $cfgHashs{COUNTRYCODE}; # e.g. 0049 for Germany
 $country =~ s/^\s*(.*?)\s*$/$1/; # trim
-$areaCode=$cfgHashs{AREACODE};
+$areaCode=$cfgHashs{AREACODE}; # e.g. 089 for Munich
 $areaCode =~ s/^\s*(.*?)\s*$/$1/; # trim
 
 if ( ! exists $cfgHashs{IP_FRITZBOX} ) {
@@ -533,6 +662,7 @@ my $msgTbRead="";
 
 if ($cfgHashs{"TELBOOK_TXT"} ne "") { # Attention: In bash -ne is numerical compare, in Perl ne is string compare!
   if (-e $cfgHashs{"TELBOOK_TXT"}) {  # Textfile
+    print "Scanning TELBOOK_TXT = $cfgHashs{'TELBOOK_TXT'}...\n";
     &read_txt_telBook($cfgHashs{"TELBOOK_TXT"}, $cfgHashs{"BOOKNAME_TXT"});
     }
   else {
@@ -542,6 +672,12 @@ if ($cfgHashs{"TELBOOK_TXT"} ne "") { # Attention: In bash -ne is numerical comp
 else {
   print "No TELBOOK_TXT defined\n";
   }
+if (($cfgHashs{AREABOOK_TXT} ne "") && (-e $cfgHashs{AREABOOK_TXT})) {  # Textfile
+  &read_txt_telBook($cfgHashs{AREABOOK_TXT}, $cfgHashs{BOOKNAME_AREA});
+  }
+else {
+  print "File '$cfgHashs{AREABOOK_TXT}' is missing\n";
+  }  
 my $telCnt0=keys %telBook;
 print "TXT telCnt=$telCnt0\nGoing to read XML files...\n";
 if ($#ARGV >= 0) {
@@ -549,7 +685,7 @@ if ($#ARGV >= 0) {
     $msgTbRead="Restarted! ";    
     }
   }
-$msgTbRead="${msgTbRead}Read $telCnt0 entries from TEXT-Book";
+$msgTbRead="${msgTbRead}Read $telCnt0 entries from TEXT-Books";
 my $cnt=0; #
 my $idx=0;
 while (1) { # Read the files with names TELBOOK_XML1, TELBOOK_XML2, ...
@@ -644,26 +780,35 @@ system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgNa
 =cut
 
 $SIG{TERM} = sub { die "Caught a sigterm, probably from start-stop-status.\n  $!" };
-
 # zu Testzwecken kann mit Parametern aufgerufen werden:
 while ($#ARGV > -1) {
   my $item = shift @ARGV;
   print "$item\n";
-  if ( lc($item) eq "dump" ) {
+  if ( lc($item) eq "dump" ) { #### dump: print all phonebook entries before waiting for calls
     # print "$_ $telBook{$_}\n" for (keys %telBook);
     foreach my $key (keys %telBook) {
-      my ($name, $book, $raw)= @{$telBook{$key}};
-      print "$key ($raw) $book $name\n";
+      my ($name, $book, $raw, $url)= @{$telBook{$key}};
+      print "$key ($raw) $book $name $url\n";
       }
     }
-  elsif ( length($item) == 2) {
+  elsif ( length($item) == 2) { #### e.g "22" should be expanded to "*622"
     my $ns = expandNebenstelle($item);
     print "$item => $ns\n";
     }
-  elsif (( $item =~ /^\d+$/ ) or ($item =~ /^\*\*.*/)) {
+  elsif (( $item =~ /^\d+$/ ) or ($item =~ /^\*\*.*/)) {  #### show phonebook entry for given number
     # print "Number $item: ";
     my ($externalName, $book, $numberFormated)=number2nameBook($item);
     print "$numberFormated $externalName ($book)\n";
+    }
+  elsif ( $item =~ /^RING/ ) {  #### generate debug call list entry for given number
+    my $extNum="0049892345678";
+    if ($#ARGV > -1) {
+      $extNum = shift @ARGV;
+      }
+    my ($externalName, $book, $numberFormated, $url)=number2nameBook($extNum);
+    print "Debug RING $extNum: $externalName, $book, $numberFormated, $url\n";
+    my $extName = insertUrl2extName($externalName, $url);
+    makeCallListEntry ("RING", strftime("%F %T: ", localtime time), $extNum, $extName, $book, $lineNames[0], "**611", "");
     }
   else {
     print "wrong Parameter '$item', either 'dump', a pure interger number or no parameter are allowed!\n";
@@ -685,17 +830,19 @@ my @what;               # $C[1] RING, CALL, CONNECT, DISCONNECT
 my @SIP_INorOUT_Call;   # active call, IN=eingehend, OUT= ausgehend
 my @externalNames;      # "Unknown" oder Name aus Telefonbuch
 my @externalNumbers;    # $C[3] Anrufernummer
+my @externalURLs;
 my @ownLineNumberNames;
 my @phonebookNames;
 print  formatedNow() . basename( $scriptPath ) . ": Waiting for calls ...\n";
 doExecLog(5, "Waiting for calls ...");
-
 while(<$sock>) { #warten auf aktiven Anruf#
 
   #Rückgabewerte des Internen Fritzbox Anrufmonitor
   # $C[0] = Datum
   # $C[1] = RING, CALL, CONNECT, DISCONNECT
-  # $C[2] = ConnectionID 
+  # $C[2] = ConnectionID
+  # $C[3] = from
+  # $C[4] = via or to
   chomp;  # avoid \n on last field
   my @C = split(/;/);
   for my $i (0 .. $#C) {
@@ -712,7 +859,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
     my $idxLine = getLineNumberIdx($ownLineNumber, $C[1]); # scan @ownLineNumbers
     # $C[5] = SIP-Account
     #Prüfen ob Rufnummer im Telefonbuch vorhanden ist:
-    my ($externalName, $book, $numberFormated)=number2nameBook($externalNumber);
+    my ($externalName, $book, $numberFormated, $url)=number2nameBook($externalNumber);
     print "RING C[3]=$externalNumber ($numberFormated, $externalName) bei C[4]=Line=$C[4], C[5]=$C[5] (conID C[2]=$C[2])\n";
     if ( $idxLine >= 0) {
       $what[$idxLine]=$C[1]; # RING
@@ -720,6 +867,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
       $timestamps[$idxLine] = $C[0]; 
       $SIP_ConID[$idxLine] = $C[2]; # ConnectionID
       $externalNames[$idxLine] = $externalName;
+      $externalURLs[$idxLine] = $url;
       $phonebookNames[$idxLine]=$book;
       $NebenstelleNrName[$idxLine]=""; # noch unbekannt
       $externalNumbers[$idxLine] = $externalNumber; # $C[3] Externe Anrufer-Nummer # e.g. 9876543#
@@ -749,8 +897,8 @@ while(<$sock>) { #warten auf aktiven Anruf#
     # $C[5] = Angerufene externe Rufnummer
 
     my $externalNumber=$C[5];
-    my ($externalName, $book, $numberFormated)=number2nameBook($externalNumber);
-    my $Nebenstelle=expandNebenstelle($C[3]);
+    my ($externalName, $book, $numberFormated, $url)=number2nameBook($externalNumber);
+    my $Nebenstelle=expandNebenstelle($C[3]); # Nr. (z.B. $C[3]=23 (statt **623)) oder Name (z.B. Flur)
     my $idxLine = getLineNumberIdx($C[4], $C[1]);
     if ( $idxLine >= 0) {
       $what[$idxLine]=$C[1]; # CALL
@@ -758,6 +906,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
       $timestamps[$idxLine] = $C[0]; 
       $SIP_ConID[$idxLine] = $C[2]; # ConnectionID
       $externalNames[$idxLine] = $externalName;
+      $externalURLs[$idxLine] = $url;
       $phonebookNames[$idxLine] = $book;
       $externalNumbers[$idxLine] = $externalNumber;
       if ($numberFormated ne "") {
@@ -765,7 +914,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
         }
       #Prüfen ob eigene Nebenstelle im Telefonbuch vorhanden ist
       $NebenstelleNrName[$idxLine] = expandNebenstelle($C[3]); # Nr. (z.B. 11) oder Name (z.B. Flur)
-      doExecLog(6, "CALL mit NS $C[3]=$NebenstelleNrName[$idxLine]");
+      doExecLog(3, "CALL mit NS $C[3]=$NebenstelleNrName[$idxLine]");
       $ownLineNumberNames[$idxLine]=$C[4];
       if ( $idxLine <= $#lineNames) {
         $ownLineNumberNames[$idxLine]=$lineNames[$idxLine]; 
@@ -834,40 +983,12 @@ while(<$sock>) { #warten auf aktiven Anruf#
           $dir='failed';
           }
         }  
-      my $extNum = $externalNumbers[$idxLine];
-      $extNum =~ s/#$//; # remove trailing #, which is send from FB for outgoing calls
-      # $NebenstelleNrName[$idxLine] # Nr oder Name
-      my $txtLine="$dir;$timestamps[$idxLine];$extNum;$externalNames[$idxLine];$phonebookNames[$idxLine];$ownLineNumberNames[$idxLine];$NebenstelleNrName[$idxLine];$timestring\n";      
-      print "$txtLine";
-      print "CALL_OUT_NOCONNECT=$cfgHashs{CALL_OUT_NOCONNECT}\n";
-      doExecLog(7, "CALL_OUT_NOCONNECT=$cfgHashs{CALL_OUT_NOCONNECT}");
-      if (("$dir" eq "failed") && ($cfgHashs{CALL_OUT_NOCONNECT} eq "false")) {
-        print "CALL without CONNECT skipped\n";
-        }
-      else {
-        my $new=0;
-        if ( -e "$varFilePath/calls.txt") { # append
-          open(FILE, ">>", "$varFilePath/calls.txt"); # write the data of the call to the 'permanent' file
-          }
-        else { # create
-          $new=1;
-          open(FILE, ">", "$varFilePath/calls.txt");
-          }  
-        print FILE $txtLine;
-        close(FILE);
-        if ($new) { # change the owner and permission of the new file:
-          chmod 0744, "$varFilePath/calls.txt";
-          my $uid   = getpwnam($pkgName);
-          my $gid   = getgrnam($pkgName);
-          print ("uid:gid of $pkgName: $uid:$gid");
-          if (($uid != 0) && ($gid != 0)) {
-            chown $uid, $gid, "$varFilePath/calls.txt";
-            }        
-          }
-        }
+      my $extName= insertUrl2extName($externalNames[$idxLine], $externalURLs[$idxLine]);
+      makeCallListEntry ($dir, $timestamps[$idxLine], $externalNumbers[$idxLine], $extName, $phonebookNames[$idxLine], $ownLineNumberNames[$idxLine], $NebenstelleNrName[$idxLine], $timestring);
       #clean up:
       $SIP_ConID[$idxLine]="";
       $externalNumbers[$idxLine]="";
+      $externalURLs[$idxLine]="";
       $NebenstelleNrName[$idxLine]="";
       $SIP_INorOUT_Call[$idxLine]="";
       } # ConnectionID war OK
@@ -881,7 +1002,8 @@ while(<$sock>) { #warten auf aktiven Anruf#
       if ($SIP_ConID[$i] ne "") {
         my $lineNr1= 1 + $i;
         $n++;
-        my $lineTxt="$SIP_INorOUT_Call[$i];$C[0];$externalNumbers[$i];$externalNames[$i];$phonebookNames[$i];$ownLineNumberNames[$i];$NebenstelleNrName[$i];\n"; # no duration
+        my $extName = insertUrl2extName($externalNames[$i], $externalURLs[$i]);
+        my $lineTxt="$SIP_INorOUT_Call[$i];$C[0];$externalNumbers[$i];$extName;$phonebookNames[$i];$ownLineNumberNames[$i];$NebenstelleNrName[$i];\n"; # no duration
         $txtlines="$txtlines$lineTxt"; 
         print("Line $lineNr1 is busy: $lineTxt\n");
         }
@@ -899,7 +1021,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
       print "No actual active calls";
       }
     else {
-      doExecLog(8, "Due to LOGLEVEL >= 8 file /dev/shm/callmonitor.Actual not truncated to zero");
+      doExecLog(8, "Due to LOGLEVEL >= 8 file /dev/shm/callmonitor. Actual not truncated to zero");
       }  
     }
   else {  
@@ -920,6 +1042,15 @@ while(<$sock>) { #warten auf aktiven Anruf#
     print "$n actual active calls put to /dev/shm/callmonitor.Actual\n";
     }  
   } # while(<$sock>) Endless loop
+
+
+sub insertUrl2extName {
+  my ($name, $url) = @_;
+  if (($url eq "") || index($name, "Unknown") > -1) {
+    return $name;
+    }
+  return "<a target='_blank' href='" . $url . "'>" . $name . "</a>"; # Add Homepage-URL to Name
+  }
 
 
 sub sendToCcu {

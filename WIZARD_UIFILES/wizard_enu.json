@@ -42,7 +42,13 @@
         }
        }
       }
-     ,{
+     ]
+    }  
+   ,{
+    "type": "textfield"
+    ,"desc":"For the extension of phonebook entries without area code or without country code:"
+    ,"subitems": [
+     {
       "key": "config_COUNTRYCODE"
       ,"desc": "Own Country Code"
       ,"width": "150"
@@ -371,7 +377,27 @@
     }
    ,{
     "type": "textfield",
-    "desc": "Additional text file as telephone book with &lt;Nummer&gt;:&lt;Name&gt;<br>E.g. also substation names can put to that file, e.g. '**621:Home office' and '**622:Living room'",
+    "desc": "An additional text file with &lt;Nummer&gt;*:&lt;Name&gt; is intended for area & country codes. That will be displayed as 'Unknown from ...' for numbers not in the other books.<br>The predefined file with country codes the area codes og German Cities may be replaced.",
+    "subitems": [
+     {
+      "key": "config_AREABOOK_TXT"
+      ,"desc": "Vorwahlenbuch"
+      ,"width": "350"
+      ,"defaultValue": "@AREABOOK_TXT@"
+      ,"emptyText": "/volume1/aaa/bbb/ddd.txt"
+      }
+     ,{
+      "key": "config_BOOKNAME_AREA"
+      ,"desc": "Name Vorwahlenbuch"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_AREA@"
+      ,"emptyText": " (optional), e.g. /var/packages/callmonitor/target/countriesAndGermanCities.txt"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Additional text file as telephone book with &lt;Nummer&gt;:&lt;Name&gt;<br>E.g. also substation names can put to that file, e.g. '**621:Home office' and '**622:Living room'. Hint: For the answering machine there is an offset of 40: E.g. if you use **601 for listening, the FB gives an **641",
     "subitems": [
      {
       "key": "config_TELBOOK_TXT"
@@ -388,6 +414,19 @@
       ,"emptyText": " (optional)"
       }
      ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Invers search link for unknown numbers<br>The place holder <SPAN STYLE=\"font-family:'Courier New'\">{number}</SPAN> will be replaced by the actual number",
+    "subitems": [
+      {
+      "key": "config_INVERS_URL"
+      ,"desc": "Invers search url:"
+      ,"width": "350"
+      ,"defaultValue": "@INVERS_URL@"
+      ,"emptyText": "(optional), z.B. https://www.google.com/search?q=Phone+{number}"
+      }
+      ]
     }
    ,{
     "type" : "multiselect",
@@ -415,7 +454,7 @@
     }
    ,{
     "type": "textfield",
-    "desc": "<strong>Logging</strong><br>The size of that log files is automatically limitted. If the given size is reached, the 'log rotation' (copy to compressed file and delete old if more that 4 files) is done.",
+    "desc": "Hint: Due to unknown reason sometimes &quot;Unavailable&quot; is shown instead of the message! Sorry!<br><br><strong>Logging</strong><br>The size of that log files is automatically limitted. If the given size is reached, the 'log rotation' (copy to compressed file and delete old if more that 4 files) is done.",
     "subitems": [
      {
       "key": "config_LOG_MAX_SIZE"
@@ -562,10 +601,10 @@
       }
      ,{
       "key": "config_BACKGROUND_COLOR"
-      ,"desc": "Background color"
+      ,"desc": "Background color rrggbb"
       ,"width": "200"
       ,"defaultValue": "@BACKGROUND_COLOR@"
-      ,"emptyText": "D5D5D5"
+      ,"emptyText": "E5E5E5"
       ,"validator": { 
        "allowBlank": false
        ,"regex": {

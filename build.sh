@@ -6,7 +6,7 @@
 checkCoding() {
   for f in "${1}"*; do
     if [[ -d "$f" ]]; then
-      checkCoding "${f}/"
+      checkCoding "${f}/" # recursive do sub directory
     else
       res=$(file -b "$f")
       ret=$?

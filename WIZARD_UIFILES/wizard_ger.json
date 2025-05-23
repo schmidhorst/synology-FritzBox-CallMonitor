@@ -42,7 +42,13 @@
         }
        }
       }
-     ,{
+     ]
+    }  
+   ,{
+    "type": "textfield"
+    ,"desc":"Zur Ergänzung von Nummern im Telefonbuch ohne eigene Orts- oder Landesvorwahl:"
+    ,"subitems": [
+     {
       "key": "config_COUNTRYCODE"
       ,"desc": "Eigene Landesvorwahl"
       ,"width": "150"
@@ -182,7 +188,7 @@
     }
    ,{
     "type": "textfield",
-    "desc": "<strong>Telefonbücher</strong><br>Aus welchen Dateien und URLs sollen die Nummern der Anrufer zu Anrufernamen aufgelöst werden?<br>Zu jedem Telefonbuch kann ein Name (z.B. Privat, Spam, ...) angegeben werden, der dann mit angezeit wird.<br>CardDAV-Telefonbücher, z.B. DSM-Kontakte",
+    "desc": "<strong>Telefonbücher</strong><br>Aus welchen Dateien und URLs sollen die Nummern der Anrufer zu Anrufernamen aufgelöst werden? Zu jedem Telefonbuch kann ein Name (z.B. Privat, Spam, ...) angegeben werden, der dann mit angezeigt wird.<br>CardDAV-Telefonbücher, z.B. Synology-DSM-Kontakte",
     "subitems": [
      {
       "key": "config_TELBOOK_DAV1"
@@ -323,7 +329,7 @@
     }
    ,{
     "type": "textfield",
-    "desc": "Aus welchen XML-Dateien (FritzBox-Telefonbuch-Export) sollen Anrufernamen abgerufen werden?",
+    "desc": "Aus welchen XML-Dateien (FritzBox-Telefonbuch-Export) sollen Anrufernamen abgerufen werden?<br>Empfehlung: DSM-Kontakte via CardDAV ins Fritzbox-Telefonbuch synchronisieren und garkeine XML-Dateien verwenden.",
     "subitems": [
      {
       "key": "config_TELBOOK_XML1"
@@ -371,7 +377,27 @@
     }
    ,{
     "type": "textfield",
-    "desc": "Zusätzliche Text-Datei als Telefonbuch mit &lt;Nummer&gt;:&lt;Name&gt;<br>Zus. können Nebenstelle-Namen in die Datei eingetragen werden, z.B. **621:Arbeitszimmer",
+    "desc": "Eine zusätzliche Text-Datei als Telefonbuch mit &lt;Nummer&gt;*:&lt;Name&gt; für Vorwahlen kann verwendet werden, um dies als 'Unbekannt aus ...' bei Nummern anzuzeigen, die in keinem anderen Buch sind.<br>Die vordefinierte Datei enthält Landesvorwahlen und die Vorwahlen deutscher Städte (z.B. 004989*:München)",
+    "subitems": [
+     {
+      "key": "config_AREABOOK_TXT"
+      ,"desc": "Vorwahlenbuch"
+      ,"width": "350"
+      ,"defaultValue": "@AREABOOK_TXT@"
+      ,"emptyText": "/volume1/aaa/bbb/ddd.txt"
+      }
+     ,{
+      "key": "config_BOOKNAME_AREA"
+      ,"desc": "Name Vorwahlenbuch"
+      ,"width": "350"
+      ,"defaultValue": "@BOOKNAME_AREA@"
+      ,"emptyText": " (optional), z.B. /var/packages/callmonitor/target/countriesAndGermanCities.txt"
+      }
+     ]
+    }
+   ,{
+    "type": "textfield",
+    "desc": "Zusätzliche Text-Datei als Telefonbuch mit &lt;Nummer&gt;:&lt;Name&gt;<br>Zus. können Nebenstelle-Namen in die Datei eingetragen werden, z.B. **621:Arbeitszimmer. Bei Anrufbeantwortern gibt es einen Offset von 40: Z.B. für einen AB, der mit **601 abgehört werden kann, meldet die FB die Nummer **641 beim darauf eingehenden Anruf",
     "subitems": [
      {
       "key": "config_TELBOOK_TXT"
@@ -389,6 +415,22 @@
       }
      ]
     }
+
+   ,{
+    "type": "textfield",
+    "desc": "Invers-Such-Link für unbekannte Nummern<br>Der Platzhalter <SPAN STYLE=\"font-family:'Courier New'\">{number}</SPAN> wird durch die aktuelle Nummer ersetzt.<br>Beispiele, welche funktionieren sollten:<br>https://www.tellows.de/num/{number}<br>https://www.google.com/search?q=Telefon+{nummer}",
+    "subitems": [
+      {
+      "key": "config_INVERS_URL"
+      ,"desc": "Invers-Such-Url:"
+      ,"width": "350"
+      ,"defaultValue": "@INVERS_URL@"
+      ,"emptyText": "(optional), z.B. https://www.tellows.de/num/{number}"
+      }
+      ]
+    }
+  
+
    ,{
     "type" : "multiselect",
     "desc" : "<strong>Anruf-Liste</strong><br>Es wird eine per Webseite abrufbare Liste der Anrufe erstellt: Eingehend angenommen, Eingehend verpasst, Ausgehend. Sollen auch ausgehende Versuche, bei denen keine Verbindung zustandekommt, gelistet werden?",
@@ -415,7 +457,7 @@
     }
    ,{
     "type": "textfield",
-    "desc": "<strong>Logging</strong><br>Die Größe der Log-Datei und der Anruferliste wird begrenzt. Wenn die angegebene Größe erreicht ist, dann wird die 'log rotation' ausgeführt. Logdaten werden komprimiert und alte gelöscht, falls mehr als 4 Dateien da sind.",
+    "desc": "Hinweis: Aus noch ungeklärten Gründen wird statt der Meldung manchmal &quot;Nicht verfügbar&quot; angezeigt! Entschuldigung!<br><br><strong>Logging</strong><br>Die Größe der Log-Datei und der Anruferliste wird begrenzt. Wenn die angegebene Größe erreicht ist, dann wird die 'log rotation' ausgeführt. Logdaten werden komprimiert und alte gelöscht, falls mehr als 4 Dateien da sind.",
     "subitems": [
      {
       "key": "config_LOG_MAX_SIZE"
@@ -562,10 +604,10 @@
       }
      ,{
       "key": "config_BACKGROUND_COLOR"
-      ,"desc": "Hintergrundfarbe"
+      ,"desc": "Hintergrundfarbe RRGGBB"
       ,"width": "200"
       ,"defaultValue": "@BACKGROUND_COLOR@"
-      ,"emptyText": "D5D5D5"
+      ,"emptyText": "E5E5E5"
       ,"validator": { 
        "allowBlank": false
        ,"regex": {

@@ -177,6 +177,7 @@ fi
 app_temp="${app_home}/temp" # /volume*/@appstore/${app_name}/ui/temp
 #  or /volume*/@apptemp/$app_name ??
 if [ ! -d "${app_temp}" ]; then
+  # shellcheck disable=SC2174
   mkdir -p -m 755 "${app_temp}"
 fi
 # result="${app_temp}/result.txt"
@@ -454,8 +455,7 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
             logTotalSize=$((logTotalSize + filesize_Bytes))
             logInfoNoEcho 8 "Found ${logfile} with $filesize_Bytes Bytes"
             if [[ logTotalSize -lt 10 ]]; then
-              msg=$(echo "$execLogNA<br>$logfile")
-              echo "<tr><td>$msg</td></tr>"
+              echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA<br>$logfile</td></tr>"
             else
               # from cgi_hlp.sh:
               logfileOutput "$logfile"
@@ -463,8 +463,7 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
           else
             logInfoNoEcho 1 "'$logfile' not found!"
             logInfoNoEcho 8 "execLogNA='$execLogNA'"
-            msg=$(echo "$execLogNA")
-            echo "<tr><td>$msg</td></tr>"
+            echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA</td></tr>"
           fi # if [[ -f "$logfile" ]] else
         else
           # Infotext: Access allowed only for users from the Administrators group
@@ -489,7 +488,7 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
         # also inside the <form ...> to have it in the same row:
         echo "<input type='submit' value='Submit'>&nbsp;&nbsp;&nbsp;"
         echo "<button onclick=\"location.href='index.cgi?action=reloadSimpleLog'\" type=\"button\">${btnRefresh}</button> "
-        if [[ filesize_Bytes -gt 10 ]]; then
+        if [[ $filesize_Bytes -gt 10 ]]; then
           echo "<button onclick=\"location.href='index.cgi?action=downloadSimpleLog'\" type=\"button\">${btnDownload}</button> "
           echo "<button onclick=\"location.href='index.cgi?action=delSimpleLog'\" type=\"button\">${btnDelLog}</button> "
         fi # if [[ filesize_Bytes -gt 10 ]]

@@ -20,6 +20,15 @@ logInfo 6 "postuninst V$SYNOPKG_PKGVER started as $user..."
 # Attention: If a new version is installed, then this file from the old version
 #   is executed before the preinst of the new version!
 msgui="V$SYNOPKG_PKGVER, post-uninstall "
+cnt=$(grep -c "$SYNOPKG_PKGNAME/scripts/start-stop-status" /etc/crontab)
+if [[ "$cnt" -gt "0" ]]; then
+  sed -i "\#$SYNOPKG_PKGNAME/scripts/start-stop-status#d" /etc/crontab
+  systemctl reload crond
+  logInfo 6 "crond removed"
+else
+  logInfo 7 "crond entry for restart was not found"
+fi
+
 # shellcheck disable=2154
 # shellcheck disable=SC2154
 if [[ "${config_remove_settings}" == "true" ]] || [[ "${config_remove_settings}" == "false" ]]; then

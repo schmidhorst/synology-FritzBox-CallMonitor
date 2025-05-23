@@ -219,6 +219,7 @@ if [[ "$bDebug" -eq 1 ]]; then
 fi
 callsFile="$appCfgDataPath/calls.txt"
 
+# script to scroll to bottom of list:
 myScript="<script>
  function setBoxHeight() { var h0=window.innerHeight; var o1=document.getElementById('mybox'); var h1=o1.style.height; var t1=o1.getBoundingClientRect().top; h2=h0 - t1- 55; o1.style.height = h2+'px'; }"
 if [[ -n "${get[action]}" ]]; then
@@ -275,6 +276,7 @@ if [[ -n "${get[action]}" ]]; then
   fi
 
   if [[ "$val" == "downloadSimpleLog" ]] || [[ "$val" == "downloadDetailLog" ]]; then
+    # shellcheck disable=SC2154
     logInfoNoEcho 4 "Download content of '$logfile' requested, disposition='$disposition'"
     echo "Content-type: text/plain; charset=utf-8"
     echo "Content-Disposition: attachment; filename=$(basename "$logfile").txt"
@@ -399,6 +401,8 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
   cnt0=0 # Anrufe insges.
   if [[ -r "$callsFile" ]] || [ -r "${callsFile}.1" ]; then
     logInfoNoEcho 7 "Calls file $callsFile found"
+    # shellcheck disable=SC2154
+    logInfoNoEcho 7 "Lng-Specific 'unknown' (from lang.txt) is '$unknown'"
     # linkedFileSize "${callsFile}" # variable filesize_Bytes is set
     # logInfoNoEcho 8 "Found ${callsFile} with $filesize_Bytes Bytes"
     filesArray=("${callsFile}.1" "$callsFile" "/dev/shm/$app_name.Actual")
@@ -417,7 +421,19 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
           # a=($(echo "$line" | tr ';' '\n'))
           mapfile -d ';' -t a <<< "$line"
           logInfoNoEcho 7 "found a[0]='${a[0],,}', requested which='${which,,}'"
-          if [[ "${a[0],,}" == "${which,,}" ]] || [[ "${which,,}" == "all" ]]; then
+          if [[ "${a[0],,}" == "${which,,}" ]] || [[ "${which,,}" == "all" ]]; then # filter the requeted typ (IN, OUT, ...) of lines
+            if [[ -n "$INVERS_URL" ]] && [[ "${a[3]}" =~ "Unknown".* ]] && [[ ! "${a[3]}" =~ "<a href".* ]];then 
+              # Number is not in phonebook and no Homepage-URL: add revese lookup url
+              # logInfoNoEcho 7 "'unknown' number ${a[2]} detected, invUrl is '$INVERS_URL'"
+              url=$(echo "$INVERS_URL" | sed ~s/\{number\}/"${a[2]// /}"/) # replace placeholder by number, where all spaces are removed
+              if [[ "${a[3]}" =~ "Unknown from" ]];then # Translate to the language prefered by browser
+                a[3]=${a[3]/Unknown from/"$unknownFrom"}
+              else
+                a[3]=${a[3]/Unknown/"$unknown"}
+              fi
+              a[3]="<a target='_blank' href='$url'>${a[3]}</a>"
+              # logInfoNoEcho 7 "name with url is '${a[3]}'" 
+            fi
             whichLower=${a[0],,} 
             ((cnt1++))
             printf "<tr><td ${COLW[0]}><img src='%s', width='%s', height='%s'></td>" "images/${whichLower}Call.png" "$SIZE_ICON" "$SIZE_ICON"
@@ -442,7 +458,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
   if [[ "$cnt1" -eq "0" ]]; then
     noCall="no${wh1}Call"
     logInfoNoEcho 5 "${noCall}=${!noCall}"
-    echo "<td colspan='7'>${!noCall}</td>" # fetch e.g. $noInCall from lang.txt
+    echo "<td colspan='8'>${!noCall}</td>" # fetch e.g. $noInCall from lang.txt
   else
     logInfoNoEcho 8 "$cnt1 Entries from $cnt0 total added"
   fi

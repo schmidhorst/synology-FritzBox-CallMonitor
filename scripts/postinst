@@ -19,7 +19,7 @@ items="$(env | grep "^config_")"
 if [[ -z "$items" ]]; then
   logError "Somthing went wrong with the Synology Installation Wizzard: The values from the keys from the file wizard_xxx.json have not been stored to the environment!"
   logError "$(env)"
-  keys="config_TELBOOK_WHICH config_IP_FRITZBOX config_NOTIFY_USERS config_SYSLOG_INT config_SYSLOG_PORT config_LOGCENTER config_IP_CCU config_LOGLEVEL config_CCU_PW config_SYSLOG_UDP config_LOG_MAX_SIZE config_CALL_MAX_SIZE config_LOGFACILITY config_CCU_SYSVARS config_SIPLINE_NUMBERS config_CCU_USER config_SIPLINE_NAMES"
+  keys="config_IP_FRITZBOX config_NOTIFY_USERS config_SYSLOG_INT config_SYSLOG_PORT config_LOGCENTER config_IP_CCU config_LOGLEVEL config_CCU_PW config_SYSLOG_UDP config_LOG_MAX_SIZE config_CALL_MAX_SIZE config_LOGFACILITY config_CCU_SYSVARS config_SIPLINE_NUMBERS config_CCU_USER config_SIPLINE_NAMES"
   mapfile -d " " -t itemArray < <(/bin/printf '%s' "$keys")
   exit 1 # continuation would lead to corrupted config file
 else

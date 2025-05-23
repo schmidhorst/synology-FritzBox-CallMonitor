@@ -210,66 +210,73 @@ case $1 in
     storePW "DAV_PW"
     storePW "CCU_PW"
 
-    # check phonebook paths valid and existing:
-    filePhonebookNotFound=""
-    phonetxt=$(grep "^TELBOOK_TXT=" "$appData/config")
-    phonetxt=${phonetxt#TELBOOK_TXT=}
-    phonetxt=${phonetxt//\"/}
-    if [[ -n "$phonetxt" ]]; then
-      # auf möglicherweise fehlendes /volume1 hinweisen:
-      volMissing=""
-      if [[ ! "$phonetxt" =~ "/volume"* ]]; then
-        volMissing="('/volume1' seems to be missing?) "
-      fi
-      if [[ ! -f "$phonetxt" ]]; then
-        ((error += 1))
-        echo "File '$phonetxt' is not available! Fix it ${volMissing}or Re-run the installation!"
-        getLngText "filePhonebookTxt"
-        if [ "$user" != "root" ]; then
-          getLngText "filePhonebookNotFound" # ="May be o.k. after copying the privilege file and running as root."
-        fi
-        if [[ -w "$SYNOPKG_TEMP_LOGFILE" ]]; then # $SYNOPKG_TEMP_LOGFILE is not available during cron restart
-          # shellcheck disable=SC2154
-          echo "${msgLineSep}${filePhonebookTxt}${volMissing}${filePhonebookNotFound}" >> "$SYNOPKG_TEMP_LOGFILE"          
-          msgLineSep="<br><br>"
-        fi  
-      fi
-    fi
-    idx=0
-    while true;do
-      ((idx++))
-      phx="TELBOOK_XML$idx"
-      phonexml=$(grep "^${phx}=" "$appData/config")
-      if [[ -z $phonexml ]]; then
-        break # e.g. no line TELBOOK_XML4=...
-      fi
-      phonexml=${phonexml#*=} # filename
-      phonexml=${phonexml//\"/} # remove quotes
-      echo "Checking existance of XML-Phonebook $phx=$phonexml"
-      if [[ -n "$phonexml" ]]; then
-        volMissing=""
-        if [[ ! "$phonetxt" =~ "/volume"* ]]; then
-          getLngText volMissing
-        fi
-        if [[ ! -f "$phonexml" ]]; then
-          ((error += 1))
-          if [ "$user" != "root" ]; then
-            getLngText "filePhonebookNotFound" # ="May be o.k. after copying the privilege file and running as root."
-          fi
-          echo "File '$phonexml' is not available or not accessable! Fix it or Re-run the installation! ${volMissing}"
-          if [[ -w "$SYNOPKG_TEMP_LOGFILE" ]]; then # $SYNOPKG_TEMP_LOGFILE is not available during cron restart
-            getLngText "filePhonebookXml"
-            # shellcheck disable=SC2154
-            echo "${msgLineSep}${filePhonebookXml}${volMissing}${filePhonebookNotFound}"
-            msgLineSep="<br><br>"
-          fi  
-        fi
-      fi # if [[ -n "$phonexml" ]];
-    done     
     if [ "$user" == "root" ]; then
+      # check phonebook paths valid and existing:
+      arr=("TELBOOK_TXT" "AREABOOK_TXT")
+      for ((i=0; i<${#arr[@]}; i+=1)); do
+        gr="^${arr[$i]}="
+        phonetxt=$(grep "$gr" "$appData/config")
+        echo "Checking phonebook $phonetxt ..."
+        phonetxt=${phonetxt#TELBOOK_TXT=}
+        phonetxt=${phonetxt#AREABOOK_TXT=}
+        phonetxt=${phonetxt//\"/}
+        if [[ -n "$phonetxt" ]]; then
+          # auf möglicherweise fehlendes /volume1 hinweisen:
+          volMissing=""
+          if [[ ! "$phonetxt" =~ "/volume"* ]] && [[ ! "$phonetxt" =~ "/var"* ]]; then
+            volMissing="('/volume1' may be missing in your path?) "
+          fi
+          if [[ ! -f "$phonetxt" ]]; then
+            ((error += 1))
+            echo "File '$phonetxt' is not available! Fix it ${volMissing}or Re-run the installation!"
+            getLngText "filePhonebookTxt"
+            if [ "$user" != "root" ]; then
+              getLngText "filePhonebookNotFound" # ="May be o.k. after copying the privilege file and running as root."
+            fi
+            if [[ -w "$SYNOPKG_TEMP_LOGFILE" ]]; then # $SYNOPKG_TEMP_LOGFILE is not available during cron restart
+              # shellcheck disable=SC2154
+              echo "${msgLineSep}${filePhonebookTxt}${volMissing}${filePhonebookNotFound}" >> "$SYNOPKG_TEMP_LOGFILE"          
+              msgLineSep="<br><br>"
+            fi  
+          fi
+        fi
+      done
+
+      idx=0
+      while true;do
+        ((idx++))
+        phx="TELBOOK_XML$idx"
+        phonexml=$(grep "^${phx}=" "$appData/config")
+        if [[ -z $phonexml ]]; then
+          break # e.g. no line TELBOOK_XML4=...
+        fi
+        phonexml=${phonexml#*=} # filename
+        phonexml=${phonexml//\"/} # remove quotes
+        echo "Checking existance of XML-Phonebook $phx=$phonexml"
+        if [[ -n "$phonexml" ]]; then
+          volMissing=""
+          if [[ ! "$phonetxt" =~ "/volume"* ]]; then
+            getLngText volMissing
+          fi
+          if [[ ! -f "$phonexml" ]]; then
+            ((error += 1))
+            if [ "$user" != "root" ]; then
+              getLngText "filePhonebookNotFound" # ="May be o.k. after copying the privilege file and running as root."
+            fi
+            echo "File '$phonexml' is not available or not accessable! Fix it or Re-run the installation! ${volMissing}"
+            if [[ -w "$SYNOPKG_TEMP_LOGFILE" ]]; then # $SYNOPKG_TEMP_LOGFILE is not available during cron restart
+              getLngText "filePhonebookXml"
+              # shellcheck disable=SC2154
+              echo "${msgLineSep}${filePhonebookXml}${volMissing}${filePhonebookNotFound}"
+              msgLineSep="<br><br>"
+            fi  
+          fi
+        fi # if [[ -n "$phonexml" ]];
+      done     
+
       cnt=$(grep -c "$SYNOPKG_PKGNAME/scripts/start-stop-status" /etc/crontab)
       if [[ "$cnt" -eq "0" ]]; then
-        echo "07 02 * * * root /var/packages/$SYNOPKG_PKGNAME/scripts/start-stop-status restart" >> /etc/crontab
+        echo -e "07\t02\t*\t*\t*\troot\t/var/packages/$SYNOPKG_PKGNAME/scripts/start-stop-status restart" >> /etc/crontab
         systemctl reload crond
         logInfo 6 "crond entry for restart every night at 02:07 created"
       else
@@ -285,6 +292,7 @@ case $1 in
       fi
 '
     fi # root
+
     if [[ "$error" -eq "0" ]]; then # e.g. a Phonebook not found: don't start!
       logInfo 7 "'start', SYNOPKG_PKGDEST='$SYNOPKG_PKGDEST'"
       cmPid=$(pidof "callmonitor.pl")
