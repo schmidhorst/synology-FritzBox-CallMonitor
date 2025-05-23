@@ -6,6 +6,8 @@ Eine Liste der Anrufe ist über Webseiten verfügbar
 Zusätzlich kann optional der Begin und das Ende jeden Anrufs an die HomeMatic SmartHome-Zentrale CCU übertragen werden.
 ## [Lizens](https://htmlpreview.github.io/?https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/package/ui/licence_ger.html)
 
+![user view](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/ScreenshotAnrufListe.png?raw=true)  
+
 ## Haftungsausschluss und Issue Tracker
 Sie benutzen alles hier auf eigenes Risiko.
 Für Probleme benutzen Sie bitte den [issue tracker](https://github.com/schmidhorst/synology-callmonitor/issues) mit deutscher oder englischer Sprache
