@@ -21,5 +21,5 @@ Für Probleme benutzen Sie bitte den [issue tracker](https://github.com/schmidho
 ## Danksagungen und Referenzen
 - Dank an [eiGelbGeek](https://homematic-forum.de/forum/viewtopic.php?t=34876) für seinen CallMonitor.
 - Dank an [toafez Tommes](https://github.com/toafez) und sein [Demo-Paket](https://github.com/toafez/DSM7DemoSPK)
-- Dank an QTip und seine Erklärung zur Integration einer Hilfe in DSM 5.1-](https://www.synology-wiki.de/index.php/Integration_einer_Hilfe_in_DSM_5.1-)
+- Dank an QTip und seine Erklärung zur [Integration einer Hilfe in DSM 5.1-](https://www.synology-wiki.de/index.php/Integration_einer_Hilfe_in_DSM_5.1-)
 
