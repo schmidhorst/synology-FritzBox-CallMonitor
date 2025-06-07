@@ -1,28 +1,16 @@
-﻿- Warum kein Leerzeichen bei unbekannten Nummern?
-- Log: Read 0 entries from TEXT-Book, 0 entries from 0 XML-Books, 357 entries from 6 CardDAV-Books, total 357 entries
 - Wenn $NOTIFY_USERS leer ist, dann system("/usr/syno/bin/synodsmnotify" ...) immer überspringen!
 
 - Zugriffsrechte für Dateien?
-  - Für /var/packages/callmonitor/var/pw Owner/Group auf root ändern
   - chmod mit -k-Option??
   - calls, log: 740 statt 744 (in start-stop-status bei logrotation create) ???
-  - ROT13 für passwörter?:
-    perl -pe 'tr/N-ZA-Mn-za-m/A-Za-z/'
-    perl -pe 'tr/A-Za-z/N-ZA-Mn-za-m/'
 - LogLevel-Einstellung zusätzlich auf Einstellungen-Seite
 - Settings SYSLOG_INT Das Paket kann den SysLog-Dienst für Fehler nutzen: true=intern, false=via UDP
   Näher beschreiben
-- Passwort-Änderungen nochmal prüfen
-- Uninstall: PW Datei löschen! Prüfen!
-
 - statt "/var/packages/callmonitor/scripts/start-stop-status restart" im cron auch ein "synopkg restart callmonitor" ?
-
 - Option für Anrufliste: Alte Anrufe nach 24h, 48h, ... löschen
 
 https://www.synology-forum.de/threads/howto-3rdparty-apps-anwendungsberechtigung-und-synotoken.33516/
-- Sonderzeichen-Kodierung CCU-SysvarNamen prüfen
 - Vom AB angenommene Anrufe:
   - In Liste verpaßte Anrufe? Oder eigene WebSeite
   - Eigenes Icon?
-
 - build.sh in WSL testen
