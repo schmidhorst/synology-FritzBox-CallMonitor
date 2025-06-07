@@ -421,18 +421,12 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
           # a=($(echo "$line" | tr ';' '\n'))
           mapfile -d ';' -t a <<< "$line"
           logInfoNoEcho 7 "found a[0]='${a[0],,}', requested which='${which,,}'"
+          # a[0]=which, a[1]=Date, a[2]=Number, a[3]=Name, a[4]=eMail, a[5]=Book, a[6]=Line, a[7]=Extension, a[8]=Duration
           if [[ "${a[0],,}" == "${which,,}" ]] || [[ "${which,,}" == "all" ]]; then # filter the requeted typ (IN, OUT, ...) of lines
-            if [[ -n "$INVERS_URL" ]] && [[ "${a[3]}" =~ "Unknown".* ]] && [[ ! "${a[3]}" =~ "<a href".* ]];then 
-              # Number is not in phonebook and no Homepage-URL: add revese lookup url
-              # logInfoNoEcho 7 "'unknown' number ${a[2]} detected, invUrl is '$INVERS_URL'"
-              url=$(echo "$INVERS_URL" | sed ~s/\{number\}/"${a[2]// /}"/) # replace placeholder by number, where all spaces are removed
-              if [[ "${a[3]}" =~ "Unknown from" ]];then # Translate to the language prefered by browser
-                a[3]=${a[3]/Unknown from/"$unknownFrom"}
-              else
-                a[3]=${a[3]/Unknown/"$unknown"}
-              fi
-              a[3]="<a target='_blank' href='$url'>${a[3]}</a>"
-              # logInfoNoEcho 7 "name with url is '${a[3]}'" 
+            if [[ "${a[3]}" =~ "Unknown from" ]];then # Translate to the language prefered by browser
+              a[3]=${a[3]/Unknown from/"$unknownFrom"}
+            else
+              a[3]=${a[3]/Unknown/"$unknown"}
             fi
             whichLower=${a[0],,} 
             ((cnt1++))

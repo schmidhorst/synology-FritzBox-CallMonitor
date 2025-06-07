@@ -1,7 +1,7 @@
 # FritzBox CallMonitor Paket für Synology NAS
 [English Version](README_E.md)
 
-Dieses Paket monitort über die FritzBox laufende Telefonanrufe 
+Dieses Paket monitort über die FritzBox laufende Telefonanrufe. 
 Eine Liste der Anrufe ist über Webseiten verfügbar.
 Zusätzlich kann optional der Begin und das Ende jeden Anrufs die Info an die [HomeMatic SmartHome-Zentrale CCU](https://homematic-ip.com/de/produkt/smart-home-zentrale-ccu3) übertragen werden. Dies kann z.B. zur optischen Anzeige von Anrufen genutzt werden. Es können verschiedene Adressbücher, z.B. die Kontakte aus der Synology via CardDAV geladen werden incl. automatischer Aktualisierung.
 ## [Lizenz](https://htmlpreview.github.io/?https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/package/ui/licence_ger.html)
@@ -9,6 +9,8 @@ Zusätzlich kann optional der Begin und das Ende jeden Anrufs die Info an die [H
 Beispiel-Anzeige:
 
 ![user view](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/ScreenshotAnrufListe.png?raw=true)  
+
+Aus CardDav werden zur Nummer neben dem Namen auch die E-Mail und geg. eine Webseiten-URL extrahiert. Entsprechende Links werden zu in die Anruferliste eingeblendet und erleichtern die Kontaktaufnahme. Wenn ein Invers-Such-URL konfiguriert ist, kann auch so eine Suche per einfachem Klick ausgeführt werden. 
 
 ## Haftungsausschluss und Issue Tracker
 Sie benutzen alles hier auf eigenes Risiko.

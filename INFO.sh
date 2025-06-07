@@ -12,7 +12,7 @@ description="Synchronize system variables of HomeMatic CCU with the Phone Line S
 description_enu="Synchronize system variables of HomeMatic CCU with the Phone Line Status from a FritzBox and generate call lists"
 description_ger="Systemvariablen der HomeMatic CCU mit dem Telefon-Leitungsstatus der FritzBox synchron halten. Und Anruflisten erzeugen."
 
-version="0.0.0-0023"
+version="0.0.1-0001"
 beta="yes"
 arch="noarch"
 os_min_ver="7.0-40000"
