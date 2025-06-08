@@ -21,7 +21,7 @@ For issues please use the [issue tracker](https://github.com/schmidhorst/synolog
 
 ## Build and Installation
 * If you want to build the package yourself from the source: Download all files. Set the file 'build' to executable and run that script to generate the *.spk file. No toolkit needed.
-* Or download the *.spk file from ["Releases"](https://github.com/schmidhorst/synology-callmonitor/releases), "Assets" to your computer.
+* Or download the *.spk file from ["Releases"](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/releases/), "Assets" to your computer.
 
 Then use "Manual Install" in the Package Center.
 
