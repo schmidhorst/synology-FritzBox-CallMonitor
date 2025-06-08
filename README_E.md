@@ -11,6 +11,7 @@ Example of an calls list:
 
 ![user view](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/ScreenshotAnrufListe.png?raw=true)  
 
+More Info is available [here](https://html-preview.github.io/?url=https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/package/ui/help/enu/index.html), in the files, which are available after the package installation in the Synology help.
 
 ## [License](https://htmlpreview.github.io/?https://github.com/schmidhorst/synology-callmonitor/blob/main/package/ui/licence_enu.html)
 
