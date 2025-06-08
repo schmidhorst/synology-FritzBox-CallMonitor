@@ -10,7 +10,7 @@ Beispiel-Anzeige:
 
 ![user view](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/ScreenshotAnrufListe.png?raw=true)  
 
-Aus CardDav werden zur Nummer neben dem Namen auch die E-Mail und geg. eine Webseiten-URL extrahiert. Entsprechende Links werden zu in die Anruferliste eingeblendet und erleichtern die Kontaktaufnahme. Wenn ein Invers-Such-URL konfiguriert ist, kann auch so eine Suche per einfachem Klick ausgeführt werden. 
+Aus CardDav werden zur Nummer neben dem Namen auch geg. die E-Mail, eine Webseiten-URL und der WhatsApp-"Chat App"-Eintrag extrahiert. Entsprechende Links werden zu in die Anruferliste eingeblendet und erleichtern die Kontaktaufnahme. Wenn ein Invers-Such-URL konfiguriert ist, kann auch so eine Suche per einfachem Klick ausgeführt werden. 
 
 ## Haftungsausschluss und Issue Tracker
 Sie benutzen alles hier auf eigenes Risiko.
