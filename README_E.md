@@ -1,11 +1,17 @@
 # Synology-FritzBox-CallMonitor
-[![de](https://flagcdn.com/w20/de.png)](https://github.com/schmidhorst/synology-callmonitor/blob/main/README.md)
+[![de](https://flagcdn.com/w20/de.png)](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/tree/main)
 
 Phone Call Monitor including HomeMatic Interface
 # FritzBox CallMonitor package for Synology NAS
 It's monitoring phone calls via the FritzBox DSL and optical fiber modems including HomeMatic Interface.
 The list of calls will be available via web pages.
 Additionally, optional beginn and end of each call is send the the HomeMatic smart home station CCU. 
+
+Example of an calls list:
+
+![user view](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/ScreenshotAnrufListe.png?raw=true)  
+
+
 ## [License](https://htmlpreview.github.io/?https://github.com/schmidhorst/synology-callmonitor/blob/main/package/ui/licence_enu.html)
 
 ## Disclaimer and Issue Tracker
