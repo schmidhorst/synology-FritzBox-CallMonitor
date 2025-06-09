@@ -37,7 +37,7 @@ PKG_DIR="$SCRIPTPATHbuild"
 cd "$PKG_DIR"
 echo "'${BASH_SOURCE[0]}' started ..."
 
-
+errCnt=0
 # non-UTF-8 files with international characters and Windows-CR-LF may cause problems.
 # Detect such files by checking all source files ...
 echo "File coding check ..."
@@ -86,7 +86,6 @@ eval "$line"
 echo "dsmuidir='$dsmuidir'"
 
 # Check for well formed JSON:
-errCnt=0
 for f1 in "package/$dsmuidir/config" "package/$dsmuidir/index.conf" "package/$dsmuidir/helptoc.conf" conf/* WIZARD_UIFILES/*.json WIZARD_UIFILES/uninstall_uifile_*
 # for f1 in package/$dsmuidir/config package/$dsmuidir/index.conf conf/* WIZARD_UIFILES/uninstall_uifile* WIZARD_UIFILES/wizard_*.json
 do

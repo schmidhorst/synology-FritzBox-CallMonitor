@@ -121,7 +121,7 @@ sub processDuplBookEntry {
 # Nummer aus Telefonbuch um Vorwahlen ergänzen
 sub addCountryArea {
   my ( $number0 ) = @_;
-  $number0 =~ s/^\s*(.*?)\s*$/$1/; # trim
+  $number0 =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
   $number0 =~ s/#$//; # remove trailing #, which FritzBox is sending
   $number0 =~ s/^\+/00/; # e.g. +49 ==> 0049
   $number0 =~ s/[ \/()-]+//g; # e.g. (089) 234-123 ==> 089234123
@@ -191,7 +191,7 @@ sub read_txt_telBook {
     chomp;
     # s/\A\N{BOM}//;
     # print("1st:" . ord(substr($_,0,1))); # 239 ???
-    s/^\s*(.*?)\s*$/$1/; # trim
+    s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
     if (($_ ne '') && (substr($_, 0, 1) ne '#')) {
       # print "line='$_'\n";
       my $line=encode('utf-8', $_); # why is this needed?
@@ -206,6 +206,7 @@ sub read_txt_telBook {
       }
     }
   close(IN);
+  doExecLog(7, "$n items read from $filePathName");
   print "$n items read from $filePathName\n";
   }
 
@@ -331,7 +332,7 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
       elsif($name ne "") { # no FN, only N
         $name =~ s/^N://;
         $name =~ s/;//g;
-        $name =~ s/^\s*(.*?)\s*$/$1/; # trim
+        $name =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
         }
       if ($name ne "") { # normaly we should have a name!
         # in case of "item1.URL" or "w5ozm8.URL" we would need to read the line "item1.X-ABLabel" or "w5ozm8.X-ABLABEL"
@@ -447,7 +448,7 @@ sub read_xml_telBook {
     my($p, $text) = @_;
     chomp($text);
     $text=encode('utf-8', $text); ## with use utf8 still required???
-    $text =~ s/^\s*(.*?)\s*$/$1/; # trim
+    $text =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
     if ($text ne "") {
       # print("txt=$text, num=$is_number, rn=$is_realName\n");
       if ($is_realName) {
@@ -456,7 +457,7 @@ sub read_xml_telBook {
         $rn=$text;
         }
       elsif ($is_number) {
-        $text =~ s/^\s*(.*?)\s*$/$1/; # trim ( s* = multiple Whitespace )
+        $text =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
         push(@numbers, $text);
         }
       }
@@ -574,7 +575,9 @@ sub getConIdx {
 
 # FritzBox liefert z.B. 22 für Nebenstelle **622, dies wird umgewandelt. Falls z.B. **621 im TB, dann wird Name zurückgegeben.
 sub expandNebenstelle {
+  chomp;
   my ($ns0) = @_;
+  $ns0 =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
   my $len=length($ns0);
   # print "expandNebenstelle '$ns0' (len=$len) ...\n";
   if ($len==1) {
@@ -593,7 +596,7 @@ sub expandNebenstelle {
     $ns0=$ns1;
     }
   else {
-    print "Ext. $ns0 could not be resolved to a name\n";
+    print "Ext. '$ns0' could not be resolved to a name\n";
     doExecLog(3, "Ext. $ns0 konnte nicht zu Namen aufgelöst werden");    
     }  
   return $ns0; # e.g. 22 ==> **622 or "Home Office"
@@ -670,7 +673,7 @@ print "... LogLevel is $cfgHashs{LOGLEVEL}\n";
 %cfgHashs = (%cfgHashs, %tmpHash);
 
 $country = $cfgHashs{COUNTRYCODE}; # e.g. 0049 for Germany
-$country =~ s/^\s*(.*?)\s*$/$1/; # trim
+$country =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
 $areaCode=$cfgHashs{AREACODE}; # e.g. 089 for Munich
 $areaCode =~ s/^\s*(.*?)\s*$/$1/; # trim
 
@@ -709,24 +712,27 @@ my @NebenstelleNrName; # if Name defined the Name, else the number
 my @zeilen;
 use IO::Socket;
 my $msgTbRead="";
-
-if ($cfgHashs{"TELBOOK_TXT"} ne "") { # Attention: In bash -ne is numerical compare, in Perl ne is string compare!
-  if (-e $cfgHashs{"TELBOOK_TXT"}) {  # Textfile
+my $fn=$cfgHashs{'TELBOOK_TXT'};
+if ($fn ne "") { # Attention: In bash -ne is numerical compare, in Perl ne is string compare!
+  if (-e $fn) {  # Textfile
     print "Scanning TELBOOK_TXT = $cfgHashs{'TELBOOK_TXT'}...\n";
-    &read_txt_telBook($cfgHashs{"TELBOOK_TXT"}, $cfgHashs{"BOOKNAME_TXT"});
+    &read_txt_telBook($fn, $cfgHashs{"BOOKNAME_TXT"});
     }
   else {
-    print "File $cfgHashs{'TELBOOK_TXT'} is missing\n";
+    doExecLog(1, "File $fn is missing or not accessible");
+    print "File $fn is missing\n";
     }  
   }
 else {
   print "No TELBOOK_TXT defined\n";
   }
-if (($cfgHashs{AREABOOK_TXT} ne "") && (-e $cfgHashs{AREABOOK_TXT})) {  # Textfile
-  &read_txt_telBook($cfgHashs{AREABOOK_TXT}, $cfgHashs{BOOKNAME_AREA});
+$fn=$cfgHashs{AREABOOK_TXT};
+if (($fn ne "") && (-e $fn)) {  # Textfile
+  &read_txt_telBook($fn, $cfgHashs{BOOKNAME_AREA});
   }
 else {
-  print "File '$cfgHashs{AREABOOK_TXT}' is missing\n";
+  doExecLog(1, "File $fn is missing or not accessible");
+  print "File '$fn' is missing or not accessible\n";
   }  
 my $telCnt0=keys %telBook;
 my $telCntW=keys %telBookWild;
@@ -817,7 +823,7 @@ doExecLog(6, "$msg");
 system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgName:app1:title1", "$pkgName:app1:msg1", "Test-Desktop-Message");
 =cut
 
-$SIG{TERM} = sub { die "Caught a sigterm, probably from start-stop-status.\n  $!" };
+$SIG{TERM} = sub { doExecLog(5, "stopped by TERM signal!"); die "Caught a sigterm, probably from start-stop-status.\n  $!" };
 # zu Testzwecken kann mit Parametern aufgerufen werden:
 while ($#ARGV > -1) {
   my $item = shift @ARGV;
@@ -1153,7 +1159,7 @@ sub sendToCcu {
 sub startScript {
   my ($idxLine, $dir, $externalNumber, $externalName, $phonebook, $ownNumber, $Nebenstelle) = @_;
   my $scriptFilePathName=$cfgHashs{"SHELL_SCRIPT"};
-  $scriptFilePathName =~ s/^\s+|\s+$//g; # trim
+  $scriptFilePathName =~ s/^\s+|\s+$//g; # trim ( \s* = multiple Whitespace )
   if ($scriptFilePathName eq "") {
     return;
     }
