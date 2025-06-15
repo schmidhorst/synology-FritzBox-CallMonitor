@@ -2,7 +2,7 @@
 [English Version](README_E.md)
 
 Dieses Paket monitort über die FritzBox laufende Telefonanrufe. 
-Eine Liste der Anrufe ist über Webseiten verfügbar.
+Eine Liste der Anrufe ist über eine Webseiten verfügbar. Beim Beginn oder Ende eines Anrufs wird die Webseite automatisch aktualisiert.
 Zusätzlich kann optional der Begin und das Ende jeden Anrufs die Info an die [HomeMatic SmartHome-Zentrale CCU](https://homematic-ip.com/de/produkt/smart-home-zentrale-ccu3) übertragen werden. Dies kann z.B. zur optischen Anzeige von Anrufen genutzt werden. Es können verschiedene Adressbücher, z.B. die Kontakte aus der Synology via CardDAV geladen werden incl. automatischer Aktualisierung.
 ## [Lizenz](https://htmlpreview.github.io/?https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/package/ui/licence_ger.html)
 
@@ -10,7 +10,7 @@ Beispiel-Anzeige:
 
 ![user view](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/ScreenshotAnrufListe.png?raw=true)  
 
-Aus CardDav werden zur Nummer neben dem Namen auch geg. die E-Mail, eine Webseiten-URL und der WhatsApp-"Chat App"-Eintrag extrahiert. Entsprechende Links werden zu in die Anruferliste eingeblendet und erleichtern die Kontaktaufnahme. Wenn ein Invers-Such-URL konfiguriert ist, kann auch so eine Suche per einfachem Klick ausgeführt werden. 
+Bevorzugte Telefonbuchquelle ist CardDAV, z.B. aus den Synology-Kontakten. Aus CardDav werden zur Nummer neben dem Namen auch geg. die E-Mail, eine Webseiten-URL und der WhatsApp-"Chat App"-Eintrag extrahiert. Entsprechende Links werden zu in die Anruferliste eingeblendet und erleichtern die Kontaktaufnahme. Wenn ein Invers-Such-URL konfiguriert ist, kann auch so eine Suche per einfachem Klick ausgeführt werden. 
 
 Mehr Information gibt es [hier](https://html-preview.github.io/?url=https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/package/ui/help/ger/index.html), in den nach der Installation in die Synology-Hilfe integrierten Hilfe-Dateien.
 

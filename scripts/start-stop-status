@@ -350,11 +350,34 @@ case $1 in
     else
       logInfo 6 "no crond entry for restart every night found"
     fi
-    cmPid=$(pidof "callmonitor.pl")
-    ret=$?
-    if [[ "$ret" -eq "0" ]]; then # ok, running:
+    n=0
+    sig="SITTERM"
+    while [ "$n" -le "20" ]; do
+      n=$(( n + 1 ))
+      cmPid=$(pidof "calls.cgi")
+      ret=$?
+      if [[ "$ret" -ne "0" ]]; then # not running:
+        break
+      fi
+      kill -$sig "$cmPid"
+      if [ "$n" -ge "10" ]; then
+        sig="SIGKILL"
+      fi
+      done
+    n=0
+    sig="SITTERM"
+    while [ "$n" -le "20" ]; do
+      n=$(( n + 1 ))
+      cmPid=$(pidof "callmonitor.pl")
+      ret=$?
+      if [[ "$ret" -ne "0" ]]; then # not running:
+        break
+      fi  
       kill -SIGTERM "$cmPid"
-    fi
+      if [ "$n" -ge "10" ]; then
+        sig="SIGKILL"
+      fi
+      done
     exit 0
   ;;
   restart) # via cron every night to update phonebooks

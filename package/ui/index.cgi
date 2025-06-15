@@ -53,6 +53,7 @@ app_home=$(find $ah -maxdepth 0 -type d) # Attention: find is not working with q
 # env >> $LOG"
 # Load urlencode and urldecode, logInfoNoEcho, ... function from ../modules/parse_hlp.sh:
 if [ -f "${app_home}/modules/parse_hlp.sh" ]; then
+  # shellcheck disable=SC1091
   source "${app_home}/modules/parse_hlp.sh" # includes reading of LOGLEVEL from config file
   res=$?
   # echo "$(date "$DTFMT"): $msg1<br>Loading ${app_home}/modules/parse_hlp.sh with functions urlencode() and urldecode() done with result $res" >> "$LOG"
@@ -100,9 +101,10 @@ else
 fi
 
 # get the installed version of the package for later comparison to latest version on github:
-local_version=$(cat "/var/packages/${app_name}/INFO" | grep ^version | cut -d '"' -f2)
+local_version=$(grep ^version "/var/packages/${app_name}/INFO" | cut -d '"' -f2)
 
 if [ -x "${app_home}/modules/parse_language.sh" ]; then
+  # shellcheck disable=SC1091
   source "${app_home}/modules/parse_language.sh" "${syno_user}"
   res=$?
   logInfoNoEcho 8 "Loading ${app_home}/modules/parse_language.sh done with result $res"
@@ -112,6 +114,7 @@ fi
 # ${used_lang} is now setup, e.g. enu
 
 if [ -x "${app_home}/modules/cgi_hlp.sh" ]; then
+  # shellcheck disable=SC1091
   source "${app_home}/modules/cgi_hlp.sh"
 else
   logInfoNoEcho 3 "Loading ${app_home}/modules/cgi_hlp.sh failed"
@@ -193,7 +196,7 @@ SCRIPT_EXEC_LOG="$appCfgDataPath/execLog"
 logInfoNoEcho 7 "logfile SCRIPT_EXEC_LOG='$SCRIPT_EXEC_LOG', later optionally '$appCfgDataPath/detailLog'"
 logfile="$SCRIPT_EXEC_LOG" # default, later optionally set to "$appCfgDataPath/detailLog"
 # shellcheck disable=SC2154
-pageTitle=$(echo "$logTitleExec")  # default, later optionally set to "$logTitleDetail"
+pageTitle="$logTitleExec"  # default, later optionally set to "$logTitleDetail"
 
 # Analyze incoming POST requests and process them to ${get[key]}="$value" variables
 cgiDataEval # parse_hlp.sh, setup associative array get[] from the request (POST and GET)
@@ -208,7 +211,7 @@ if [[ -n "$githubRawInfoUrl" ]]; then
     if dpkg --compare-versions "${git_version}" gt "${local_version}"; then  # There is a newer Version on the Server:
     # if dpkg --compare-versions ${git_version} lt ${local_version}; then # for debugging
       # shellcheck disable=SC2154
-      vh=$(echo "$update_available")
+      vh="$update_available"
       versionUpdateHint='<p style="text-align:center">'${vh}' <a href="https://github.com/schmidhorst/synology-'${app_name}'/releases" target="_blank">'${git_version}'</a></p>'
     fi
   fi
@@ -254,7 +257,7 @@ if [[ -n "${get[action]}" ]]; then
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <link rel="stylesheet" type="text/css" href="dsm3.css"/></head><body>'
     echo "<p>Please describe your problem in Englisch or German language in the generated E-Mail</p>"
-    echo '<p><a target="_blank" rel="noopener noreferrer" href="mailto:synoapps@schmidhorst.de?subject=$app_name&body='
+    echo "<p><a target='_blank' rel='noopener noreferrer' href='mailto:synoapps@schmidhorst.de?subject=$app_name&body='"
     #### eMail should be defined and fetched from INFO file
     echo "Not yet working!"
     # urlencode "$(cat "$logfile")"
@@ -308,7 +311,7 @@ if [[ -n "${get[action]}" ]]; then
         pageTitle="$logTitleDetail"
       fi
     fi
-    newCgi=$(echo "${get[cgiDebug]}")
+    newCgi="${get[cgiDebug]}"
     if [[ -z "$newCgi" ]]; then
       newCgi=""
     else
@@ -352,7 +355,7 @@ else
 fi
 
 if [[ "$logfile" == "$appCfgDataPath/detailLog" ]]; then
-  pageTitle=$(echo "$logTitleDetail") # read it again and insert the changed LOGLEVEL
+  pageTitle="$logTitleDetail" # read it again and insert the changed LOGLEVEL
 fi
 
 # Inclusion of the temporarily stored GET/POST requests ( key="value" ) as well as the user settings
@@ -455,6 +458,7 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
             logTotalSize=$((logTotalSize + filesize_Bytes))
             logInfoNoEcho 8 "Found ${logfile} with $filesize_Bytes Bytes"
             if [[ logTotalSize -lt 10 ]]; then
+              # shellcheck disable=SC2154
               echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA<br>$logfile</td></tr>"
             else
               # from cgi_hlp.sh:

@@ -126,18 +126,18 @@ sub addCountryArea {
   $number0 =~ s/^\+/00/; # e.g. +49 ==> 0049
   $number0 =~ s/[ \/()-]+//g; # e.g. (089) 234-123 ==> 089234123
   $number0 =~ s/[^\x00-\x7F]//g; # Entferne alle Zeichen außerhalb des ASCII-Bereich, z.B. – (EN DASH, E2 80 93) 
-  # Eigene Orts-Vorwahl ergänzen, wenn mit 1...9 beginnend, d.h. nicht mit 0 oder *
-  if ($number0 =~ /^\*\*.*/ ) {
+  if ($number0 =~ /^\*\*.*/ ) { # Number begins with *: internal extension number
     return $number0;
     }
-  if ($number0 =~ /^[1-9]/ ) {
-    $number0 = "$areaCode$number0";
+  # Eigene Orts-Vorwahl ergänzen, wenn mit 1...9 beginnend, d.h. nicht mit 0 oder *
+  if ($number0 =~ /^[1-9]/ ) { # starting with digit 1..9
+    $number0 = "$areaCode$number0"; # adde area code
     }
-  if ($number0 =~ /^00.*/ ) {
+  if ($number0 =~ /^00.*/ ) { # starting with 00: o.k.
     return $number0;
     }  
-  $number0 =~ s/^0//;
-  return "$country$number0";
+  $number0 =~ s/^0//; # if starting with 0 from area code: remove that
+  return "$country$number0"; # add now country code lime 0049
   }
 
 
@@ -179,11 +179,11 @@ sub read_txt_telBook {
   print "reading book '$book' ($filePathName) ...\n";
   open(IN, $coding, $filePathName) or do {
     my $err=$!;
-    my $errMsg="Error to read phonebook $filePathName  ($book): $err";
+    my $errMsg="Error to open phonebook file '$filePathName' ($book) for reading: $err\nNot available? No permission? Locked by other process?";
     print "$errMsg";
     doExecLog(1, $errMsg);
     # msg2: "Fehler beim Lesen/Aktualisieren des Telefonbuchs {0}: {1}"
-    system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgName:app1:title1", "$pkgName:app1:msg2", "$filePathName  ($book)", "$err");    
+    # system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgName:app1:title1", "$pkgName:app1:msg2", "$filePathName  ($book)", "$err");    
     return ();
     }; 
   my $n=0;
@@ -416,11 +416,11 @@ sub read_xml_telBook {
     );
   $p->parsefile($filePathName) or do {
     my $err=$!;
-    my $errMsg="Error to read phonebook $filePathName  ($book): $err";
+    my $errMsg="Error to open phonebook file '$filePathName' ($book) for reading: $err\nNot available? No permission? Locked by other process?";
     print "$errMsg";
     doExecLog(1, $errMsg);
     # msg2: "Fehler beim Lesen/Aktualisieren des Telefonbuchs {0}: {1}"
-    system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgName:app1:title1", "$pkgName:app1:msg2", "$filePathName  ($book)", "$err");    
+    # system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgName:app1:title1", "$pkgName:app1:msg2", "$filePathName  ($book)", "$err");    
     return ();
     };
 
@@ -607,7 +607,8 @@ sub makeCallListEntry {
   my ($dir, $timestamp, $extNum, $externalName, $phonebookName, $ownLineNumberName, $NebenstelleNrName, $timestring) = @_;
   $extNum =~ s/#$//; # remove trailing #, which is send from FB for outgoing calls
   # $NebenstelleNrName[$idxLine] # Nr oder Name
-  my $txtLine="$dir;$timestamp;$extNum;$externalName;$phonebookName;$ownLineNumberName;$NebenstelleNrName;$timestring\n";      
+  my $txtLine="$dir;$timestamp;$extNum;$externalName;$phonebookName;$ownLineNumberName;$NebenstelleNrName;$timestring\n";
+  # would we need URI-Encoding for the external name, if it contains e.g. ">" or "&"?????
   print "$txtLine";
   #print "CALL_OUT_NOCONNECT=$cfgHashs{CALL_OUT_NOCONNECT}\n";
   #doExecLog(7, "CALL_OUT_NOCONNECT=$cfgHashs{CALL_OUT_NOCONNECT}");
@@ -639,7 +640,9 @@ sub makeCallListEntry {
 
 ##################### MAIN ##################
 print  formatedNow() . basename( $scriptPath ) . " Die Datei $scriptFile liegt im Verzeichnis $scriptDir.\n";
-
+# my $username = $ENV{LOGNAME} || $ENV{USER} || getpwuid($<);
+my $user1 = getpwuid($<);
+print "Env LOGNAME='$ENV{LOGNAME}', Env USER='$ENV{USER}', getpwuid<='$user1'\n";
 # my $webServerPath = "/PFAD/BIS/ZUM/WEBSERVER";
 my $webServerPath = "$scriptDir/ui";
 
@@ -668,6 +671,10 @@ print "Example from langFile: noInCall=$langTxts{noInCall}\n";
 print "read_fileItem($cfgFilePathName)...\n";
 %cfgHashs=read_fileItem "$cfgFilePathName"; # read all items
 print "... LogLevel is $cfgHashs{LOGLEVEL}\n";
+# doExecLog(4, "Env LOGNAME='$ENV{LOGNAME}', Env USER='$ENV{USER}', getpwuid<='$user1', getpwuid=" . join(" ",  getpwuid($<)) );
+# getpwuid e.g.= root *  0   0   /root /bin/ash
+#                name pw uid gid home  shell
+
 # $cfgHashs{CCU_PW} and $cfgHashs{DAV_PW} should be set to "*****" in the config file, real PW is in var/pw file (root only access)
 %tmpHash=read_fileItem "$varFilePath/pw";
 %cfgHashs = (%cfgHashs, %tmpHash);
@@ -678,6 +685,7 @@ $areaCode=$cfgHashs{AREACODE}; # e.g. 089 for Munich
 $areaCode =~ s/^\s*(.*?)\s*$/$1/; # trim
 
 if ( ! exists $cfgHashs{IP_FRITZBOX} ) {
+  doExecLog(1, "Error: Could not get IP address IP_FRITZBOX of FritzBox from the package config file!");
   die formatedNow() . basename( $scriptPath ) . " Error: Could not get IP address IP_FRITZBOX of FritzBox!\n"; 
   }
 print "  IP_FRITZBOX=$cfgHashs{IP_FRITZBOX}\n";
@@ -719,8 +727,10 @@ if ($fn ne "") { # Attention: In bash -ne is numerical compare, in Perl ne is st
     &read_txt_telBook($fn, $cfgHashs{"BOOKNAME_TXT"});
     }
   else {
-    doExecLog(1, "File $fn is missing or not accessible");
-    print "File $fn is missing\n";
+    my $lsl=`ls -l $fn 2>&1`;
+    chomp $lsl;
+    doExecLog(1, "File '$fn' is missing or not accessible with the account " . getpwuid($<) . "<br>$lsl");
+    print "File $fn is missing\n$lsl";
     }  
   }
 else {
@@ -731,7 +741,9 @@ if (($fn ne "") && (-e $fn)) {  # Textfile
   &read_txt_telBook($fn, $cfgHashs{BOOKNAME_AREA});
   }
 else {
-  doExecLog(1, "File $fn is missing or not accessible");
+  my $lsl=`ls -l $fn 2>&1`;
+  chomp $lsl;
+  doExecLog(1, "File '$fn' is missing or not accessible with the account " . getpwuid($<) . "<br>$lsl");
   print "File '$fn' is missing or not accessible\n";
   }  
 my $telCnt0=keys %telBook;
@@ -811,8 +823,8 @@ my $telCnt3 = $telCnt - $telCnt2;
 $msgTbRead="$msgTbRead, $telCnt3 entries from $cnt CardDAV-Books, total $telCnt entries plus $telCntW wildcard entries";
 doExecLog(4, $msgTbRead);
 print "total telCnt=$telCnt plus $telCntW wildcard entries\n";
-print("WildCard-Test 0032680798: " . number2nameBook("0032680798") . "\n");
-print("Test **623: " . join(" ", number2nameBook("**623")) . "\n");
+# print("WildCard-Test 0032680798: " . number2nameBook("0032680798") . "\n");
+# print("Test **623: " . join(" ", number2nameBook("**623")) . "\n");
 
 =pod
 # funktioniert nicht, zu kurz nach dem Start der App!!
@@ -823,7 +835,7 @@ doExecLog(6, "$msg");
 system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgName:app1:title1", "$pkgName:app1:msg1", "Test-Desktop-Message");
 =cut
 
-$SIG{TERM} = sub { doExecLog(5, "stopped by TERM signal!"); die "Caught a sigterm, probably from start-stop-status.\n  $!" };
+$SIG{TERM} = sub { doExecLog(3, "stopped by TERM signal!"); die "Caught a sigterm, probably from start-stop-status.\n  $!" };
 # zu Testzwecken kann mit Parametern aufgerufen werden:
 while ($#ARGV > -1) {
   my $item = shift @ARGV;
@@ -1067,23 +1079,23 @@ while(<$sock>) { #warten auf aktiven Anruf#
         }  
       }
     else {
-      print("SIP_ConID[$i] undef: /dev/shm/callmonitor.Actual not deleted when call was finished?\n");      
+      print("SIP_ConID[$i] undef: /dev/shm/$pkgName.Actual not deleted when call was finished?\n");      
       }
     }
   if ($txtlines eq "") {
     if ( $cfgHashs{"LOGLEVEL"} < 8 ) {
-      truncate "/dev/shm/callmonitor.Actual", 0;
+      truncate "/dev/shm/$pkgName.Actual", 0;
       print "No actual active calls";
       }
     else {
-      doExecLog(8, "Due to LOGLEVEL >= 8 file /dev/shm/callmonitor. Actual not truncated to zero");
+      doExecLog(8, "Due to LOGLEVEL >= 8 file /dev/shm/$pkgName. Actual not truncated to zero");
       }  
     }
   else {  
-    print "sending to /dev/shm/callmonitor.Actual: $txtlines";
-    unless (open(fh1, ">", "/dev/shm/callmonitor.Actual")) {
-      print "Error Opening /dev/shm/callmonitor.Actual\n";
-      doExecLog(2, "Error Opening /dev/shm/callmonitor.Actual");
+    print "sending to /dev/shm/$pkgName.Actual: $txtlines";
+    unless (open(fh1, ">", "/dev/shm/$pkgName.Actual")) {
+      print "Error Opening /dev/shm/$pkgName.Actual\n";
+      doExecLog(2, "Error Opening /dev/shm/$pkgName.Actual");
       }
     print fh1  "$txtlines";
     close(fh1);
@@ -1091,10 +1103,10 @@ while(<$sock>) { #warten auf aktiven Anruf#
     my $gid   = getgrnam($pkgName);
     # print ("uid:gid of $pkgName: $uid:$gid");
     if (($uid != 0) && ($gid != 0)) {
-      chown $uid, $gid, "/dev/shm/callmonitor.Actual";
+      chown $uid, $gid, "/dev/shm/$pkgName.Actual";
       }
-    chmod 0744, "/dev/shm/callmonitor.Actual";
-    print "$n actual active calls put to /dev/shm/callmonitor.Actual\n";
+    chmod 0744, "/dev/shm/$pkgName.Actual";
+    print "$n actual active calls put to /dev/shm/$pkgName.Actual\n";
     }  
   } # while(<$sock>) Endless loop
 

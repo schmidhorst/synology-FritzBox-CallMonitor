@@ -11,6 +11,39 @@
 # for https://www.shellcheck.net/
 # shellcheck disable=SC1090
 
+
+printFormatedCallLine() {
+  local line=$1
+  local fontTag=$2
+  # local bUrlEncode=$3 # would need printf ... | jq -cRr @uri
+  if [[ -n "$fontTag" ]]; then
+    # logInfoNoEcho 4 "printFormatedCallLine with fontTag"
+    fontEndTag="</font>"
+  fi
+  mapfile -d ';' -t a <<< "$line"
+  logInfoNoEcho 7 "found a[0]='${a[0],,}', requested which='${which,,}'"
+  # a[0]=which, a[1]=Date, a[2]=Number, a[3]=Name, a[4]=eMail, a[5]=Book, a[6]=Line, a[7]=Extension, a[8]=Duration
+  if [[ "${a[0],,}" == "${which,,}" ]] || [[ "${which,,}" == "all" ]]; then # filter the requeted typ (IN, OUT, ...) of lines
+    if [[ "${a[3]}" =~ "Unknown from" ]];then # Translate to the language prefered by browser
+      a[3]=${a[3]/Unknown from/"$unknownFrom"}
+    else
+      a[3]=${a[3]/Unknown/"$unknown"}
+    fi
+    whichLower=${a[0],,} 
+    ((cnt1++))
+    printf "<tr><td ${COLW[0]}><img src='%s', width='%s', height='%s'></td>" "images/${whichLower}Call.png" "$SIZE_ICON" "$SIZE_ICON"
+    for i in "${!a[@]}"; do
+      if [[ "$i" -gt "0" ]]; then
+        printf "<td %s>${fontTag}%s${fontEndTag}</td>" "${COLW[i]}" "${a[$i]}"
+      fi  
+    done # for
+    echo "</tr>"
+  else
+    logInfoNoEcho 7 "line ignored, a[0]=${a[0],,}, requested which='${which,,}'"
+  fi # which or ALL
+  }
+
+
 # Initiate system
 # --------------------------------------------------------------
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/syno/bin:/usr/syno/sbin
@@ -199,7 +232,7 @@ logfile="$SCRIPT_EXEC_LOG" # default, later optionally set to "$appCfgDataPath/d
 cgiDataEval # parse_hlp.sh, setup associative array get[] from the request (POST and GET)
 
 versionUpdateHint=""
-githubRawInfoUrl="https://raw.githubusercontent.com/schmidhorst/synology-callmonitor/main/INFO.sh" #patched to distributor_url from INFO.sh
+githubRawInfoUrl="https://raw.githubusercontent.com/schmidhorst/synology-FritzBox-CallMonitor/main/INFO.sh" #patched to distributor_url from INFO.sh
  # above line will be patched from INFO.sh and is used to check for a newer version
 if [[ -n "$githubRawInfoUrl" ]]; then
   git_version=$(wget --timeout=30 --tries=1 -q -O- "$githubRawInfoUrl" | grep ^version | cut -d '"' -f2)
@@ -219,17 +252,67 @@ if [[ "$bDebug" -eq 1 ]]; then
 fi
 callsFile="$appCfgDataPath/calls.txt"
 
-# script to scroll to bottom of list:
-myScript="<script>
- function setBoxHeight() { var h0=window.innerHeight; var o1=document.getElementById('mybox'); var h1=o1.style.height; var t1=o1.getBoundingClientRect().top; h2=h0 - t1- 55; o1.style.height = h2+'px'; }"
 if [[ -n "${get[action]}" ]]; then
   val="${get[action]}"
   logInfoNoEcho 7 "action=$val"  
-  which=${get[action],,}
   if [[ "$val" == "showDetailLog" ]] || [[ "$val" == "delDetailLog" ]] || [[ "$val" == "reloadDetailLog" ]] || [[ "$val" == "downloadDetailLog" ]] || [[ "$val" == "chgDetailLogLevel" ]] || [[ "$val" == "SupportEMail" ]] || [[ "$bDebug" -eq 1 ]]; then
     # logfile="/var/tmp/$app_name" # this is not working ! But LOG="/var/tmp/${app_name}.log" works !????
     logfile="$appCfgDataPath/detailLog"  # Link to /var/tmp/$app_name.log
   fi
+
+  if [[ "$val" == "event" ]]; then # Server received a request to setup event channel
+    logInfoNoEcho 3 "starting a loop to wait for /dev/shm/$app_name.Actual and send event"
+    # printf "Content-type: text/event-stream; charset=utf-8\n" # initiate
+    which="all"
+    size=0
+    dt=""
+    fontTag=""
+    if [[ "$actualCallsFontColor" != "" ]]; then
+      fontTag="<font color='$actualCallsFontColor'>"
+    fi
+
+    while true; do # wait for an active call
+      sleep 1
+      if [ -f "/dev/shm/$app_name.Actual" ]; then
+        size2=$(stat --format=%s "/dev/shm/$app_name.Actual") # %s = Total size, in bytes 
+        dt2=$(stat --format=%y "/dev/shm/$app_name.Actual") # %y – Time of last data modification 
+        if [ "$size2" -ne "0" ] && [ "$dt2" != "$dt" ]; then # call status changed
+          logInfoNoEcho 3 "new active call(s), size1=$size, size2=$size2, $dt2"
+          size=$size2
+          # activeCall=1   
+          printf "Content-type: text/event-stream; charset=utf-8\n\n"
+          # printf "data: %s new Call!\n" "$(date "$DTFMT")"
+          cnt0=0
+          printf "data: " 
+          while IFS=$'\n' read -r line; do # read all items from logfile
+            ((cnt0++))
+            logInfoNoEcho 7 "data Line ${cnt0} send: $line"
+            # printf "data: %s\n\n" "$line"
+            printf "data: "
+            printFormatedCallLine "$line" "$fontTag" # no URI-Encoding required!
+            printf "\n\n"
+          done < "/dev/shm/$app_name.Actual" # lines of file
+          printf "\n\n"
+          logInfoNoEcho 7 "$cnt0 lines send"
+        elif [ "$size2" -eq "0" ] && [ "$size" -ne "0" ]; then # all calls terminated
+          size=0
+          # printf "Content-type: text/event-stream; charset=utf-8\n\n"
+          # printf "data: %s reload!!\n" "$(date "$DTFMT")"
+          printf "data: %s call terminated, reload!!\n\n" "$(date "$DTFMT")"
+          logInfoNoEcho 3 "all calls terminated"
+          sleep 1
+          exit
+        fi # size
+        dt=$dt2
+      else
+        logInfoNoEcho 3 "File $/dev/shm/$app_name.Actual not existing"
+      fi
+    done
+    logInfoNoEcho 3 "event loop terminated"
+    exit # Browser shoul open page newly now
+  else
+    which=${get[action],,}
+  fi # if else $val==event
 
   if [[ "$val" == "delCalls" ]] && [[ "$is_admin" == "yes" ]]; then    
     rm "${callsFile}"* # including rotated files
@@ -257,7 +340,7 @@ if [[ -n "${get[action]}" ]]; then
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <link rel="stylesheet" type="text/css" href="dsm3.css"/></head><body>'
     echo "<p>Please describe your problem in Englisch or German language in the generated E-Mail</p>"
-    echo '<p><a target="_blank" rel="noopener noreferrer" href="mailto:synoapps@schmidhorst.de?subject=$app_name&body='
+    echo "<p><a target='_blank' rel='noopener noreferrer' href='mailto:synoapps@schmidhorst.de?subject=$app_name"
     #### eMail should be defined and fetched from INFO file
     echo "Not yet working!"
     # urlencode "$(cat "$logfile")"
@@ -279,7 +362,8 @@ if [[ -n "${get[action]}" ]]; then
     # shellcheck disable=SC2154
     logInfoNoEcho 4 "Download content of '$logfile' requested, disposition='$disposition'"
     echo "Content-type: text/plain; charset=utf-8"
-    echo "Content-Disposition: attachment; filename=$(basename "$logfile").txt"
+    fnX=$(basename "$logfile");
+    echo "Content-Disposition: attachment; filename=${fnX}.txt"
     echo
     # echo "<!doctype html>"
     cat "$logfile"
@@ -295,35 +379,21 @@ if [[ -n "${get[action]}" ]]; then
 
   if [[ "$val" == "reloadSimpleLog" ]] || [[ "$val" == "reloadDetailLog" ]]; then
     logInfoNoEcho 7 "Page reload"
-    #myScript="${myScript} window.onload=function(){ window.scrollTo(0, document.body.scrollHeight);}"  # scroll to bottom
-
-# https://stackoverflow.com/questions/17642872/refresh-page-and-keep-scroll-position
-# not working:
-#       script="${script} window.addEventListener(\"beforeunload\", function (e) { sessionStorage.setItem('scrollpos', window.scrollY); });"
-#       script="${script} window.onload=function(){
-#         var scrollpos = sessionStorage.getItem('scrollpos');
-#         if (scrollpos) {
-#           window.scrollTo(0, scrollpos);
-#           sessionStorage.removeItem('scrollpos');
-#           };
-#         }"
-
+    # script to scroll to bottom of list:
+    myScript="<script>
+    "
+    myScript="${myScript} window.onload=function(){ window.scrollTo(0, document.body.scrollHeight);}"  # scroll to bottom
+    myScript="$myScript
+     </script>
+     "
   fi # reload
-fi # action
-
-if [[ "${get[action]}" == "reloadSimpleLog" ]] || [[ "${get[action]}" == "reloadDetailLog" ]]; then
-  myScript="${myScript}
-    function myLoad() { setBoxHeight(); var o1=document.getElementById('mybox'); var sy=o1.scrollHeight; if (!!sy) {o1.scrollTo(0, sy);} else {alert('ScrollY null');} } "
 else
-  myScript="${myScript}
-   function myLoad() { setBoxHeight(); var o1=document.getElementById('mybox'); var sy=o1.scrollHeight; if (!!sy) {o1.scrollTo(0, sy);} else {alert ('ScrollY null')} }"
-fi
+  logInfoNoEcho 8 "no get[action]"
+fi # action
 
 # Inclusion of the temporarily stored GET/POST requests ( key="value" ) as well as the user settings
 # [ -f "${get_request}" ] && source "${get_request}"
 # [ -f "${post_request}" ] && source "${post_request}"
-
-myScript="$myScript </script>"
 
 # Layout output
 # --------------------------------------------------------------
@@ -352,6 +422,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <link rel="stylesheet" type="text/css" href="dsm3.css"/>'
   echo "$metaRfsh"
+  echo "<script src='calls.js'></script>"
   echo "$myScript"
   echo '</head>
     <body onload="myLoad()" onresize="setBoxHeight()">
@@ -392,7 +463,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
   echo "<p><strong>$displaynameINFO: $titleExt</strong></p>"
   echo "</header>"
   echo "<div id='mybox' style='height:360px;width:100%;overflow:auto;'>"        
-  echo "<table border='$BORDER_WIDTH' cellpadding='$CELLPADDING' $backGround>"
+  echo "<table border='$BORDER_WIDTH' cellpadding='$CELLPADDING' $backGround><tbody>"
   # shellcheck disable=SC2154
   echo "<tr><th></th><th>${headerDate}</th><th>${headerNumber}</th><th>${headerName}</th><th>${headerBook}</th><th>${headerLine}</th><th>${headerExtension}</th><th>${headerDuration}</th></tr>"
   #            dir                 externeNr        extern         
@@ -408,37 +479,16 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
     filesArray=("${callsFile}.1" "$callsFile" "/dev/shm/$app_name.Actual")
     for file in "${filesArray[@]}"; do
       fontTag=""
-      fontEndTag=""
-      if [[ "$file" == "/dev/shm/$app_name.Actual" ]] && [[ "$actualCallsFontColor" != "" ]]; then
-        fontTag="<font color='$actualCallsFontColor'>"
-        fontEndTag="</font>"
-      fi
+      # fontEndTag=""
+      # if [[ "$file" == "/dev/shm/$app_name.Actual" ]] && [[ "$actualCallsFontColor" != "" ]]; then
+      #  fontTag="<font color='$actualCallsFontColor'>"
+      #  fontEndTag="</font>"
+      # fi
       if [[ -f "$file" ]]; then # logrotation file ${callsFile}.1 may not exist
         while IFS=$'\n' read -r line; do # read all items from logfile
           ((cnt0++))
           # logInfoNoEcho 8 "Line ${cnt0}: $line"
-          # split the line now at ';' character:
-          # a=($(echo "$line" | tr ';' '\n'))
-          mapfile -d ';' -t a <<< "$line"
-          logInfoNoEcho 7 "found a[0]='${a[0],,}', requested which='${which,,}'"
-          # a[0]=which, a[1]=Date, a[2]=Number, a[3]=Name, a[4]=eMail, a[5]=Book, a[6]=Line, a[7]=Extension, a[8]=Duration
-          if [[ "${a[0],,}" == "${which,,}" ]] || [[ "${which,,}" == "all" ]]; then # filter the requeted typ (IN, OUT, ...) of lines
-            if [[ "${a[3]}" =~ "Unknown from" ]];then # Translate to the language prefered by browser
-              a[3]=${a[3]/Unknown from/"$unknownFrom"}
-            else
-              a[3]=${a[3]/Unknown/"$unknown"}
-            fi
-            whichLower=${a[0],,} 
-            ((cnt1++))
-            printf "<tr><td ${COLW[0]}><img src='%s', width='%s', height='%s'></td>" "images/${whichLower}Call.png" "$SIZE_ICON" "$SIZE_ICON"
-            for i in "${!a[@]}"; do
-              if [[ "$i" -gt "0" ]]; then
-                # echo "<td ${COLW[i]}>${a[$i]}</td>"
-                printf "<td %s>${fontTag}%s${fontEndTag}</td>" "${COLW[i]}" "${a[$i]}"
-              fi  
-            done # for
-            echo "</tr>"
-          fi # which or ALL
+          printFormatedCallLine "$line" "" # no FontTag
         done < "$file" # lines of file
       fi
     done # for
@@ -456,7 +506,11 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
   else
     logInfoNoEcho 8 "$cnt1 Entries from $cnt0 total added"
   fi
-  echo '</table></div>'
+  # echo '<div id="active"></div>' # not working, div element is put to before table
+  echo '</tbody></table></div>'
+  # https://talent500.com/blog/server-sent-events-real-time-updates/
+  # https://developer.mozilla.org/de/docs/Web/API/EventSource : Statt 'new EventSource('/events');' 'new EventSource("sse.php");'
+  # echo "<div id='time'>time</div>"
   logInfoNoEcho 8 "Table with call entries done, footer ..."
   logInfoNoEcho 8 "cnt0=$cnt0, action=${get[action]}, admin=$is_admin"
   allowDelete=false
@@ -475,6 +529,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
   echo "</p>
   </body> </html>"
 fi # if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]
+
 logInfoNoEcho 5 "... $(basename "${BASH_SOURCE[0]}") done"
 exit
 
