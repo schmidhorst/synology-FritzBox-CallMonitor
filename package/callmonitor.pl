@@ -174,7 +174,11 @@ sub insertToTelBook {
 
 #Simple Text-Telefonbuch-Datei (incl. Nebenstellennamen!?) einlesen:
 sub read_txt_telBook {
-  my ( $filePathName, $book, @others ) = @_;
+  my ($filePathName, $book, @others ) = @_;
+  if ( ! (-e -f -r $filePathName)) {  # not (exists, not directory but file, readable)
+    fileMissingLogEntry($filePathName);
+    return;  
+    }
   my $coding="<:encoding(UTF-8)";
   print "reading book '$book' ($filePathName) ...\n";
   open(IN, $coding, $filePathName) or do {
@@ -313,9 +317,9 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
         my @items = split(/:/, $line);
         my $number = $items[$#items];
         chomp $number;
-        print "  Number: $number\n";
+        # print "  Number: $number\n";
         $number = addCountryArea($number); # uses e.g. 0049, 00 needs later be replaced by %2B
-        print "  Number: $number\n";
+        # print "  Number: $number\n";
         push(@whatsApp, $number);
         }
       }      
@@ -416,9 +420,10 @@ sub read_xml_telBook {
     );
   $p->parsefile($filePathName) or do {
     my $err=$!;
-    my $errMsg="Error to open phonebook file '$filePathName' ($book) for reading: $err\nNot available? No permission? Locked by other process?";
+    my $errMsg="Error to open phonebook file '$filePathName' ($book) for reading: $err";
     print "$errMsg";
     doExecLog(1, $errMsg);
+    fileMissingLogEntry($filePathName);
     # msg2: "Fehler beim Lesen/Aktualisieren des Telefonbuchs {0}: {1}"
     # system("/usr/syno/bin/synodsmnotify", "-c $dsmappname", "$NOTIFY_USERS", "$pkgName:app1:title1", "$pkgName:app1:msg2", "$filePathName  ($book)", "$err");    
     return ();
@@ -638,6 +643,18 @@ sub makeCallListEntry {
     }
   }
 
+
+sub fileMissingLogEntry {
+  my ($fn, @others)=@_;
+  my $account=getpwuid($<);
+  my $lsl=`ls -l $fn 2>&1`;
+  chomp $lsl;
+  my $synoacl=`synoacltool -get-perm $fn $account`;
+  doExecLog(1, "File '$fn' is missing or not accessible with the account " . $account . "<br>$lsl<br>Not available? No permission? Locked by other process?<br>synoacltool -get-perm $fn $account<br> $synoacl");
+  print "File $fn is missing (account $account)\n$lsl\n$synoacl";
+  }
+
+
 ##################### MAIN ##################
 print  formatedNow() . basename( $scriptPath ) . " Die Datei $scriptFile liegt im Verzeichnis $scriptDir.\n";
 # my $username = $ENV{LOGNAME} || $ENV{USER} || getpwuid($<);
@@ -722,30 +739,17 @@ use IO::Socket;
 my $msgTbRead="";
 my $fn=$cfgHashs{'TELBOOK_TXT'};
 if ($fn ne "") { # Attention: In bash -ne is numerical compare, in Perl ne is string compare!
-  if (-e $fn) {  # Textfile
-    print "Scanning TELBOOK_TXT = $cfgHashs{'TELBOOK_TXT'}...\n";
-    &read_txt_telBook($fn, $cfgHashs{"BOOKNAME_TXT"});
-    }
-  else {
-    my $lsl=`ls -l $fn 2>&1`;
-    chomp $lsl;
-    doExecLog(1, "File '$fn' is missing or not accessible with the account " . getpwuid($<) . "<br>$lsl");
-    print "File $fn is missing\n$lsl";
-    }  
+  print "Scanning TELBOOK_TXT = $fn...\n";
+  &read_txt_telBook($fn, $cfgHashs{"BOOKNAME_TXT"});
   }
 else {
   print "No TELBOOK_TXT defined\n";
   }
 $fn=$cfgHashs{AREABOOK_TXT};
-if (($fn ne "") && (-e $fn)) {  # Textfile
+if ($fn ne "") {
+  print "Scanning AREABOOK_TXT = $fn...\n";
   &read_txt_telBook($fn, $cfgHashs{BOOKNAME_AREA});
   }
-else {
-  my $lsl=`ls -l $fn 2>&1`;
-  chomp $lsl;
-  doExecLog(1, "File '$fn' is missing or not accessible with the account " . getpwuid($<) . "<br>$lsl");
-  print "File '$fn' is missing or not accessible\n";
-  }  
 my $telCnt0=keys %telBook;
 my $telCntW=keys %telBookWild;
 print "TXT $telCnt0 normal entries and $telCntW wildcard entries.\nGoing to read XML files...\n";
@@ -766,13 +770,13 @@ while (1) { # Read the files with names TELBOOK_XML1, TELBOOK_XML2, ...
     last;
     }
   if ($cfgHashs{$tb} ne "") {
-    if(-e $cfgHashs{$tb}) { # FritzBox XML file
+    if ( -e -f -r $cfgHashs{$tb}) {  # exists, not directory but file, readable
       $cnt++;
       &read_xml_telBook($cfgHashs{$tb}, $cfgHashs{$tbn});
       }
-    else {
-      print "File $cfgHashs{$tb} is missing\n";
-      }  
+    else {  
+      fileMissingLogEntry($cfgHashs{$tb});
+      }
     }
   else {
     print "$tb is not defined\n";

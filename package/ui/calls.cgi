@@ -285,6 +285,7 @@ if [[ -n "${get[action]}" ]]; then
           cnt0=0
           printf "data: " 
           while IFS=$'\n' read -r line; do # read all items from logfile
+            # letzte Zeile der Datei muß auch noch ein \n enthalten, sonst wird sie ignoriert!
             ((cnt0++))
             logInfoNoEcho 7 "data Line ${cnt0} send: $line"
             # printf "data: %s\n\n" "$line"
@@ -463,7 +464,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
   echo "<p><strong>$displaynameINFO: $titleExt</strong></p>"
   echo "</header>"
   echo "<div id='mybox' style='height:360px;width:100%;overflow:auto;'>"        
-  echo "<table border='$BORDER_WIDTH' cellpadding='$CELLPADDING' $backGround><tbody>"
+  echo "<table id='callsList' border='$BORDER_WIDTH' cellpadding='$CELLPADDING' $backGround><tbody>"
   # shellcheck disable=SC2154
   echo "<tr><th></th><th>${headerDate}</th><th>${headerNumber}</th><th>${headerName}</th><th>${headerBook}</th><th>${headerLine}</th><th>${headerExtension}</th><th>${headerDuration}</th></tr>"
   #            dir                 externeNr        extern         

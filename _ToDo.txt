@@ -1,3 +1,14 @@
+- Während Installation kommt (wenn PriviledgeCopy inline ausgeführt wird):
+  File '/volume1/syn/sHorst/Dev_Syno/CallMonitor/Nebenstellen.txt' is missing or not accessible with the account callmonitor
+  ls: cannot access '/volume1/syn/sHorst/Dev_Syno/CallMonitor/Nebenstellen.txt': Permission denied
+  Not available? No permission? Locked by other process?
+  synoacltool -get-perm /volume1/syn/sHorst/Dev_Syno/CallMonitor/Nebenstellen.txt callmonitor
+  (synoacltool.c, 1033)Access deny
+  File '/volume1/syn/sHorst/Dev_Syno/CallMonitor/FRITZ.Box_Telefonbuch.xml' is missing or not accessible with the account callmonitor
+
+  Erst nach einem Stopp und nochmaligem Start geht es!
+
+
 - Wenn $NOTIFY_USERS leer ist, dann system("/usr/syno/bin/synodsmnotify" ...) immer überspringen!
 
 - Zugriffsrechte für Dateien?

@@ -42,13 +42,32 @@ eventSource.onmessage = (e) => {
   // alert ("raw e.data=".concat(e.data));
   const myIn = e.data.replace(/data:/g,'').trim();
   if (myIn.length > 0) {
-    if (myIn.includes("call terminated, reload!!") ) {  // call terminated, reload!!
+    if (myIn.includes("call terminated, reload!!") ) {  // call terminated, reload web page!!
       location.reload()
       return;
       } 
-    // https://www.youtube.com/watch?v=vkqZC_rEkVA
+    // https://www.youtube.com/watch?v=vkqZC_rEkVA append a row
     const tbodyEl = document.querySelector("tbody");
-    tbodyEl.innerHTML += myIn;
+    var cells=myIn.split("</td><td >");
+    //alert("Number now=".concat(cells[2])); // e.g "<font color='DarkRed'>0160 123456</font>"
+    var table = document.getElementById("callsList");
+    var row = table.rows.length -1; // last row
+    while (row > 0) {
+      //alert("Table=".concat(table.rows[row].cells[2].innerHTML));
+      // cells[2] is returned by console in double quotes, typeof(cells[2]) is string
+      // table.rows[row].cells[2].innerHTML is returned by console in single quotes, typeof(cells[2]) is string
+      // without .toString they are not equal, if it looks equal!????
+      if (cells[2].toString==table.rows[row].cells[2].innerHTML.toString) { // after an ring we may have now an connect
+        table.deleteRow(row); // delete the entry without extension
+        break;
+        }
+      if (table.rows[row].cells[2].innerHTML==table.rows[row].cells[2].innerText) {
+        break; // Entry without font tag for active call
+        }
+        row=row-1;
+      }
+    tbodyEl.innerHTML += myIn; // insert active call to table
+    setBoxHeight();
     var o1=document.getElementById('mybox'); 
     var sy=o1.scrollHeight; 
     if (!!sy) {

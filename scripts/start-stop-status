@@ -351,7 +351,7 @@ case $1 in
       logInfo 6 "no crond entry for restart every night found"
     fi
     n=0
-    sig="SITTERM"
+    sig="SIGTERM"
     while [ "$n" -le "20" ]; do
       n=$(( n + 1 ))
       cmPid=$(pidof "calls.cgi")
@@ -365,7 +365,7 @@ case $1 in
       fi
       done
     n=0
-    sig="SITTERM"
+    sig="SIGTERM"
     while [ "$n" -le "20" ]; do
       n=$(( n + 1 ))
       cmPid=$(pidof "callmonitor.pl")
@@ -373,7 +373,7 @@ case $1 in
       if [[ "$ret" -ne "0" ]]; then # not running:
         break
       fi  
-      kill -SIGTERM "$cmPid"
+      kill -$sig "$cmPid"
       if [ "$n" -ge "10" ]; then
         sig="SIGKILL"
       fi
