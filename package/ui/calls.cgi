@@ -4,7 +4,7 @@
 #             License GNU GPLv3
 #   https://www.gnu.org/licenses/gpl-3.0.html
 
-###### This calls.cgi is in the config file configured as "url": "/webman/3rdparty/<appName>/index.cgi"
+###### This calls.cgi is in the config file configured as "url": "/webman/3rdparty/<appName>/calls.cgi"
 # /usr/syno/synoman/webman/3rdparty/<app> is linked to /volumeX/@apptemp/<app>/ui
 # and /var/packages/<app>/target/ui is the same folder
 

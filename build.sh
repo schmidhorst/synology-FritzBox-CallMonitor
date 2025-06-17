@@ -86,7 +86,7 @@ eval "$line"
 echo "dsmuidir='$dsmuidir'"
 
 # Check for well formed JSON:
-for f1 in "package/$dsmuidir/config" "package/$dsmuidir/index.conf" "package/$dsmuidir/helptoc.conf" conf/* WIZARD_UIFILES/*.json WIZARD_UIFILES/uninstall_uifile_*
+for f1 in "package/$dsmuidir/config" "package/$dsmuidir"/*.conf "package/$dsmuidir/helptoc.conf" conf/* WIZARD_UIFILES/*.json WIZARD_UIFILES/uninstall_uifile_*
 # for f1 in package/$dsmuidir/config package/$dsmuidir/index.conf conf/* WIZARD_UIFILES/uninstall_uifile* WIZARD_UIFILES/wizard_*.json
 do
   f2="$SCRIPTPATHbuild/$1$f1"

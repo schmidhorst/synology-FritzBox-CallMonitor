@@ -307,7 +307,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
           #fi
 
           # HTTP GET and POST requests
-          echo "<p><form><button onclick=\"location.href='index.cgi'\" type=\"button\">${btnShowSimpleLog}</button>"
+          echo "<p><form><button onclick=\"location.href='log.cgi'\" type=\"button\">${btnShowSimpleLog}</button>"
           echo "<button onclick=\"location.href='calls.cgi?action=ALL'\" type=\"button\">${btnAllCalls}</button>"
           echo "<input type=\"button\" value=\"Zurück Back\" onclick=\"history.back()\"></form></p>"
           #echo '<br \>'

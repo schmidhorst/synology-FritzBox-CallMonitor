@@ -3,7 +3,6 @@
     "run-as": "package"
     }
   ,"join-groupname": "system"
-  ,"username": "callmonitor"
   ,"tool": [
     {
       "relpath": "callmonitor.pl"

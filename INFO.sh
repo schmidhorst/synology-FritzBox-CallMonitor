@@ -36,13 +36,13 @@ dsmappname="SYNO.SDS._ThirdParty.App.$package"
 # shellcheck disable=SC2164
 SCRIPTPATHinfo="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; /bin/pwd -P )"
 
-# index.cgi/calls.cgi uses https://raw.githubusercontent.com/schmidhorst/synology-<appname>/main/INFO.sh to check for an new version
+# log.cgi/calls.cgi uses https://raw.githubusercontent.com/schmidhorst/synology-<appname>/main/INFO.sh to check for an new version
 # change that entry automatically if the maintainer_url is changed:
 if [[ -n "$maintainer_url" ]]; then
   githubRawInfoUrl=$(echo "${maintainer_url}/main/INFO.sh" | sed 's/github.com/raw.githubusercontent.com/')
-  files="index.cgi calls.cgi"
+  files="log.cgi calls.cgi"
   for file in $files; do
-    # patch githubRawInfoUrl directly to the index.cgi file if necessary:
+    # patch githubRawInfoUrl directly to the *.cgi file if necessary:
     lineInfoUrl=$(grep "maintainer_url=" "$SCRIPTPATHinfo/package/$dsmuidir/$file")
     if [[ "$lineInfoUrl" != "maintainer_url=\"${maintainer_url}\"" ]]; then
       sed -i "s|^maintainer_url=.*\$|maintainer_url=\"${maintainer_url}\" #patched to maintainer_url from INFO.sh|" "$SCRIPTPATHinfo/package/$dsmuidir/$file"

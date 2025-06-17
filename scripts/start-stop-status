@@ -156,7 +156,7 @@ case $1 in
       logInfo 5 "=== Previous lines have been written during installation to the file /var/tmp/$SYNOPKG_PKGNAME.log and now been copied to here ($LOG)! ===="
       rm "/var/tmp/$SYNOPKG_PKGNAME.log"      
     fi
-    # enable log deleting for ui/index.cgi:
+    # enable log deleting for ui/log.cgi:
     chmod 664 "$LOG"
     chown "$SYNOPKG_PKGNAME":"$SYNOPKG_PKGNAME" "$LOG"
     if [ "$user" == "root" ]; then
@@ -230,9 +230,6 @@ case $1 in
             ((error += 1))
             echo "File '$phonetxt' is not available! Fix it ${volMissing}or Re-run the installation!"
             getLngText "filePhonebookTxt"
-            if [ "$user" != "root" ]; then
-              getLngText "filePhonebookNotFound" # ="May be o.k. after copying the privilege file and running as root."
-            fi
             if [[ -w "$SYNOPKG_TEMP_LOGFILE" ]]; then # $SYNOPKG_TEMP_LOGFILE is not available during cron restart
               # shellcheck disable=SC2154
               echo "${msgLineSep}${filePhonebookTxt}${volMissing}${filePhonebookNotFound}" >> "$SYNOPKG_TEMP_LOGFILE"          
@@ -282,51 +279,46 @@ case $1 in
       else
         logInfo 7 "crond entry for restart already available"
       fi
-# shellcheck disable=SC2016
-: '
+
+      if [[ "$error" -eq "0" ]]; then # e.g. a Phonebook not found: don't start!
+        logInfo 7 "'start', SYNOPKG_PKGDEST='$SYNOPKG_PKGDEST'"
+        cmPid=$(pidof "callmonitor.pl")
+        # shellcheck disable=SC2181
+        if [[ $? -ne 0  ]];then # not yet running, we need to start it ...
+          # https://stackoverflow.com/questions/20338162/how-can-i-launch-a-new-process-that-is-not-a-child-of-the-original-process
+          set -m # turn on "JOB CONTROL", so that Background processes are running in a separate process group and not blocking this start-stop-status
+          ( "/var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl" & ) # try to start process in background
+          n=0
+          while true; do
+            ((n++))
+            cmPid=$(pidof "callmonitor.pl")
+            if [[ "$?" -eq "0" ]];then
+              break # o.k.
+            elif [[ "$n" -lt "6" ]]; then 
+              sleep 0.5s
+              continue
+            fi  
+            logInfo 1 "Failed to start /var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl ! Trying to run it with sudo from SSH command shell may help to find the bug"
+            getLngText "mainPerlFileStartFailure"
+            # shellcheck disable=SC2154
+            echo "${msgLineSep}${mainPerlFileStartFailure}" >> "$SYNOPKG_TEMP_LOGFILE"          
+            exit 1
+          done
+          if [[ -z "$msgLineSep" ]]; then
+            logInfo 6 "Package $SYNOPKG_PKGNAME and callmonitor.pl process $cmPid started!"
+            synodsmnotify -c SYNO.SDS._ThirdParty.App.callmonitor @users callmonitor:app1:title1 callmonitor:app1:runok
+            echo "$(date "$DTFMT"): Package $SYNOPKG_PKGNAME started" >> "$SYNOPKG_PKGVAR/execLog"
+          fi
+        else
+          logInfo 7 "callmonitor process $cmPid was already running!"
+        fi  
+        exit 0
+      fi # $error -eq "0"
     else
-      if [[ ! -f "/var/spool/cron/$SYNOPKG_PKGNAME" ]]; then
-        echo "15 02 * * * root /var/packages/$SYNOPKG_PKGNAME/scripts/start-stop-status restart" > "/var/spool/cron/$SYNOPKG_PKGNAME"
-        systemctl reload crond
-        logInfo 6 "crond file /var/spool/cron/$SYNOPKG_PKGNAME for restart every night at 02:15 created"
-      fi
-'
+      logInfo 1 "Tried to start as '$user'. Package elevation via the 'sudo cp /var/packages/callmonitor/conf/privilege.root /var/packages/callmonitor/conf/privilege' command not yet done"
+      synodsmnotify -c SYNO.SDS._ThirdParty.App.callmonitor @users callmonitor:app1:title1 callmonitor:app1:elevation "sudo cp /var/packages/callmonitor/conf/privilege.root /var/packages/callmonitor/conf/privilege"
     fi # root
 
-    if [[ "$error" -eq "0" ]]; then # e.g. a Phonebook not found: don't start!
-      logInfo 7 "'start', SYNOPKG_PKGDEST='$SYNOPKG_PKGDEST'"
-      cmPid=$(pidof "callmonitor.pl")
-      # shellcheck disable=SC2181
-      if [[ $? -ne 0  ]];then # not yet running, we need to start it ...
-        # https://stackoverflow.com/questions/20338162/how-can-i-launch-a-new-process-that-is-not-a-child-of-the-original-process
-        set -m # turn on "JOB CONTROL", so that Background processes are running in a separate process group and not blocking this start-stop-status
-        ( "/var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl" & ) # try to start process in background
-        n=0
-        while true; do
-          ((n++))
-          cmPid=$(pidof "callmonitor.pl")
-          if [[ "$?" -eq "0" ]];then
-            break # o.k.
-          elif [[ "$n" -lt "6" ]]; then 
-            sleep 0.5s
-            continue
-          fi  
-          logInfo 1 "Failed to start /var/packages/$SYNOPKG_PKGNAME/target/$SYNOPKG_PKGNAME.pl ! Trying to run it with sudo from SSH command shell may help to find the bug"
-          getLngText "mainPerlFileStartFailure"
-          # shellcheck disable=SC2154
-          echo "${msgLineSep}${mainPerlFileStartFailure}" >> "$SYNOPKG_TEMP_LOGFILE"          
-          exit 1
-        done
-        if [[ -z "$msgLineSep" ]]; then
-          logInfo 6 "Package $SYNOPKG_PKGNAME and callmonitor.pl process $cmPid started!"
-          synodsmnotify -c SYNO.SDS._ThirdParty.App.callmonitor @users callmonitor:app1:title1 callmonitor:app1:msg1 "Tool successfully started!"
-          echo "$(date "$DTFMT"): Package $SYNOPKG_PKGNAME started" >> "$SYNOPKG_PKGVAR/execLog"
-        fi
-      else
-        logInfo 7 "callmonitor process $cmPid was already running!"
-      fi  
-      exit 0
-    fi
     # exit 1 # ab DSM 7.x.x wird in diesem Fall der Inhalt von $SYNOPKG_TEMP_LOGFILE auch als Benachrichtigung angezeigt! Und zur Reparatur aufgefordert
     exit 0
   ;;

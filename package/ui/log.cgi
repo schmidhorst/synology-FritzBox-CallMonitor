@@ -1,5 +1,5 @@
 #!/bin/bash
-# Filename: index.cgi - coded in utf-8
+# Filename: log.cgi - coded in utf-8
 #    taken from
 #  DSM7DemoSPK (https://github.com/toafez/DSM7DemoSPK)
 #        Copyright (C) 2022 by Tommes
@@ -11,7 +11,7 @@
 #             License GNU GPLv3
 #   https://www.gnu.org/licenses/gpl-3.0.html
 
-# This index.cgi is in the config file configured as "url": "/webman/3rdparty/<appName>/index.cgi"
+# This log.cgi is in the config file configured as "url": "/webman/3rdparty/<appName>/log.cgi"
 # /usr/syno/synoman/webman/3rdparty/<app> is linked to /volumeX/@apptemp/<app>/ui
 # and /var/packages/<app>/target/ui is the same folder
 
@@ -23,18 +23,18 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/syno/bin:/usr/syno/sbin
 bDebug=0 # 0= do cgiLogin, evaluateCgiLogin; 1= skip cgiLogin, evaluateCgiLogin
 if [[ -z "$SCRIPT_NAME" ]]; then  # direct start in debug run
-  SCRIPT_NAME="/webman/3rdparty/callmonitor/index.cgi"
+  SCRIPT_NAME="/webman/3rdparty/callmonitor/log.cgi"
   bDebug=1
-  echo "###### index.cgi executed in debug mode!!  ######"
+  echo "###### log.cgi executed in debug mode!!  ######"
 fi
-# ${BASH_SOURCE[0]}=/usr/syno/synoman/webman/3rdparty/<appName>/index.cgi
+# ${BASH_SOURCE[0]}=/usr/syno/synoman/webman/3rdparty/<appName>/log.cgi
 app_link=${SCRIPT_NAME%/*} # "/webman/3rdparty/<appName>"
 app_name=${app_link##*/} # "<appName>"
-# DOCUMENT_URI=/webman/3rdparty/<appName>/index.cgi
+# DOCUMENT_URI=/webman/3rdparty/<appName>/log.cgi
 # PWD=/volume1/@appstore/<appName>/ui
 user=$(whoami) # EnvVar $USER may be not well set, user is '<appName>'
-# REQUEST_URI=/webman/3rdparty/<appName>/index.cgi
-# SCRIPT_FILENAME=/usr/syno/synoman/webman/3rdparty/<appName>/index.cgi
+# REQUEST_URI=/webman/3rdparty/<appName>/log.cgi
+# SCRIPT_FILENAME=/usr/syno/synoman/webman/3rdparty/<appName>/log.cgi
 
 if [[ -w "/var/log/packages/${app_name}.log" ]]; then 
   LOG="/var/log/packages/${app_name}.log"
@@ -302,7 +302,7 @@ if [[ -n "${get[action]}" ]]; then
       if [[ -f "$appCfgDataPath/config" ]]; then
         res="$(sed -i "s|^LOGLEVEL=.*$|LOGLEVEL=\"$newlevel\"|" "$appCfgDataPath/config")"
         result=$?
-        logInfoNoEcho 5 "index.cgi LogLevel set to '$newlevel' in file '$appCfgDataPath/config': result='$result', res='$res'"
+        logInfoNoEcho 5 "log.cgi LogLevel set to '$newlevel' in file '$appCfgDataPath/config': result='$result', res='$res'"
         LOGLEVEL="$newlevel"
         # $logTitleDetail and pageTitle has still old loglevel:
      	  # shellcheck disable=SC2154
@@ -417,18 +417,18 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
         # Load page content
         # --------------------------------------------------------------
         # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='calls.cgi?action=ALL'\" type=\"button\">$btnAllCalls</button> "
+        echo "<button onclick=\"location.href='index.cgi?action=ALL'\" type=\"button\">$btnAllCalls</button> "
         # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='calls.cgi?action=OUT'\" type=\"button\">$btnOutCalls</button> "
+        echo "<button onclick=\"location.href='index.cgi?action=OUT'\" type=\"button\">$btnOutCalls</button> "
         # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='calls.cgi?action=IN'\" type=\"button\">$btnInCalls</button> "
+        echo "<button onclick=\"location.href='index.cgi?action=IN'\" type=\"button\">$btnInCalls</button> "
         # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='calls.cgi?action=MISSED'\" type=\"button\">$btnMissedCalls</button> "
+        echo "<button onclick=\"location.href='index.cgi?action=MISSED'\" type=\"button\">$btnMissedCalls</button> "
 
         if [[ "$is_admin" == "yes" ]]; then
           # HTTP GET and POST requests
           if [[ "$logfile" != "$SCRIPT_EXEC_LOG" ]]; then
-            echo "<button onclick=\"location.href='index.cgi'\" type=\"button\">${btnShowSimpleLog}</button> "
+            echo "<button onclick=\"location.href='log.cgi'\" type=\"button\">${btnShowSimpleLog}</button> "
           fi
           echo "<button onclick=\"location.href='settings.cgi'\" type=\"button\">${btnShowSettings}</button> "
           echo "<button onclick=\"location.href='$licenceFile'\" type=\"button\">${btnShowLicence}</button> "
@@ -478,7 +478,7 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
       logInfoNoEcho 8 "Table with log entries done, generating footer ..."
       echo '<p style="margin-left:22px; line-height: 16px;">'
       if [[ "$logfile" == "$SCRIPT_EXEC_LOG" ]]; then
-        echo "<form action='index.cgi?action=chgLogLevel' method='post'>
+        echo "<form action='log.cgi?action=chgLogLevel' method='post'>
               <label for='fname'>LogLevel:</label>
               <select name='logNewlevel' id='logNewlevel'>"
         for ((i=1; i<=8; i+=1)); do
@@ -491,10 +491,10 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
         echo "</select>"
         # also inside the <form ...> to have it in the same row:
         echo "<input type='submit' value='Submit'>&nbsp;&nbsp;&nbsp;"
-        echo "<button onclick=\"location.href='index.cgi?action=reloadSimpleLog'\" type=\"button\">${btnRefresh}</button> "
+        echo "<button onclick=\"location.href='log.cgi?action=reloadSimpleLog'\" type=\"button\">${btnRefresh}</button> "
         if [[ $filesize_Bytes -gt 10 ]]; then
-          echo "<button onclick=\"location.href='index.cgi?action=downloadSimpleLog'\" type=\"button\">${btnDownload}</button> "
-          echo "<button onclick=\"location.href='index.cgi?action=delSimpleLog'\" type=\"button\">${btnDelLog}</button> "
+          echo "<button onclick=\"location.href='log.cgi?action=downloadSimpleLog'\" type=\"button\">${btnDownload}</button> "
+          echo "<button onclick=\"location.href='log.cgi?action=delSimpleLog'\" type=\"button\">${btnDelLog}</button> "
         fi # if [[ filesize_Bytes -gt 10 ]]
         echo "</form>"
       echo "</p>
