@@ -19,7 +19,7 @@ Sie benutzen alles hier auf eigenes Risiko.
 Für Probleme benutzen Sie bitte den [issue tracker](https://github.com/schmidhorst/synology-callmonitor/issues) mit deutscher oder englischer Sprache
 
 # Installation
-* Der Anrufmonitor der Fritzbox muss mittels Telefon (das an der Fritzbox angeschlossen ist), mit der Ziffernfolge #96\*5\* aktiviert werden. Dies funktionier mit einem Analog-Telefon, vermutlich auch DECT, möglicherweise aber nicht mit einem IP-Telefon.
+* Der Anrufmonitor der Fritzbox muss mittels Telefon (das an der Fritzbox angeschlossen ist), mit der Ziffernfolge #96\*5\* aktiviert werden. Dies funktioniert mit einem Analog-Telefon, einem DECT- oder einem ISDN-Telefon. Falls nur ein IP-Telefon verfügbar ist, muss der unter [https://www.janrufmonitor.de/ueberwachung-freischalten/](https://www.janrufmonitor.de/ueberwachung-freischalten/) beschriebene Umweg über einen Telefonbuch-Eintrag verwendet werden.
 * Laden Sie die *.spk-Datei von ["Releases"](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/releases/), "Assets" auf Ihren Computer herunter und verwenden Sie "Manual Install" im Package Center. Während der Installation werden die notwendigen Einstellungen abgefragt.
 
 ## Danksagungen und Referenzen

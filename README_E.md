@@ -19,11 +19,9 @@ More Info is available [here](https://html-preview.github.io/?url=https://github
 You are using everything here at your own risk.
 For issues please use the [issue tracker](https://github.com/schmidhorst/synology-callmonitor/issues) with German or English language
 
-## Build and Installation
-* If you want to build the package yourself from the source: Download all files. Set the file 'build' to executable and run that script to generate the *.spk file. No toolkit needed.
-* Or download the *.spk file from ["Releases"](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/releases/), "Assets" to your computer.
-
-Then use "Manual Install" in the Package Center.
+## Installation
+* You need to activate the monitor in the FritzBox with #96\*5\* on an analog phone, DECT- or ISDN phone, which is connected to the FritzBox.
+* Download the *.spk file from ["Releases"](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/releases/), "Assets" to your computer. And use "Manual Install" in the Package Center of the Synology. During the Installation you will be asked for the required settings.
 
 ## Credits and References
 - Thanks to [eiGelbGeek] (https://homematic-forum.de/forum/viewtopic.php?t=34876)
