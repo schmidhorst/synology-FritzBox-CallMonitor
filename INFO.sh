@@ -12,14 +12,14 @@ description="Synchronize system variables of HomeMatic CCU with the Phone Line S
 description_enu="Synchronize system variables of HomeMatic CCU with the Phone Line Status from a FritzBox and generate call lists"
 description_ger="Systemvariablen der HomeMatic CCU mit dem Telefon-Leitungsstatus der FritzBox synchron halten. Und Anruflisten erzeugen."
 
-version="0.0.1-0006"
+version="0.0.1-0007"
 beta="yes"
 arch="noarch"
 os_min_ver="7.0-40000"
 # install_dep_packages="WebStation>=3.0.0-0323:PHP7.4>=7.4.18-0114:Apache2.4>=2.4.46-0122"
 install_dep_packages="Perl" # needed!
 maintainer="Horst Schmid"
-maintainer_url="https://github.com/schmidhorst/synology-callmonitor"
+maintainer_url="https://github.com/schmidhorst/synology-FritzBox-CallMonitor"
 # ctl_stop="yes"
 # reloadui="yes"
 thirdparty="yes"
@@ -30,21 +30,24 @@ distributor=""
 silent_upgrade="no"
 # silent_install="no"
 # precheckstartstop="yes"
-# helpurl="https://..."
-support_url="https://github.com/schmidhorst/synology-${package}/issues"
+helpurl="https://html-preview.github.io/?url=https://github.com/schmidhorst/synology-FritzBox-CallMonitor/blob/main/package/ui/help/ger/index.html"
+support_url="https://github.com/schmidhorst/synology-FritzBox-CallMonitor/issues"
 dsmappname="SYNO.SDS._ThirdParty.App.$package"
 # shellcheck disable=SC2164
 SCRIPTPATHinfo="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; /bin/pwd -P )"
 
-# index.cgi uses https://raw.githubusercontent.com/schmidhorst/synology-<appname>/main/INFO.sh to check for an new version
+# index.cgi/calls.cgi uses https://raw.githubusercontent.com/schmidhorst/synology-<appname>/main/INFO.sh to check for an new version
 # change that entry automatically if the maintainer_url is changed:
 if [[ -n "$maintainer_url" ]]; then
   githubRawInfoUrl=$(echo "${maintainer_url}/main/INFO.sh" | sed 's/github.com/raw.githubusercontent.com/')
-  # patch githubRawInfoUrl directly to the index.cgi file if necessary:
-  lineInfoUrl=$(grep "githubRawInfoUrl=" "$SCRIPTPATHinfo/package/$dsmuidir/index.cgi")
-  if [[ "$lineInfoUrl" != "githubRawInfoUrl=\"${githubRawInfoUrl}\"" ]]; then
-    sed -i "s|^githubRawInfoUrl=.*\$|githubRawInfoUrl=\"${githubRawInfoUrl}\" #patched to distributor_url from INFO.sh|" "$SCRIPTPATHinfo/package/$dsmuidir/index.cgi"
-  fi
+  files="index.cgi calls.cgi"
+  for file in $files; do
+    # patch githubRawInfoUrl directly to the index.cgi file if necessary:
+    lineInfoUrl=$(grep "maintainer_url=" "$SCRIPTPATHinfo/package/$dsmuidir/$file")
+    if [[ "$lineInfoUrl" != "maintainer_url=\"${maintainer_url}\"" ]]; then
+      sed -i "s|^maintainer_url=.*\$|maintainer_url=\"${maintainer_url}\" #patched to maintainer_url from INFO.sh|" "$SCRIPTPATHinfo/package/$dsmuidir/$file"
+    fi
+  done
 fi
 if [[ "$1" != "" ]]; then  # Generation without toolkit scripts
   line0=$(grep "SYNO.SDS." "package/$dsmuidir/config")

@@ -101,7 +101,7 @@ done < "$(dirname "${BASH_SOURCE[0]}")/initial_config.txt"
 logInfo 7 "...done, Items are '$fields'"
 
 # build.sh should replace this:
-VERSION_NOW="0.0.1-0006"
+VERSION_NOW="0.0.1-0007"
 # This is a workaraound as $SYNOPKG_PKGVER is wrong here during upgrade installation!
 
 msg=""

@@ -232,17 +232,17 @@ logfile="$SCRIPT_EXEC_LOG" # default, later optionally set to "$appCfgDataPath/d
 cgiDataEval # parse_hlp.sh, setup associative array get[] from the request (POST and GET)
 
 versionUpdateHint=""
-githubRawInfoUrl="https://raw.githubusercontent.com/schmidhorst/synology-FritzBox-CallMonitor/main/INFO.sh" #patched to distributor_url from INFO.sh
+maintainer_url="https://github.com/schmidhorst/synology-FritzBox-CallMonitor" #patched to maintainer_url from INFO.sh
  # above line will be patched from INFO.sh and is used to check for a newer version
-if [[ -n "$githubRawInfoUrl" ]]; then
+if [[ -n "$maintainer_url" ]]; then
+  githubRawInfoUrl=$(echo "${maintainer_url}/main/INFO.sh" | sed 's/github.com/raw.githubusercontent.com/')
   git_version=$(wget --timeout=30 --tries=1 -q -O- "$githubRawInfoUrl" | grep ^version | cut -d '"' -f2)
   logInfoNoEcho 6 "local_version='$local_version', git_version='$git_version'"
   if [ -n "${git_version}" ] && [ -n "${local_version}" ]; then
     if dpkg --compare-versions "${git_version}" gt "${local_version}"; then  # There is a newer Version on the Server:
-    # if dpkg --compare-versions ${git_version} lt ${local_version}; then # for debugging
       # shellcheck disable=SC2154
-      vh=$update_available
-      versionUpdateHint='<p style="text-align:center">'${vh}' <a href="https://github.com/schmidhorst/synology-'${app_name}'/releases" target="_blank">'${git_version}'</a></p>'
+      vh="$update_available"
+      versionUpdateHint='<p style="text-align:center">'${vh}' <a href='${maintainer_url}'/releases" target="_blank">'${git_version}'</a></p>'
     fi
   fi
 fi
