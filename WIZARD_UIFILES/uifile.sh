@@ -101,7 +101,7 @@ done < "$(dirname "${BASH_SOURCE[0]}")/initial_config.txt"
 logInfo 7 "...done, Items are '$fields'"
 
 # build.sh should replace this:
-VERSION_NOW="0.0.1-0007"
+VERSION_NOW="0.0.1-0009"
 # This is a workaraound as $SYNOPKG_PKGVER is wrong here during upgrade installation!
 
 msg=""
@@ -137,7 +137,8 @@ for f1 in $fields; do
       sed -i -e "s|\"@${f1}@\"|${!f1}|g" "$SYNOPKG_TEMP_LOGFILE" # other items or accepted licence for re-installation 
     fi
   else # for other placeholders preserve the quotes:
-    sed -i -e "s|@${f1}@|${!f1}|g" "$SYNOPKG_TEMP_LOGFILE" 
+    val=${!f1//&/\\&} # # "&" needs to be escaped
+    sed -i -e "s|@${f1}@|${val}|g" "$SYNOPKG_TEMP_LOGFILE" 
   fi
 done
 logInfo 7 "Found settings: ${msg:1}"

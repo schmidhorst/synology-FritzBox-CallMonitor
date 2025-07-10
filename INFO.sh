@@ -12,7 +12,7 @@ description="Synchronize system variables of HomeMatic CCU with the Phone Line S
 description_enu="Synchronize system variables of HomeMatic CCU with the Phone Line Status from a FritzBox and generate call lists"
 description_ger="Systemvariablen der HomeMatic CCU mit dem Telefon-Leitungsstatus der FritzBox synchron halten. Und Anruflisten erzeugen."
 
-version="0.0.1-0007"
+version="0.0.1-0009"
 beta="yes"
 arch="noarch"
 os_min_ver="7.0-40000"
@@ -87,28 +87,33 @@ if [[ "$1" != "" ]]; then  # Generation without toolkit scripts
     echo "================================================================"
   fi
 
-  line0=$(grep -i '"app"' "package/$dsmuidir/index.conf")
-  # echo "from ui/index.conf: '$line0'"
-  if [[ -n "$line0" ]] && [[ ! "${line0,,}" == *"${package,,}"* ]]; then # match in lower case
-    echo "================================================================"
-    echo "==index.conf: ====================================================="
-    echo "Warning: The \"app\" line in package/$dsmuidir/index.conf does not contain the package name '$package':"
-    echo "$line0"
-    echo "================================================================"
-    echo "================================================================"
-  fi
+  for cfgFile in package/"$dsmuidir"/*.conf; do
+    line0=$(grep -i '"app"' "$cfgFile")
+    # echo "from $cfgFile: '$line0'"
+    if [[ -n "$line0" ]] && [[ ! "${line0,,}" == *"${package,,}"* ]]; then # match in lower case
+      echo "================================================================"
+      echo "== $cfgFile: ====================================================="
+      echo "Warning: The \"app\" line in $cfgFile does not contain the package name '$package':"
+      echo "$line0"
+      echo "================================================================"
+      echo "================================================================"
+    fi
+  done
 
-  line0=$(grep -i '"title"' "package/$dsmuidir/index.conf")
-  # echo "from ui/index.conf: '$line0'"
-  if [[ -n "$line0" ]] && [[ ! "${line0,,}" == *"${package,,}"* ]]; then # match in lower case
-    echo "================================================================"
-    echo "==index.conf: ====================================================="
-    echo "Warning: The \"title\" line in package/$dsmuidir/index.conf does not contain the package name '$package':"
-    echo "$line0"
-    echo "================================================================"
-    echo "================================================================"
-  fi
-
+  for cfgFile in package/"$dsmuidir"/*.conf; do
+    if [[ "$cfgFile" != "package/$dsmuidir/helptoc.conf" ]];then
+      line0=$(grep -i '"title"' "$cfgFile")
+      # echo "from $cfgFile: '$line0'"
+      if [[ -n "$line0" ]] && [[ ! "${line0,,}" == *"${package,,}"* ]]; then # match in lower case
+        echo "================================================================"
+        echo "== $cfgFile: ====================================================="
+        echo "Warning: The \"title\" line in $cfgFile does not contain the package name '$package':"
+        echo "$line0"
+        echo "================================================================"
+        echo "================================================================"
+      fi
+    fi
+  done
   # Option:
   # - Check for all $dsmuidir/*_<lng>.html files whether a <title>...</title> line contains displaynameINFO from <lng>/lang.txt
   # - Check if a $dsmuidir/*_.html file contains *"https://github.com/"* the match to maintainer_url from INFO/INFO.sh

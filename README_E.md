@@ -23,6 +23,10 @@ For issues please use the [issue tracker](https://github.com/schmidhorst/synolog
 * You need to activate the monitor in the FritzBox with #96\*5\* on an analog phone, DECT- or ISDN phone, which is connected to the FritzBox.
 * Download the *.spk file from ["Releases"](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/releases/), "Assets" to your computer. And use "Manual Install" in the Package Center of the Synology. During the Installation you will be asked for the required settings.
 
+## Build Package
+* If you want to build the package yourself from the source: Download all files. Update the version number in INFO.sh after changes. Set the file build.sh to executable and run that script to generate the *.spk file. This works on your Synology NAS and also e.g. in the Windows Subsystem Linux WSL. The Synology package development toolkit is only needed after changes in the help pages.
+
+
 ## Credits and References
 - Thanks to [eiGelbGeek] (https://homematic-forum.de/forum/viewtopic.php?t=34876)
 - Thanks to [toafez Tommes](https://github.com/toafez) and his [Demo Package](https://github.com/toafez/DSM7DemoSPK)

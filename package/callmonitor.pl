@@ -51,49 +51,40 @@ my $execLogFilePathName="$varFilePath/execLog";
 my %cfgHashs;
 my $dsmappname;
 
-sub doExecLog {
-  my $level=shift();
-  if ($level =~ /^\d$/) {
-    if ( $level > $cfgHashs{"LOGLEVEL"}) {
-      print "Skip due to LogLevel $level ? $cfgHashs{'LOGLEVEL'} \n";
-      return; # msg only if LOGLEVEL is higer
-      }
-    }
-  else {
-    unshift(@_, $level);
-    $level=3;
-    }  
-  open(my $fh, '>>', $execLogFilePathName) or die "Could not open file '$execLogFilePathName' $!";
-  my $spanStart="";
-  my $spanEnd="";
-  if ( $level lt 2 ) { # Error
-    $spanStart="<span style=\"color:red;\">";
-    $spanEnd="</span>"; 
-    }
-  print $fh strftime("%F %T: ", localtime time) . $spanStart . "@_" . $spanEnd . "\n";
-  close $fh;
-  }
-
-
 my $country;
 my $areaCode;
-
+my $vaz;
+my $duplicatesList="";
 
 sub processDuplBookEntry {
-  my ( $number1, $number0, $name1, $book1, $url1, $email1, $whatsApp1, $name2, $book2, $url2, $email2, $whatsApp2, @others ) = @_;
+  my ( $number, $number0, $number1, $name1, $book1, $url1, $email1, $whatsApp1, $type1, $name2, $book2, $url2, $email2, $whatsApp2, $type2, @others ) = @_;
+  # e.g 0049892345 0892345 2345
   my $book = $book1;
   if ($name1 ne $name2) {
-    my $msg="For number $number1 ($number0) we have different names: $name1 (Book $book1) and $name2 (Book $book2)";
-    print "$msg\n";
-    doExecLog(5, $msg);
+    if ($number0 eq $number1) {
+      $duplicatesList .="For number $number ($number0) we have different names: $name1 (Book $book1) and $name2 (Book $book2)<br>";
+      }
+    else {
+      $duplicatesList .="For number $number ($number0, $number1) we have different names: $name1 (Book $book1) and $name2 (Book $book2)<br>";
+      }
     }
   if ($book1 ne $book2) {
     $book = "$book1, $book2";
     }
   elsif ($name1 eq $name2) {
-    my $msg = "Number $number0 ($number1) for '$name1' found duplicate in book $book";
-    print "$msg\n";
-    doExecLog(5, $msg);
+    my $number0c=removeNonDigits($number0);
+    my $number1c=removeNonDigits($number1);
+    if (length($number0c)==length($number1c)) {
+      if ($number0 ne $number1) {
+        $duplicatesList .= "Number $number ($number0, $number1) for '$name1' found duplicate in book $book<br>";
+        }
+      else {
+        $duplicatesList .= "Number $number ($number0) for '$name1' found duplicate in book $book<br>";
+        }  
+      }
+    else { # e.g. For number 00498416600 (0841 6600, 6600) we have
+      print "No log entry (numbers effectivly identically): Number $number ($number0, $number1) for '$name1' found duplicate in book $book\n";
+      }
     }
   if ($url1 eq "") {
     $url1= $url2;
@@ -114,56 +105,33 @@ sub processDuplBookEntry {
   if ($whatsApp1 eq "") {
     $whatsApp1 = $whatsApp2;
     }
-  return ($name2, $book, $number0, $url1, $email1, $whatsApp1);
-  }
-
-
-# Nummer aus Telefonbuch um Vorwahlen ergänzen
-sub addCountryArea {
-  my ( $number0 ) = @_;
-  $number0 =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
-  $number0 =~ s/#$//; # remove trailing #, which FritzBox is sending
-  $number0 =~ s/^\+/00/; # e.g. +49 ==> 0049
-  $number0 =~ s/[ \/()-]+//g; # e.g. (089) 234-123 ==> 089234123
-  $number0 =~ s/[^\x00-\x7F]//g; # Entferne alle Zeichen außerhalb des ASCII-Bereich, z.B. – (EN DASH, E2 80 93) 
-  if ($number0 =~ /^\*\*.*/ ) { # Number begins with *: internal extension number
-    return $number0;
-    }
-  # Eigene Orts-Vorwahl ergänzen, wenn mit 1...9 beginnend, d.h. nicht mit 0 oder *
-  if ($number0 =~ /^[1-9]/ ) { # starting with digit 1..9
-    $number0 = "$areaCode$number0"; # adde area code
-    }
-  if ($number0 =~ /^00.*/ ) { # starting with 00: o.k.
-    return $number0;
-    }  
-  $number0 =~ s/^0//; # if starting with 0 from area code: remove that
-  return "$country$number0"; # add now country code lime 0049
+  return ($name2, $book, $number, $url1, $email1, $whatsApp1, $type1);
   }
 
 
 # Insert number and Name to internal hash table
 sub insertToTelBook {
-  my ( $number0, $name, $book, $url, $email, $whatsApp, @others ) = @_;
+  my ( $number0, $name, $book, $url, $email, $whatsApp, $type, @others ) = @_;
+  # $number0 possibly without area code
   my $number1 = addCountryArea($number0);
   $name =~ s/;/ /g; # Replace semcolon by space as semicolon is later our list separator
-  # Eigene Landes-Vorwahl ergänzen, wenn nicht mit 00 beginnend???
   if ($number1 =~ /.*\*$/) { # with '*' at the end
     # print("WildCard: $number1 $name, book='$book' ");
     $number1 =~ s/\*/\.\*/; # replace * by the regExp .*
     # print("$number1\n");
-    my @ar=($name, $book, $number0, $url, $email, $whatsApp);
-    if (exists($telBookWild{$number1})) { # from another phone book
-      my ($name2, $book2, $number02, $url2, $email2, $whatsApp2)=@{$telBookWild{$number1}};
-      @ar=processDuplBookEntry($number1, $number0, $name2, $book2, $url2, $email2, $whatsApp2, $name, $book, $url, $email, $whatsApp);
+    my @ar=($name, $book, $number0, $url, $email, $whatsApp, $type);
+    if (exists($telBookWild{$number1})) { # e.g. from another phone book or duplicate in actual file
+      my ($name2, $book2, $number02, $url2, $email2, $whatsApp2, $type2)=@{$telBookWild{$number1}};
+      @ar=processDuplBookEntry($number1, $number0, $number02, $name2, $book2, $url2, $email2, $whatsApp2, $type2, $name, $book, $url, $email, $whatsApp, $type);
       }
     $telBookWild{$number1}=[@ar];
     }
   else { # normal number
-    # print("Normal: $number $name $book\n");
-    my @ar=($name, $book, $number0, $url, $email, $whatsApp);
+    # print("Normal: $number0 $name book=$book type='$type'\n");
+    my @ar=($name, $book, $number0, $url, $email, $whatsApp, $type);
     if (exists($telBook{$number1})) { # from another phone book already available
-      my ($name2, $book2, $num0, $url2, $email2, $whatsApp2)=@{$telBook{$number1}};
-      @ar=processDuplBookEntry($number1, $number0, $name2, $book2, $url2, $email2, $whatsApp2, $name, $book, $url, $email, $whatsApp);
+      my ($name2, $book2, $num02, $url2, $email2, $whatsApp2, $type2)=@{$telBook{$number1}};
+      @ar=processDuplBookEntry($number1, $number0, $num02, $name2, $book2, $url2, $email2, $whatsApp2, $type2, $name, $book, $url, $email, $whatsApp, $type);
       }
     $telBook{$number1} = [@ar];
     # https://stackoverflow.com/questions/5384825/perl-assigning-an-array-to-a-hash
@@ -205,7 +173,7 @@ sub read_txt_telBook {
         }
       my $number=$elements[0];
       # print "line='$_' => '$number':'$elements[1]'\n";
-      insertToTelBook($number, $elements[1], $book, "", "", ""); # no URL for Homepage, no eMail, no WhatsApp
+      insertToTelBook($number, $elements[1], $book, "", "", "", ""); # no URL for Homepage, no eMail, no WhatsApp, no type (FAX, CELL, pref)
       $n++;
       }
     }
@@ -268,7 +236,7 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
   open my $fh, '<:encoding(UTF-8)', \$vcard; # 
   my $fullName="";
   my $name="";
-  my @numbers=();
+  my @numbers=(); # number + type
   my @urls=();
   my @emails=();
   my @whatsApp=();
@@ -325,8 +293,25 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
       }      
     elsif ($line =~ /^TEL/ ) {
       # print " TEL: $line \n";
+      # TEL;TYPE=FAX,WORK:0731 ...
+      # TEL;TYPE=PREF,WORK:0731 ...
+      # TEL;TYPE=work:069 ...
+      # TEL;TYPE=CELL:0160 ...
+
       my($pre, $number) = split(/:/, $line);
-      push(@numbers, $number);
+      my @elements=split(";", uc($pre));
+      # print "$number: $pre=$pre\n";
+      my $type="";
+      foreach (@elements) {
+        if ($_ =~ /^TYPE=/) {
+          s/^TYPE=//;
+          # print "$number: TYPE=$_\n";
+          $type=$_;
+          }
+        }
+      my @item=($number, $type);
+      push(@numbers, \@item);
+      # print "pushed ($number, $type)\n";
       }      
     elsif ($line =~ /END:VCARD/ ) {
       if ($fullName ne "") {
@@ -345,6 +330,9 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
         # print(" $n numbers: $name book='$bookName'\n"); # warum fehlt erstes Zeichen???
         my $mUrl=0;
         foreach (@numbers) {
+          # we may have multiple numbers (different type) for one name
+          my ($num1, $type)=@{$_};
+          # print "retrieved: '$num1', '$type'\n";
           my $url="";
           my $email="";
           my $whats="";
@@ -363,14 +351,15 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
           if ($#emails > -1) { # we have at least one entry
             my $nn=1+$#emails;
             if ($nn > 1) {
-              print "$nn emails (" . join(", ", @emails) . ") found for $_\n";
+              print "$nn emails (" . join(", ", @emails) . ") found for $num1\n";
               }
             $email = join(",%20", @emails);
             }  
           if ($#whatsApp > -1) {
             $whats = $whatsApp[0];
             }
-          insertToTelBook($_, $name, $bookName, $url, $email, $whats); # make an Entry for each number
+          # print "#### inserting $num1 ($type) for '$name' ####\n";
+          insertToTelBook($num1, $name, $bookName, $url, $email, $whats, $type); # make an Entry for each number
           $mUrl++;
           }          
         $fullName="";
@@ -393,9 +382,10 @@ sub read_cardDAV_telBook { # read one CardDAV telephone book (http or https)
 # read one FritzBox XML phone book:
 sub read_xml_telBook { 
   no warnings;
-  my $rn;
+  my $rn; # realName
+  my $type; # e.g. "work", "home", "fax_work"
   # my $number;
-  my @numbers=();
+  my @numbers=(); # number + type
   my $is_phb;
   my $is_number;
   my $is_realName; 
@@ -421,7 +411,7 @@ sub read_xml_telBook {
   $p->parsefile($filePathName) or do {
     my $err=$!;
     my $errMsg="Error to open phonebook file '$filePathName' ($book) for reading: $err";
-    print "$errMsg";
+    print "$errMsg\n";
     doExecLog(1, $errMsg);
     fileMissingLogEntry($filePathName);
     # msg2: "Fehler beim Lesen/Aktualisieren des Telefonbuchs {0}: {1}"
@@ -432,20 +422,32 @@ sub read_xml_telBook {
   sub start { # of XML item
     my($p, $tag, %attrs) = @_;
     $is_phb = ($tag eq "phonebook");
-    if ($is_phb) {
+    $is_number = ($tag eq "number");
 =pod
+    if (($is_phb) || ($is_number)) {
       print "start tag=$tag, attrs=";
       keys %attrs; # reset the internal iterator so a prior each() doesn't affect the loop
       while(my($k, $v) = each %attrs) { 
         print " $k=$v";
         }
-      print "book1=$attrs{'name'}";
+      print " book1=$attrs{'name'}\n";
+      }
 =cut
+    if ($is_number) {
+      keys %attrs; # reset the internal iterator so a prior each() doesn't affect the loop
+      while(my($k, $v) = each %attrs) {
+        if ($k eq "type") {
+          # print " $k=$v\n";
+          $type=$v;
+          }
+        }
+      # print " book1=$attrs{'name'}\n";
+      }
+    if ($is_phb) {
       if ($book eq "") { # overwrite configured book name by the exported name
         $book1=$attrs{"name"};
         }
       }
-    $is_number = ($tag eq "number");
     $is_realName = ($tag eq "realName")
     } # sub start
  
@@ -463,7 +465,9 @@ sub read_xml_telBook {
         }
       elsif ($is_number) {
         $text =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
-        push(@numbers, $text);
+        my @item=($text, $type);
+        push(@numbers, \@item);
+        $type="";
         }
       }
     } # sub text
@@ -484,10 +488,9 @@ sub read_xml_telBook {
         doExecLog(3, $msg);
         }
       else {
-        # my $n = 1+$#numbers;
-        # print(" $n numbers: $rn \n"); # warum fehlt erstes Zeichen???
         foreach (@numbers) {
-          insertToTelBook($_, $rn, $book1, "", "", ""); # make an Entry for each number, no Homepage-URL, no eMail, no whatsApp
+          my ($num1, $type)=@{$_};
+          insertToTelBook($num1, $rn, $book1, "", "", "", $type); # make an Entry for each number, no Homepage-URL, no eMail, no whatsApp, no type
           }
         }
       $rn="";
@@ -499,50 +502,6 @@ sub read_xml_telBook {
       }
     } # handle_end
   } # sub read_xml_telBook
-
-
-# Lookup the name for a given number in the hash tables
-sub number2nameBook {
-  # find the given Number either in $telBook{$number} or in $telBookWild{$key}
-  my ($number) = @_;
-  $number = addCountryArea($number);
-  print "scanning for $number ... ";
-  # doExecLog(6, "number2nameBook(), cleaned number='$number'");
-  if (exists($telBook{$number})) { # normal number
-    my ($callerName, $bookName, $numberFormated, $url, $mail, $whatsApp)=@{$telBook{$number}};
-    doExecLog(6, "number2nameBook(), cleaned number='$number' resolved to $callerName, $bookName");
-    print "found in $bookName: '$callerName\n";
-    return($callerName, $bookName, $numberFormated, $url, $mail, $whatsApp);
-    }
-  print " scanning wildCardBooks...";
-  my $len1=0;
-  my ($name, $book, $numberFormated, $url, $mail, $whatsApp);
-  foreach my $key (keys %telBookWild) { # Find e.g. Entry "0032*:Belgium_" for 00326875676
-    # Hint: The key is no more the original e.g. 0032* but an regular expression: <number>.* (number followed by anything, 0032.*)
-    if ( $number =~ /$key/ ) {
-      my $len2=length($key)-2; # count of real digits
-      if ($len2 > $len1) { # previously e.g. len1=4 from 0049, now len2=6 from 004989
-        ($name, $book, $numberFormated, $url, $mail, $whatsApp)=@{$telBookWild{$key}};
-        $len1=$len2;
-        }
-      }
-    }
-  if ($len1 > 0) {
-    # my $name=$telBookWild{$key} . " " . substr($number, $len); # return e.g. Belgium 6875676
-    $name = $name . " " . substr($number, $len1); # return e.g. Belgium 6875676
-    doExecLog(4, "number2nameBook(), cleaned number='$number' resolved to $name from $book");
-    $numberFormated=substr($number, 0, $len1) . " " . substr($number, $len1); 
-    print " $numberFormated found in $book as $name. AREABookName=$cfgHashs{BOOKNAME_AREA}\n";
-      if (index($book, $cfgHashs{BOOKNAME_AREA}) == -1) {
-        # e.g. the wildcard number of an company, don't insert "Unknown "
-        return ($name, $book, $numberFormated, $url) # [CallerName, BookName, original formated number]
-        }
-      return ( "Unknown from " . $name, "", $numberFormated) # [CallerName, BookName, original formated number]
-    }
-  doExecLog(4, "number2nameBook(), cleaned number='$number' not resolved");
-  print " Number not found!\n";
-  return ("Unknown", "", $number);
-  }
 
 
 my @ownLineNumbers;
@@ -595,7 +554,7 @@ sub expandNebenstelle {
     doExecLog(3, "Extension FB=$ns ==> $ns0");    
     }  
   if (exists($telBook{$ns0})) { # wenn im Telefonbuch vorhanden: Namen (z.B. "Flur") statt Nr (z.B. 11 bzw **611) verwenden
-    my ($ns1, $book, $numberFormated, $url, $mail, $whatsApp)=@{$telBook{$ns0}}; # $name, $book, $number0 (OriginalFormat)
+    my ($ns1, $book, $numberFormated, $url, $mail, $whatsApp, $type)=@{$telBook{$ns0}}; # $name, $book, $number0 (OriginalFormat)
     print "Ext. $ns0 via $book resolved to $ns1\n";
     doExecLog(4, "Ext. $ns0 via $book resolved to $ns1");    
     $ns0=$ns1;
@@ -655,6 +614,132 @@ sub fileMissingLogEntry {
   }
 
 
+# after a phonebook update check the calls list for "Unknown" entries and add the name, if it's now in the phonebook
+sub updateCallsList{
+  my ($file) = @_;
+  print "sub updateCallsList for '$file'\n";
+  if(-e -w $file) {
+    open my $fh, '>', "${file}new";
+    open (my $fh0, "$file");
+    my $cnt=0;
+    while( my $line = <$fh0>) {
+      chomp $line;
+      $cnt++;
+      # print "$line\n";
+      my $upd=0;
+      my @items = split(";", $line);
+      my ($externalName, $book, $numberFormated, $url, $email, $whatsApp, $type);
+      my $number;
+      if ( $items[3] =~ /^Unknown/ ) {
+        print "  items[3] = '$items[3]'\n";
+        $number=$items[2]; # my be "<a href='...'>07524</a> 990132"
+        $number =~ s/<\/a>//g;
+        $number =~ s/<.*>//g;
+        print "  number = '$number' ";
+        ($externalName, $book, $numberFormated, $url, $email, $whatsApp, $type)=number2nameBook($number);
+        if ( $externalName ne "Unknown") {
+          $upd=1;
+          print " now resolved to '$externalName'!\n";
+          }
+        else {
+          print " still un-resolved!\n";
+          }  
+        }
+      if ( $upd == 1) {
+        # my $txtLine="$dir;$timestamp;$extNum;$externalName;$phonebookName;$ownLineNumberName;$NebenstelleNrName;$timestring\n";
+        print "==> new text line with '$externalName'\n";
+        my ($extName, $extNumber) = appendLinks2extName($externalName, $url, $email, $whatsApp, $type, $number);
+        my $txtLine="$items[0];$items[1];$extNumber;$extName;$book;$items[5];$items[6];$items[7]\n";
+        print $fh $txtLine;
+        }
+      else {
+        print $fh "$line\n";
+        }
+      } # while
+    print "  $cnt lines scanned!\n";
+    close ($fh0);
+    close ($fh);
+    chmod 0744, "${file}new";
+    my $uid = getpwnam($pkgName);
+    my $gid = getgrnam($pkgName);
+    print ("uid:gid of $pkgName: $uid:$gid\n");
+    if (($uid != 0) && ($gid != 0)) {
+      chown $uid, $gid, "${file}new";
+      }        
+    unlink($file); # delete the old file
+    rename("${file}new", "${file}"); # rename ${file}new to ${file}
+    }
+  else {
+    print "Warning: File '$file' not found!\n";
+    }  
+  }
+
+
+
+# Lookup the name for a given number in the hash tables
+sub number2nameBook {
+  # find the given Number either in $telBook{$number} or in $telBookWild{$key}
+  my ($number0) = @_;
+  my $number = addCountryArea($number0);
+  my $telCnt = keys %telBook;
+  print "scanning for $number ... ($telCnt entries in telbook)";
+  # doExecLog(6, "number2nameBook(), cleaned number='$number'");
+  if (exists($telBook{$number})) { # normal number
+    my ($callerName, $bookName, $numberFormated, $url, $mail, $whatsApp, $type)=@{$telBook{$number}};
+    doExecLog(6, "number2nameBook(), number='$number0', cleaned='$number' resolved to $callerName, $bookName");
+    print "found in $bookName: '$callerName\n";
+    return($callerName, $bookName, $numberFormated, $url, $mail, $whatsApp, $type);
+    }
+  print " not in normal telbook, scanning wildCardBooks...";
+  my $len1=0;
+  my ($name, $book, $numberFormated, $url, $mail, $whatsApp, $type);
+  foreach my $key (keys %telBookWild) { # Find e.g. Entry "0032*:Belgium_" for 00326875676
+    # Hint: The key is no more the original e.g. 0032* but an regular expression: <number>.* (number followed by anything, 0032.*)
+    if ( $number =~ /^$key/ ) {
+      my $len2=length($key)-2; # count of real digits
+      if ($len2 > $len1) { # previously e.g. len1=4 from 0049, now len2=6 from 004989
+        ($name, $book, $numberFormated, $url, $mail, $whatsApp, $type)=@{$telBookWild{$key}};
+        $len1=$len2;
+        }
+      }
+    }
+  if ($len1 > 0) {
+    # my $name=$telBookWild{$key} . " " . substr($number, $len); # return e.g. Belgium 6875676
+    $name = $name . " " . substr($number, $len1); # return e.g. Belgium 6875676
+    doExecLog(4, "number2nameBook(), number='$number0', cleaned='$number' resolved to $name from $book");
+    $numberFormated=substr($number, 0, $len1) . " " . substr($number, $len1); 
+    # print "number2nameBook() $numberFormated found in $book as $name. AREABookName=$cfgHashs{BOOKNAME_AREA}\n";
+      if (index($book, $cfgHashs{BOOKNAME_AREA}) == -1) {
+        # e.g. the wildcard number of an company, don't insert "Unknown "
+        return ($name, $book, $numberFormated, $url, "", "") # [CallerName, BookName, original formated number]
+        }
+      # print "number2nameBook() numberFormated=$numberFormated, country=$country, areaCode=$areaCode\n";
+      if ( $numberFormated =~ /^$country.*/) { # starts with own country code
+        # print "own country found!\n";
+         # NUMPLAN
+        if ($cfgHashs{NUMPLAN} == 0) {
+          # print "offener Nummernplan\n"; # Deutschland, Österreich
+          $numberFormated =~ s/^$country/0/; # replace e.g. 0049 by 0, make international number to national number
+          } 
+        else {
+          # print "geschlossener Nummernplan\n"; # Schweiz
+          $numberFormated =~ s/^$country//; # remove e.g. 0041, make international number to national number
+          }
+        }
+      if ( $numberFormated =~ /^$areaCode.*/) { # starts with own area code, e.g. 0711
+        $numberFormated =~ s/^$areaCode//; # remove that
+        }
+      print "number2nameBook() numberFormated=$numberFormated\n";
+      return ( "Unknown from " . $name, "", $numberFormated,       "",  "",    "",      "") 
+      #           Caller-"Name"       , BookName, formated number, url, eMail, whatsApp, type
+    }
+  doExecLog(4, "number2nameBook(), cleaned number='$number' not resolved");
+  print " Number not found!\n";
+  return ("Unknown", "", $number, "", "", "", "");
+  }
+
+
+
 ##################### MAIN ##################
 print  formatedNow() . basename( $scriptPath ) . " Die Datei $scriptFile liegt im Verzeichnis $scriptDir.\n";
 # my $username = $ENV{LOGNAME} || $ENV{USER} || getpwuid($<);
@@ -695,7 +780,7 @@ print "... LogLevel is $cfgHashs{LOGLEVEL}\n";
 # $cfgHashs{CCU_PW} and $cfgHashs{DAV_PW} should be set to "*****" in the config file, real PW is in var/pw file (root only access)
 %tmpHash=read_fileItem "$varFilePath/pw";
 %cfgHashs = (%cfgHashs, %tmpHash);
-
+$vaz = $cfgHashs{VAZintl}; # e.g. 00 in western Europe, 011 in northern America
 $country = $cfgHashs{COUNTRYCODE}; # e.g. 0049 for Germany
 $country =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
 $areaCode=$cfgHashs{AREACODE}; # e.g. 089 for Munich
@@ -820,7 +905,10 @@ while (1) {
     print "$tb is not defined\n";
     }  
   }
-
+if ( length($duplicatesList) > 0) {
+  $duplicatesList =~ s/<br>$//;
+  doExecLog(4, $duplicatesList);
+  }
 my $telCnt = keys %telBook;
 $telCntW = keys %telBookWild;
 my $telCnt3 = $telCnt - $telCnt2;
@@ -848,8 +936,8 @@ while ($#ARGV > -1) {
   if ( lc($item) eq "dump" ) { #### dump: print all phonebook entries before waiting for calls
     # print "$_ $telBook{$_}\n" for (keys %telBook);
     foreach my $key (keys %telBook) {
-      my ($name, $book, $raw, $url, $email, $whatsApp)= @{$telBook{$key}};
-      print "$key ($raw) $book $name $url $email $whatsApp\n";
+      my ($name, $book, $raw, $url, $email, $whatsApp, $type)= @{$telBook{$key}};
+      print "$key ($raw) $book $name $url $email $whatsApp $type\n";
       }
     }
   elsif ( length($item) <= 2) { #### e.g "22" should be expanded to "*622"
@@ -858,7 +946,7 @@ while ($#ARGV > -1) {
     }
   elsif (( $item =~ /^\d+$/ ) or ($item =~ /^\*\*.*/)) {  #### show phonebook entry for given number
     # print "Number $item: ";
-    my ($externalName, $book, $numberFormated, $url, $extEmail, $whatsApp)=number2nameBook($item);
+    my ($externalName, $book, $numberFormated, $url, $extEmail, $whatsApp, $type)=number2nameBook($item);
     print "Debug NumberLookup $item: $numberFormated $externalName ($book) url='$url', eMail='$extEmail', WhatsApp='$whatsApp'\n";
     }
   elsif ( $item =~ /^RING/ ) {  #### generate debug call list entry for given number
@@ -866,17 +954,19 @@ while ($#ARGV > -1) {
     if ($#ARGV > -1) {
       $extNum = shift @ARGV;
       }
-    my ($externalName, $book, $numberFormated, $url, $extEmail, $whatsApp)=number2nameBook($extNum);
-    print "Debug RING $extNum: $externalName, $book, $numberFormated, url='$url', eMail='$extEmail', whatsApp='$whatsApp'\n";
-    my $extName = appendLinks2extName($externalName, $url, $extEmail, $whatsApp, $extNum);
+    my ($externalName, $book, $numberFormated, $url, $extEmail, $whatsApp, $type)=number2nameBook($extNum);
+    print "Debug RING $extNum: $externalName, $book, $numberFormated, url='$url', eMail='$extEmail', whatsApp='$whatsApp', type='$type'\n";
+    my ($extName, $extNum2) = appendLinks2extName($externalName, $url, $extEmail, $whatsApp, $type, $numberFormated);
     print "DEBUG withLinks: $extName\n";
-    makeCallListEntry ("in", strftime("%F %T: ", localtime time), $extNum, $extName, $book, $lineNames[0], "**611", "");
+    makeCallListEntry ("in", strftime("%F %T: ", localtime time), $extNum2, $extName, $book, $lineNames[0], "**611", "");
     }
   else {
     print "wrong Parameter '$item', either 'dump', a pure interger number or no parameter are allowed!\n";
     }  
   }
 
+updateCallsList("$varFilePath/calls.txt"); # newest file
+updateCallsList("$varFilePath/calls.txt.1"); # previous file (log rotation, still used in web page)
 
 #Open the web socket to listen on port 1012 of the FritzBox:
 my $sock = new IO::Socket::INET (
@@ -895,6 +985,7 @@ my @externalNumbers;    # $C[3] Anrufernummer
 my @externalURLs;
 my @externalEmails; # option: Append &amp;subject=Your Call from <DateTime>
 my @externalWhatsApp;
+my @externalType;
 my @ownLineNumberNames;
 my @phonebookNames;
 print  formatedNow() . basename( $scriptPath ) . ": Waiting for calls ...\n";
@@ -923,7 +1014,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
     my $idxLine = getLineNumberIdx($ownLineNumber, $C[1]); # scan @ownLineNumbers
     # $C[5] = SIP-Account
     #Prüfen ob Rufnummer im Telefonbuch vorhanden ist:
-    my ($externalName, $book, $numberFormated, $url, $email, $whatsApp)=number2nameBook($externalNumber);
+    my ($externalName, $book, $numberFormated, $url, $email, $whatsApp, $type)=number2nameBook($externalNumber);
     print "RING C[3]=$externalNumber ($numberFormated, $externalName) bei C[4]=Line=$C[4], C[5]=$C[5] (conID C[2]=$C[2])\n";
     if ( $idxLine >= 0) {
       $what[$idxLine]=$C[1]; # RING
@@ -934,10 +1025,12 @@ while(<$sock>) { #warten auf aktiven Anruf#
       $externalURLs[$idxLine] = $url;
       $externalEmails[$idxLine] = $email; # option: Append &amp;subject=Your Call from <DateTime>
       $externalWhatsApp[$idxLine] = $whatsApp;
+      $externalType[$idxLine] = $type;
       $phonebookNames[$idxLine]=$book;
       $NebenstelleNrName[$idxLine]=""; # noch unbekannt
       $externalNumbers[$idxLine] = $externalNumber; # $C[3] Externe Anrufer-Nummer # e.g. 9876543#
       if ($numberFormated ne "") {
+        # print "RING externalNumber=$externalNumber, numberFormated=$numberFormated\n";
         $externalNumbers[$idxLine] = $numberFormated;
         }
       $ownLineNumberNames[$idxLine]=$ownLineNumber;
@@ -963,7 +1056,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
     # $C[5] = Angerufene externe Rufnummer
 
     my $externalNumber=$C[5];
-    my ($externalName, $book, $numberFormated, $url, $email, $whatsApp)=number2nameBook($externalNumber);
+    my ($externalName, $book, $numberFormated, $url, $email, $whatsApp, $type)=number2nameBook($externalNumber);
     my $Nebenstelle=expandNebenstelle($C[3]); # Nr. (z.B. $C[3]=23 (statt **623)) oder Name (z.B. Flur)
     my $idxLine = getLineNumberIdx($C[4], $C[1]);
     if ( $idxLine >= 0) {
@@ -975,6 +1068,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
       $externalURLs[$idxLine] = $url;
       $externalEmails[$idxLine] = $email;
       $externalWhatsApp[$idxLine] = $whatsApp;
+      $externalType[$idxLine] = $type;      
       $phonebookNames[$idxLine] = $book;
       $externalNumbers[$idxLine] = $externalNumber;
       if ($numberFormated ne "") {
@@ -1052,14 +1146,15 @@ while(<$sock>) { #warten auf aktiven Anruf#
           $dir='failed';
           }
         }  
-      my $extName = appendLinks2extName($externalNames[$idxLine], $externalURLs[$idxLine], $externalEmails[$idxLine], $externalWhatsApp[$idxLine], $externalNumbers[$idxLine]);
-      makeCallListEntry ($dir, $timestamps[$idxLine], $externalNumbers[$idxLine], $extName, $phonebookNames[$idxLine], $ownLineNumberNames[$idxLine], $NebenstelleNrName[$idxLine], $timestring);
+      my ($extName, $extNumber) = appendLinks2extName($externalNames[$idxLine], $externalURLs[$idxLine], $externalEmails[$idxLine], $externalWhatsApp[$idxLine], $externalType[$idxLine], $externalNumbers[$idxLine]);
+      makeCallListEntry ($dir, $timestamps[$idxLine], $extNumber, $extName, $phonebookNames[$idxLine], $ownLineNumberNames[$idxLine], $NebenstelleNrName[$idxLine], $timestring);
       #clean up:
       $SIP_ConID[$idxLine]="";
       $externalNumbers[$idxLine]="";
       $externalURLs[$idxLine]="";
       $externalEmails[$idxLine]="";
       $externalWhatsApp[$idxLine]="";
+      $externalType[$idxLine] = "";      
       $NebenstelleNrName[$idxLine]="";
       $SIP_INorOUT_Call[$idxLine]="";
       } # ConnectionID war OK
@@ -1073,8 +1168,8 @@ while(<$sock>) { #warten auf aktiven Anruf#
       if ($SIP_ConID[$i] ne "") {
         my $lineNr1= 1 + $i;
         $n++;
-        my $extName = appendLinks2extName($externalNames[$i], $externalURLs[$i], $externalEmails[$i], $externalWhatsApp[$i], $externalNumbers[$i]);
-        my $lineTxt="$SIP_INorOUT_Call[$i];$C[0];$externalNumbers[$i];$extName;$phonebookNames[$i];$ownLineNumberNames[$i];$NebenstelleNrName[$i];\n"; # no duration
+        my ($extName, $extNumber) = appendLinks2extName($externalNames[$i], $externalURLs[$i], $externalEmails[$i], $externalWhatsApp[$i], $externalType[$i], $externalNumbers[$i]);
+        my $lineTxt="$SIP_INorOUT_Call[$i];$C[0];$extNumber;$extName;$phonebookNames[$i];$ownLineNumberNames[$i];$NebenstelleNrName[$i];\n"; # no duration
         $txtlines="$txtlines$lineTxt"; 
         print("Line $lineNr1 is busy: $lineTxt\n");
         }
@@ -1116,8 +1211,11 @@ while(<$sock>) { #warten auf aktiven Anruf#
 
 
 sub appendLinks2extName {
-  my ($extName, $urlWeb, $eMail, $whatsApp, $number) = @_;
-  print "called appendLinks2extName($extName, $urlWeb, $eMail, $whatsApp, $number)\n";
+  my ($extName, $urlWeb, $eMail, $whatsApp, $type, $number) = @_;
+  print "called/caller appendLinks2extName($extName, $urlWeb, $eMail, $whatsApp, $type, $number)\n";
+  if (index(uc($type), "FAX") != -1)  {
+    $extName="<img src='images/fax.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'>$extName";
+    }
   if ($urlWeb ne "") { # Add Homepage-URL to Name
     $extName="$extName <a target='_blank' href='" . $urlWeb . "'><img src='images/web.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'></a>";
     }
@@ -1126,8 +1224,22 @@ sub appendLinks2extName {
     my $searchUrl = $cfgHashs{INVERS_URL};
     my $numberCleand = $number;
     $numberCleand =~ s/ //g;
+    $numberCleand=addCountryArea($numberCleand); # z.B. Ortsvorwahl fehlt, falls nicht mitgewählt
     $searchUrl =~ s/\{number\}/$numberCleand/;
     $extName = "$extName <a target='_blank' href='" . $searchUrl . "'><img src='images/search.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'></a>";
+    if (( $number =~ /^0[1-9].*/ ) && ($cfgHashs{MAP_URL} ne "")) { # not 00.. and MAP_URL defined
+      # $vaz ?????????????????????????????????
+      # add an link to lookup the map for the area code
+      my @numParts = (split / /, $number, 2);
+      print "appendLinks2extName() Number splitted #numParts=$#numParts, numParts[1]=$numParts[1] \n";      
+      if (($#numParts == 1) && ($numParts[0] ne "0800") && ($numParts[0] ne "0700") && ($numParts[0] =~ /^1.*/ )) {
+        my $mapUrl=$cfgHashs{MAP_URL};
+        $mapUrl =~ s/\{number\}/$numParts[0]/;
+        print "Map-Area: $numParts[0], mapUrl=$mapUrl\n";
+        $number="<a target='_blank' href='$mapUrl'>$numParts[0]</a> $numParts[1]";
+        }
+      print "Lookup-Number: $number\n";
+      }
     }
   else {print "  not unknown or no searchUrl\n";}  
   if ( $eMail ne "") {
@@ -1137,11 +1249,11 @@ sub appendLinks2extName {
     if ( $whatsApp ne "") {
     # https://stackoverflow.com/questions/30344476/web-link-to-specific-whatsapp-contact
     # Option with predefined Text: https://wa.me/552196312XXXX?text=[message-url-encoded]
-    $whatsApp =~ s/^00//; # remove leading the 00 (substitue 00 by %2B works also). Must start with international code (e.g. 49 for Germany)
+    $whatsApp =~ s/^$vaz//; # remove leading the 00 (substitue 00 by %2B works also). Must start with international code (e.g. 49 for Germany)
     $extName = "$extName <a target='_blank' href='https://wa.me/$whatsApp'><img src='images/whatsApp.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'></a>";
     }
   print "expanded Name: $extName\n";
-  return $extName;  
+  return ($extName, $number);  
   }
 
 

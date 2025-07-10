@@ -343,29 +343,39 @@ case $1 in
       logInfo 6 "no crond entry for restart every night found"
     fi
     n=0
-    sig="SIGTERM"
+    sig="-SIGTERM"
     while [ "$n" -le "20" ]; do
       n=$(( n + 1 ))
       cmPid=$(pidof "calls.cgi")
       ret=$?
       if [[ "$ret" -ne "0" ]]; then # not running:
+        logInfo 6 "no calls.cgi process found"
         break
       fi
-      kill -$sig "$cmPid"
+      logInfo 6 "calls.cgi processes found: $cmPid"
+      for pid in $cmPid; do
+        logInfo 6 "trying 'kill $sig $pid' "
+        kill $sig "$pid"
+      done 
       if [ "$n" -ge "10" ]; then
-        sig="SIGKILL"
+        sig="-SIGKILL"
       fi
       done
     n=0
-    sig="SIGTERM"
+    sig="-SIGTERM"
     while [ "$n" -le "20" ]; do
       n=$(( n + 1 ))
       cmPid=$(pidof "callmonitor.pl")
       ret=$?
       if [[ "$ret" -ne "0" ]]; then # not running:
+        logInfo 6 "no callmonitor.pl process found"
         break
       fi  
-      kill -$sig "$cmPid"
+      logInfo 6 "callmonitor.pl process found: $cmPid"
+      for pid in $cmPid; do
+        logInfo 6 "trying 'kill $sig $pid' "
+        kill $sig "$pid"
+      done 
       if [ "$n" -ge "10" ]; then
         sig="SIGKILL"
       fi

@@ -26,6 +26,8 @@ printFormatedCallLine() {
   if [[ "${a[0],,}" == "${which,,}" ]] || [[ "${which,,}" == "all" ]]; then # filter the requeted typ (IN, OUT, ...) of lines
     if [[ "${a[3]}" =~ "Unknown from" ]];then # Translate to the language prefered by browser
       a[3]=${a[3]/Unknown from/"$unknownFrom"}
+    elif [[ "${a[3]}" =~ "Unknown to" ]];then # Translate to the language prefered by browser
+      a[3]=${a[3]/Unknown to/"$unknownTo"}
     else
       a[3]=${a[3]/Unknown/"$unknown"}
     fi
@@ -407,7 +409,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
     logInfoNoEcho 8 "'which'='$which'"
   fi
   metaRfsh=""
-  if [[ "$AUTOREFRESH_S" != "0" ]]; then  
+  if [[ -n "$AUTOREFRESH_S" ]] && [[ "$AUTOREFRESH_S" != "0" ]]; then
     metaRfsh="<meta http-equiv=refresh content='$AUTOREFRESH_S'>"
   fi
 
@@ -525,7 +527,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
   fi # if [[ "$logfile" == "$SCRIPT_EXEC_LOG" ]] else
   if [[ "$is_admin" == "yes" ]]; then
     # shellcheck disable=SC2154
-    echo "<button onclick=\"location.href='index.cgi'\" type=\"button\">${btnShowLog}</button>"
+    echo "<button onclick=\"location.href='log.cgi'\" type=\"button\">${btnShowLog}</button>"
   fi # if [[ "$logfile" == "$SCRIPT_EXEC_LOG" ]] else
   echo "</p>
   </body> </html>"

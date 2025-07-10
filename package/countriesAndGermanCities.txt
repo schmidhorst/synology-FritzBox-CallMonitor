@@ -228,6 +228,17 @@
 00995*;Georgien
 00996*;Kirgisistan
 00998*;Usbekistan
+0049 110;Polizei-Notruf
+0049 112;Notruf Feuer/Rettung
+0049 115;Lokale Behörde
+0049 116000;Hotline vermisste Kinder
+0049 116006;Beratungsdienst für VerbrechensOpfer
+0049 116111;Hotline für Hilfe suchende Kinder
+0049 116116;Sperrung elektronischer Berechtigungen
+0049 116117;Ärztlicher Bereischaftsdienst
+0049 116123;Seelsorge/Lebenshilfe
+0049 13*;Massenverkehrsnummer 013
+0049 180*;Shared-Cost-Dienst 0180
 0049 201*;Essen
 0049 202*;Wuppertal
 0049 203*;Duisburg
@@ -4431,6 +4442,7 @@
 0049 7975*;Untergröningen
 0049 7976*;Sulzbach-Laufen
 0049 7977*;Oberrot b. Gaildorf
+0049 800*;Calldienst 0800
 0049 8020*;Weyarn
 0049 8021*;Waakirchen
 0049 8022*;Tegernsee
@@ -4873,6 +4885,7 @@
 0049 8868*;Schwabsoien
 0049 8869*;Kinsau
 0049 89*;München
+0049 900*;MehrwertDienst 0900
 0049 906*;Donauwörth
 0049 9070*;Tapfheim
 0049 9071*;Dillingen a. d Donau

@@ -414,93 +414,91 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
     <body onload="myLoad()" onresize="setBoxHeight()">
       <header>'
   echo "$versionUpdateHint"
-        # Load page content
-        # --------------------------------------------------------------
-        # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='index.cgi?action=ALL'\" type=\"button\">$btnAllCalls</button> "
-        # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='index.cgi?action=OUT'\" type=\"button\">$btnOutCalls</button> "
-        # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='index.cgi?action=IN'\" type=\"button\">$btnInCalls</button> "
-        # shellcheck disable=SC2154
-        echo "<button onclick=\"location.href='index.cgi?action=MISSED'\" type=\"button\">$btnMissedCalls</button> "
+  # Load page content
+  # --------------------------------------------------------------
+  # shellcheck disable=SC2154
+  echo "<button onclick=\"location.href='calls.cgi?action=ALL'\" type=\"button\">$btnAllCalls</button> "
+  # shellcheck disable=SC2154
+  echo "<button onclick=\"location.href='calls.cgi?action=OUT'\" type=\"button\">$btnOutCalls</button> "
+  # shellcheck disable=SC2154
+  echo "<button onclick=\"location.href='calls.cgi?action=IN'\" type=\"button\">$btnInCalls</button> "
+  # shellcheck disable=SC2154
+  echo "<button onclick=\"location.href='calls.cgi?action=MISSED'\" type=\"button\">$btnMissedCalls</button> "
 
-        if [[ "$is_admin" == "yes" ]]; then
-          # HTTP GET and POST requests
-          if [[ "$logfile" != "$SCRIPT_EXEC_LOG" ]]; then
-            echo "<button onclick=\"location.href='log.cgi'\" type=\"button\">${btnShowSimpleLog}</button> "
-          fi
-          echo "<button onclick=\"location.href='settings.cgi'\" type=\"button\">${btnShowSettings}</button> "
-          echo "<button onclick=\"location.href='$licenceFile'\" type=\"button\">${btnShowLicence}</button> "
-# https://stackoverflow.com/questions/21168521/table-fixed-header-and-scrollable-body
-# https://www.quackit.com/html/codes/html_scroll_box.cfm
-# https://www.w3schools.com/jsref/prop_win_innerheight.asp
-          echo "<p><strong>$pageTitle</strong></p>"
-          echo "</header>"
-          echo "<div id='mybox' style='height:360px;width:100%;overflow:auto;'><table border='1'>"
+  if [[ "$is_admin" == "yes" ]]; then
+    # HTTP GET and POST requests
+    echo "<button onclick=\"location.href='settings.cgi'\" type=\"button\">${btnShowSettings}</button> "
 
-          logTotalSize=0
-          if [[ -f "${logfile}.1" ]]; then
-            linkedFileSize "${logfile}.1"
-            # shellcheck disable=SC2154
-            if [[ "$filesize_Bytes" -gt "0" ]]; then
-              logTotalSize=filesize_Bytes
-              logInfoNoEcho 8 "Found ${logfile}.1 with $filesize_Bytes Bytes"
-              # diesen Inhalt vom alten Logfile vorneweg ausgeben:
-              logfileOutput "${logfile}.1" # html formated to stdout
-            fi
-          else
-            logInfoNoEcho 8 "no file ${logfile}.1"
-          fi
+    echo "<button onclick=\"location.href='$licenceFile'\" type=\"button\">${btnShowLicence}</button> "
+    # https://stackoverflow.com/questions/21168521/table-fixed-header-and-scrollable-body
+    # https://www.quackit.com/html/codes/html_scroll_box.cfm
+    # https://www.w3schools.com/jsref/prop_win_innerheight.asp
+    echo "<p><strong>$pageTitle</strong></p>"
+    echo "</header>"
+    echo "<div id='mybox' style='height:360px;width:100%;overflow:auto;'><table border='1'>"
 
-          if [[ -f "$logfile" ]]; then
-            linkedFileSize "${logfile}"
-            logTotalSize=$((logTotalSize + filesize_Bytes))
-            logInfoNoEcho 8 "Found ${logfile} with $filesize_Bytes Bytes"
-            if [[ logTotalSize -lt 10 ]]; then
-              # shellcheck disable=SC2154
-              echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA<br>$logfile</td></tr>"
-            else
-              # from cgi_hlp.sh:
-              logfileOutput "$logfile"
-            fi # if [[ filesize_Bytes -lt 10 ]]; else
-          else
-            logInfoNoEcho 1 "'$logfile' not found!"
-            logInfoNoEcho 8 "execLogNA='$execLogNA'"
-            echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA</td></tr>"
-          fi # if [[ -f "$logfile" ]] else
-        else
-          # Infotext: Access allowed only for users from the Administrators group
-          # shellcheck disable=SC2154
-          echo '<p>'"${txtAlertOnlyAdmin}"'</p>'
-        fi # if [[ "$is_admin" == "yes" ]] else
-        echo '</table></div>'
-      logInfoNoEcho 8 "Table with log entries done, generating footer ..."
-      echo '<p style="margin-left:22px; line-height: 16px;">'
-      if [[ "$logfile" == "$SCRIPT_EXEC_LOG" ]]; then
-        echo "<form action='log.cgi?action=chgLogLevel' method='post'>
-              <label for='fname'>LogLevel:</label>
-              <select name='logNewlevel' id='logNewlevel'>"
-        for ((i=1; i<=8; i+=1)); do
-          if [[ "$i" -eq "$LOGLEVEL" ]]; then
-            echo "<option selected>$i</option>"
-          else
-            echo "<option>$i</option>"
-          fi
-        done
-        echo "</select>"
-        # also inside the <form ...> to have it in the same row:
-        echo "<input type='submit' value='Submit'>&nbsp;&nbsp;&nbsp;"
-        echo "<button onclick=\"location.href='log.cgi?action=reloadSimpleLog'\" type=\"button\">${btnRefresh}</button> "
-        if [[ $filesize_Bytes -gt 10 ]]; then
-          echo "<button onclick=\"location.href='log.cgi?action=downloadSimpleLog'\" type=\"button\">${btnDownload}</button> "
-          echo "<button onclick=\"location.href='log.cgi?action=delSimpleLog'\" type=\"button\">${btnDelLog}</button> "
-        fi # if [[ filesize_Bytes -gt 10 ]]
-        echo "</form>"
-      echo "</p>
-        </body>
-      </html>"
-    fi  
+    logTotalSize=0
+    if [[ -f "${logfile}.1" ]]; then
+      linkedFileSize "${logfile}.1"
+      # shellcheck disable=SC2154
+      if [[ "$filesize_Bytes" -gt "0" ]]; then
+        logTotalSize=filesize_Bytes
+        logInfoNoEcho 8 "Found ${logfile}.1 with $filesize_Bytes Bytes"
+        # diesen Inhalt vom alten Logfile vorneweg ausgeben:
+        logfileOutput "${logfile}.1" # html formated to stdout
+      fi
+    else
+      logInfoNoEcho 8 "no file ${logfile}.1"
+    fi
+
+    if [[ -f "$logfile" ]]; then
+      linkedFileSize "${logfile}"
+      logTotalSize=$((logTotalSize + filesize_Bytes))
+      logInfoNoEcho 8 "Found ${logfile} with $filesize_Bytes Bytes"
+      if [[ logTotalSize -lt 10 ]]; then
+        # shellcheck disable=SC2154
+        echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA<br>$logfile</td></tr>"
+      else
+        # from cgi_hlp.sh:
+        logfileOutput "$logfile"
+      fi # if [[ filesize_Bytes -lt 10 ]]; else
+    else
+      logInfoNoEcho 1 "'$logfile' not found!"
+      logInfoNoEcho 8 "execLogNA='$execLogNA'"
+      echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA</td></tr>"
+    fi # if [[ -f "$logfile" ]] else
+  else
+    # Infotext: Access allowed only for users from the Administrators group
+    # shellcheck disable=SC2154
+    echo '<p>'"${txtAlertOnlyAdmin}"'</p>'
+  fi # if [[ "$is_admin" == "yes" ]] else
+  echo '</table></div>'
+logInfoNoEcho 8 "Table with log entries done, generating footer ..."
+echo '<p style="margin-left:22px; line-height: 16px;">'
+if [[ "$logfile" == "$SCRIPT_EXEC_LOG" ]]; then
+  echo "<form action='log.cgi?action=chgLogLevel' method='post'>
+        <label for='fname'>LogLevel:</label>
+        <select name='logNewlevel' id='logNewlevel'>"
+  for ((i=1; i<=8; i+=1)); do
+    if [[ "$i" -eq "$LOGLEVEL" ]]; then
+      echo "<option selected>$i</option>"
+    else
+      echo "<option>$i</option>"
+    fi
+  done
+  echo "</select>"
+  # also inside the <form ...> to have it in the same row:
+  echo "<input type='submit' value='Submit'>&nbsp;&nbsp;&nbsp;"
+  echo "<button onclick=\"location.href='log.cgi?action=reloadSimpleLog'\" type=\"button\">${btnRefresh}</button> "
+  if [[ $filesize_Bytes -gt 10 ]]; then
+    echo "<button onclick=\"location.href='log.cgi?action=downloadSimpleLog'\" type=\"button\">${btnDownload}</button> "
+    echo "<button onclick=\"location.href='log.cgi?action=delSimpleLog'\" type=\"button\">${btnDelLog}</button> "
+  fi # if [[ filesize_Bytes -gt 10 ]]
+  echo "</form>"
+echo "</p>
+  </body>
+</html>"
+fi  
 fi # if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]
 logInfoNoEcho 6 "... $(basename "${BASH_SOURCE[0]}") done"
 exit

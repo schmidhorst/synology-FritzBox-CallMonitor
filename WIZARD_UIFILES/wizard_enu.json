@@ -49,16 +49,30 @@
     ,"desc":"For the extension of phonebook entries without area code or without country code:"
     ,"subitems": [
      {
+      "key": "config_VAZintl"
+      ,"desc": "International access code"
+      ,"width": "250"
+      ,"defaultValue": "@VAZintl@"
+      ,"emptyText": "00 (Western Europ), 011 (North America)"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9][0-9]+$/"
+        ,"errorText":"A two or more digit number please"
+        }
+       }
+      }
+     ,{
       "key": "config_COUNTRYCODE"
-      ,"desc": "Own Country Code"
+      ,"desc": "Own Country Code incl. international access code"
       ,"width": "150"
       ,"defaultValue": "@COUNTRYCODE@"
       ,"emptyText": "e.g. 0049"
       ,"validator": { 
        "allowBlank": false
        ,"regex": {
-        "expr": "/^[0][0][0-9]+$/"
-        ,"errorText":"Bitte eine mit 00 beginnende Zahl"
+        "expr": "/^[0][0-9]+$/"
+        ,"errorText":"Bitte eine mit 0 beginnende Zahl"
         }
        }
       }
@@ -74,6 +88,28 @@
         "expr": "/^[0-9]+$/"
         ,"errorText":"Bitte eine Zahl"
         }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "combobox"
+    ,"desc": "Is the '0' of the area code required after international access code (e.g. Switzerland)?"
+    ,"subitems": [
+     {
+      "key": "config_NUMPLAN",
+      "autoSelect": true,
+      "editable": false,
+      "desc": "Closed number plan",
+      "width": "150",
+      "mode": "local",
+      "valueField": "myId0",
+      "displayField": "displayText0",
+      "defaultValue": "@NUMPLAN@",
+      "store": {
+       "xtype": "arraystore",
+       "fields": ["myId0", "displayText0"],
+       "data": [[0, "No"], [1, "Yes"]]
        }
       }
      ]
@@ -429,6 +465,19 @@
       ]
     }
    ,{
+    "type": "textfield",
+    "desc": "Map display for unknown area codes<br>For calls from unknown numbers a link may be added to the area code for more info about it. The place holder <SPAN STYLE=\"font-family:'Courier New'\">{number}</SPAN> will be replaced by the area code.<br>Example for Germany:<br>https://www.dastelefonbuch.de/Vorwahlen?mode=search&ac={number}",
+    "subitems": [
+      {
+      "key": "config_MAP_URL"
+      ,"desc": "Map URL:"
+      ,"width": "350"
+      ,"defaultValue": "@MAP_URL@"
+      ,"emptyText": "(optional), e.g. https://www.dastelefonbuch.de/Vorwahlen?mode=search&ac={number}"
+      }
+      ]
+    }
+   ,{
     "type" : "multiselect",
     "desc" : "<strong>List of Calls</strong><br>A web page with the list of calls will be generated: Accepted incoming, missed incoming, outgoing. Should outgoing trials without connection be also listed?",
     "subitems": [
@@ -583,23 +632,9 @@
   "items": [
    {    
     "type": "textfield"
-    ,"desc": "Autorefresh, ColumnWidths, Icon size on web page with list of calls:"
+    ,"desc": "ColumnWidths, Icon size on web page with list of calls:"
     ,"subitems": [
      {
-      "key": "config_AUTOREFRESH_S"
-      ,"desc": "Auto page refresh [s]"
-      ,"width": "200"
-      ,"defaultValue": "@AUTOREFRESH_S@"
-      ,"emptyText": "e.g. 15 (0 to turn auto refresh off)"
-      ,"validator": { 
-       "allowBlank": false
-       ,"regex": {
-        "expr": "/^[0-9]+$/"
-        ,"errorText": "An integer number is required"
-        }
-       }
-      }
-     ,{
       "key": "config_BACKGROUND_COLOR"
       ,"desc": "Background color rrggbb"
       ,"width": "200"

@@ -22,6 +22,9 @@ Für Probleme benutzen Sie bitte den [issue tracker](https://github.com/schmidho
 * Der Anrufmonitor der Fritzbox muss mittels Telefon (das an der Fritzbox angeschlossen ist), mit der Ziffernfolge #96\*5\* aktiviert werden. Dies funktioniert mit einem Analog-Telefon, einem DECT- oder einem ISDN-Telefon. Falls nur ein IP-Telefon verfügbar ist, muss der unter [https://www.janrufmonitor.de/ueberwachung-freischalten/](https://www.janrufmonitor.de/ueberwachung-freischalten/) beschriebene Umweg über einen Telefonbuch-Eintrag verwendet werden.
 * Laden Sie die *.spk-Datei von ["Releases"](https://github.com/schmidhorst/synology-FritzBox-CallMonitor/releases/), "Assets" auf Ihren Computer herunter und verwenden Sie "Manual Install" im Package Center. Während der Installation werden die notwendigen Einstellungen abgefragt.
 
+## Paket-Erstellung
+* Wenn Sie das Paket aus den Quellen neu erstellen möchten: Alle Dateien herunterladen. Aktualisieren Sie die Versionsnummer in INFO.sh nach Änderungen. Die Datei build.sh auf 'ausführbar' setzen und das Skript dann ausführen um die *.spk-Datei zu erzeugen. Dies können Sie auf Ihrem Synology-NAS machen oder z.B. auch im Windows Subsystem Linux (WSL). Das Synology Package Development Toolkit wird nur für Änderungen in den Hilfe-Seiten benötigt.
+
 ## Danksagungen und Referenzen
 - Dank an [eiGelbGeek](https://homematic-forum.de/forum/viewtopic.php?t=34876) für seinen CallMonitor.
 - Dank an [toafez Tommes](https://github.com/toafez) und sein [Demo-Paket](https://github.com/toafez/DSM7DemoSPK)

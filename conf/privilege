@@ -10,6 +10,24 @@
       ,"group": "package"
       ,"permission": "0700"
       }
+    ,{
+      "relpath": "common.pm"
+      ,"user": "package"
+      ,"group": "package"
+      ,"permission": "0700"
+      }
+    ,{
+      "relpath": "common.sh"
+      ,"user": "package"
+      ,"group": "package"
+      ,"permission": "0700"
+      }
+    ,{
+      "relpath": "bin/cli"
+      ,"user": "package"
+      ,"group": "package"
+      ,"permission": "0755"
+      }
     ]
   }
 

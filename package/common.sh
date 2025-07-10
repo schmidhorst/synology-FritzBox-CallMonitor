@@ -5,20 +5,26 @@
 if [[ -z "$PATH" ]]; then
   PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/syno/bin:/usr/syno/sbin
 fi
+# shellcheck disable=SC2164
 SCRIPTPATHTHIScommon="$( cd -- "$(/bin/dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; /bin/pwd -P )" # e.g. /volumeX/@appstore/<app>
 # Attention: In case of "source <somePath>/common" don't overwrite here the previous SCRIPTPATHTHIS!
 if [[ -z "${app_name}" ]]; then
   app_name="${SCRIPTPATHTHIScommon##*/}"
 fi
 APPDATA="/var/packages/$app_name/var" # appCfgDataPath="/var/packages/${app_name}/var"
+# shellcheck disable=SC2034
 LOGLEVEL=8 # preset, may be chanded in parse_hlp.sh from config 
 # shellcheck source=../WIZARD_UIFILES/log_hlp.sh
+# shellcheck disable=SC1091
 source "/var/packages/$app_name/WIZARD_UIFILES/log_hlp.sh"
 # shellcheck source=ui\modules\parse_hlp.sh
+# shellcheck disable=SC1091
 source "/var/packages/$app_name/target/ui/modules/parse_hlp.sh" #  logInfoNoEcho(), DTFMT, LOGLEVEL, urlencode(), urldecode()
+# shellcheck disable=SC2034
 SCRIPT_EXEC_LOG="$APPDATA/execLog"
 
 # shellcheck source=..\WIZARD_UIFILES\initial_config.txt
+# shellcheck disable=SC1091
 source "$APPDATA/config"
 if [[ -z "$LOG" ]]; then # should be set in log_hlp.sh!!!!!
   if [[ -w "/var/log/packages/$app_name.log" ]]; then

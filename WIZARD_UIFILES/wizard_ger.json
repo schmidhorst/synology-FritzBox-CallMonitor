@@ -49,16 +49,30 @@
     ,"desc":"Zur Ergänzung von Nummern im Telefonbuch ohne eigene Orts- oder Landesvorwahl:"
     ,"subitems": [
      {
+      "key": "config_VAZintl"
+      ,"desc": "Auslands-Vorwahl (VAZ)"
+      ,"width": "250"
+      ,"defaultValue": "@VAZintl@"
+      ,"emptyText": "00 (Westeuropa), 011 (Noramerika)"
+      ,"validator": { 
+       "allowBlank": false
+       ,"regex": {
+        "expr": "/^[0-9][0-9]+$/"
+        ,"errorText":"Bitte eine Zahl mit mindestens zwei Ziffern"
+        }
+       }
+      }
+     ,{
       "key": "config_COUNTRYCODE"
-      ,"desc": "Eigene Landesvorwahl"
+      ,"desc": "Eigene Landesvorwahl incl. VAZ"
       ,"width": "150"
       ,"defaultValue": "@COUNTRYCODE@"
       ,"emptyText": "z.B. 0049"
       ,"validator": { 
        "allowBlank": false
        ,"regex": {
-        "expr": "/^[0][0][0-9]+$/"
-        ,"errorText":"Bitte eine mit 00 beginnende Zahl"
+        "expr": "/^[0][0-9]+$/"
+        ,"errorText":"Bitte eine mit 0 beginnende Zahl"
         }
        }
       }
@@ -74,6 +88,28 @@
         "expr": "/^[0-9]+$/"
         ,"errorText":"Bitte eine Zahl"
         }
+       }
+      }
+     ]
+    }
+   ,{
+    "type": "combobox"
+    ,"desc": "Gilt ein 'offener Nummernplan' (Ortsnetz-0 entfällt nach der internationalen Vorwahl, z.B., Deutschland, Österreich) oder ein 'geschlossener Nummernplan' (Ortsnetz-0 muss immer mitgewählt werden, z.B. Schweiz)"
+    ,"subitems": [
+     {
+      "key": "config_NUMPLAN",
+      "autoSelect": true,
+      "editable": false,
+      "desc": "Nummernplan",
+      "width": "150",
+      "mode": "local",
+      "valueField": "myId0",
+      "displayField": "displayText0",
+      "defaultValue": "@NUMPLAN@",
+      "store": {
+       "xtype": "arraystore",
+       "fields": ["myId0", "displayText0"],
+       "data": [[0, "Offen"], [1, "Geschlossen"]]
        }
       }
      ]
@@ -415,7 +451,6 @@
       }
      ]
     }
-
    ,{
     "type": "textfield",
     "desc": "Invers-Such-Link für unbekannte Nummern<br>Der Platzhalter <SPAN STYLE=\"font-family:'Courier New'\">{number}</SPAN> wird durch die aktuelle Nummer ersetzt.<br>Beispiele, welche funktionieren sollten:<br>https://www.tellows.de/num/{number}<br>https://www.google.com/search?q=Telefon+{nummer}",
@@ -429,8 +464,19 @@
       }
       ]
     }
-  
-
+   ,{
+    "type": "textfield",
+    "desc": "Landkarten-Anzeige für unbekannte Ortsnetze<br>Bei unbekannten Nummern kann die Ortsvorwahl mit einem Link zu Info zum Ortsnetzt hinterlegt werden. Der Platzhalter <SPAN STYLE=\"font-family:'Courier New'\">{number}</SPAN> wird durch die aktuelle Ortsvorwahl ersetzt.<br>Ein Beispiele, welches funktionieren sollten:<br>https://www.dastelefonbuch.de/Vorwahlen?mode=search&ac={number}",
+    "subitems": [
+      {
+      "key": "config_MAP_URL"
+      ,"desc": "Karten-Url:"
+      ,"width": "350"
+      ,"defaultValue": "@MAP_URL@"
+      ,"emptyText": "(optional), z.B. https://www.dastelefonbuch.de/Vorwahlen?mode=search&ac={number}"
+      }
+      ]
+    }
    ,{
     "type" : "multiselect",
     "desc" : "<strong>Anruf-Liste</strong><br>Es wird eine per Webseite abrufbare Liste der Anrufe erstellt: Eingehend angenommen, Eingehend verpasst, Ausgehend. Sollen auch ausgehende Versuche, bei denen keine Verbindung zustandekommt, gelistet werden?",
@@ -586,23 +632,9 @@
   "items": [
    {    
     "type": "textfield"
-    ,"desc": "Autorefresh, Spaltenbreiten, Icon-Größe etc. auf den WebSeiten der Anruferlisten:"
+    ,"desc": "Spaltenbreiten, Icon-Größe etc. auf den WebSeiten der Anruferlisten:"
     ,"subitems": [
-     {
-      "key": "config_AUTOREFRESH_S"
-      ,"desc": "Auto page refresh [s]"
-      ,"width": "200"
-      ,"defaultValue": "@AUTOREFRESH_S@"
-      ,"emptyText": "z.B. 15 (0 = kein Autorefresh)"
-      ,"validator": { 
-       "allowBlank": false
-       ,"regex": {
-        "expr": "/^[0-9]+$/"
-        ,"errorText": "Eine Ganzzahl bitte"
-        }
-       }
-      }
-     ,{
+      {
       "key": "config_BACKGROUND_COLOR"
       ,"desc": "Hintergrundfarbe RRGGBB"
       ,"width": "200"

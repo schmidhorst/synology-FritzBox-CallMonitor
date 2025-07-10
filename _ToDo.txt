@@ -1,27 +1,136 @@
-- Während Installation kommt (wenn PriviledgeCopy inline ausgeführt wird):
-  File '/volume1/syn/sHorst/Dev_Syno/CallMonitor/Nebenstellen.txt' is missing or not accessible with the account callmonitor
-  ls: cannot access '/volume1/syn/sHorst/Dev_Syno/CallMonitor/Nebenstellen.txt': Permission denied
-  Not available? No permission? Locked by other process?
-  synoacltool -get-perm /volume1/syn/sHorst/Dev_Syno/CallMonitor/Nebenstellen.txt callmonitor
-  (synoacltool.c, 1033)Access deny
-  File '/volume1/syn/sHorst/Dev_Syno/CallMonitor/FRITZ.Box_Telefonbuch.xml' is missing or not accessible with the account callmonitor
+- Fax-Nummern:
+  - Option zum ignorieren
 
-  Erst nach einem Stopp und nochmaligem Start geht es!
+- Ist Sonderbehandlung für mit '1' beginnende Nummern, die also keine Vorwahl haben, notwendig?
+  https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/Nummerierung/_DL/np_nummernraum.pdf
 
+- Beim calls.cgi-Webfenster-Schließen wird calls.cgi-Prozess nicht beendet.
 
 - Wenn $NOTIFY_USERS leer ist, dann system("/usr/syno/bin/synodsmnotify" ...) immer überspringen!
 
 - Zugriffsrechte für Dateien?
   - chmod mit -k-Option??
   - calls, log: 740 statt 744 (in start-stop-status bei logrotation create) ???
-- LogLevel-Einstellung zusätzlich auf Einstellungen-Seite
+
+- LogLevel-Einstellung zusätzlich zur Log-Seite auch auf Einstellungen-Seite
+
 - Settings SYSLOG_INT Das Paket kann den SysLog-Dienst für Fehler nutzen: true=intern, false=via UDP
   Näher beschreiben
+
 - statt "/var/packages/callmonitor/scripts/start-stop-status restart" im cron auch ein "synopkg restart callmonitor" ?
-- Option für Anrufliste: Alte Anrufe nach 24h, 48h, ... löschen
+
+- Option für Anrufliste: Alte Anrufe nach n Tgen löschen
 
 https://www.synology-forum.de/threads/howto-3rdparty-apps-anwendungsberechtigung-und-synotoken.33516/
 - Vom AB angenommene Anrufe:
   - In Liste verpaßte Anrufe? Oder eigene WebSeite
   - Eigenes Icon?
-- build.sh in WSL testen
+
+
+Your Perl script is quite comprehensive and touches many aspects of handling phone books, CardDAV, XML parsing, socket communication, and more. Here are some suggestions to improve robustness, maintainability, and modern Perl best practices:
+
+---
+
+### 1. **Use Modern Perl (Moo/Moose/strict signatures)**
+- Consider using [Moo](https://metacpan.org/pod/Moo) or [Moose](https://metacpan.org/pod/Moose) for structuring your data and logic (especially for representing phonebook entries, configuration, etc.).
+- Use [`use feature 'signatures';`](https://perldoc.perl.org/feature#The-'signatures'-feature) (Perl 5.20+) for clearer sub signatures, or at minimum, document parameter types.
+
+### 2. **Error Handling**
+- Replace many `die` and `print` statements with proper logging and error handling (e.g., using [Log::Log4perl](https://metacpan.org/pod/Log::Log4perl)).
+- Use [Try::Tiny](https://metacpan.org/pod/Try::Tiny) for exception-safe blocks when dealing with file IO or external commands.
+
+### 3. **External Commands**
+- Avoid using backticks and shell calls (`curl`, `ls`, etc.) where possible. Prefer CPAN modules:
+    - [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent) for HTTP/HTTPS requests (with [LWP::Protocol::https](https://metacpan.org/pod/LWP::Protocol::https)).
+    - [File::stat](https://metacpan.org/pod/File::stat) for file status instead of `ls`.
+    - [Net::ACL](https://metacpan.org/pod/Net::ACL) or similar for ACLs.
+    - If you must shell out, always check for failures and sanitize inputs.
+
+### 4. **Configuration Handling**
+- Use a structured config format (e.g., [YAML::XS](https://metacpan.org/pod/YAML::XS) or [Config::Tiny](https://metacpan.org/pod/Config::Tiny)) instead of ad-hoc text parsing.
+
+### 5. **Encoding and Unicode**
+- Carefully check all input/output encoding. You mix `encode('utf-8', ...)` and filehandles with `:encoding(UTF-8)`. Try to standardize: either always decode at input and encode at output, or consistently use binmode and explicit encoding.
+
+### 6. **Repeated Code/Patterns**
+- Move common code patterns (e.g., file reading, error reporting, command execution) into reusable subroutines or modules.
+
+### 7. **Global Variables**
+- Reduce reliance on global variables. Pass them as parameters or encapsulate in objects.
+
+### 8. **Security**
+- Avoid passing passwords on the command line (e.g., in `curl`). Use environment variables or config files with proper permissions.
+- Sanitize all user input and configuration values used in system calls.
+
+### 9. **Socket Handling**
+- Use [IO::Socket::INET6](https://metacpan.org/pod/IO::Socket::INET6) for IPv6 support.
+- Add timeouts and better error handling for socket operations.
+
+### 10. **Documentation**
+- Add POD documentation (`=head1`, `=cut`) for all subs and modules.
+- Clearly document configuration file formats and usage.
+
+### 11. **Testing**
+- Add test scripts using [Test::More](https://metacpan.org/pod/Test::More) for core functionality (parsing, lookups, etc.).
+
+### 12. **Code Style and Readability**
+- Consistently use indentation and whitespace.
+- Name variables in English and be consistent (unless German is required for business logic).
+- Break up very long functions into smaller ones.
+
+### 13. **Deprecation/Modernization**
+- Consider migrating from Perl to a more modern language or framework if long-term maintainability is a concern and your user base supports it.
+
+---
+
+#### **Specific Code Examples**
+
+- **Replace:**
+    ```perl
+    $vcard=`curl "$src" -u "$user:$password" ...`;
+    ```
+    **With:**
+    ```perl
+    use LWP::UserAgent;
+    my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+    my $response = $ua->get($src, 'Authorization', 'Basic ' . encode_base64("$user:$password", ''));
+    die $response->status_line unless $response->is_success;
+    my $vcard = $response->decoded_content;
+    ```
+
+- **Encapsulate phonebook entry as an object:**
+    ```perl
+    package PhoneBookEntry;
+    use Moo;
+    has name     => (is => 'rw');
+    has book     => (is => 'rw');
+    has number   => (is => 'rw');
+    has url      => (is => 'rw');
+    has email    => (is => 'rw');
+    has whatsapp => (is => 'rw');
+    1;
+    ```
+
+---
+
+**Summary Table**
+
+| Area                | Suggestion                                               |
+|---------------------|---------------------------------------------------------|
+| Modern Perl         | Use Moo/Moose, feature 'signatures'                     |
+| Error Handling      | Try::Tiny, Log::Log4perl                                |
+| External Commands   | Use CPAN modules, avoid shell                           |
+| Config Handling     | YAML/INI/JSON via CPAN                                  |
+| Unicode/Encoding    | Standardize encoding handling                           |
+| Common Patterns     | Refactor to reusable subs/modules                       |
+| Globals             | Reduce, encapsulate                                     |
+| Security            | Remove passwords from CLI, sanitize inputs              |
+| Socket Handling     | Timeouts, error checks, IPv6                            |
+| Documentation       | Add POD for all public subs                             |
+| Testing             | Test::More                                              |
+| Code Style          | Consistent indentation, English variable names          |
+| Modernization       | Consider migration if maintainability is an issue       |
+
+---
+
+Let me know if you want concrete code refactorings for a particular part!
