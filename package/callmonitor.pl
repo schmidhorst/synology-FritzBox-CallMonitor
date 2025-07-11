@@ -22,7 +22,8 @@ use POSIX qw/strftime/;
 use Cwd qw( abs_path );
 use File::Basename qw( dirname );
 use lib dirname( abs_path( $0 ) );
-use common; # use module common.pm with sub read_fileItem
+use common; # use module common.pm with sub read_fileItem, ...
+use vars qw(%cfgHashs); # import is not yet working
 
 my %telBook = (); # Telefonbuch der vollständigen Nummern, 
     # key=bereinigte Nummer, item=($name, $book, $number0 (OriginalFormat), $url, $email)
@@ -48,12 +49,12 @@ my $varFilePath="/var/packages/$pkgName/var";
 my $cfgFilePathName="$varFilePath/config";
 my $execLogFilePathName="$varFilePath/execLog";
 
-my %cfgHashs;
+# my %cfgHashs;
 my $dsmappname;
 
-my $country;
-my $areaCode;
-my $vaz;
+# my $country; # exported from common.pm
+# my $areaCode; # exported from common.pm
+# my $vaz;
 my $duplicatesList="";
 
 sub processDuplBookEntry {
@@ -706,7 +707,7 @@ sub number2nameBook {
   if ($len1 > 0) {
     # my $name=$telBookWild{$key} . " " . substr($number, $len); # return e.g. Belgium 6875676
     $name = $name . " " . substr($number, $len1); # return e.g. Belgium 6875676
-    doExecLog(4, "number2nameBook(), number='$number0', cleaned='$number' resolved to $name from $book");
+    doExecLog(6, "number2nameBook(), number='$number0', cleaned='$number' resolved to $name from $book");
     $numberFormated=substr($number, 0, $len1) . " " . substr($number, $len1); 
     # print "number2nameBook() $numberFormated found in $book as $name. AREABookName=$cfgHashs{BOOKNAME_AREA}\n";
       if (index($book, $cfgHashs{BOOKNAME_AREA}) == -1) {
@@ -733,7 +734,7 @@ sub number2nameBook {
       return ( "Unknown from " . $name, "", $numberFormated,       "",  "",    "",      "") 
       #           Caller-"Name"       , BookName, formated number, url, eMail, whatsApp, type
     }
-  doExecLog(4, "number2nameBook(), cleaned number='$number' not resolved");
+  doExecLog(6, "number2nameBook(), cleaned number='$number' not resolved");
   print " Number not found!\n";
   return ("Unknown", "", $number, "", "", "", "");
   }
@@ -770,6 +771,11 @@ close $info;
 print "Example from langFile: noInCall=$langTxts{noInCall}\n";
 =cut
 
+my $cntCfg=keys(%cfgHashs); # Import is not yet working!???????????????????????
+print "callmonitor.pl: $cntCfg items in cfgHashs\n";
+
+# workaround: Read again! !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# =pod
 print "read_fileItem($cfgFilePathName)...\n";
 %cfgHashs=read_fileItem "$cfgFilePathName"; # read all items
 print "... LogLevel is $cfgHashs{LOGLEVEL}\n";
@@ -780,11 +786,20 @@ print "... LogLevel is $cfgHashs{LOGLEVEL}\n";
 # $cfgHashs{CCU_PW} and $cfgHashs{DAV_PW} should be set to "*****" in the config file, real PW is in var/pw file (root only access)
 %tmpHash=read_fileItem "$varFilePath/pw";
 %cfgHashs = (%cfgHashs, %tmpHash);
+
 $vaz = $cfgHashs{VAZintl}; # e.g. 00 in western Europe, 011 in northern America
 $country = $cfgHashs{COUNTRYCODE}; # e.g. 0049 for Germany
 $country =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
 $areaCode=$cfgHashs{AREACODE}; # e.g. 089 for Munich
 $areaCode =~ s/^\s*(.*?)\s*$/$1/; # trim
+# =cut
+
+# my $cntCfg0=keys(%common::cfgHashs);
+# print "callmonitor.pl: $cntCfg0 items in common::cfgHashs\n";
+
+# %cfgHashs = common::cfgHashs;
+my $cntCfg=keys(%cfgHashs);
+print "callmonitor.pl: $cntCfg items in cfgHashs\n";
 
 if ( ! exists $cfgHashs{IP_FRITZBOX} ) {
   doExecLog(1, "Error: Could not get IP address IP_FRITZBOX of FritzBox from the package config file!");
@@ -1163,7 +1178,7 @@ while(<$sock>) { #warten auf aktiven Anruf#
   # if active call: write info memory mapped file /dev/shm/callmonitor.Actual for calls.cgi:
   my $txtlines="";
   my $n=0;
-  for my $i (0 .. $#SIP_ConID) {
+  for my $i (0 .. $#SIP_ConID) { # loop through all active calls
     if (defined $SIP_ConID[$i]) {
       if ($SIP_ConID[$i] ne "") {
         my $lineNr1= 1 + $i;
@@ -1181,16 +1196,16 @@ while(<$sock>) { #warten auf aktiven Anruf#
       print("SIP_ConID[$i] undef: /dev/shm/$pkgName.Actual not deleted when call was finished?\n");      
       }
     }
-  if ($txtlines eq "") {
+  if ($txtlines eq "") { # no active call
     if ( $cfgHashs{"LOGLEVEL"} < 8 ) {
       truncate "/dev/shm/$pkgName.Actual", 0;
       print "No actual active calls";
       }
     else {
-      doExecLog(8, "Due to LOGLEVEL >= 8 file /dev/shm/$pkgName. Actual not truncated to zero");
+      doExecLog(8, "Hint: Due to LOGLEVEL >= 8 the file /dev/shm/$pkgName.Actual was not truncated to zero at the end of the call");
       }  
     }
-  else {  
+  else { # write all active calls to /dev/shm/$pkgName.Actual. That will be appended in calls.cgi to the list of finished calls
     print "sending to /dev/shm/$pkgName.Actual: $txtlines";
     unless (open(fh1, ">", "/dev/shm/$pkgName.Actual")) {
       print "Error Opening /dev/shm/$pkgName.Actual\n";
@@ -1207,7 +1222,8 @@ while(<$sock>) { #warten auf aktiven Anruf#
     chmod 0744, "/dev/shm/$pkgName.Actual";
     print "$n actual active calls put to /dev/shm/$pkgName.Actual\n";
     }  
-  } # while(<$sock>) Endless loop
+
+  } # while(<$sock>) Endless loop listening to FritzBox
 
 
 sub appendLinks2extName {
@@ -1272,7 +1288,7 @@ sub sendToCcu {
   my $upI=encode("iso-8859-1", "$cfgHashs{CCU_USER}:$cfgHashs{CCU_PW}");
   my $ret=system("curl -u $upI -G --data-urlencode '$curlDataI' 'http://$cfgHashs{IP_CCU}:8181/test.exe'");
   my $res=$!;
-  doExecLog(4, "sendToCcu(): res=$res, ret='$ret'");
+  doExecLog(4, "sendToCcu(): curl res=$res, ret='$ret', IP_CCU=$cfgHashs{IP_CCU}, CCU_USER=$cfgHashs{CCU_USER}, Data=$curlDataI");
   if ( "$NOTIFY_USERS" ne "" ) {
     # $dsmappname is setup in INFO file, e.g. "SYNO.SDS._ThirdParty.App.callmonitor"
     # $dsmappname needs to match the .url in ui/config. Otherwise synodsmnotify will not work
