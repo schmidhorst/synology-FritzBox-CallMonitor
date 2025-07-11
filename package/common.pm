@@ -3,6 +3,9 @@
 package common;  # assumes common.pm
 # use v5.36;
 
+use strict;
+use warnings;
+
 # Get the import method from Exporter to export functions and
 # variables
 # use Exporter 5.57 'import';
@@ -17,7 +20,7 @@ our $VERSION = '0.02';
 
 # Functions and variables which are exported by default
 # our @EXPORT      = qw(func1 func2);
-our @EXPORT = qw(read_fileItem formatedNow number2nameBook addCountryArea removeNonDigits doExecLog);
+our @EXPORT = qw(read_fileItem formatedNow addCountryArea removeNonDigits doExecLog %cfgHashs $country $areaCode $vaz);
 
 # Functions and variables which can be optionally exported
 # our @EXPORT_OK   = qw($Var1 %Hashit func3);
@@ -49,6 +52,7 @@ my $areaCode; # e.g. 089 for Munich
 my $pkgName;
 my $varFilePath;
 my $cfgFilePathName;
+my $vaz;
 
 # make all your functions, whether exported or not;
 # remember to put something interesting in the {} stubs
@@ -82,9 +86,9 @@ sub doExecLog {
 # Search a file (with lines like 'key=value') for a list of keys
 # In no keys given, then read all!
 sub read_fileItem{
-  local $filePathName = shift; # 1st Parameter: File name
+  my $filePathName = shift; # 1st Parameter: File name
   my $listSize= 1 + $#_;
-  local @searchedItems = @_; # further parameters: keys of the items to extract
+  my @searchedItems = @_; # further parameters: keys of the items to extract
   # print "searching for: @searchedItems\n";
   my %myhashs;
   if (! -r $filePathName ) {
@@ -187,6 +191,11 @@ print "common.pm pkgName='$pkgName'\n";
 $varFilePath="/var/packages/$pkgName/var";
 $cfgFilePathName="$varFilePath/config";
 %cfgHashs=read_fileItem "$cfgFilePathName"; # read all items
+my %tmpHash=read_fileItem "$varFilePath/pw"; # read passwords
+my $cntCfg=keys(%cfgHashs);
+my $cntPw=keys(%tmpHash);
+print "common.pm: $cntCfg items read from $cfgFilePathName and $cntPw vom $varFilePath/pw\n";
+%cfgHashs = (%cfgHashs, %tmpHash);
 $vaz = $cfgHashs{VAZintl}; # e.g. 00 in western Europe, 011 in northern America
 $country = $cfgHashs{COUNTRYCODE}; # e.g. 0049 for Germany
 $country =~ s/^\s*(.*?)\s*$/$1/; # trim ( \s* = multiple Whitespace )
