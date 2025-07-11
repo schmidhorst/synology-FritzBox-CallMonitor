@@ -771,8 +771,8 @@ close $info;
 print "Example from langFile: noInCall=$langTxts{noInCall}\n";
 =cut
 
-my $cntCfg=keys(%cfgHashs); # Import is not yet working!???????????????????????
-print "callmonitor.pl: $cntCfg items in cfgHashs\n";
+my $cntCfg0=keys(%cfgHashs); # Import is not yet working!???????????????????????
+print "callmonitor.pl: $cntCfg0 items in cfgHashs from the import\n";
 
 # workaround: Read again! !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # =pod
@@ -1235,20 +1235,26 @@ sub appendLinks2extName {
   if ($urlWeb ne "") { # Add Homepage-URL to Name
     $extName="$extName <a target='_blank' href='" . $urlWeb . "'><img src='images/web.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'></a>";
     }
-  else {print "  no webUrl\n";}  
-  if (($cfgHashs{INVERS_URL} ne "") && index($extName, "Unknown") > -1) { # Add invers search URL
-    my $searchUrl = $cfgHashs{INVERS_URL};
-    my $numberCleand = $number;
-    $numberCleand =~ s/ //g;
-    $numberCleand=addCountryArea($numberCleand); # z.B. Ortsvorwahl fehlt, falls nicht mitgewählt
-    $searchUrl =~ s/\{number\}/$numberCleand/;
-    $extName = "$extName <a target='_blank' href='" . $searchUrl . "'><img src='images/search.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'></a>";
-    if (( $number =~ /^0[1-9].*/ ) && ($cfgHashs{MAP_URL} ne "")) { # not 00.. and MAP_URL defined
+  else {print "  no webUrl\n";}
+
+  if (index($extName, "Unknown") > -1) { # Add invers search URL and/or map url
+    if ($cfgHashs{INVERS_URL} ne "") { # Add invers search URL
+      my $searchUrl = $cfgHashs{INVERS_URL};
+      my $numberCleand = $number;
+      $numberCleand =~ s/ //g;
+      $numberCleand=addCountryArea($numberCleand); # z.B. Ortsvorwahl fehlt, falls nicht mitgewählt
+      $searchUrl =~ s/\{number\}/$numberCleand/;
+      $extName = "$extName <a target='_blank' href='" . $searchUrl . "'><img src='images/search.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'></a>";
+      }
+    else {
+      print " unknown, but no no searchUrl\n";
+      }  
+    if (($number =~ /^0[1-9].*/ ) && ($cfgHashs{MAP_URL} ne "")) { # not 00.. and MAP_URL defined
       # $vaz ?????????????????????????????????
       # add an link to lookup the map for the area code
       my @numParts = (split / /, $number, 2);
       print "appendLinks2extName() Number splitted #numParts=$#numParts, numParts[1]=$numParts[1] \n";      
-      if (($#numParts == 1) && ($numParts[0] ne "0800") && ($numParts[0] ne "0700") && ($numParts[0] =~ /^1.*/ )) {
+      if (($#numParts == 1) && ($numParts[0] ne "0800") && ($numParts[0] ne "0700")) {
         my $mapUrl=$cfgHashs{MAP_URL};
         $mapUrl =~ s/\{number\}/$numParts[0]/;
         print "Map-Area: $numParts[0], mapUrl=$mapUrl\n";
@@ -1256,8 +1262,11 @@ sub appendLinks2extName {
         }
       print "Lookup-Number: $number\n";
       }
+    else {
+      print " Unknown, but not a local area code or no MAP_URL\n";
+      }
     }
-  else {print "  not unknown or no searchUrl\n";}  
+
   if ( $eMail ne "") {
     $extName = "$extName <a href='mailto:${eMail}'><img src='images/eMail.png', width='$cfgHashs{SIZE_ICON}', height='$cfgHashs{SIZE_ICON}'></a>";
     }
