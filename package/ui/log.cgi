@@ -439,7 +439,7 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
 
     logTotalSize=0
     if [[ -f "${logfile}.1" ]]; then
-      linkedFileSize "${logfile}.1"
+      filesize_Bytes=$(linkedFileSize "${logfile}.1")
       # shellcheck disable=SC2154
       if [[ "$filesize_Bytes" -gt "0" ]]; then
         logTotalSize=filesize_Bytes
@@ -452,12 +452,12 @@ if [ "$(synogetkeyvalue /etc.defaults/VERSION majorversion)" -ge 7 ]; then
     fi
 
     if [[ -f "$logfile" ]]; then
-      linkedFileSize "${logfile}"
+      filesize_Bytes=$(linkedFileSize "${logfile}")
       logTotalSize=$((logTotalSize + filesize_Bytes))
       logInfoNoEcho 8 "Found ${logfile} with $filesize_Bytes Bytes"
       if [[ logTotalSize -lt 10 ]]; then
         # shellcheck disable=SC2154
-        echo "<tr><td>$(date "$DTFMT")</td><td>$execLogNA<br>$logfile</td></tr>"
+        echo "<tr><td>$(date "$DTFMT")</td><td>0 $execLogNA<br>$logfile</td></tr>"
       else
         # from cgi_hlp.sh:
         logfileOutput "$logfile"

@@ -30,6 +30,7 @@ logfileOutput() { # Parameter: file name incl. path
 
 
 linkedFileSize() {
+  filesize_Bytes=0
   if linkTarget="$(readlink "$1")"; then # result 1 if it's not a link
     filesize_Bytes=$(stat -c%s "$linkTarget")
     # lineCount=$(wc -l < "$linkTarget")
@@ -38,4 +39,5 @@ linkedFileSize() {
     filesize_Bytes=$(stat -c%s "$1")  # if it's a link this returns size of the link, not of linked file!
     # lineCount=$(wc -l < "$1")
   fi
+  echo "$filesize_Bytes"
   }
